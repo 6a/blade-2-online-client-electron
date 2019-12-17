@@ -28,6 +28,11 @@ main {
     overflow: hidden;
 }
 
+.bg-video {
+    position: fixed;
+    z-index: -1000;
+}
+
 /* TITLE BAR */
 
 @import "colors.css"; 

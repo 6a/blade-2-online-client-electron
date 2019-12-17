@@ -2,7 +2,7 @@
   "name": "blade2-online-client",
   "version": "0.0.1",
   "description": "Client for Blade II Online",
-  "main": "app/main/main.js",
+  "main": "main.js",
   "scripts": {
     "start": "electron ."
   },

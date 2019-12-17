@@ -14,13 +14,13 @@ function createWindow() {
         frame: false,
         resizable: false,
         webPreferences: {
-            preload: path.join(__dirname, '../preload/preload.js'),
-            nodeIntegration: false
+            nodeIntegration: true,
+            preload: path.join(__dirname, 'assets/js/preload.js')
         }
     })
 
     // and load the index.html of the app.
-    mainWindow.loadFile(path.join(__dirname, 'main.html'))
+    mainWindow.loadFile(path.join(__dirname, 'app/app.html'))
 
     // Open the DevTools.
     mainWindow.webContents.openDevTools({ mode: 'detach' })
