@@ -1,0 +1,10 @@
+:root {
+    --gscale-90-20: hsla(0, 0%, 90%, 0.2);
+    --gscale-90-100: hsla(0, 0%, 90%, 1);
+    --warning: hsla(0, 62%, 43%, 1);
+
+    /* DEBUG */
+    --debug-red: red;
+    --debug-blue: blue;
+    --debug-green: hsl(120, 100%, 50%);
+}

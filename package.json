@@ -1,0 +1,19 @@
+{
+  "name": "blade2-online-client",
+  "version": "0.0.1",
+  "description": "Client for Blade II Online",
+  "main": "app/main/main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "",
+  "keywords": [
+    "The Legend of Heroes",
+    "Blade II"
+  ],
+  "author": "James Einosuke Stanton",
+  "license": "None",
+  "devDependencies": {
+    "electron": "^7.1.5"
+  }
+}
