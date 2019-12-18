@@ -41,7 +41,113 @@ main {
     height: auto;
 }
 
+/* TEXT FIELD */
 
+input[type=text], input[type=password] {
+    border: none;
+    background: var(--darken-10);
+    padding: 22px 10px 8px 10px;
+    box-sizing: border-box;
+    width: 100%;
+    line-height: 1.1em;
+    font-weight: 600;
+
+    transition: all 0.2s ease-in-out;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    outline-color: var(--gscale-10-100);
+}
+
+.text-input-wrapper {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 10px 0;
+    position: relative;
+
+    transition: all 0.2s ease-in-out;
+}
+
+.text-input-label-wrapper {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+input[type=text]:not(:placeholder-shown) + .text-input-label-wrapper, 
+input[type=password]:not(:placeholder-shown) + .text-input-label-wrapper,
+input[type=text]:focus + .text-input-label-wrapper, 
+input[type=password]:focus + .text-input-label-wrapper {    
+    align-items: flex-start;
+}
+
+.text-input-label {
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+
+    font-size: 0.7em;
+    font-weight: 500;
+    color: var(--gscale-50-100);
+    pointer-events: none;
+    padding: 0 10px;
+    font-size: 0.6em;
+    font-weight: 500;
+
+    transition: all 0.2s ease-in-out;
+}
+
+input[type=text]:not(:placeholder-shown) + .text-input-label-wrapper > .text-input-label, 
+input[type=password]:not(:placeholder-shown) + .text-input-label-wrapper > .text-input-label,
+input[type=text]:focus + .text-input-label-wrapper > .text-input-label, 
+input[type=password]:focus + .text-input-label-wrapper > .text-input-label {
+    transform: translateY(0);
+    top: 0;
+
+    padding-top: 8px;
+    font-size: 0.5em;
+    font-weight: 500;
+    color: var(--gscale-20-100);
+}
+
+/* CHECKBOX */
+
+.checkbox-wrapper {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+input[type=checkbox] {
+    margin: 0 6px 0 0;
+    -webkit-appearance: none;
+    background: var(--gscale-80-100);
+    width: 12px;
+    height: 12px;
+    outline: none;
+
+    transition: all 0.2s ease-in-out;
+}
+
+input[type=checkbox]:checked {
+    background: var(--affirmative) url(../images/tick-sign.svg) no-repeat;
+}
+
+input[type=checkbox] + .checkbox-text {
+    font-size: 0.6em;
+    font-weight: 500;
+    color: var(--gscale-50-100);
+
+    transition: all 0.2s ease-in-out;
+}
+
+input[type=checkbox]:checked + .checkbox-text {
+    color: var(--gscale-10-100);
+}
 
 /* TITLE BAR */
 
@@ -86,57 +192,15 @@ main {
 
 /* LOGIN */
 #login-pane {
-    width: calc(350px - 100px);
-    height: calc(100% - 100px);
+    box-sizing: border-box;
+    width: 350px;
+    height: 100%;
     background: var(--gscale-90-100);
-    padding: 50px;
+    padding: 40px;
 }
 
 #login-pane h1 {
-    margin: 60px 0 40px 0;
+    margin: 50px 0 30px 0;
     font-weight: 600;
     font-size: 1.5em;
 }
-
-#login-pane input[type=text], #login-pane input[type=password] {
-    box-sizing: border-box;
-    width: 100%;
-    margin: 10px 0;
-    border: none;
-    background: var(--darken-10);
-    padding: 15px 10px;
-}
-
-#login-pane input[type=text]:focus, #login-pane input[type=password]:focus {
-    outline: 2px solid var(--gscale-10-100);
-}
-
-#login-pane #login-remember-me-container {
-    margin-top: 10px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    font-size: 0.6em;
-    font-weight: 500;
-    color: var(--gscale-50-100);
-}
-
-#login-pane input[type=checkbox] {
-    margin: 0 6px 0 0;
-    -webkit-appearance: none;
-    background: var(--darken-10);
-    width: 12px;
-    height: 12px;
-    outline: none;
-}
-
-#login-pane input[type=checkbox]:checked {
-    background: var(--affirmative) url(../images/tick-sign.svg) no-repeat 95% 50%;
-}
-
-#login-pane input[type=checkbox]:checked + .checkbox-text {
-    color: var(--gscale-10-100);
-
-
-}
-
