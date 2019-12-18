@@ -20,9 +20,19 @@
   </header>
   <main id="app">
     <div class="page" id="login">
-      <video class="bg-video" autoplay>
+      <video class="bg-video" autoplay loop>
         <source src="../assets/videos/sen-2-op-muted.mp4" type="video/mp4">
       </video>
+      <div id="login-pane">
+        <img class="img-full-width" src="../assets/images/logo.png">
+        <h1>サインイン</h1>
+        <input id="login-username" type="text">
+        <input id="login-password" type="password">
+        <div id="login-remember-me-container">
+          <input id="login-remember-me" type="checkbox">
+          <label class="checkbox-text" for="login-remember-me">サインイン状態を維持</label>
+        </div>
+      </div>
     </div>
   </main>
   </body>

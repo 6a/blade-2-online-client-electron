@@ -1,6 +1,13 @@
 :root {
-    --gscale-90-20: hsla(0, 0%, 90%, 0.2);
+    --lighten-20: hsla(0, 0%, 90%, 0.2);
+
+    --darken-10: hsla(0, 0%, 10%, 0.1);
+
     --gscale-90-100: hsla(0, 0%, 90%, 1);
+    --gscale-50-100: hsla(0, 0%, 50%, 1);
+    --gscale-10-100: hsla(0, 0%, 10%, 1);
+
+    --affirmative: hsla(0, 75%, 38%, 1);
     --warning: hsla(0, 62%, 43%, 1);
 
     /* DEBUG */
