@@ -43,6 +43,15 @@ main {
 
 /* TEXT FIELD */
 
+.text-input-wrapper {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 20px 0 10px 0;
+    position: relative;
+
+    transition: all 0.2s ease-in-out;
+}
+
 input[type=text], input[type=password] {
     border: none;
     
@@ -66,15 +75,6 @@ input[type=password] {
 input[type=text]:focus, input[type=password]:focus {
     outline-offset: 0;
     outline-color: var(--gscale-20-100);
-}
-
-.text-input-wrapper {
-    box-sizing: border-box;
-    width: 100%;
-    margin: 10px 0;
-    position: relative;
-
-    transition: all 0.2s ease-in-out;
 }
 
 .text-input-label-wrapper {
@@ -209,7 +209,7 @@ input[type=checkbox]:checked + .checkbox-text {
 }
 
 #login-pane h1 {
-    margin: 50px 0 30px 0;
+    margin: 50px 0 25px 0;
     font-weight: 600;
     font-size: 1.5em;
 }
