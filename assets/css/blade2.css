@@ -230,6 +230,33 @@ input[type=checkbox].visibility-toggle:checked {
     background: var(--warning);
 } 
 
+/* BUTTON */
+button {
+    -webkit-appearance: none;
+    outline: none;
+    border: none;
+    padding: 12px 26px;
+    background-color: var(--affirmative);
+
+    color: var(--gscale-90-100);;
+    font-weight: 800;
+    font-size: 0.8em;
+
+    transition: all 0.1s ease-in-out;
+}
+
+button:hover {
+    background-color: var(--affirmative-darker);
+}
+
+button:active {
+    background-color: var(--affirmative-dark);
+}
+
+button:disabled {
+    background-color: var(--gscale-70-100);
+}
+
 /* LOGIN */
 #login-pane {
     box-sizing: border-box;
@@ -240,8 +267,12 @@ input[type=checkbox].visibility-toggle:checked {
 }
 
 #login-pane h1 {
-    margin: 50px 0 25px 0;
+    margin: 80px 0 25px 0;
     font-weight: 600;
     font-size: 1.5em;
 }
 
+#login-button {
+    margin: 80px auto;
+    display: block;
+}

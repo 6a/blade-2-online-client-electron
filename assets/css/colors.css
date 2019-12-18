@@ -14,6 +14,9 @@
     --gscale-10-100: hsla(0, 0%, 10%, 1);
 
     --affirmative: hsla(0, 75%, 38%, 1);
+    --affirmative-darker: hsla(0, 80%, 33%, 1);
+    --affirmative-dark: hsla(0, 85%, 28%, 1);
+
     --warning: hsla(0, 62%, 43%, 1);
 
     /* DEBUG */

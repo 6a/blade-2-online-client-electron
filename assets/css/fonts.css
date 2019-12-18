@@ -6,7 +6,7 @@
 @font-face {
     font-family: 'Noto Sans JP';
     src: url('../fonts/NotoSansJP-Black.otf');
-    font-weight: black;
+    font-weight: 800;
     font-style: normal;
 }
 
