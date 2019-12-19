@@ -22,7 +22,9 @@ class LoginView extends BaseView {
     }
 
     startBackgroundVideo() {
-        this._bgVideo.play()
+        // TODO - reenable
+        // this._bgVideo.play()
+        
     }
 }
 
