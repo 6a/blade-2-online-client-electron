@@ -2,7 +2,7 @@ const BaseModel = require('./basemodel.js')
 
 class LoginModel extends BaseModel {
     constructor () {
-        super("login")
+        super('login')
         this.init()
 
     }

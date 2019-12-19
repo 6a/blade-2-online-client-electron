@@ -2,7 +2,7 @@ const BaseModel = require('./basemodel.js')
 
 class DBModel extends BaseModel {
     constructor () {
-        super("db")
+        super('db')
         this.init()
 
     }

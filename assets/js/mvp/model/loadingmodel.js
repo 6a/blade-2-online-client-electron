@@ -1,9 +1,9 @@
 const BaseModel = require('./basemodel.js')
 const B2Event = require('../utility').B2Event
 
-class InitModel extends BaseModel {
+class LoadingModel extends BaseModel {
     constructor () {
-        super("init")
+        super('loading')
         this._fontsToLoad = []
         this._imagesToLoad = []
         this._itemsToLoad = 0
@@ -17,11 +17,9 @@ class InitModel extends BaseModel {
     init() {
         super.init()
 
-        document.addEventListener('DOMContentLoaded', () => {
-            this.addFonts()
-            this.addImages()
-            this.startLoad()
-        }, false)
+        this.addFonts()
+        this.addImages()
+        this.startLoad()
     }
 
     destroy() {
@@ -57,10 +55,8 @@ class InitModel extends BaseModel {
 
     handleItemLoad(info) {
         var percent = this._totalLoadedItems++ / (this._itemsToLoad - 1)
-        // console.log("Loading: " + percent)
-
         this.onItemLoaded.broadcast(percent)
     }
 }
 
-module.exports = InitModel
+module.exports = LoadingModel

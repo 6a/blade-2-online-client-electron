@@ -1,3 +1,3 @@
 module.exports = {
-    BaseView: require('./baseview.js')
+    LoadingView: require('./loadingview.js')
 }

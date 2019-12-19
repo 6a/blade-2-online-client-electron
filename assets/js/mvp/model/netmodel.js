@@ -2,7 +2,7 @@ const BaseModel = require('./basemodel.js')
 
 class NetModel extends BaseModel {
     constructor () {
-        super("net")
+        super('net')
         this.init()
         
     }

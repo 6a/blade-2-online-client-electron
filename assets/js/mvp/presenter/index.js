@@ -1,3 +1,3 @@
 module.exports = {
-    BasePresenter: require('./basepresenter.js')
+    LoadingPresenter: require('./loadingpresenter.js')
 }
