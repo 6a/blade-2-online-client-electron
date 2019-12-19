@@ -4,6 +4,12 @@ const B2Event = require('../utility').B2Event
 class LoadingModel extends BaseModel {
     constructor () {
         super('loading')
+        this.init()
+    }
+
+    init() {
+        super.init()
+
         this._fontsToLoad = []
         this._imagesToLoad = []
         this._itemsToLoad = 0
@@ -11,12 +17,6 @@ class LoadingModel extends BaseModel {
 
         this.onItemLoaded = new B2Event('itemloaded')
         this.onLoadingComplete = new B2Event('loadingcomplete')
-
-        this.init()
-    }
-
-    init() {
-        super.init()
 
         this.addFonts()
         this.addImages()
