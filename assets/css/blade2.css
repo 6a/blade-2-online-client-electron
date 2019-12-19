@@ -65,7 +65,7 @@ main {
     border-right: 6px solid var(--gscale-90-100);
     box-sizing: border-box;
 
-    animation: spin 2s linear infinite;
+    animation: spin 1.5s linear infinite;
 }
 
 @keyframes spin {

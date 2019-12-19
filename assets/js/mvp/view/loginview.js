@@ -30,6 +30,7 @@ class LoginView extends BaseView {
         this._loginTroubleAnchor = document.getElementById('login-trouble')
         this._loginInteractablesWrapper = document.getElementById('login-interactable-wrapper')
         this._loginLoaderWrapper = document.getElementById('login-loader-wrapper')
+        this._showhidePasswordCheckbox = document.getElementById('login-showhide-password-toggle')
     }
 
     addEventListeners() {
@@ -77,12 +78,13 @@ class LoginView extends BaseView {
     }
 
     onSubmit() {
-        console.log("submitting login form")
+        this._presenter.submit(this._usernameField.value, this._passwordField.value)
 
         this._usernameField.disabled = true
         this._passwordField.disabled = true
         this._rememberMeCheckbox.disabled = true
         this._loginButton.disabled = true
+        this._showhidePasswordCheckbox.disabled = true
         this._loginInteractablesWrapper.classList.add('hidden')
         this._loginLoaderWrapper.classList.remove('hidden')
     }

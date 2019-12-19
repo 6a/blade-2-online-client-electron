@@ -59,6 +59,11 @@ class LoginModel extends BaseModel {
 
         this.broadcastInputFieldWarnings()
     }
+
+    submit(username, password) {
+        // TODO implement
+        console.log(`Login model - received submit | username: ${username}, password: ${password}`)
+    }
 }
 
 module.exports = LoginModel

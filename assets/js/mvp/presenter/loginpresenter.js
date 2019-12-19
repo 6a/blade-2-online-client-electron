@@ -25,6 +25,10 @@ class LoginPresenter extends BasePresenter {
         this._models.get('login').passwordFieldChanged(password)
     }
 
+    submit(username, password) {
+        this._models.get('login').submit(username, password)
+    }
+
     onLoadingComplete() {
         this._view.startBackgroundVideo()
     }
