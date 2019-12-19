@@ -1,4 +1,4 @@
-@font-face {
+/* @font-face {
     font-family: 'Sawarabi Mincho Regular';
     src: url('../fonts/sawarabi-mincho-regular.ttf');
 }
@@ -6,21 +6,14 @@
 @font-face {
     font-family: 'Noto Sans JP';
     src: url('../fonts/NotoSansJP-Black.otf');
-    font-weight: 800;
+    font-weight: 900;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Noto Sans JP';
     src: url('../fonts/NotoSansJP-Bold.otf');
-    font-weight: bold;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Noto Sans JP';
-    src: url('../fonts/NotoSansJP-Light.otf');
-    font-weight: lighter;
+    font-weight: 700;
     font-style: normal;
 }
 
@@ -40,7 +33,14 @@
 
 @font-face {
     font-family: 'Noto Sans JP';
-    src: url('../fonts/NotoSansJP-Thin.otf');
-    font-weight: thin;
+    src: url('../fonts/NotoSansJP-Light.otf');
+    font-weight: 300;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'Noto Sans JP';
+    src: url('../fonts/NotoSansJP-Thin.otf');
+    font-weight: 100;
+    font-style: normal;
+} */
