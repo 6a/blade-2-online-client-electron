@@ -31,7 +31,7 @@ class LoadingView extends BaseView {
         {
             this._presenter.loadingComplete()
 
-            new Promise(r => setTimeout(r, 500))
+            new Promise(r => setTimeout(r, 400))
             .then(() => {
                 this.fadeOut()
                 this.destroy()
