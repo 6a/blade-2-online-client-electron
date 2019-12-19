@@ -1,5 +1,4 @@
 const BasePresenter = require('./basepresenter.js')
-const LoadingView = require('../view/loadingview.js')
 
 class LoadingPresenter extends BasePresenter {
     constructor (view) {
@@ -10,11 +9,15 @@ class LoadingPresenter extends BasePresenter {
     init() {
         super.init()
 
-        this._models.get('loading').onItemLoaded.register(this.onItemLoaded.bind(this))
+        this.addEventRef(this._models.get('loading').onItemLoaded.register(this.onItemLoaded.bind(this)))
     }
 
     destroy() {
         super.destroy()
+    }
+
+    loadingComplete() {
+        this._models.get('loading').loadingComplete()
     }
 
     onItemLoaded(progress) {

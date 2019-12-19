@@ -4,7 +4,6 @@ class LoginModel extends BaseModel {
     constructor () {
         super('login')
         this.init()
-
     }
 
     init() {

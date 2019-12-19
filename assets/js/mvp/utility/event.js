@@ -1,28 +1,30 @@
 class B2Event {
     constructor (name) {
         this._name = name
-        this._targets = new Set()
+        this._targets = new Map()
+        this._referenceCounter = 0
     }
 
     register(func) {
         if (typeof(func) === 'function') {
-            this._targets.add(func)
+            var ref = this._referenceCounter++
+            this._targets.set(ref, func)
+
+            return ref
         } else {
             console.error(`Could not register to event [${this._name}] as the provided argument was not a function`)
         }
     }
 
-    unregister(func) {
-        if (typeof(func) === 'function') {
-            this._targets.delete(func)
-        } else {
-            console.error(`Could not unregister from event [${this._name}] as the provided argument was not a function`)
+    unregister(reference) {
+        if (this._targets.has(reference)) {
+            this._targets.delete(reference)
         }
     }
 
     broadcast(data) {
-        this._targets.forEach((func) => {
-            func(data)
+        this._targets.forEach((value) => {
+            value(data)
         })
     }
 }

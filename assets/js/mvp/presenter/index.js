@@ -1,3 +1,4 @@
 module.exports = {
-    LoadingPresenter: require('./loadingpresenter.js')
+    LoadingPresenter: require('./loadingpresenter.js'),
+    LoginPresenter: require('./loginpresenter.js')
 }

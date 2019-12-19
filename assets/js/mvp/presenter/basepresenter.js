@@ -4,10 +4,15 @@ class BasePresenter {
     constructor(view) {
         this._view = view
         this._models = new ModelGetter()
+        this._eventRefs = []
     }
 
     get name () {
         return this._view._name
+    }
+
+    addEventRef (ref) {
+        this._eventRefs.push(ref)
     }
 
     init() {
@@ -15,7 +20,9 @@ class BasePresenter {
     }
 
     destroy() {
-
+        this._eventRefs.forEach((ref) => {
+            this._models.get('loading').onItemLoaded.unregister(ref)
+        })
     }
 }
 

@@ -10,7 +10,8 @@ function createModels() {
 }
 
 function createViewsAndPresenters() {
-    views.push(new mvp.view.LoadingView())
+    views.push(new mvp.view.LoadingView(views))
+    views.push(new mvp.view.LoginView(views))
 }
 
 function start() {

@@ -1,3 +1,4 @@
 module.exports = {
-    LoadingView: require('./loadingview.js')
+    LoadingView: require('./loadingview.js'),
+    LoginView: require('./loginview.js')
 }

@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; media-src *">
     <title>Blade II Online - Client</title>
     <link rel="stylesheet" href="../assets/css/blade2.css">
 
@@ -20,7 +20,7 @@
   </header>
   <main id="app">
     <div class="page" id="login">
-      <video class="bg-video" loop>
+      <video id="login-bg-video" class="bg-video" loop muted>
         <source src="../assets/videos/sen-2-op-muted.mp4" type="video/mp4">
       </video>
       <div id="login-pane">
@@ -44,7 +44,7 @@
             <label class="checkbox-text" for="login-remember-me">サインイン状態を維持</label>
           </div>
           
-          <button id="login-button" disabled>サインイン</button>
+          <button id="login-button" disabled>実行</button>
         </div>
        
         <section id="login-links">

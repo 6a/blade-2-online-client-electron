@@ -10,6 +10,7 @@ class LoadingModel extends BaseModel {
         this._totalLoadedItems = 0
 
         this.onItemLoaded = new B2Event('itemloaded')
+        this.onLoadingComplete = new B2Event('loadingcomplete')
 
         this.init()
     }
@@ -19,6 +20,7 @@ class LoadingModel extends BaseModel {
 
         this.addFonts()
         this.addImages()
+        this.addVideos()
         this.startLoad()
     }
 
@@ -43,19 +45,36 @@ class LoadingModel extends BaseModel {
         this._itemsToLoad += this._imagesToLoad.length
     }
 
+    addVideos() {
+        this._videosToLoad = Array.from(document.getElementsByTagName("video"))
+        this._itemsToLoad += this._videosToLoad.length
+    }
+
     startLoad() {
         this._fontsToLoad.forEach((font) => { 
-            font.load().then((info) => this.handleItemLoad(info))
+            font.load().then(this.handleItemLoad.bind(this))
         })
 
         this._imagesToLoad.forEach((image) => { 
-            image.addEventListener('load', (info) => this.handleItemLoad(info), false)
+            image.addEventListener('load', this.handleItemLoad.bind(this), false)
+        })
+
+        this._videosToLoad.forEach((video) => { 
+            if (video.readyState < video.HAVE_FUTURE_DATA) {
+                video.addEventListener('canplay', this.handleItemLoad.bind(this), false)
+            } else {
+                this._itemsToLoad--
+            }
         })
     }
 
-    handleItemLoad(info) {
+    handleItemLoad() {
         var percent = this._totalLoadedItems++ / (this._itemsToLoad - 1)
         this.onItemLoaded.broadcast(percent)
+    }
+
+    loadingComplete() {
+        this.onLoadingComplete.broadcast()
     }
 }
 
