@@ -16,6 +16,8 @@ class LoginView extends BaseView {
 
     destroy() {
         super.destroy()
+
+        this.removeEventListeners()
     }
 
     getElementReferences() {
@@ -30,7 +32,16 @@ class LoginView extends BaseView {
 
     addEventListeners() {
         this._usernameField.addEventListener('input', this.onUsernameFieldChanged.bind(this), false)
+        this._usernameField.addEventListener('blur', this.onUsernameFieldUnfocused.bind(this), false)
+
         this._passwordField.addEventListener('input', this.onPasswordFieldChanged.bind(this), false)
+    }
+
+    removeEventListeners() {
+        this._usernameField.removeEventListener('input', this.onUsernameFieldChanged.bind(this), false)
+        this._usernameField.removeEventListener('blur', this.onUsernameFieldUnfocused.bind(this), false)
+
+        this._passwordField.removeEventListener('input', this.onPasswordFieldChanged.bind(this), false)
     }
 
     onUsernameFieldChanged() {
@@ -43,6 +54,10 @@ class LoginView extends BaseView {
         var password = this._passwordField.value
 
         this._presenter.passwordFieldChanged(password)
+    }
+
+    onUsernameFieldUnfocused() {
+        this._usernameField.value = this._usernameField.value.trimEnd()
     }
 
     startBackgroundVideo() {
@@ -62,6 +77,11 @@ class LoginView extends BaseView {
         } else {
             this._passwordField.classList.remove('warning-outline')
         }
+
+        var noErrors = usernameWarning.length + passwordWarning.length == 0
+        var fieldsPopulated =  this._usernameField.value.length > 1 && + this._passwordField.value.length > 1
+        
+        this._loginButton.disabled = !(fieldsPopulated && noErrors);
     }
 }
 

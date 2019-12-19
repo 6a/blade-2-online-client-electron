@@ -2,7 +2,7 @@ const BaseModel = require('./basemodel.js')
 const Localization = require('../utility').Localization
 const B2Event = require('../utility').B2Event
 
-const usernameValidChars = /^[A-z0-9]+$/;
+const usernameValidChars = /^[^ ][A-z0-9 ]+$/;
 
 class LoginModel extends BaseModel {
     constructor () {
@@ -25,12 +25,12 @@ class LoginModel extends BaseModel {
 
     determineUsernameWarning(username) {
         this._usernameWarning = ""
-
+        
         if (username.length < 2) {
             this._usernameWarning = Localization.get('usernameTooShort')
         } else if (!usernameValidChars.test(username)) {
             this._usernameWarning = Localization.get('usernameIllegalChars')
-        }   
+        }  
     }
 
     determinePasswordWarning(password) {

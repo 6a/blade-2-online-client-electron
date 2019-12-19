@@ -170,7 +170,12 @@ input[type=checkbox]:checked.checkbox-standard + .checkbox-text {
     color: var(--gscale-10-100);
 }
 
-input[type=checkbox].checkbox-standard + .checkbox-text:hover {
+input[type=checkbox].checkbox-standard + .checkbox-text:hover,
+input[type=checkbox].checkbox-standard:focus + .checkbox-text:hover {
+    color: var(--affirmative);
+}
+
+input[type=checkbox].checkbox-standard:focus + .checkbox-text {
     color: var(--gscale-30-100);
 }
 
@@ -279,6 +284,7 @@ button:disabled {
 /* LINKS */
 
 a {
+    outline: none;
     text-decoration: none;
     color: var(--gscale-50-100);
     font-weight: 600;
@@ -286,8 +292,12 @@ a {
     transition: all 0.1s ease-in-out;
 }
 
-a:hover {
-    color: var(--gscale-10-100);
+a:hover, a:focus:hover {
+    color: var(--affirmative);
+}
+
+a:focus {
+    color: var(--gscale-30-100);
 }
 
 /* LOADING */
