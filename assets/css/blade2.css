@@ -1,5 +1,4 @@
 @import "reset.css";
-@import "fonts.css";
 @import "colors.css"; 
 
 /* GLOBAL */
@@ -45,6 +44,10 @@ main {
 .img-full-width {
     width: 100%;
     height: auto;
+}
+
+.warning-outline {
+    outline-color: var(--warning) !important;
 }
 
 /* TEXT FIELD */
@@ -111,7 +114,6 @@ input[type=password]:focus + .text-input-label-wrapper {
     pointer-events: none;
     padding: 0 10px;
     font-size: 0.6em;
-    font-weight: 500;
 
     transition: all 0.2s ease-in-out;
 }
@@ -125,7 +127,7 @@ input[type=password]:focus + .text-input-label-wrapper > .text-input-label {
 
     padding-top: 8px;
     font-size: 0.5em;
-    font-weight: 500;
+    font-weight: 700;
     color: var(--gscale-20-100);
 }
 
@@ -157,7 +159,7 @@ input[type=checkbox].checkbox-standard:checked {
 
 input[type=checkbox].checkbox-standard + .checkbox-text {
     font-size: 0.6em;
-    font-weight: 500;
+    font-weight: 500;   
     color: var(--gscale-50-100);
     cursor: pointer;
 

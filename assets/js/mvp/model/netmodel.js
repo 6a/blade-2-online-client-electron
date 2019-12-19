@@ -1,4 +1,5 @@
 const BaseModel = require('./basemodel.js')
+const B2Event = require('../utility').B2Event
 
 class NetModel extends BaseModel {
     constructor () {
@@ -9,7 +10,7 @@ class NetModel extends BaseModel {
     init() {
         super.init()
 
-        this.onAuthRequestResponse = new B2Event('authrequestresponse')
+        this.onAuthRequestResponse = new B2Event('Auth Request Response')
     }
 
     destroy() {

@@ -15,8 +15,8 @@ class LoadingModel extends BaseModel {
         this._itemsToLoad = 0
         this._totalLoadedItems = 0
 
-        this.onItemLoaded = new B2Event('itemloaded')
-        this.onLoadingComplete = new B2Event('loadingcomplete')
+        this.onItemLoaded = new B2Event('Item Loaded')
+        this.onLoadingComplete = new B2Event('Loading Complete')
 
         this.addFonts()
         this.addImages()
@@ -53,6 +53,7 @@ class LoadingModel extends BaseModel {
     startLoad() {
         this._fontsToLoad.forEach((font) => { 
             font.load().then(this.handleItemLoad.bind(this))
+            document.fonts.add(font)
         })
 
         this._imagesToLoad.forEach((image) => { 
@@ -63,7 +64,7 @@ class LoadingModel extends BaseModel {
             if (video.readyState < video.HAVE_FUTURE_DATA) {
                 video.addEventListener('canplay', this.handleItemLoad.bind(this), false)
             } else {
-                this._itemsToLoad--
+                handleItemLoad()
             }
         })
     }
@@ -74,6 +75,8 @@ class LoadingModel extends BaseModel {
     }
 
     loadingComplete() {
+
+
         this.onLoadingComplete.broadcast()
     }
 }

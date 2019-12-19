@@ -5,6 +5,10 @@ class B2Event {
         this._referenceCounter = 0
     }
 
+    get name() {
+        return this._name
+    }
+
     register(func) {
         if (typeof(func) === 'function') {
             var ref = this._referenceCounter++
