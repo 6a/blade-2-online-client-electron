@@ -50,6 +50,29 @@ main {
     outline-color: var(--warning) !important;
 }
 
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.spinner {
+    height: 60px;
+    width: 60px;
+    border-radius: 2000px;
+    border-top: 6px solid var(--gscale-20-100);
+    border-left: 6px solid var(--gscale-20-100);
+    border-bottom: 6px solid var(--gscale-20-100);
+    border-right: 6px solid var(--gscale-90-100);
+    box-sizing: border-box;
+
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 /* TEXT FIELD */
 
 .text-input-wrapper {
@@ -375,6 +398,24 @@ a:focus {
 #login-links a {
     font-size: 0.6em;
     padding-top: 4px;
+}
+
+#login-dynamic-wrapper {
+    position: relative;
+}
+
+#login-loader-wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    pointer-events: none;
 }
 
 /* OPTIONS */

@@ -27,24 +27,29 @@
         <img class="img-full-width" src="../assets/images/logo.png">
         <h1>サインイン</h1>
 
-        <div id="login-interactable-wrapper">
-          <div class="text-input-wrapper">
-            <input id="login-username" type="text" placeholder=" ">
-            <div class="text-input-label-wrapper"><label for="login-username" class="text-input-label">ユーザー名</label></div>
+        <div id="login-dynamic-wrapper">
+          <div id="login-interactable-wrapper">
+            <div class="text-input-wrapper">
+              <input id="login-username" type="text" placeholder=" ">
+              <div class="text-input-label-wrapper"><label for="login-username" class="text-input-label">ユーザー名</label></div>
+            </div>
+    
+            <div class="text-input-wrapper">
+              <input id="login-password" type="password" placeholder=" ">
+              <div class="text-input-label-wrapper"><label for="login-password" class="text-input-label">パスワード</label></div>
+              <input type="checkbox" class="visibility-toggle">
+            </div>
+   
+            <div class="checkbox-wrapper">
+              <input id="login-remember-me" type="checkbox" class="checkbox-standard">
+              <label class="checkbox-text" for="login-remember-me">サインイン状態を維持</label>
+            </div>
+            
+            <button id="login-button" disabled>実行</button>
           </div>
-  
-          <div class="text-input-wrapper">
-            <input id="login-password" type="password" placeholder=" ">
-            <div class="text-input-label-wrapper"><label for="login-password" class="text-input-label">パスワード</label></div>
-            <input type="checkbox" class="visibility-toggle">
+          <div id="login-loader-wrapper" class="hidden">
+            <div class="spinner"></div>
           </div>
- 
-          <div class="checkbox-wrapper">
-            <input id="login-remember-me" type="checkbox" class="checkbox-standard">
-            <label class="checkbox-text" for="login-remember-me">サインイン状態を維持</label>
-          </div>
-          
-          <button id="login-button" disabled>実行</button>
         </div>
        
         <section id="login-links">
@@ -55,7 +60,6 @@
     </div>
 
     <div class="page" id="options">
-
     </div>
 
     <div class="page" id="loading">

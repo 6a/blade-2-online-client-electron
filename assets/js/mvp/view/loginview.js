@@ -28,20 +28,30 @@ class LoginView extends BaseView {
         this._loginButton = document.getElementById('login-button')
         this._createAccountAnchor = document.getElementById('login-create-account')
         this._loginTroubleAnchor = document.getElementById('login-trouble')
+        this._loginInteractablesWrapper = document.getElementById('login-interactable-wrapper')
+        this._loginLoaderWrapper = document.getElementById('login-loader-wrapper')
     }
 
     addEventListeners() {
         this._usernameField.addEventListener('input', this.onUsernameFieldChanged.bind(this), false)
         this._usernameField.addEventListener('blur', this.onUsernameFieldUnfocused.bind(this), false)
+        this._usernameField.addEventListener('keydown', this.onInputFieldKeyDown.bind(this), false)
 
         this._passwordField.addEventListener('input', this.onPasswordFieldChanged.bind(this), false)
+        this._passwordField.addEventListener('keydown', this.onInputFieldKeyDown.bind(this), false)
+
+        this._loginButton.addEventListener('click', this.onSubmit.bind(this), false)
     }
 
     removeEventListeners() {
         this._usernameField.removeEventListener('input', this.onUsernameFieldChanged.bind(this), false)
         this._usernameField.removeEventListener('blur', this.onUsernameFieldUnfocused.bind(this), false)
+        this._usernameField.removeEventListener('keydown', this.onInputFieldKeyDown.bind(this), false)
 
         this._passwordField.removeEventListener('input', this.onPasswordFieldChanged.bind(this), false)
+        this._passwordField.removeEventListener('keydown', this.onInputFieldKeyDown.bind(this), false)
+
+        this._loginButton.removeEventListener('click', this.onSubmit.bind(this), false)
     }
 
     onUsernameFieldChanged() {
@@ -58,6 +68,23 @@ class LoginView extends BaseView {
 
     onUsernameFieldUnfocused() {
         this._usernameField.value = this._usernameField.value.trimEnd()
+    }
+
+    onInputFieldKeyDown(e) {
+        if (e.keyCode === 13 && !this._loginButton.disabled) {
+            this.onSubmit()
+        }
+    }
+
+    onSubmit() {
+        console.log("submitting login form")
+
+        this._usernameField.disabled = true
+        this._passwordField.disabled = true
+        this._rememberMeCheckbox.disabled = true
+        this._loginButton.disabled = true
+        this._loginInteractablesWrapper.classList.add('hidden')
+        this._loginLoaderWrapper.classList.remove('hidden')
     }
 
     startBackgroundVideo() {
