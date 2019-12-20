@@ -1,5 +1,5 @@
 const BaseView = require('./baseview.js')
-const LoginPresenter = require('../presenter/loginpresenter')
+const LoginPresenter = require('../presenter/loginpresenter.js')
 
 class LoginView extends BaseView {
     constructor (viewsList) {
@@ -42,6 +42,8 @@ class LoginView extends BaseView {
         this._passwordField.addEventListener('keydown', this.onInputFieldKeyDown.bind(this), false)
 
         this._loginButton.addEventListener('click', this.onSubmit.bind(this), false)
+
+        this._createAccountAnchor.addEventListener('click', this.onCreateAccountClicked.bind(this), false)
     }
 
     removeEventListeners() {
@@ -53,6 +55,9 @@ class LoginView extends BaseView {
         this._passwordField.removeEventListener('keydown', this.onInputFieldKeyDown.bind(this), false)
 
         this._loginButton.removeEventListener('click', this.onSubmit.bind(this), false)
+
+        this._createAccountAnchor.removeEventListener('click', this.onCreateAccountClicked.bind(this), false)
+
     }
 
     onUsernameFieldChanged() {
@@ -87,6 +92,11 @@ class LoginView extends BaseView {
         this._showhidePasswordCheckbox.disabled = true
         this._loginInteractablesWrapper.classList.add('hidden')
         this._loginLoaderWrapper.classList.remove('hidden')
+    }
+
+    onCreateAccountClicked(event) {
+        event.preventDefault();
+        this._presenter.createAccountClicked()
     }
 
     startBackgroundVideo() {

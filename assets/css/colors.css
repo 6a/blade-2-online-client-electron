@@ -13,11 +13,17 @@
     --gscale-20-100: hsla(0, 0%, 20%, 1);
     --gscale-10-100: hsla(0, 0%, 10%, 1);
 
+    --drop-shadow: hsla(0, 0%, 10%, 0.2);
+
+    --backdrop: hsla(0, 0%, 10%, 0.4);
+
     --affirmative: hsla(0, 75%, 38%, 1);
     --affirmative-darker: hsla(0, 80%, 33%, 1);
     --affirmative-dark: hsla(0, 85%, 28%, 1);
 
     --warning: hsla(0, 62%, 43%, 1);
+
+    --transparent: #00000000;
 
     /* DEBUG */
     --debug-red: red;

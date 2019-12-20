@@ -9,8 +9,8 @@ class LoginPresenter extends BasePresenter {
     init() {
         super.init()
 
-        this.addEventRef(this._models.get('loading').onLoadingComplete.register(this.onLoadingComplete.bind(this)))
-        this.addEventRef(this._models.get('login').onInputFieldWarningChanged.register(this.onInputFieldWarningChanged.bind(this)))
+        this.addEventListener(this._models.get('loading').onLoadingComplete.register(this.onLoadingComplete.bind(this)))
+        this.addEventListener(this._models.get('login').onInputFieldWarningChanged.register(this.onInputFieldWarningChanged.bind(this)))
     }
 
     destroy() {
@@ -27,6 +27,10 @@ class LoginPresenter extends BasePresenter {
 
     submit(username, password) {
         this._models.get('login').submit(username, password)
+    }
+
+    createAccountClicked() {
+        this._models.get('login').createAccountClicked()
     }
 
     onLoadingComplete() {

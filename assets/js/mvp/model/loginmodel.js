@@ -13,7 +13,8 @@ class LoginModel extends BaseModel {
     init() {
         super.init()
 
-        this.onInputFieldWarningChanged = new B2Event('Input Field State Changed')
+        this.onInputFieldWarningChanged = new B2Event('Input Field State Changed', this.name)
+        this.onCreateAccountModalRequested = new B2Event('Create Account Modal Requested', this.name)
 
         this._usernameWarning = ""
         this._passwordWarning = ""
@@ -63,6 +64,10 @@ class LoginModel extends BaseModel {
     submit(username, password) {
         // TODO implement
         console.log(`Login model - received submit | username: ${username}, password: ${password}`)
+    }
+
+    createAccountClicked() {
+        this.onCreateAccountModalRequested.broadcast()
     }
 }
 

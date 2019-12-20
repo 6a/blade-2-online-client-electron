@@ -7,11 +7,13 @@
         models.add(new mvp.model.LoginModel())
         models.add(new mvp.model.NetModel())
         models.add(new mvp.model.LoadingModel())
+        models.add(new mvp.model.CreateAccountModel())
     }
 
     function createViewsAndPresenters() {
         views.push(new mvp.view.LoadingView(views))
         views.push(new mvp.view.LoginView(views))
+        views.push(new mvp.view.CreateAccountView(views))
     }
 
     function start() {

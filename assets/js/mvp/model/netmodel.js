@@ -10,7 +10,7 @@ class NetModel extends BaseModel {
     init() {
         super.init()
 
-        this.onAuthRequestResponse = new B2Event('Auth Request Response')
+        this.onAuthRequestResponse = new B2Event('Auth Request Response', this.name)
     }
 
     destroy() {

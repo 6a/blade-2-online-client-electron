@@ -1,3 +1,18 @@
+class EventRef {
+    constructor(id, target) {
+        this._id = id
+        this._target = target
+    }
+
+    get id() {
+        return this._id
+    }
+
+    get target() {
+        return this._target
+    }
+}
+
 class B2Event {
     constructor (name) {
         this._name = name
@@ -14,7 +29,7 @@ class B2Event {
             var ref = this._referenceCounter++
             this._targets.set(ref, func)
 
-            return ref
+            return new EventRef(ref, this)
         } else {
             console.error(`Could not register to event [${this._name}] as the provided argument was not a function`)
         }
@@ -33,4 +48,7 @@ class B2Event {
     }
 }
 
-module.exports = B2Event
+module.exports = {
+    B2Event: B2Event,
+    EventRef: EventRef
+}

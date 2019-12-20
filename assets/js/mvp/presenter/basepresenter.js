@@ -11,7 +11,7 @@ class BasePresenter {
         return this._view._name
     }
 
-    addEventRef (ref) {
+    addEventListener (ref) {
         this._eventRefs.push(ref)
     }
 
@@ -21,7 +21,7 @@ class BasePresenter {
 
     destroy() {
         this._eventRefs.forEach((ref) => {
-            this._models.get('loading').onItemLoaded.unregister(ref)
+            ref.target.unregister(ref.id)
         })
     }
 }

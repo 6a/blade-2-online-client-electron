@@ -1,5 +1,5 @@
 const BaseView = require('./baseview.js')
-const LoadingPresenter = require('../presenter/loadingpresenter')
+const LoadingPresenter = require('../presenter/loadingpresenter.js')
 
 class LoadingView extends BaseView {
     constructor (viewsList) {
@@ -33,15 +33,10 @@ class LoadingView extends BaseView {
 
             new Promise(r => setTimeout(r, 400))
             .then(() => {
-                this.fadeOut()
+                this.setActive(false)
                 this.destroy()
             })
         }
-    }
-
-    fadeOut() {
-        this._wrapper.style.opacity = 0;
-        this._wrapper.style.visibility = 'hidden';
     }
 }
 

@@ -9,18 +9,20 @@ class LoadingPresenter extends BasePresenter {
     init() {
         super.init()
 
-        this.addEventRef(this._models.get('loading').onItemLoaded.register(this.onItemLoaded.bind(this)))
+        this.addEventListener(this._models.get('loading').onItemLoaded.register(this.itemLoaded.bind(this)))
     }
 
     destroy() {
         super.destroy()
+
+        console.log(this._models.get('loading').onItemLoaded)
     }
 
     loadingComplete() {
         this._models.get('loading').loadingComplete()
     }
 
-    onItemLoaded(progress) {
+    itemLoaded(progress) {
         this._view.updateProgress(progress)
     }
 }

@@ -24,6 +24,14 @@ class BaseView {
         this._presenter.destroy()
         delete this
     }
+
+    setActive(active) {
+        if (active) {
+            this._wrapper.classList.remove('hidden')
+        } else {
+            this._wrapper.classList.add('hidden')
+        }
+    }
 }
 
 module.exports = BaseView
