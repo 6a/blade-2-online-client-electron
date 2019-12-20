@@ -16,7 +16,7 @@ const KEYS = {
     USERNAME: 'username'
 }
 
-const SETTINGS_FILE = './config/settings.yaml'
+const SETTINGS_FILE = './user-settings.yaml'
 const DEFAULT_ENCODING = 'utf8'
 const DATA = { settings: {}}
 
