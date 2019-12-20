@@ -108,12 +108,7 @@ class LoginView extends BaseView {
     onShowHidePasswordClicked(event) {
         event.stopPropagation();
 
-        var checked = this._showhidePasswordCheckbox.checked
-
-        // This is kinda dumb but it is required as we stop propagation to avoid losing focus
-        // this._showhidePasswordCheckbox.checked = checked
-
-        if (checked) {
+        if (this._showhidePasswordCheckbox.checked) {
             this._passwordField.type = 'text'
         } else {
             this._passwordField.type = 'password'

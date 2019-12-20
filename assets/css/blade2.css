@@ -107,7 +107,7 @@ input[type=text], input[type=password] {
 }
 
 input[type=password] {
-    letter-spacing: 0.3em;
+    letter-spacing: 0.2em;
     padding-right: 40px;
 }
 
