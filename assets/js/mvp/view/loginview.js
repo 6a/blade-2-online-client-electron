@@ -12,6 +12,7 @@ class LoginView extends BaseView {
 
         this.getElementReferences()
         this.addEventListeners()
+        this.getLoginSettings()
     }
 
     destroy() {
@@ -68,6 +69,39 @@ class LoginView extends BaseView {
 
         this._rememberMeCheckbox.removeEventListener('click', this.onRememberMeClicked.bind(this), true)
 
+    }
+
+    getLoginSettings() {
+        this._presenter.requestLoginSettings()
+    }
+
+    startBackgroundVideo() {
+        // TODO - reenable
+        // this._backgroundVideo.play()
+    }
+
+    updateInputWarnings(usernameWarning, passwordWarning) {
+        if (usernameWarning !== "") {
+            this._usernameField.classList.add('warning-outline')
+        } else {
+            this._usernameField.classList.remove('warning-outline')
+        }
+
+        if (passwordWarning !== "") {
+            this._passwordField.classList.add('warning-outline')
+        } else {
+            this._passwordField.classList.remove('warning-outline')
+        }
+
+        let noErrors = usernameWarning.length + passwordWarning.length == 0
+        let fieldsPopulated =  this._usernameField.value.length > 1 && + this._passwordField.value.length > 1
+        
+        this._loginButton.disabled = !(fieldsPopulated && noErrors);
+    }
+
+    applySettings(settings) {
+        this._rememberMeCheckbox.checked = settings.rememberme
+        this._usernameField.value = settings.username
     }
 
     onUsernameFieldChanged() {
@@ -133,30 +167,6 @@ class LoginView extends BaseView {
     onRememberMeClicked() {
         let checked = this._rememberMeCheckbox.checked
         this._presenter.setRememberMe(checked)
-    }
-
-    startBackgroundVideo() {
-        // TODO - reenable
-        // this._backgroundVideo.play()
-    }
-
-    updateInputWarnings(usernameWarning, passwordWarning) {
-        if (usernameWarning !== "") {
-            this._usernameField.classList.add('warning-outline')
-        } else {
-            this._usernameField.classList.remove('warning-outline')
-        }
-
-        if (passwordWarning !== "") {
-            this._passwordField.classList.add('warning-outline')
-        } else {
-            this._passwordField.classList.remove('warning-outline')
-        }
-
-        let noErrors = usernameWarning.length + passwordWarning.length == 0
-        let fieldsPopulated =  this._usernameField.value.length > 1 && + this._passwordField.value.length > 1
-        
-        this._loginButton.disabled = !(fieldsPopulated && noErrors);
     }
 }
 

@@ -11,6 +11,7 @@ class LoginPresenter extends BasePresenter {
 
         this.addEventListener(this._models.get('loading').onLoadingComplete.register(this.onLoadingComplete.bind(this)))
         this.addEventListener(this._models.get('login').onInputFieldWarningChanged.register(this.onInputFieldWarningChanged.bind(this)))
+        this.addEventListener(this._models.get('login').onLoginSettingsRequest.register(this.onLoginSettingsRequest.bind(this)))
     }
 
     destroy() {
@@ -37,12 +38,20 @@ class LoginPresenter extends BasePresenter {
         this._models.get('login').setRememberMe(remember)
     }
 
+    requestLoginSettings() {
+        this._models.get('login').requestLoginSettings()
+    }
+
     onLoadingComplete() {
         this._view.startBackgroundVideo()
     }
 
     onInputFieldWarningChanged(data) {
         this._view.updateInputWarnings(data.usernameWarning, data.passwordWarning)
+    }
+
+    onLoginSettingsRequest(settings) {
+        this._view.applySettings(settings)
     }
 }
 

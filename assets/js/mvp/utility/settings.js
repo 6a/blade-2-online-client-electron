@@ -57,7 +57,7 @@ function createDefault() {
 
 function save(data) {
     let yamlStr = yaml.safeDump(data);
-    fs.writeFileSync(SETTINGS_FILE, yamlStr, DEFAULT_ENCODING);
+    fs.writeFile(SETTINGS_FILE, yamlStr, DEFAULT_ENCODING, () => {});
 }
 
 class Settings {

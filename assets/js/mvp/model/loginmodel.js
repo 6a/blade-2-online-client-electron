@@ -14,13 +14,14 @@ class LoginModel extends BaseModel {
     init() {
         super.init()
 
-        this.onInputFieldWarningChanged = new B2Event('Input Field State Changed', this.name)
-        this.onCreateAccountModalRequested = new B2Event('Create Account Modal Requested', this.name)
+        this.onLoginSettingsRequest = new B2Event('Login Settings Broadcast')
+        this.onInputFieldWarningChanged = new B2Event('Input Field State Changed')
+        this.onCreateAccountModalRequested = new B2Event('Create Account Modal Requested')
 
         this._usernameWarning = ""
         this._passwordWarning = ""
 
-        var rememberMeChecked = Settings.get(Settings.KEY_REMEMBER_ME)
+        this._rememberMe = false
     }
 
     destroy() {
@@ -55,6 +56,10 @@ class LoginModel extends BaseModel {
     usernameFieldChanged(username) {
         this.determineUsernameWarning(username)
 
+        if (this._rememberMe) {
+            Settings.set(Settings.KEY_USERNAME, username)
+        }
+
         this.broadcastInputFieldWarnings()
     }
 
@@ -75,6 +80,20 @@ class LoginModel extends BaseModel {
 
     setRememberMe(remember) {
         Settings.set(Settings.KEY_REMEMBER_ME, remember)
+
+        this._rememberMe = remember
+    }
+
+    requestLoginSettings() {
+        var rememberMeChecked = Settings.get(Settings.KEY_REMEMBER_ME)
+        var username = Settings.get(Settings.KEY_USERNAME)
+
+        this.onLoginSettingsRequest.broadcast({
+            rememberme: rememberMeChecked,
+            username: username,
+        })
+
+        this._rememberMe = rememberMeChecked
     }
 }
 

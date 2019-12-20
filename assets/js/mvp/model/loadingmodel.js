@@ -15,8 +15,8 @@ class LoadingModel extends BaseModel {
         this._itemsToLoad = 0
         this._totalLoadedItems = 0
 
-        this.onItemLoaded = new B2Event('Item Loaded', this.name)
-        this.onLoadingComplete = new B2Event('Loading Complete', this.name)
+        this.onItemLoaded = new B2Event('Item Loaded')
+        this.onLoadingComplete = new B2Event('Loading Complete')
 
         this.addFonts()
         this.addImages()
