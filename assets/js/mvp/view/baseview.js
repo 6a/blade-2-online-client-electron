@@ -28,6 +28,7 @@ class BaseView {
     setActive(active) {
         if (active) {
             this._wrapper.classList.remove('hidden')
+            document.activeElement.blur()
         } else {
             this._wrapper.classList.add('hidden')
         }
