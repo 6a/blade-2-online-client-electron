@@ -70,7 +70,7 @@ class LoadingModel extends BaseModel {
     }
 
     handleItemLoad() {
-        var percent = this._totalLoadedItems++ / (this._itemsToLoad - 1)
+        let percent = this._totalLoadedItems++ / (this._itemsToLoad - 1)
         this.onItemLoaded.broadcast(percent)
     }
 

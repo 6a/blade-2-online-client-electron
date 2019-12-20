@@ -26,7 +26,7 @@ class Localization {
         
         this._localizations = new Map()
         
-        var inData = []
+        let inData = []
         inData.push(new Pair('usernameTooShort', {
             "jp": "ユーザー名は２文字以上でなければなりません",
             "en": "Username must be at at least 2 characters long"

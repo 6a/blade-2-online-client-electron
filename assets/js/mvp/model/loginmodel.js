@@ -1,6 +1,7 @@
 const BaseModel = require('./basemodel.js')
 const Localization = require('../utility').Localization
 const B2Event = require('../utility').B2Event
+const Settings = require('../utility/settings.js')
 
 const usernameValidChars = /^[^ ][A-z0-9 ]+$/;
 
@@ -18,6 +19,8 @@ class LoginModel extends BaseModel {
 
         this._usernameWarning = ""
         this._passwordWarning = ""
+
+        var rememberMeChecked = Settings.get(Settings.KEY_REMEMBER_ME)
     }
 
     destroy() {
@@ -71,8 +74,7 @@ class LoginModel extends BaseModel {
     }
 
     setRememberMe(remember) {
-        // TODO implement
-        console.log(`Login model - remember me switched to: ${remember}`)
+        Settings.set(Settings.KEY_REMEMBER_ME, remember)
     }
 }
 

@@ -15,5 +15,8 @@
   "license": "None",
   "devDependencies": {
     "electron": "^7.1.5"
+  },
+  "dependencies": {
+    "js-yaml": "^3.13.1"
   }
 }

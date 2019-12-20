@@ -16,7 +16,7 @@ class BaseView {
     }
 
     destroy() {
-        var index = this._viewsList.indexOf(this)
+        let index = this._viewsList.indexOf(this)
         if (index > -1) {
             this._viewsList.splice(index, 1);
         }

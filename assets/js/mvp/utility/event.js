@@ -26,7 +26,7 @@ class B2Event {
 
     register(func) {
         if (typeof(func) === 'function') {
-            var ref = this._referenceCounter++
+            let ref = this._referenceCounter++
             this._targets.set(ref, func)
 
             return new EventRef(ref, this)

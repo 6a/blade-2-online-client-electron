@@ -71,13 +71,13 @@ class LoginView extends BaseView {
     }
 
     onUsernameFieldChanged() {
-        var username = this._usernameField.value
+        let username = this._usernameField.value
 
         this._presenter.usernameFieldChanged(username)
     }
 
     onPasswordFieldChanged() {
-        var password = this._passwordField.value
+        let password = this._passwordField.value
 
         this._presenter.passwordFieldChanged(password)
     }
@@ -131,7 +131,7 @@ class LoginView extends BaseView {
     }
 
     onRememberMeClicked() {
-        var checked = this._rememberMeCheckbox.checked
+        let checked = this._rememberMeCheckbox.checked
         this._presenter.setRememberMe(checked)
     }
 
@@ -153,8 +153,8 @@ class LoginView extends BaseView {
             this._passwordField.classList.remove('warning-outline')
         }
 
-        var noErrors = usernameWarning.length + passwordWarning.length == 0
-        var fieldsPopulated =  this._usernameField.value.length > 1 && + this._passwordField.value.length > 1
+        let noErrors = usernameWarning.length + passwordWarning.length == 0
+        let fieldsPopulated =  this._usernameField.value.length > 1 && + this._passwordField.value.length > 1
         
         this._loginButton.disabled = !(fieldsPopulated && noErrors);
     }
