@@ -14,8 +14,6 @@ class LoadingPresenter extends BasePresenter {
 
     destroy() {
         super.destroy()
-
-        console.log(this._models.get('loading').onItemLoaded)
     }
 
     loadingComplete() {

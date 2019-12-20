@@ -44,6 +44,8 @@ class LoginView extends BaseView {
         this._loginButton.addEventListener('click', this.onSubmit.bind(this), false)
 
         this._createAccountAnchor.addEventListener('click', this.onCreateAccountClicked.bind(this), false)
+
+        this._showhidePasswordCheckbox.addEventListener('click', this.onShowHidePasswordClicked.bind(this), false)
     }
 
     removeEventListeners() {
@@ -58,6 +60,7 @@ class LoginView extends BaseView {
 
         this._createAccountAnchor.removeEventListener('click', this.onCreateAccountClicked.bind(this), false)
 
+        this._showhidePasswordCheckbox.removeEventListener('click', this.onShowHidePasswordClicked.bind(this), false)
     }
 
     onUsernameFieldChanged() {
@@ -97,6 +100,24 @@ class LoginView extends BaseView {
     onCreateAccountClicked(event) {
         event.preventDefault();
         this._presenter.createAccountClicked()
+    }
+
+    onShowHidePasswordClicked(event) {
+        event.stopPropagation();
+
+        var checked = this._showhidePasswordCheckbox.checked
+
+        // This is kinda dumb but it is required as we stop propagation to avoid losing focus
+        this._showhidePasswordCheckbox.checked = checked
+
+        if (checked) {
+            this._passwordField.type = 'text'
+        } else {
+            this._passwordField.type = 'password'
+        }
+
+        this._passwordField.select();
+        this._passwordField.setSelectionRange(this._passwordField.value.length, this._passwordField.value.length)
     }
 
     startBackgroundVideo() {

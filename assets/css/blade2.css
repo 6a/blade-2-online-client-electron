@@ -103,7 +103,7 @@ input[type=text], input[type=password] {
 
     outline: 2px solid var(--gscale-80-100);
 
-    transition: all 0.2s ease-in-out;
+    transition: outline-color 0.2s ease-in-out;
 }
 
 input[type=password] {
@@ -227,12 +227,12 @@ input[type=checkbox].visibility-toggle {
     outline: none;
 }
 
-input[type=password]:not(:placeholder-shown) + * + input[type=checkbox].visibility-toggle {
+input[type]:not(:placeholder-shown) + * + input[type=checkbox].visibility-toggle {
     opacity: 1;
     visibility: visible;
 }
 
-input[type=checkbox].visibility-toggle:checked {
+input[type].visibility-toggle:checked {
     background-image: url(../images/hidden.svg);
 }
 
