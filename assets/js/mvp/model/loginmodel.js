@@ -69,6 +69,11 @@ class LoginModel extends BaseModel {
     createAccountClicked() {
         this.onCreateAccountModalRequested.broadcast()
     }
+
+    setRememberMe(remember) {
+        // TODO implement
+        console.log(`Login model - remember me switched to: ${remember}`)
+    }
 }
 
 module.exports = LoginModel

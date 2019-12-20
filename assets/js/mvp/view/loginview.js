@@ -48,6 +48,7 @@ class LoginView extends BaseView {
         this._showhidePasswordCheckbox.addEventListener('click', this.onShowHidePasswordClicked.bind(this), false)
         this._showhidePasswordCheckbox.addEventListener('mousedown', this.onShowHideMouseDown.bind(this), true)
 
+        this._rememberMeCheckbox.addEventListener('click', this.onRememberMeClicked.bind(this), true)
     }
 
     removeEventListeners() {
@@ -64,6 +65,9 @@ class LoginView extends BaseView {
 
         this._showhidePasswordCheckbox.removeEventListener('click', this.onShowHidePasswordClicked.bind(this), false)
         this._showhidePasswordCheckbox.removeEventListener('mousedown', this.onShowHideMouseDown.bind(this), true)
+
+        this._rememberMeCheckbox.removeEventListener('click', this.onRememberMeClicked.bind(this), true)
+
     }
 
     onUsernameFieldChanged() {
@@ -124,6 +128,11 @@ class LoginView extends BaseView {
 
     onShowHideMouseDown(event) {
         event.preventDefault();
+    }
+
+    onRememberMeClicked() {
+        var checked = this._rememberMeCheckbox.checked
+        this._presenter.setRememberMe(checked)
     }
 
     startBackgroundVideo() {

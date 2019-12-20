@@ -33,6 +33,10 @@ class LoginPresenter extends BasePresenter {
         this._models.get('login').createAccountClicked()
     }
 
+    setRememberMe(remember) {
+        this._models.get('login').setRememberMe(remember)
+    }
+
     onLoadingComplete() {
         this._view.startBackgroundVideo()
     }
