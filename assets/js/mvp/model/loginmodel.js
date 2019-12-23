@@ -18,10 +18,11 @@ class LoginModel extends BaseModel {
         this.onInputFieldWarningChanged = new B2Event('Input Field State Changed')
         this.onCreateAccountModalRequested = new B2Event('Create Account Modal Requested')
 
-        this._usernameWarning = ""
-        this._passwordWarning = ""
+        this._usernameWarning = ''
+        this._passwordWarning = ''
 
         this._rememberMe = false
+        this._storedUsername = ''
     }
 
     destroy() {
@@ -29,7 +30,7 @@ class LoginModel extends BaseModel {
     }
 
     determineUsernameWarning(username) {
-        this._usernameWarning = ""
+        this._usernameWarning = ''
         
         if (username.length < 2) {
             this._usernameWarning = Localization.get('usernameTooShort')
@@ -39,7 +40,7 @@ class LoginModel extends BaseModel {
     }
 
     determinePasswordWarning(password) {
-        this._passwordWarning = ""
+        this._passwordWarning = ''
 
         if (password.length < 8) {
             this._passwordWarning = Localization.get('passwordTooShort')
@@ -56,9 +57,15 @@ class LoginModel extends BaseModel {
     usernameFieldChanged(username) {
         this.determineUsernameWarning(username)
 
+        this._rememberMe = (username !== undefined && username !== '')
+
         if (this._rememberMe) {
             Settings.set(Settings.KEY_USERNAME, username)
+        } else {
+            Settings.set(Settings.KEY_USERNAME, '')
         }
+
+        this._storedUsername = username
 
         this.broadcastInputFieldWarnings()
     }
@@ -79,21 +86,27 @@ class LoginModel extends BaseModel {
     }
 
     setRememberMe(remember) {
-        Settings.set(Settings.KEY_REMEMBER_ME, remember)
-
         this._rememberMe = remember
+        if (remember) {
+            Settings.set(Settings.KEY_USERNAME, this._storedUsername)
+        } else {
+            Settings.set(Settings.KEY_USERNAME, '')
+        }
     }
 
     requestLoginSettings() {
-        var rememberMeChecked = Settings.get(Settings.KEY_REMEMBER_ME)
-        var username = Settings.get(Settings.KEY_USERNAME)
+        this._storedUsername = Settings.get(Settings.KEY_USERNAME)
+        if (this._storedUsername !== undefined && this._storedUsername !== "") {
+            this._rememberMe = true
+        } else {
+            this._rememberMe = false
+            this._storedUsername = ''
+        }
 
         this.onLoginSettingsRequest.broadcast({
-            rememberme: rememberMeChecked,
-            username: username,
+            rememberme: this._rememberMe,
+            username: this._storedUsername,
         })
-
-        this._rememberMe = rememberMeChecked
     }
 }
 

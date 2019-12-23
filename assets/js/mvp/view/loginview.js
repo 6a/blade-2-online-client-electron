@@ -81,13 +81,13 @@ class LoginView extends BaseView {
     }
 
     updateInputWarnings(usernameWarning, passwordWarning) {
-        if (usernameWarning !== "") {
+        if (usernameWarning !== '') {
             this._usernameField.classList.add('warning-outline')
         } else {
             this._usernameField.classList.remove('warning-outline')
         }
 
-        if (passwordWarning !== "") {
+        if (passwordWarning !== '') {
             this._passwordField.classList.add('warning-outline')
         } else {
             this._passwordField.classList.remove('warning-outline')
@@ -104,8 +104,20 @@ class LoginView extends BaseView {
         this._usernameField.value = settings.username
     }
 
+    selectInputField() {
+        if (this._usernameField.value !== '') {
+            this._passwordField.focus()
+        } else {
+            this._usernameField.focus()
+        }
+    }
+
     onUsernameFieldChanged() {
         let username = this._usernameField.value
+
+        if (this._usernameField.value === '') {
+            this._rememberMeCheckbox.checked = false
+        }
 
         this._presenter.usernameFieldChanged(username)
     }

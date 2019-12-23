@@ -2,17 +2,14 @@ const fs = require('fs');
 const yaml = require('js-yaml')
 
 const DEFAULT_SETTINGS = new Map([
-    ['remember-me', false],
     ['username', '']
 ])
 
 const EXPECTED_KEYS = [
-    {name: 'remember-me', type: typeof(DEFAULT_SETTINGS.get('remember-me')) },
     {name: 'username', type: typeof(DEFAULT_SETTINGS.get('username')) },
 ]
 
 const KEYS = {
-    REMEMBER_ME: 'remember-me',
     USERNAME: 'username'
 }
 
@@ -62,7 +59,6 @@ function save(data) {
 
 class Settings {
     constructor() {
-        this.KEY_REMEMBER_ME = KEYS.REMEMBER_ME
         this.KEY_USERNAME = KEYS.USERNAME
         
         loadSettingsOrMakeDefault()

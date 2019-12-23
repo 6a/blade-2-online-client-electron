@@ -43,6 +43,7 @@ class LoginPresenter extends BasePresenter {
     }
 
     onLoadingComplete() {
+        this._view.selectInputField()
         this._view.startBackgroundVideo()
     }
 
