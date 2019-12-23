@@ -30,12 +30,12 @@
         <section id="login-dynamic-wrapper">
           <div id="login-interactable-wrapper">
             <div class="text-input-wrapper">
-              <input id="login-username" type="text" placeholder=" ">
+              <input id="login-username" type="text" placeholder=" " class="input-standard">
               <div class="text-input-label-wrapper"><label for="login-username" class="text-input-label">ユーザー名</label></div>
             </div>
     
             <div class="text-input-wrapper">
-              <input id="login-password" type="password" placeholder=" ">
+              <input id="login-password" type="password" placeholder=" " class="input-standard">
               <div class="text-input-label-wrapper"><label for="login-password" class="text-input-label">パスワード</label></div>
               <input type="checkbox" id="login-showhide-password-toggle" class="visibility-toggle">
             </div>
@@ -59,13 +59,43 @@
       </div>
     </div>
 
-    <div class="page" id="options">
+    <div class="page backdrop hidden" id="options">
 
     </div>
 
-    <div class="page backdrop hidden" id="create-account">
-      <section id="create-account-modal">
-        
+    <div class="page backdrop" id="create-account">
+      <section id="create-account-modal" class="modal">
+        <h1>「この手で道を切り拓く」</h1>
+        <h2>BLADE II ONLINE アカウント作成</h2>
+        <input id="create-account-username" type="text" placeholder="ユーザー名" maxlength="20">
+        <p id="create-account-username-warning" class="create-account-static-warning hidden">ユーザー名は2文字でなければなりません</p> 
+        <div id="create-account-details-wrapper">
+          <div id="create-account-email-wrapper">
+            <div class="text-input-wrapper">
+              <input id="create-account-email" type="text" placeholder=" " class="input-standard">
+              <div class="text-input-label-wrapper"><label for="create-account-email" class="text-input-label">メールアドレス</label></div>
+            </div>
+            <p id="create-account-email-warning" class="bottom-margin-10 hidden">有効なメールアドレスを入力してください</p> 
+          </div>
+          <div id="create-account-password-wrapper">
+            <div class="text-input-wrapper">
+              <input id="create-account-password" type="password" placeholder=" " class="input-standard">
+              <div class="text-input-label-wrapper"><label for="create-account-password" class="text-input-label">パスワード</label></div>
+              <input type="checkbox" id="create-account-showhide-password-toggle" class="visibility-toggle">
+            </div>
+            <div id="create-account-password-reqs" class="hidden">
+              <p>パスワードは以下の要件を満たさなければなりません</p>
+              <ul>
+                <li class="ca-li-inactive">15 文字であること、又は</li>
+                <li class="ca-li-pass">8 文字であり</li>
+                <li class="ca-li-fail">1 数字以上を含むこと及び</li>
+                <li class="ca-li-fail">1 小文字以上を含むこと</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <button id="create-account-button" disabled>今すぐ作成</button>
       </section>
     </div>
 

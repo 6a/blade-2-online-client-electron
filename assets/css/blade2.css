@@ -3,8 +3,13 @@
 
 /* GLOBAL */
 
+::selection {
+    color: var(--gscale-90-100);
+    background: var(--gscale-10-100);
+}
+
 html {
-    background: var(--gscale-10-100);;
+    background: var(--gscale-10-100);
     width: 100%;
     height: 100%;
     font-family: 'Noto Sans JP';
@@ -22,7 +27,7 @@ main {
     overflow: hidden;
     width: 100%;
     height: 100%;
-    position: fixed;
+    position: fixed;    
 }
 
 .page {
@@ -43,6 +48,16 @@ main {
 
 .img-full-width {
     width: 100%;
+    height: auto;
+}
+
+.img-half-width {
+    width: 50%;
+    height: auto;
+}
+
+.img-quarter-width {
+    width: 25%;
     height: auto;
 }
 
@@ -79,6 +94,17 @@ main {
     transition: all 0.5s ease-in-out;
 }
 
+.modal {
+    box-sizing: border-box;
+    
+    box-shadow: 0 0 16px var(--drop-shadow);
+    background: var(--gscale-90-100);
+}
+
+.bottom-margin-10 {
+    margin-bottom: 10px !important;
+}
+
 /* TEXT FIELD */
 
 .text-input-wrapper {
@@ -90,7 +116,7 @@ main {
     transition: all 0.2s ease-in-out;
 }
 
-input[type=text], input[type=password] {
+input[type=text].input-standard, input[type=password].input-standard {
     border: none;
     margin: 2px;
     background: var(--gscale-80-100);
@@ -99,19 +125,21 @@ input[type=text], input[type=password] {
     width: calc(100% - 4px);
     line-height: 1.1em;
     letter-spacing: 0.1em;
-    font-weight: 500;
+    font-weight: 400;
 
     outline: 2px solid var(--gscale-80-100);
 
     transition: outline-color 0.2s ease-in-out;
+
+    font-family: 'Noto Sans JP';
 }
 
-input[type=password] {
+input[type=password].input-standard {
     letter-spacing: 0.2em;
     padding-right: 40px;
 }
 
-input[type=text]:focus, input[type=password]:focus {
+input[type=text].input-standard:focus, input[type=password].input-standard:focus {
     outline-offset: 0;
     outline-color: var(--gscale-20-100);
 }
@@ -125,10 +153,10 @@ input[type=text]:focus, input[type=password]:focus {
     pointer-events: none;
 }
 
-input[type=text]:not(:placeholder-shown) + .text-input-label-wrapper, 
-input[type=password]:not(:placeholder-shown) + .text-input-label-wrapper,
-input[type=text]:focus + .text-input-label-wrapper, 
-input[type=password]:focus + .text-input-label-wrapper {    
+input[type=text].input-standard:not(:placeholder-shown) + .text-input-label-wrapper, 
+input[type=password].input-standard:not(:placeholder-shown) + .text-input-label-wrapper,
+input[type=text].input-standard:focus + .text-input-label-wrapper, 
+input[type=password].input-standard:focus + .text-input-label-wrapper {    
     align-items: flex-start;
 }
 
@@ -147,10 +175,10 @@ input[type=password]:focus + .text-input-label-wrapper {
     transition: all 0.2s ease-in-out;
 }
 
-input[type=text]:not(:placeholder-shown) + .text-input-label-wrapper > .text-input-label, 
-input[type=password]:not(:placeholder-shown) + .text-input-label-wrapper > .text-input-label,
-input[type=text]:focus + .text-input-label-wrapper > .text-input-label, 
-input[type=password]:focus + .text-input-label-wrapper > .text-input-label {
+input[type=text].input-standard:not(:placeholder-shown) + .text-input-label-wrapper > .text-input-label, 
+input[type=password].input-standard:not(:placeholder-shown) + .text-input-label-wrapper > .text-input-label,
+input[type=text].input-standard:focus + .text-input-label-wrapper > .text-input-label, 
+input[type=password].input-standard:focus + .text-input-label-wrapper > .text-input-label {
     transform: translateY(0);
     top: 0;
 
@@ -286,9 +314,10 @@ button {
     padding: 14px 20px;
     min-width: 100px;
     background-color: var(--affirmative);
+    font-family: 'Noto Sans JP';
 
     color: var(--gscale-90-100);
-    font-weight: 800;
+    font-weight: 500;
     font-size: 0.8em;
 
     transition: all 0.1s ease-in-out;
@@ -363,7 +392,7 @@ a:focus {
     transform-origin: center left;
     background-color: var(--gscale-50-100);
 
-    transition: all 0.4s ease-in-out;
+    transition: all 0.4s linear;
 }
 
 /* LOGIN */
@@ -439,9 +468,113 @@ a:focus {
 }
 
 #create-account-modal {
-    width: 1024px;
-    height: 576px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+
     
-    box-shadow: 0 0 16px var(--drop-shadow);
-    background: var(--gscale-90-100);
+    width: 1180px;
+    height: 620px;
+    padding: 40px;
+}
+
+#create-account h1 {
+    font-size: 2.8em;
+    font-weight: 500;
+    font-family: 'Trajan Pro Regular', 'Noto Serif JP';
+    letter-spacing: 0.3em;
+}
+
+#create-account h2 {
+    margin: 15px 0 0 0;
+    font-size: 1.2em;
+    font-weight: 500;
+    font-family: 'Trajan Pro Regular', 'Noto Serif JP';
+}
+
+#create-account-username {
+    width: 100%;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid var(--affirmative);
+    margin: 30px 0 0 0;
+    background-color: var(--transparent);
+
+    font-family: 'Trajan Pro Regular', 'Noto Serif JP';
+    letter-spacing: -0.08em;
+    font-size: 2em;
+    text-align: center;
+}
+
+#create-account-details-wrapper {
+    width: 100%;
+    margin-top: 70px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+#create-account-details-wrapper > div {
+    width: 35%;
+}
+
+#create-account .text-input-wrapper {
+    margin: 0 !important;
+}
+
+#create-account-details-wrapper p {
+    font-size: 0.6em;
+    font-weight: 500;
+    margin: 5px 0;
+}
+
+#create-account ul {
+    color: var(--gscale-60-100);
+}
+
+
+#create-account li.ca-li-inactive {
+    color: var(--gscale-60-100);
+}
+
+#create-account li.ca-li-inactive:before {
+    content: '◆ '; 
+}
+
+#create-account li.ca-li-fail {
+    color: var(--warning);
+}
+
+#create-account li.ca-li-fail:before {
+    content: '✘ '; 
+}
+
+#create-account li.ca-li-pass {
+    color: var(--pass);
+}
+
+#create-account li.ca-li-pass:before {
+    content: '✔ '; 
+}
+
+#create-account li::before {
+    font-weight: 500;
+    font-family: 'Segoe MDL2 Assets';
+}
+
+#create-account li {
+    font-size: 0.6em;
+    font-weight: normal;
+}
+
+.create-account-static-warning {
+    color: var(--warning);
+    font-size: 0.7em;
+    padding: 10px 0 30px 0;
+}
+
+#create-account button {
+    margin-top: auto;
+    margin-bottom: 20px;
 }

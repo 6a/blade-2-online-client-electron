@@ -3,6 +3,7 @@
 
     --darken-10: hsla(0, 0%, 10%, 0.1);
 
+    --gscale-100-100: hsla(0, 0%, 100%, 1);
     --gscale-90-100: hsla(0, 0%, 90%, 1);
     --gscale-80-100: hsla(0, 0%, 80%, 1);
     --gscale-70-100: hsla(0, 0%, 70%, 1);
@@ -22,6 +23,7 @@
     --affirmative-dark: hsla(0, 85%, 28%, 1);
 
     --warning: hsla(0, 62%, 43%, 1);
+    --pass: rgb(42, 178, 76);
 
     --transparent: #00000000;
 
