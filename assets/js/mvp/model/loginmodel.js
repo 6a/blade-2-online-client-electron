@@ -3,7 +3,7 @@ const Localization = require('../utility').Localization
 const B2Event = require('../utility').B2Event
 const Settings = require('../utility/settings.js')
 
-const usernameValidChars = /^[^ ][A-z0-9 ]+$/;
+const usernameValidChars = /^[^ ].+$/;
 
 class LoginModel extends BaseModel {
     constructor () {
