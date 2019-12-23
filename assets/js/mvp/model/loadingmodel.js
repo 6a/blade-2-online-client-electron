@@ -36,6 +36,7 @@ class LoadingModel extends BaseModel {
         this._fontsToLoad.push(new FontFace('Noto Sans JP', 'url(../assets/fonts/NotoSansJP-Light.otf)', { weight: 300 }))
         this._fontsToLoad.push(new FontFace('Noto Sans JP', 'url(../assets/fonts/NotoSansJP-Thin.otf)', { weight: 100 }))
         this._fontsToLoad.push(new FontFace('Sawarabi Mincho Regular', 'url(../assets/fonts/sawarabi-mincho-regular.ttf)', { weight: 'normal' }))
+        this._fontsToLoad.push(new FontFace('Trajan Pro Regular', 'url(../assets/fonts/trajan-pro-regular.ttf)', { weight: 'normal' }))
 
         this._itemsToLoad += this._fontsToLoad.length
     }
