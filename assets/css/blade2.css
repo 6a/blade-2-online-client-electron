@@ -62,7 +62,7 @@ main {
 }
 
 .warning-outline {
-    outline-color: var(--warning) !important;
+    outline-color: var(--negative) !important;
 }
 
 .hidden {
@@ -112,9 +112,13 @@ main {
     font-size: 25px;
     font-weight: 800;
 
-    color: var(--warning);
+    color: var(--negative);
 
     cursor: pointer;
+}
+
+.text-positive {
+    color: var(--positive) !important;
 }
 
 /* TEXT FIELD */
@@ -144,6 +148,7 @@ input[type=text].input-standard, input[type=password].input-standard {
     transition: outline-color 0.2s ease-in-out;
 
     font-family: 'Noto Sans JP';
+    line-height: calc(1em + 3px);
 }
 
 input[type=password].input-standard {
@@ -315,7 +320,7 @@ input[type].visibility-toggle:checked {
 } 
 
 #window-controls .button#close-button:hover {
-    background: var(--warning);
+    background: var(--negative);
 } 
 
 /* BUTTON */
@@ -540,6 +545,9 @@ a:focus {
     font-size: 0.6em;
     font-weight: 500;
     margin: 5px 0;
+
+    height: 12px;
+    color: var(--negative);
 }
 
 #create-account ul {
@@ -549,6 +557,7 @@ a:focus {
 
 #create-account li.ca-li-inactive {
     color: var(--gscale-60-100);
+    text-decoration: line-through;
 }
 
 #create-account li.ca-li-inactive:before {
@@ -556,7 +565,7 @@ a:focus {
 }
 
 #create-account li.ca-li-fail {
-    color: var(--warning);
+    color: var(--negative);
 }
 
 #create-account li.ca-li-fail:before {
@@ -564,7 +573,7 @@ a:focus {
 }
 
 #create-account li.ca-li-pass {
-    color: var(--pass);
+    color: var(--positive);
 }
 
 #create-account li.ca-li-pass:before {
@@ -581,10 +590,12 @@ a:focus {
     font-weight: normal;
 }
 
-.create-account-static-warning {
-    color: var(--warning);
+.create-account-warning {
+    color: var(--negative);
     font-size: 0.7em;
     padding: 10px 0 30px 0;
+
+    height: 14px;
 }
 
 #create-account button {

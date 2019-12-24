@@ -22,8 +22,8 @@
     --affirmative-darker: hsla(0, 80%, 33%, 1);
     --affirmative-dark: hsla(0, 85%, 28%, 1);
 
-    --warning: hsla(0, 62%, 43%, 1);
-    --pass: rgb(42, 178, 76);
+    --negative: hsla(0, 62%, 43%, 1);
+    --positive: rgb(42, 178, 76);
 
     --transparent: #00000000;
 
