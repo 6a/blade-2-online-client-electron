@@ -24,6 +24,10 @@ class BasePresenter {
             ref.target.unregister(ref.id)
         })
     }
+
+    onSetActive(active) {
+        this._view.setActive(active)
+    }
 }
 
 module.exports = BasePresenter
