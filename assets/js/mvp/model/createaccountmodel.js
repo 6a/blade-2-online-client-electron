@@ -10,8 +10,6 @@ class CreateAccountModel extends BaseModel {
     init() {
         super.init()
 
-        this.onSetActive = new B2Event('Set Active')
-
         this.addEventListener(this._models.get('login').onCreateAccountModalRequested.register(this.show.bind(this)))
     }
 
@@ -19,12 +17,8 @@ class CreateAccountModel extends BaseModel {
         super.destroy()
     }
 
-    show() {
-        this.onSetActive.broadcast(true)
-    }
-
-    hide() {
-        this.onSetActive.broadcast(false)
+    closeClicked() {
+        this.hide()
     }
 }
 

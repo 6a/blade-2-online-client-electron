@@ -9,15 +9,28 @@ class CreateAccountPresenter extends BasePresenter {
     init() {
         super.init()
 
-        this.addEventListener(this._models.get('createaccount').onSetActive.register(this.setActive.bind(this)))
+        this.addEventListener(this._models.get('createaccount').onSetActive.register(this.onSetActive.bind(this)))
     }
 
     destroy() {
         super.destroy()
     }
 
-    setActive(active) {
-        this._view.setActive(active)
+    closeClicked() {
+        this._models.get('createaccount').closeClicked()
+        this._models.get('login').show()
+    }
+
+    usernameFieldChanged(username) {
+
+    }
+
+    emailFieldchanged(email) {
+
+    }
+
+    passwordFieldChanged(password) {
+
     }
 }
 

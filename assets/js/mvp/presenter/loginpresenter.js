@@ -12,6 +12,7 @@ class LoginPresenter extends BasePresenter {
         this.addEventListener(this._models.get('loading').onLoadingComplete.register(this.onLoadingComplete.bind(this)))
         this.addEventListener(this._models.get('login').onInputFieldWarningChanged.register(this.onInputFieldWarningChanged.bind(this)))
         this.addEventListener(this._models.get('login').onLoginSettingsRequest.register(this.onLoginSettingsRequest.bind(this)))
+        this.addEventListener(this._models.get('login').onSetActive.register(this.onSetActive.bind(this)))
     }
 
     destroy() {
