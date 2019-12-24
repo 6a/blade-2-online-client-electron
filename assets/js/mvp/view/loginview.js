@@ -13,6 +13,7 @@ class LoginView extends BaseView {
         this.getElementReferences()
         this.addEventListeners()
         this.getLoginSettings()
+        this.addTabbables()
     }
 
     destroy() {
@@ -68,11 +69,24 @@ class LoginView extends BaseView {
         this._showhidePasswordCheckbox.removeEventListener('mousedown', this.onShowHideMouseDown.bind(this), true)
 
         this._rememberMeCheckbox.removeEventListener('click', this.onRememberMeClicked.bind(this), true)
-
     }
 
     getLoginSettings() {
         this._presenter.requestLoginSettings()
+    }
+
+    addTabbables() {
+        let tabbables = [
+            this._usernameField,
+            this._passwordField,
+            this._showhidePasswordCheckbox,
+            this._rememberMeCheckbox,
+            this._loginButton,
+            this._createAccountAnchor,
+            this._loginTroubleAnchor
+        ]
+
+        super.addTabbables(tabbables)
     }
 
     startBackgroundVideo() {
@@ -110,6 +124,10 @@ class LoginView extends BaseView {
         } else {
             this._usernameField.focus()
         }
+    }
+
+    setActive(active) {
+        super.setActive(active)
     }
 
     onUsernameFieldChanged() {
@@ -153,6 +171,7 @@ class LoginView extends BaseView {
     onCreateAccountClicked(event) {
         event.preventDefault();
         this._presenter.createAccountClicked()
+        this.setActive(false)
     }
 
     onShowHidePasswordClicked(event) {
