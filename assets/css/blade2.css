@@ -105,6 +105,18 @@ main {
     margin-bottom: 10px !important;
 }
 
+.exit-button {
+    position: absolute;
+    z-index: 1;
+    font-family: 'Segoe MDL2 Assets';
+    font-size: 25px;
+    font-weight: 800;
+
+    color: var(--warning);
+
+    cursor: pointer;
+}
+
 /* TEXT FIELD */
 
 .text-input-wrapper {
@@ -468,6 +480,7 @@ a:focus {
 }
 
 #create-account-modal {
+    position: relative;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
@@ -509,7 +522,7 @@ a:focus {
 
 #create-account-details-wrapper {
     width: 100%;
-    margin-top: 70px;
+    margin-top: 40px;
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
@@ -576,5 +589,12 @@ a:focus {
 
 #create-account button {
     margin-top: auto;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
 }
+
+#create-account-close {
+    position: absolute;
+    left: 40px;
+    bottom: 40px;
+    font-size: 0.6em;
+}   

@@ -63,7 +63,7 @@
 
     </div>
 
-    <div class="page backdrop" id="create-account">
+    <div class="page backdrop hidden" id="create-account">
       <section id="create-account-modal" class="modal">
         <h1>「この手で道を切り拓く」</h1>
         <h2>BLADE II ONLINE アカウント作成</h2>
@@ -72,30 +72,32 @@
         <div id="create-account-details-wrapper">
           <div id="create-account-email-wrapper">
             <div class="text-input-wrapper">
-              <input id="create-account-email" type="text" placeholder=" " class="input-standard">
+              <input id="create-account-email" type="text" placeholder=" " class="input-standard" maxlength="60">
               <div class="text-input-label-wrapper"><label for="create-account-email" class="text-input-label">メールアドレス</label></div>
             </div>
-            <p id="create-account-email-warning" class="bottom-margin-10 hidden">有効なメールアドレスを入力してください</p> 
+            <p id="create-account-email-warning" class="hidden">有効なメールアドレスを入力してください</p> 
           </div>
           <div id="create-account-password-wrapper">
             <div class="text-input-wrapper">
-              <input id="create-account-password" type="password" placeholder=" " class="input-standard">
+              <input id="create-account-password" type="password" placeholder=" " class="input-standard" maxlength="60">
               <div class="text-input-label-wrapper"><label for="create-account-password" class="text-input-label">パスワード</label></div>
               <input type="checkbox" id="create-account-showhide-password-toggle" class="visibility-toggle">
             </div>
             <div id="create-account-password-reqs" class="hidden">
               <p>パスワードは以下の要件を満たさなければなりません</p>
               <ul>
-                <li class="ca-li-inactive">15 文字であること、又は</li>
-                <li class="ca-li-pass">8 文字であり</li>
-                <li class="ca-li-fail">1 数字以上を含むこと及び</li>
-                <li class="ca-li-fail">1 小文字以上を含むこと</li>
+                <li id="create-account-password-req-15-chars" class="ca-li-inactive">15 文字であること、又は</li>
+                <li id="create-account-password-req-8-chars" class="ca-li-pass">8 文字であり</li>
+                <li id="create-account-password-req-1-numeral" class="ca-li-fail">1 数字以上を含むこと及び</li>
+                <li id="create-account-password-req-1-lowercase" class="ca-li-fail">1 小文字以上を含むこと</li>
               </ul>
             </div>
           </div>
         </div>
 
         <button id="create-account-button" disabled>今すぐ作成</button>
+
+        <a id="create-account-close" href="">サインインへ戻る</a>
       </section>
     </div>
 
