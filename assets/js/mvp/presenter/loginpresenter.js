@@ -10,9 +10,9 @@ class LoginPresenter extends BasePresenter {
         super.init()
 
         this.addEventListener(this._models.get('loading').onLoadingComplete.register(this.onLoadingComplete.bind(this)))
-        this.addEventListener(this._models.get('login').onInputFieldWarningChanged.register(this.onInputFieldWarningChanged.bind(this)))
-        this.addEventListener(this._models.get('login').onLoginSettingsRequest.register(this.onLoginSettingsRequest.bind(this)))
-        this.addEventListener(this._models.get('login').onSetActive.register(this.onSetActive.bind(this)))
+        this.addEventListener(this.model.onInputFieldWarningChanged.register(this.onInputFieldWarningChanged.bind(this)))
+        this.addEventListener(this.model.onLoginSettingsRequest.register(this.onLoginSettingsRequest.bind(this)))
+        this.addEventListener(this.model.onSetActive.register(this.onSetActive.bind(this)))
     }
 
     destroy() {
@@ -20,27 +20,27 @@ class LoginPresenter extends BasePresenter {
     }
 
     usernameFieldChanged(username) {
-        this._models.get('login').usernameFieldChanged(username)
+        this.model.usernameFieldChanged(username)
     }
 
     passwordFieldChanged(password) {
-        this._models.get('login').passwordFieldChanged(password)
+        this.model.passwordFieldChanged(password)
     }
 
     submit(username, password) {
-        this._models.get('login').submit(username, password)
+        this.model.submit(username, password)
     }
 
     createAccountClicked() {
-        this._models.get('login').createAccountClicked()
+        this.model.createAccountClicked()
     }
 
     setRememberMe(remember) {
-        this._models.get('login').setRememberMe(remember)
+        this.model.setRememberMe(remember)
     }
 
     requestLoginSettings() {
-        this._models.get('login').requestLoginSettings()
+        this.model.requestLoginSettings()
     }
 
     onLoadingComplete() {

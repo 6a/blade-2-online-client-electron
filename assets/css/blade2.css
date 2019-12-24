@@ -541,7 +541,7 @@ a:focus {
     margin: 0 !important;
 }
 
-#create-account-details-wrapper p {
+#create-account-password-warning-header{
     font-size: 0.6em;
     font-weight: 500;
     margin: 5px 0;

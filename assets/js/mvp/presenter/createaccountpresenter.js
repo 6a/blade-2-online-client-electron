@@ -9,7 +9,8 @@ class CreateAccountPresenter extends BasePresenter {
     init() {
         super.init()
 
-        this.addEventListener(this._models.get('createaccount').onSetActive.register(this.onSetActive.bind(this)))
+        this.addEventListener(this.model.onSetActive.register(this.onSetActive.bind(this)))
+        this.addEventListener(this.model.onInputFieldWarningChanged.register(this.onInputFieldWarningChanged.bind(this)))
     }
 
     destroy() {
@@ -21,16 +22,20 @@ class CreateAccountPresenter extends BasePresenter {
         this._models.get('login').show()
     }
 
-    usernameFieldChanged(username) {
-
+    usernameFieldChanged(value) {
+        this.model.usernameFieldChanged(value)
     }
 
-    emailFieldchanged(email) {
-
+    emailFieldChanged(value) {
+        this.model.emailFieldChanged(value)
     }
 
-    passwordFieldChanged(password) {
+    passwordFieldChanged(value) {
+        this.model.passwordFieldChanged(value)
+    }
 
+    onInputFieldWarningChanged(warnings) {
+        this._view.updateWarnings(warnings)
     }
 }
 

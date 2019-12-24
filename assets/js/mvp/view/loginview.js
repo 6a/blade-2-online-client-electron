@@ -130,6 +130,32 @@ class LoginView extends BaseView {
         super.setActive(active)
     }
 
+    lockForm() {
+        this._usernameField.disabled = true
+        this._passwordField.disabled = true
+        this._rememberMeCheckbox.disabled = true
+        this._loginButton.disabled = true
+        this._showhidePasswordCheckbox.disabled = true
+        this._createAccountAnchor.style.pointerEvents = 'none'
+        this._loginTroubleAnchor.style.pointerEvents = 'none'
+
+        this._loginInteractablesWrapper.classList.add('hidden')
+        this._loginLoaderWrapper.classList.remove('hidden')
+    }
+
+    unlockForm() {
+        this._usernameField.disabled = false
+        this._passwordField.disabled = false
+        this._rememberMeCheckbox.disabled = false
+        this._loginButton.disabled = false
+        this._showhidePasswordCheckbox.disabled = false
+        this._createAccountAnchor.style.pointerEvents = 'auto'
+        this._loginTroubleAnchor.style.pointerEvents = 'auto'
+
+        this._loginInteractablesWrapper.classList.remove('hidden')
+        this._loginLoaderWrapper.classList.add('hidden')
+    }
+
     onUsernameFieldChanged() {
         let username = this._usernameField.value
 
@@ -159,19 +185,12 @@ class LoginView extends BaseView {
     onSubmit() {
         this._presenter.submit(this._usernameField.value, this._passwordField.value)
 
-        this._usernameField.disabled = true
-        this._passwordField.disabled = true
-        this._rememberMeCheckbox.disabled = true
-        this._loginButton.disabled = true
-        this._showhidePasswordCheckbox.disabled = true
-        this._loginInteractablesWrapper.classList.add('hidden')
-        this._loginLoaderWrapper.classList.remove('hidden')
+        this.lockForm()
     }
 
     onCreateAccountClicked(event) {
         event.preventDefault();
         this._presenter.createAccountClicked()
-        this.setActive(false)
     }
 
     onShowHidePasswordClicked(event) {

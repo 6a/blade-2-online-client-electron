@@ -7,8 +7,12 @@ class BasePresenter {
         this._eventRefs = []
     }
 
-    get name () {
+    get name() {
         return this._view._name
+    }
+
+    get model() {
+        return this._models.get(this.name)
     }
 
     addEventListener (ref) {

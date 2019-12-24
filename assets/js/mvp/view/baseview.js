@@ -51,6 +51,14 @@ class BaseView {
             element.tabIndex = newIndex
         })
     }
+
+    toggleHidden(element, hidden) {
+        if (hidden) {
+            element.classList.add('hidden')
+        } else {
+            element.classList.remove('hidden')
+        }
+    }
 }
 
 module.exports = BaseView

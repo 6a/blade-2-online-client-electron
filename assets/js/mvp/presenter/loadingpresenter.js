@@ -9,7 +9,7 @@ class LoadingPresenter extends BasePresenter {
     init() {
         super.init()
 
-        this.addEventListener(this._models.get('loading').onItemLoaded.register(this.itemLoaded.bind(this)))
+        this.addEventListener(this.model.onItemLoaded.register(this.itemLoaded.bind(this)))
     }
 
     destroy() {
@@ -17,7 +17,7 @@ class LoadingPresenter extends BasePresenter {
     }
 
     loadingComplete() {
-        this._models.get('loading').loadingComplete()
+        this.model.loadingComplete()
     }
 
     itemLoaded(progress) {

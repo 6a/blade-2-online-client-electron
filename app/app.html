@@ -68,7 +68,7 @@
         <h1>「この手で道を切り拓く」</h1>
         <h2>BLADE II ONLINE アカウント作成</h2>
         <input id="create-account-username" type="text" placeholder="ユーザー名" maxlength="20">
-        <p id="create-account-username-warning" class="create-account-static-warning hidden">ユーザー名は2文字でなければなりません</p> 
+        <p id="create-account-username-warning" class="create-account-warning hidden">ユーザー名は2文字でなければなりません</p> 
         <div id="create-account-details-wrapper">
           <div id="create-account-email-wrapper">
             <div class="text-input-wrapper">
@@ -84,12 +84,13 @@
               <input type="checkbox" id="create-account-showhide-password-toggle" class="visibility-toggle">
             </div>
             <div id="create-account-password-reqs" class="hidden">
-              <p>パスワードは以下の要件を満たさなければなりません</p>
+              <p id="create-account-password-warning-header">パスワードは以下の要件を満たさなければなりません</p>
               <ul>
+                <li id="create-account-password-req-ascii" class="ca-li-inactive">半角英数字と ASCII 記号のみを含むこと、及び</li>
                 <li id="create-account-password-req-15-chars" class="ca-li-inactive">15 文字であること、又は</li>
-                <li id="create-account-password-req-8-chars" class="ca-li-pass">8 文字であり</li>
-                <li id="create-account-password-req-1-numeral" class="ca-li-fail">1 数字以上を含むこと及び</li>
-                <li id="create-account-password-req-1-lowercase" class="ca-li-fail">1 小文字以上を含むこと</li>
+                <li id="create-account-password-req-8-chars" class="ca-li-inactive">8 文字であり</li>
+                <li id="create-account-password-req-1-numeral" class="ca-li-inactive">1 数字以上を含むこと及び</li>
+                <li id="create-account-password-req-1-lowercase" class="ca-li-inactive">1 小文字以上を含むこと</li>
               </ul>
             </div>
           </div>
