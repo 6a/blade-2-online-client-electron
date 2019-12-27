@@ -5,5 +5,4 @@ module.exports = {
     Localization: require('./localization.js'),
     Validation: require('./validation.js'),
     Containers: require('./containers.js')
-
 }

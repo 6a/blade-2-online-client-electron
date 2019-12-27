@@ -208,7 +208,7 @@ class LoginView extends BaseView {
 
         this._passwordField.focus();
 
-        new Promise(r => setTimeout(r, 1))
+        new Promise(r => setTimeout(r, 0))
         .then(() => {
             this._passwordField.setSelectionRange(this._passwordField.value.length, this._passwordField.value.length)
         })

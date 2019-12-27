@@ -50,6 +50,9 @@ class CreateAccountView extends BaseView {
         this._emailField.addEventListener('input', this.onEmailFieldChanged.bind(this), false)
         this._passwordField.addEventListener('input', this.onPasswordFieldChanged.bind(this), false)
 
+        this._showhidePasswordCheckbox.addEventListener('click', this.onShowHidePasswordClicked.bind(this), false)
+        this._showhidePasswordCheckbox.addEventListener('mousedown', this.onShowHideMouseDown.bind(this), true)
+
         this._closeButton.addEventListener('click', this.onCloseClicked.bind(this), false)
     }
 
@@ -57,6 +60,9 @@ class CreateAccountView extends BaseView {
         this._usernameField.removeEventListener('input', this.onUsernameFieldChanged.bind(this), false)
         this._emailField.removeEventListener('input', this.onEmailFieldChanged.bind(this), false)
         this._passwordField.removeEventListener('input', this.onPasswordFieldChanged.bind(this), false)
+
+        this._showhidePasswordCheckbox.removeEventListener('click', this.onShowHidePasswordClicked.bind(this), false)
+        this._showhidePasswordCheckbox.removeEventListener('mousedown', this.onShowHideMouseDown.bind(this), true)
 
         this._closeButton.removeEventListener('click', this.onCloseClicked.bind(this), false)
     }
@@ -114,6 +120,27 @@ class CreateAccountView extends BaseView {
         let value = this._passwordField.value
 
         this._presenter.passwordFieldChanged(value)
+    }
+
+    onShowHidePasswordClicked(event) {
+        event.stopPropagation();
+
+        if (this._showhidePasswordCheckbox.checked) {
+            this._passwordField.type = 'text'
+        } else {
+            this._passwordField.type = 'password'
+        }
+
+        this._passwordField.focus();
+
+        new Promise(r => setTimeout(r, 0))
+        .then(() => {
+            this._passwordField.setSelectionRange(this._passwordField.value.length, this._passwordField.value.length)
+        })
+    }
+
+    onShowHideMouseDown(event) {
+        event.preventDefault();
     }
 
     setPasswordInfoStyle(element, className) {
