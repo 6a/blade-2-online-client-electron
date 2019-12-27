@@ -196,6 +196,26 @@ class CreateAccountView extends BaseView {
         let emailWarning = warnings.emailWarning
         let passwordWarning = warnings.passwordWarning
 
+        if (usernameWarning !== '') {
+            this._usernameField.classList.add('border-bottom-negative')
+            this._usernameField.classList.remove('border-bottom-positive')
+        } else {
+            this._usernameField.classList.remove('border-bottom-negative')
+            this._usernameField.classList.add('border-bottom-positive')
+        }
+
+        if (emailWarning !== '') {
+            this._emailField.classList.add('warning-outline')
+        } else {
+            this._emailField.classList.remove('warning-outline')
+        }
+
+        if (passwordWarning.hasWarnings) {
+            this._passwordField.classList.add('warning-outline')
+        } else {
+            this._passwordField.classList.remove('warning-outline')
+        }
+
         this.toggleHidden(this._usernameWarning, usernameWarning === '')
         this._usernameWarning.innerHTML = usernameWarning
 

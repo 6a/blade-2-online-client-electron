@@ -125,6 +125,14 @@ main {
     color: var(--negative) !important;
 }
 
+.border-bottom-positive {
+    border-bottom: 2px solid var(--positive) !important;
+}
+
+.border-bottom-negative {
+    border-bottom: 2px solid var(--negative) !important;
+}
+
 .speech-bubble {
 	position: absolute;
     background: var(--negative);
@@ -562,7 +570,7 @@ a:focus {
     width: 100%;
     outline: none;
     border: none;
-    border-bottom: 2px solid var(--affirmative);
+    border-bottom: 2px solid var(--gscale-50-100);
     background-color: var(--transparent);
 
     font-family: 'Trajan Pro Regular', 'Noto Serif JP';
