@@ -23,6 +23,9 @@ class CreateAccountView extends BaseView {
     getElementReferences() {
         this._wrapper = document.getElementById('create-account')
 
+        this._interactablesWrapper = document.getElementById('create-account-interactables-wrapper')
+        this._loaderWrapper = document.getElementById('create-account-loader-wrapper')
+
         this._usernameField = document.getElementById('create-account-username')
         this._usernameWarning = document.getElementById('create-account-username-warning')
 
@@ -42,7 +45,7 @@ class CreateAccountView extends BaseView {
 
         this._submitButton = document.getElementById('create-account-button')
         this._detailsWrapper = document.getElementById('create-account-details-wrapper')
-        this._closeButton = document.getElementById('create-account-close')
+        this._closeAnchor = document.getElementById('create-account-close')
     }
 
     addEventListeners() {
@@ -53,7 +56,8 @@ class CreateAccountView extends BaseView {
         this._showhidePasswordCheckbox.addEventListener('click', this.onShowHidePasswordClicked.bind(this), false)
         this._showhidePasswordCheckbox.addEventListener('mousedown', this.onShowHideMouseDown.bind(this), true)
 
-        this._closeButton.addEventListener('click', this.onCloseClicked.bind(this), false)
+        this._submitButton.addEventListener('click', this.onSubmitClicked.bind(this), false)
+        this._closeAnchor.addEventListener('click', this.onCloseClicked.bind(this), false)
     }
 
     removeEventListeners() {
@@ -64,7 +68,8 @@ class CreateAccountView extends BaseView {
         this._showhidePasswordCheckbox.removeEventListener('click', this.onShowHidePasswordClicked.bind(this), false)
         this._showhidePasswordCheckbox.removeEventListener('mousedown', this.onShowHideMouseDown.bind(this), true)
 
-        this._closeButton.removeEventListener('click', this.onCloseClicked.bind(this), false)
+        this._submitButton.removeEventListener('click', this.onSubmitClicked.bind(this), false)
+        this._closeAnchor.removeEventListener('click', this.onCloseClicked.bind(this), false)
     }
 
     addTabbables() {
@@ -74,7 +79,7 @@ class CreateAccountView extends BaseView {
             this._passwordField,
             this._showhidePasswordCheckbox,
             this._submitButton,
-            this._closeButton,
+            this._closeAnchor,
         ]
 
         super.addTabbables(tabbables)
@@ -97,6 +102,34 @@ class CreateAccountView extends BaseView {
         this.setPasswordInfoStyle(this._passwordReq1LowerCase, 'ca-li-inactive')
 
         this._submitButton.disabled = true
+    }
+
+    lockForm() {
+        this._usernameField.disabled = true
+        this._emailField.disabled = true
+        this._passwordField.disabled = true
+
+        this._submitButton.disabled = true
+        this._showhidePasswordCheckbox.disabled = true
+
+        this._closeAnchor.style.pointerEvents = 'none'
+
+        this._interactablesWrapper.classList.add('hidden')
+        this._loaderWrapper.classList.remove('hidden')
+    }
+
+    unlockForm() {
+        this._usernameField.disabled = false
+        this._emailField.disabled = false
+        this._passwordField.disabled = false
+
+        this._submitButton.disabled = false
+        this._showhidePasswordCheckbox.disabled = false
+
+        this._closeAnchor.style.pointerEvents = 'auto'
+
+        this._interactablesWrapper.classList.remove('hidden')
+        this._loaderWrapper.classList.add('hidden')
     }
 
     onCloseClicked(event) {
@@ -141,6 +174,12 @@ class CreateAccountView extends BaseView {
 
     onShowHideMouseDown(event) {
         event.preventDefault();
+    }
+
+    onSubmitClicked() {
+        this._presenter.submit(this._usernameField.value, this._emailField.value, this._passwordField.value)
+
+        this.lockForm()
     }
 
     setPasswordInfoStyle(element, className) {

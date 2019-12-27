@@ -71,37 +71,44 @@
       <section id="create-account-modal" class="modal">
         <h1>「この手で道を切り拓く」</h1>
         <h2>BLADE II ONLINE アカウント作成</h2>
-        <input id="create-account-username" type="text" placeholder="ユーザー名" maxlength="20">
-        <p id="create-account-username-warning" class="create-account-warning hidden">ユーザー名は2文字でなければなりません</p> 
-        <div id="create-account-details-wrapper">
-          <div id="create-account-email-wrapper">
-            <div class="text-input-wrapper">
-              <input id="create-account-email" type="text" placeholder=" " class="input-standard" maxlength="60">
-              <div class="text-input-label-wrapper"><label for="create-account-email" class="text-input-label">メールアドレス</label></div>
+        <div id="create-account-dynamic-wrapper">
+          <div id="create-account-interactables-wrapper">
+            <input id="create-account-username" type="text" placeholder="ユーザー名" maxlength="20">
+            <p id="create-account-username-warning" class="create-account-warning hidden">ユーザー名は2文字でなければなりません</p> 
+
+            <div id="create-account-username-password-wrapper">
+              <div id="create-account-email-wrapper">
+                <div class="text-input-wrapper">
+                  <input id="create-account-email" type="text" placeholder=" " class="input-standard" maxlength="60">
+                  <div class="text-input-label-wrapper"><label for="create-account-email" class="text-input-label">メールアドレス</label></div>
+                </div>
+                <p id="create-account-email-warning" class="hidden warning-text">有効なメールアドレスを指定してください</p> 
+              </div>
+              <div id="create-account-password-wrapper">
+                <div class="text-input-wrapper">
+                  <input id="create-account-password" type="password" placeholder=" " class="input-standard" maxlength="60">
+                  <div class="text-input-label-wrapper"><label for="create-account-password" class="text-input-label">パスワード</label></div>
+                  <input type="checkbox" id="create-account-showhide-password-toggle" class="visibility-toggle">
+                </div>
+                <div id="create-account-password-reqs" class="hidden">
+                  <p id="create-account-password-warning-header" class="warning-text">パスワードは以下の要件を満たすように指定してください</p>
+                  <ul>
+                    <li id="create-account-password-req-ascii" class="ca-li-inactive">半角英数字と ASCII 記号のみを含むこと、及び</li>
+                    <li id="create-account-password-req-15-chars" class="ca-li-inactive">15 文字であること、又は</li>
+                    <li id="create-account-password-req-8-chars" class="ca-li-inactive">8 文字であり</li>
+                    <li id="create-account-password-req-1-numeral" class="ca-li-inactive">1 数字以上を含むこと及び</li>
+                    <li id="create-account-password-req-1-lowercase" class="ca-li-inactive">1 小文字以上を含むこと</li>
+                  </ul>
+                </div>
+              </div>
             </div>
-            <p id="create-account-email-warning" class="hidden warning-text">有効なメールアドレスを指定してください</p> 
+
+            <button id="create-account-button" disabled>今すぐ作成</button>
           </div>
-          <div id="create-account-password-wrapper">
-            <div class="text-input-wrapper">
-              <input id="create-account-password" type="password" placeholder=" " class="input-standard" maxlength="60">
-              <div class="text-input-label-wrapper"><label for="create-account-password" class="text-input-label">パスワード</label></div>
-              <input type="checkbox" id="create-account-showhide-password-toggle" class="visibility-toggle">
-            </div>
-            <div id="create-account-password-reqs" class="hidden">
-              <p id="create-account-password-warning-header" class="warning-text">パスワードは以下の要件を満たすように指定してください</p>
-              <ul>
-                <li id="create-account-password-req-ascii" class="ca-li-inactive">半角英数字と ASCII 記号のみを含むこと、及び</li>
-                <li id="create-account-password-req-15-chars" class="ca-li-inactive">15 文字であること、又は</li>
-                <li id="create-account-password-req-8-chars" class="ca-li-inactive">8 文字であり</li>
-                <li id="create-account-password-req-1-numeral" class="ca-li-inactive">1 数字以上を含むこと及び</li>
-                <li id="create-account-password-req-1-lowercase" class="ca-li-inactive">1 小文字以上を含むこと</li>
-              </ul>
-            </div>
+          <div id="create-account-loader-wrapper" class="hidden">
+            <div class="spinner"></div>
           </div>
         </div>
-
-        <button id="create-account-button" disabled>今すぐ作成</button>
-
         <a id="create-account-close" href="">サインインへ戻る</a>
       </section>
     </div>

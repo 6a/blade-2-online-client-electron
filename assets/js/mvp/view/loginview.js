@@ -33,8 +33,8 @@ class LoginView extends BaseView {
         this._loginButton = document.getElementById('login-button')
         this._createAccountAnchor = document.getElementById('login-create-account')
         this._loginTroubleAnchor = document.getElementById('login-trouble')
-        this._loginInteractablesWrapper = document.getElementById('login-interactable-wrapper')
-        this._loginLoaderWrapper = document.getElementById('login-loader-wrapper')
+        this._interactablesWrapper = document.getElementById('login-interactable-wrapper')
+        this._loaderWrapper = document.getElementById('login-loader-wrapper')
         this._showhidePasswordCheckbox = document.getElementById('login-showhide-password-toggle')
     }
 
@@ -152,8 +152,8 @@ class LoginView extends BaseView {
         this._createAccountAnchor.style.pointerEvents = 'none'
         this._loginTroubleAnchor.style.pointerEvents = 'none'
 
-        this._loginInteractablesWrapper.classList.add('hidden')
-        this._loginLoaderWrapper.classList.remove('hidden')
+        this._interactablesWrapper.classList.add('hidden')
+        this._loaderWrapper.classList.remove('hidden')
     }
 
     unlockForm() {
@@ -165,8 +165,8 @@ class LoginView extends BaseView {
         this._createAccountAnchor.style.pointerEvents = 'auto'
         this._loginTroubleAnchor.style.pointerEvents = 'auto'
 
-        this._loginInteractablesWrapper.classList.remove('hidden')
-        this._loginLoaderWrapper.classList.add('hidden')
+        this._interactablesWrapper.classList.remove('hidden')
+        this._loaderWrapper.classList.add('hidden')
     }
 
     onUsernameFieldChanged() {

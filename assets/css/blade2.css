@@ -157,6 +157,10 @@ main {
     margin-top: -10px;
 }
 
+a {
+    -webkit-user-drag: none;
+}
+
 /* TEXT FIELD */
 
 .text-input-wrapper {
@@ -559,7 +563,6 @@ a:focus {
     outline: none;
     border: none;
     border-bottom: 2px solid var(--affirmative);
-    margin: 30px 0 0 0;
     background-color: var(--transparent);
 
     font-family: 'Trajan Pro Regular', 'Noto Serif JP';
@@ -568,15 +571,28 @@ a:focus {
     text-align: center;
 }
 
-#create-account-details-wrapper {
+#create-account-dynamic-wrapper {
     width: 100%;
-    margin-top: 40px;
+}
+
+#create-account-interactables-wrapper {
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#create-account-username-password-wrapper {
+    width: 100%;
+    margin-top: 30px;
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
 }
 
-#create-account-details-wrapper > div {
+#create-account-username-password-wrapper > div {
     width: 35%;
 }
 
@@ -641,9 +657,26 @@ a:focus {
     height: 14px;
 }
 
+#create-account-dynamic-wrapper {
+    position: relative;
+}
+
+#create-account-loader-wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    pointer-events: none;
+}
+
 #create-account button {
-    margin-top: auto;
-    margin-bottom: 0px;
+    margin: 40px 0 0 0;
 }
 
 #create-account-close {

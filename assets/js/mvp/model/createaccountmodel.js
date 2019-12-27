@@ -97,6 +97,11 @@ class CreateAccountModel extends BaseModel {
 
         this.broadcastInputFieldWarnings()
     }
+
+    submit(username, email, password) {
+        // TODO implement
+        console.log(`Create account model - received submit | username: ${username}, email: ${email}, password: ${password}`)
+    }
 }
 
 module.exports = CreateAccountModel

@@ -34,6 +34,10 @@ class CreateAccountPresenter extends BasePresenter {
         this.model.passwordFieldChanged(value)
     }
 
+    submit(username, email, password) {
+        this.model.submit(username, email, password)
+    }
+
     onInputFieldWarningChanged(warnings) {
         this._view.updateWarnings(warnings)
     }
