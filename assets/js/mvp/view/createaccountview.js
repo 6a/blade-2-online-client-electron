@@ -138,7 +138,10 @@ class CreateAccountView extends BaseView {
 
         this.updatePasswordwarning(passwordWarning)
 
-        this._submitButton.disabled = (usernameWarning === '' && emailWarning === '' && passwordWarning.hasWarnings)
+        let noWarnings = (usernameWarning === '' && emailWarning === '' && !passwordWarning.hasWarnings)
+        let fieldsPopulated = this._usernameField.value !== '' && this._emailField.value !== '' && this._passwordField.value !== ''
+
+        this._submitButton.disabled = !(noWarnings && fieldsPopulated)
     }
 
     /**

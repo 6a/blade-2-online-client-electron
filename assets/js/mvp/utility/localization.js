@@ -48,7 +48,7 @@ class Localization {
         }))
 
         inData.push(new Pair('emailInvalid', {
-            "jp": "有効なメールアドレスを入力してください",
+            "jp": "有効なメールアドレスを指定してください",
             "en": "Please provide a valid email address"
         }))
 

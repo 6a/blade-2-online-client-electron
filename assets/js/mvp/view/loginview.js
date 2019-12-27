@@ -116,6 +116,10 @@ class LoginView extends BaseView {
     applySettings(settings) {
         this._rememberMeCheckbox.checked = settings.rememberme
         this._usernameField.value = settings.username
+
+        if (settings.username !== '') {
+            this.onUsernameFieldChanged()
+        }
     }
 
     selectInputField() {
