@@ -61,7 +61,7 @@ class CreateAccountModel extends BaseModel {
     determinePasswordWarning(password) {
         this._passwordWarning = new PasswordWarningState()
 
-        if (!Validation.passwordValidChars.test(password)) {
+        if (!Validation.passwordValidChars.test(password) && password.length > 0) {
             this._passwordWarning.ascii = PasswordWarningState.FAIL
         } else {
             this._passwordWarning.ascii = PasswordWarningState.PASS
