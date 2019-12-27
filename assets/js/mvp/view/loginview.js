@@ -29,6 +29,7 @@ class LoginView extends BaseView {
         this._passwordField = document.getElementById('login-password')
         this._passwordSpeechBubble = document.getElementById('login-password-speech-bubble')
         this._rememberMeCheckbox = document.getElementById('login-remember-me')
+        this._loginErrorText = document.getElementById('login-warning-text')
         this._loginButton = document.getElementById('login-button')
         this._createAccountAnchor = document.getElementById('login-create-account')
         this._loginTroubleAnchor = document.getElementById('login-trouble')

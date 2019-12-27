@@ -472,8 +472,15 @@ a:focus {
 }
 
 #login-button {
-    margin: 80px auto 0 auto;
+    margin: 40px auto 0 auto;
     display: block;
+}
+
+#login-warning-text {
+    font-size: 0.7em;
+    color: var(--negative);
+    margin-top: 40px;
+    text-align: center;
 }
 
 #login-links {
