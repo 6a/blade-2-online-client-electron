@@ -57,6 +57,11 @@ class Localization {
             "en": "The specified email address is already in use"
         }))
 
+        inData.push(new Pair('passwordEmpty', {
+            "jp": "パスワードを指定してください",
+            "en": "Please enter your password"
+        }))
+
         inData.push(new Pair('passwordTooShort', {
             "jp": "パスワードは８文字以上でなければなりません",
             "en": "Password must be at at least 8 characters long"

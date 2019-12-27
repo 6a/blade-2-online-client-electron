@@ -43,8 +43,8 @@ class LoginModel extends BaseModel {
     determinePasswordWarning(password) {
         this._passwordWarning = ''
 
-        if (password.length < 8) {
-            this._passwordWarning = Localization.get('passwordTooShort')
+        if (password.length == 0) {
+            this._passwordWarning = Localization.get('passwordEmpty')
         } 
     }
 
