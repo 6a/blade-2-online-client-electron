@@ -121,6 +121,42 @@ main {
     color: var(--positive) !important;
 }
 
+.text-negative {
+    color: var(--negative) !important;
+}
+
+.speech-bubble {
+	position: absolute;
+    background: var(--negative);
+    color: var(--gscale-90-100);
+    padding: 12px 15px;
+    margin: 0 auto;
+    font-size: 0.7em;
+    font-weight: 400;
+    line-height: 18px;
+    filter: drop-shadow(0 0 4px var(--drop-shadow));
+
+    top: 50%;
+    transform: translate(290px, -50%);
+}
+.speech-bubble:after,
+.speech-bubble:before {
+	right: 100%;
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+    pointer-events: none;
+}
+
+.speech-bubble:after {
+	border-right-color: var(--negative);
+	border-width: 10px;
+    margin-top: -10px;
+}
+
 /* TEXT FIELD */
 
 .text-input-wrapper {

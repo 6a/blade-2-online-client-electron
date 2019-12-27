@@ -67,6 +67,11 @@ class Localization {
             "en": "Password must be at at least 8 characters long"
         }))
 
+        inData.push(new Pair('invalidCredentials', {
+            "jp": "ユーザー名又はパスワードが無効です",
+            "en": "Username or password is incorrect"
+        }))
+
         inData.forEach(pair => {
             this._localizations.set(pair.key, pair.data)
         });

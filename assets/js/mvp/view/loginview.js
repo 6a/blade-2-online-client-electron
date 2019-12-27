@@ -25,7 +25,9 @@ class LoginView extends BaseView {
     getElementReferences() {
         this._backgroundVideo = document.getElementById('login-bg-video')
         this._usernameField = document.getElementById('login-username')
+        this._usernameSpeechBubble = document.getElementById('login-username-speech-bubble')
         this._passwordField = document.getElementById('login-password')
+        this._passwordSpeechBubble = document.getElementById('login-password-speech-bubble')
         this._rememberMeCheckbox = document.getElementById('login-remember-me')
         this._loginButton = document.getElementById('login-button')
         this._createAccountAnchor = document.getElementById('login-create-account')
@@ -97,14 +99,20 @@ class LoginView extends BaseView {
     updateInputWarnings(usernameWarning, passwordWarning) {
         if (usernameWarning !== '') {
             this._usernameField.classList.add('warning-outline')
+            this._usernameSpeechBubble.classList.remove('hidden')
+            this._usernameSpeechBubble.innerHTML = usernameWarning
         } else {
             this._usernameField.classList.remove('warning-outline')
+            this._usernameSpeechBubble.classList.add('hidden')
         }
 
         if (passwordWarning !== '') {
             this._passwordField.classList.add('warning-outline')
+            this._passwordSpeechBubble.classList.remove('hidden')
+            this._passwordSpeechBubble.innerHTML = passwordWarning
         } else {
             this._passwordField.classList.remove('warning-outline')
+            this._passwordSpeechBubble.classList.add('hidden')
         }
 
         let noErrors = usernameWarning.length + passwordWarning.length == 0

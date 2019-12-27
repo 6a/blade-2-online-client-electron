@@ -35,9 +35,7 @@ class LoginModel extends BaseModel {
             this._usernameWarning = Localization.get('usernameTooShort')
         } else if (!Validation.noSpaceAtStart.test(username)) {
             this._usernameWarning = Localization.get('usernameCantStartWithSpace')
-        } else if (!Validation.usernameValidChars.test(username)) {
-            this._usernameWarning = Localization.get('usernameIllegalChars')
-        } 
+        }
     }
 
     determinePasswordWarning(password) {
