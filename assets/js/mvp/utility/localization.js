@@ -47,6 +47,12 @@ class Localization {
             "en": "The specified username is already in use"
         }))
 
+        inData.push(new Pair('usernameRude', {
+            "jp": "ユーザー名に暴言を含まないように指定してください",
+            "en": "Usernames can not contain profanity"
+        }))
+
+
         inData.push(new Pair('emailInvalid', {
             "jp": "有効なメールアドレスを指定してください",
             "en": "Please provide a valid email address"
@@ -70,6 +76,16 @@ class Localization {
         inData.push(new Pair('invalidCredentials', {
             "jp": "ユーザー名又はパスワードが無効です",
             "en": "Username or password is incorrect"
+        }))
+
+        inData.push(new Pair('serverGenericError', {
+            "jp": "すみませんが、サーバー上で何らかの問題が発生したようです。しばらくしてからもう一度試してください",
+            "en": "Uh oh... Something on the server isn't working properly. Please try again later"
+        }))
+
+        inData.push(new Pair('serverConnectionError', {
+            "jp": "サーバーと接続できませんでした。プロクシー又はネットワーク問題による妨害が発生している可能性があります",
+            "en": "Could not connect to the server. A proxy configuration, or some sort of network problem may be blocking the connection"
         }))
 
         inData.forEach(pair => {

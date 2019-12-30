@@ -14,12 +14,16 @@ class CreateAccountModel extends BaseModel {
         super.init()
 
         this.onInputFieldWarningChanged = new B2Event('Input Field State Changed')
+        this.onCreationSuccess = new B2Event('Account Creation Success')
+        this.onServerErrorDialogue = new B2Event('ServerError')
+        this.onCreationError = new B2Event('Account Creation Error')
 
         this._usernameWarning = ''
         this._emailWarning = ''
         this._passwordWarning = new PasswordWarningState()
 
         this.addEventListener(this._models.get('login').onCreateAccountModalRequested.register(this.show.bind(this)))
+        this.addEventListener(this._models.get('net').onCreateAccountResponse.register(this.processCreateAccountResponse.bind(this)))
     }
 
     destroy() {
@@ -69,7 +73,7 @@ class CreateAccountModel extends BaseModel {
             if (password.length >= 15) {
                 this._passwordWarning.fifteenChars = PasswordWarningState.PASS
             } else {
-                let isLongEnough = password.length > 8
+                let isLongEnough = password.length >= 8
                 let hasNumeral = Validation.numberAny.test(password)
                 let hasLowerCase = Validation.lowercaseAny.test(password)
 
@@ -99,8 +103,33 @@ class CreateAccountModel extends BaseModel {
     }
 
     submit(username, email, password) {
-        // TODO implement
-        console.log(`Create account model - received submit | username: ${username}, email: ${email}, password: ${password}`)
+        this._models.get('net').sendCreateAccountRequest(username, email, password)
+    }
+
+    updateStoredUsername(username) {
+        
+    }
+
+    processCreateAccountResponse(data) {
+        if (data.code === 0) {
+            this.onCreationSuccess.broadcast(data.message)
+        } else if (data.code >= 0 && data.code < 200) {
+            this.onServerErrorDialogue.broadcast(data.message)
+        } else {
+            let target = ""
+            if (data.code >= 200 && data.code < 300) {
+                target = "username"
+            } else if (data.code >= 300 && data.code < 400) {
+                target = "email"
+            } else {
+                target = "password"
+            }
+
+            this.onCreationError.broadcast({
+                target: target,
+                message: data.message
+            })
+        }
     }
 }
 

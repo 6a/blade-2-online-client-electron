@@ -43,6 +43,10 @@ class CreateAccountView extends BaseView {
 
         this._showhidePasswordCheckbox = document.getElementById('create-account-showhide-password-toggle')
 
+        this._successWrapper = document.getElementById('create-account-success-wrapper')
+        this._successUsername = document.getElementById('create-account-success-username')
+        this._successButton = document.getElementById('create-account-success-button')
+
         this._submitButton = document.getElementById('create-account-button')
         this._detailsWrapper = document.getElementById('create-account-details-wrapper')
         this._closeAnchor = document.getElementById('create-account-close')
@@ -58,6 +62,7 @@ class CreateAccountView extends BaseView {
 
         this._submitButton.addEventListener('click', this.onSubmitClicked.bind(this), false)
         this._closeAnchor.addEventListener('click', this.onCloseClicked.bind(this), false)
+        this._successButton.addEventListener('click', this.onSuccessButtonClicked.bind(this), false)
     }
 
     removeEventListeners() {
@@ -70,6 +75,7 @@ class CreateAccountView extends BaseView {
 
         this._submitButton.removeEventListener('click', this.onSubmitClicked.bind(this), false)
         this._closeAnchor.removeEventListener('click', this.onCloseClicked.bind(this), false)
+        this._successButton.removeEventListener('click', this.onSuccessButtonClicked.bind(this), false)
     }
 
     addTabbables() {
@@ -101,6 +107,11 @@ class CreateAccountView extends BaseView {
         this.setPasswordInfoStyle(this._passwordReq1Numeral, 'ca-li-inactive')
         this.setPasswordInfoStyle(this._passwordReq1LowerCase, 'ca-li-inactive')
 
+        this.toggleHidden(this._interactablesWrapper, false)
+        this.toggleHidden(this._loaderWrapper, true)
+        this.toggleHidden(this._successWrapper, true)
+        this.toggleHidden(this._closeAnchor, false)
+
         this._submitButton.disabled = true
     }
 
@@ -112,10 +123,7 @@ class CreateAccountView extends BaseView {
         this._submitButton.disabled = true
         this._showhidePasswordCheckbox.disabled = true
 
-        this._closeAnchor.style.pointerEvents = 'none'
-
-        this._interactablesWrapper.classList.add('hidden')
-        this._loaderWrapper.classList.remove('hidden')
+        this.toggleHidden(this._closeAnchor, true)
     }
 
     unlockForm() {
@@ -126,10 +134,7 @@ class CreateAccountView extends BaseView {
         this._submitButton.disabled = false
         this._showhidePasswordCheckbox.disabled = false
 
-        this._closeAnchor.style.pointerEvents = 'auto'
-
-        this._interactablesWrapper.classList.remove('hidden')
-        this._loaderWrapper.classList.add('hidden')
+        this.toggleHidden(this._closeAnchor, false)
     }
 
     onCloseClicked(event) {
@@ -179,7 +184,14 @@ class CreateAccountView extends BaseView {
     onSubmitClicked() {
         this._presenter.submit(this._usernameField.value, this._emailField.value, this._passwordField.value)
 
+        this.toggleHidden(this._interactablesWrapper, true)
+        this.toggleHidden(this._loaderWrapper, false)
+
         this.lockForm()
+    }
+
+    onSuccessButtonClicked() {
+        this.setActive(false)
     }
 
     setPasswordInfoStyle(element, className) {
@@ -200,8 +212,13 @@ class CreateAccountView extends BaseView {
             this._usernameField.classList.add('border-bottom-negative')
             this._usernameField.classList.remove('border-bottom-positive')
         } else {
-            this._usernameField.classList.remove('border-bottom-negative')
-            this._usernameField.classList.add('border-bottom-positive')
+            if (this._usernameField.value === '') {
+                this._usernameField.classList.remove('border-bottom-negative')
+                this._usernameField.classList.remove('border-bottom-positive')
+            } else {
+                this._usernameField.classList.remove('border-bottom-negative')
+                this._usernameField.classList.add('border-bottom-positive')
+            }
         }
 
         if (emailWarning !== '') {
@@ -254,7 +271,23 @@ class CreateAccountView extends BaseView {
 
         if (active) {
             this.resetForm()
+            this.unlockForm()
         }
+    }
+
+    showSuccessDialogue(username) {
+        this.toggleHidden(this._loaderWrapper, true)
+        this.toggleHidden(this._successWrapper, false)
+
+        this._successUsername.innerHTML = username
+    }
+
+    showServerErrorDialogue(message) {
+
+    }
+
+    displayCreationErrors(target, message) {
+
     }
 }
 

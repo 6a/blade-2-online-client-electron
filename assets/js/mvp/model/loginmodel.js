@@ -17,6 +17,8 @@ class LoginModel extends BaseModel {
         this.onInputFieldWarningChanged = new B2Event('Input Field State Changed')
         this.onCreateAccountModalRequested = new B2Event('Create Account Modal Requested')
 
+        this.addEventListener(this._models.get('net').onCreateAccountResponse.register(this.onCreateAccountResponse.bind(this)))
+
         this._usernameWarning = ''
         this._passwordWarning = ''
 
@@ -107,6 +109,20 @@ class LoginModel extends BaseModel {
             rememberme: this._rememberMe,
             username: this._storedUsername,
         })
+    }
+
+    onCreateAccountResponse(data) {
+        console.log(data)
+
+        if (data.code === 0) {
+            this._storedUsername = data.message
+            this.setRememberMe(true)
+    
+            this.onLoginSettingsRequest.broadcast({
+                rememberme: true,
+                username: data.message,
+            })
+        }
     }
 }
 
