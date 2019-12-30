@@ -76,7 +76,7 @@
             <input id="create-account-username" type="text" placeholder="ユーザー名" maxlength="20">
             <p id="create-account-username-warning" class="create-account-warning hidden">ユーザー名は2文字でなければなりません</p> 
 
-            <div id="create-account-username-password-wrapper">
+            <div id="create-account-username-password-wrapper" class="">
               <div id="create-account-email-wrapper">
                 <div class="text-input-wrapper">
                   <input id="create-account-email" type="text" placeholder=" " class="input-standard" maxlength="60">
@@ -107,6 +107,11 @@
           </div>
           <div id="create-account-loader-wrapper" class="hidden">
             <div class="spinner"></div>
+          </div>
+          <div id="create-account-success-wrapper" class="hidden">
+            <h1 id="create-account-success-username">阿良々木</h1>
+            <h3>上記のアカウントが作成されました！</h3>
+            <button id="create-account-success-button">作成を終了</button>
           </div>
         </div>
         <a id="create-account-close" href="">サインインへ戻る</a>
