@@ -74,7 +74,7 @@ class NetModel extends BaseModel {
                 this.broadcast(9999, Localization.get('serverConnectionError'), this.onCreateAccountResponse)
                 return
             }
-
+            
             this.broadcast(body.code, this.codeToErrorMessage(body.code), this.onCreateAccountResponse)
         })
     }

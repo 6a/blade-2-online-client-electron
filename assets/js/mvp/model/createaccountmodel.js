@@ -15,12 +15,10 @@ class CreateAccountModel extends BaseModel {
 
         this.onInputFieldWarningChanged = new B2Event('Input Field State Changed')
         this.onCreationSuccess = new B2Event('Account Creation Success')
-        this.onServerErrorDialogue = new B2Event('ServerError')
+        this.onServerErrorDialogue = new B2Event('Server Error')
         this.onCreationError = new B2Event('Account Creation Error')
 
-        this._usernameWarning = ''
-        this._emailWarning = ''
-        this._passwordWarning = new PasswordWarningState()
+        this.resetWarnings()
 
         this.addEventListener(this._models.get('login').onCreateAccountModalRequested.register(this.show.bind(this)))
         this.addEventListener(this._models.get('net').onCreateAccountResponse.register(this.processCreateAccountResponse.bind(this)))
@@ -30,8 +28,14 @@ class CreateAccountModel extends BaseModel {
         super.destroy()
     }
 
-    closeClicked() {
+    closeForm() {
         this.hide()
+        this.resetWarnings()
+    }
+
+    resetWarnings() {
+        this._usernameWarning = this._emailWarning = ''
+        this._passwordWarning = new PasswordWarningState()
     }
 
     broadcastInputFieldWarnings() {
@@ -106,14 +110,10 @@ class CreateAccountModel extends BaseModel {
         this._models.get('net').sendCreateAccountRequest(username, email, password)
     }
 
-    updateStoredUsername(username) {
-        
-    }
-
     processCreateAccountResponse(data) {
         if (data.code === 0) {
             this.onCreationSuccess.broadcast(data.message)
-        } else if (data.code >= 0 && data.code < 200) {
+        } else if (data.code === 9999 || (data.code >= 0 && data.code < 200)) {
             this.onServerErrorDialogue.broadcast(data.message)
         } else {
             let target = ""

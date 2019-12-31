@@ -169,6 +169,15 @@ a {
     -webkit-user-drag: none;
 }
 
+.no-transition {
+    transition-duration: 0ms;
+    transition: none !important;
+}
+
+.no-pointer-events {
+    pointer-events: none !important;
+}
+
 /* TEXT FIELD */
 
 .text-input-wrapper {
@@ -579,18 +588,18 @@ a:focus {
 
 #create-account-dynamic-wrapper {
     width: 100%;
+    margin-top: 30px;
 }
 
 #create-account-interactables-wrapper {
     width: 100%;
-    margin-top: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-#create-account-username-password-wrapper {
+#create-account-email-password-wrapper {
     width: 100%;
     margin-top: 30px;
     display: flex;
@@ -598,11 +607,9 @@ a:focus {
     align-items: flex-start;
 }
 
-#create-account-username-password-wrapper > div {
+#create-account-email-password-wrapper > div {
     width: 35%;
 }
-
-
 
 #create-account .text-input-wrapper {
     margin: 0 !important;
@@ -669,13 +676,18 @@ a:focus {
     position: relative;
 }
 
-#create-account-loader-wrapper {
+.create-account-toggle-panel {
     position: absolute;
+    box-sizing: border-box;
     top: 0;
     bottom: 0;
     right: 0;
     left: 0;
 
+    background-color: var(--gscale-90-100);
+}
+
+#create-account-loader-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -684,31 +696,40 @@ a:focus {
 }
 
 #create-account-success-wrapper {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-direction: column;
     align-items: center;
 
-    background-color: var(--gscale-90-100);
+    border-top: 2px solid var(--positive);
+    border-bottom: 2px solid var(--positive);
 }
 
 #create-account-success-wrapper h1 {
-    margin-top: 80px;
-    padding-bottom: 5px;
-    border-bottom: 2px solid var(--gscale-10-100);
-    width: 100%;
-    color: var(--affirmative);
-
+    padding: 10px 50px;
+    border: 2px solid var(--gscale-10-100);
+    background-color: var(--gscale-80-100);
     font-family: 'Trajan Pro Regular', 'Noto Serif JP';
     letter-spacing: -0.08em;
     font-size: 2em;
     text-align: center;
+}
+
+#create-account-server-error-wrapper {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+
+    border-top: 2px solid var(--negative);
+    border-bottom: 2px solid var(--negative);
+}
+
+#create-account-server-error-wrapper h2 {
+    margin: 0;
+    font-size: 2em;
+    color: var(--negative);
+    font-family: 'Noto Sans JP';
 }
 
 #create-account-interactables-wrapper button {

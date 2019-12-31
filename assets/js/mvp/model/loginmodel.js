@@ -112,8 +112,6 @@ class LoginModel extends BaseModel {
     }
 
     onCreateAccountResponse(data) {
-        console.log(data)
-
         if (data.code === 0) {
             this._storedUsername = data.message
             this.setRememberMe(true)

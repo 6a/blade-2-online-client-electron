@@ -20,8 +20,8 @@ class CreateAccountPresenter extends BasePresenter {
         super.destroy()
     }
 
-    closeClicked() {
-        this._models.get('createaccount').closeClicked()
+    closeForm() {
+        this.model.closeForm()
         this._models.get('login').show()
     }
 

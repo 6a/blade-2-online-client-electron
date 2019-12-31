@@ -47,6 +47,10 @@ class CreateAccountView extends BaseView {
         this._successUsername = document.getElementById('create-account-success-username')
         this._successButton = document.getElementById('create-account-success-button')
 
+        this._serverErrorWrapper = document.getElementById('create-account-server-error-wrapper')
+        this._serverErrorText = document.getElementById('create-account-server-error-text')
+        this._serverErrorButton = document.getElementById('create-account-server-error-button')
+
         this._submitButton = document.getElementById('create-account-button')
         this._detailsWrapper = document.getElementById('create-account-details-wrapper')
         this._closeAnchor = document.getElementById('create-account-close')
@@ -63,6 +67,7 @@ class CreateAccountView extends BaseView {
         this._submitButton.addEventListener('click', this.onSubmitClicked.bind(this), false)
         this._closeAnchor.addEventListener('click', this.onCloseClicked.bind(this), false)
         this._successButton.addEventListener('click', this.onSuccessButtonClicked.bind(this), false)
+        this._serverErrorButton.addEventListener('click', this.onServerErrorButtonClicked.bind(this), false)
     }
 
     removeEventListeners() {
@@ -76,6 +81,7 @@ class CreateAccountView extends BaseView {
         this._submitButton.removeEventListener('click', this.onSubmitClicked.bind(this), false)
         this._closeAnchor.removeEventListener('click', this.onCloseClicked.bind(this), false)
         this._successButton.removeEventListener('click', this.onSuccessButtonClicked.bind(this), false)
+        this._serverErrorButton.removeEventListener('click', this.onServerErrorButtonClicked.bind(this), false)
     }
 
     addTabbables() {
@@ -92,13 +98,20 @@ class CreateAccountView extends BaseView {
     }
 
     resetForm() {
+        let allInputLabels = document.querySelectorAll('#create-account-email-password-wrapper .text-input-label')
+        allInputLabels.forEach((element) => { element.classList.add('no-transition') })
+
         this._usernameField.value = ''
+        this._usernameField.classList.remove('border-bottom-negative')
+        this._usernameField.classList.remove('border-bottom-positive')
         this._usernameWarning.classList.add('hidden')
 
         this._emailField.value = ''
+        this._emailField.classList.remove('warning-outline')
         this._emailWarning.classList.add('hidden')
 
         this._passwordField.value = ''
+        this._passwordField.classList.remove('warning-outline')
         this._passwordReqsWrapper.classList.add('hidden')
 
         this.setPasswordInfoStyle(this._passwordReqASCII, 'ca-li-inactive')
@@ -113,6 +126,10 @@ class CreateAccountView extends BaseView {
         this.toggleHidden(this._closeAnchor, false)
 
         this._submitButton.disabled = true
+
+        // Dirty hack
+        new Promise(r => setTimeout(r, 100))
+        .then(() => { allInputLabels.forEach((element) => { element.classList.remove('no-transition') }) })
     }
 
     lockForm() {
@@ -120,7 +137,7 @@ class CreateAccountView extends BaseView {
         this._emailField.disabled = true
         this._passwordField.disabled = true
 
-        this._submitButton.disabled = true
+        this._submitButton.classList.add('no-pointer-events')
         this._showhidePasswordCheckbox.disabled = true
 
         this.toggleHidden(this._closeAnchor, true)
@@ -131,7 +148,7 @@ class CreateAccountView extends BaseView {
         this._emailField.disabled = false
         this._passwordField.disabled = false
 
-        this._submitButton.disabled = false
+        this._submitButton.classList.remove('no-pointer-events')
         this._showhidePasswordCheckbox.disabled = false
 
         this.toggleHidden(this._closeAnchor, false)
@@ -139,7 +156,7 @@ class CreateAccountView extends BaseView {
 
     onCloseClicked(event) {
         event.preventDefault();
-        this._presenter.closeClicked()
+        this._presenter.closeForm()
     }
 
     onUsernameFieldChanged() {
@@ -191,7 +208,14 @@ class CreateAccountView extends BaseView {
     }
 
     onSuccessButtonClicked() {
-        this.setActive(false)
+        this._presenter.closeForm()
+    }
+
+    onServerErrorButtonClicked() {
+        this.toggleHidden(this._interactablesWrapper, false)
+        this.toggleHidden(this._serverErrorWrapper, true)
+
+        this.unlockForm()
     }
 
     setPasswordInfoStyle(element, className) {
@@ -283,11 +307,27 @@ class CreateAccountView extends BaseView {
     }
 
     showServerErrorDialogue(message) {
+        this.toggleHidden(this._loaderWrapper, true)
+        this.toggleHidden(this._serverErrorWrapper, false)
 
+        this._serverErrorText.innerHTML = message
     }
 
     displayCreationErrors(target, message) {
+        this.toggleHidden(this._loaderWrapper, true)
+        this.toggleHidden(this._interactablesWrapper, false)
+        this.unlockForm()
 
+        if (target === 'username') {
+            this.toggleHidden(this._usernameWarning, false)
+            this._usernameWarning.innerHTML = message
+            this._usernameField.classList.add('border-bottom-negative')
+            this._usernameField.classList.remove('border-bottom-positive')
+        } else if (target === 'email') {
+            this.toggleHidden(this._emailWarning, false)
+            this._emailWarning.innerHTML = message
+            this._emailField.classList.add('warning-outline')
+        } 
     }
 }
 
