@@ -1,11 +1,12 @@
 
 
 class BaseView {
-    constructor(name, presenterType, viewsList) {
+    constructor(name, presenterType, viewsList, showHideClass) {
         this._name = name
         this._presenter = new presenterType(this)
         this._viewsList = viewsList
         this._tabbables = []
+        this._showHideClass = showHideClass
     }
 
     get name () {
@@ -27,11 +28,11 @@ class BaseView {
     }
 
     setActive(active) {
-        if (this._wrapper !== undefined && this._wrapper !== null) {
+        if (this._wrapper !== undefined && this._wrapper !== null && this._showHideClass !== undefined) {
             if (active) {
-                this._wrapper.classList.remove('hidden')
+                this._wrapper.classList.remove(this._showHideClass)
             } else {
-                this._wrapper.classList.add('hidden')
+                this._wrapper.classList.add(this._showHideClass)
             }
         }
 

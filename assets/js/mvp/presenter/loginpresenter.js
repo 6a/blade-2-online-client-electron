@@ -13,6 +13,7 @@ class LoginPresenter extends BasePresenter {
         this.addEventListener(this.model.onInputFieldWarningChanged.register(this.onInputFieldWarningChanged.bind(this)))
         this.addEventListener(this.model.onLoginSettingsRequest.register(this.onLoginSettingsRequest.bind(this)))
         this.addEventListener(this.model.onSetActive.register(this.onSetActive.bind(this)))
+        this.addEventListener(this.model.onLoginFinished.register(this.onLoginFinished.bind(this)))
     }
 
     destroy() {
@@ -54,6 +55,10 @@ class LoginPresenter extends BasePresenter {
 
     onLoginSettingsRequest(settings) {
         this._view.applySettings(settings)
+    }
+
+    onLoginFinished(error) {
+        this._view.loginFinished(error)
     }
 }
 

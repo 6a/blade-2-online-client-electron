@@ -4,7 +4,7 @@ const PasswordWarningState = require('../utility').Containers.PasswordWarningSta
 
 class CreateAccountView extends BaseView {
     constructor (viewsList) {
-        super('createaccount', CreateAccountPresenter, viewsList)
+        super('createaccount', CreateAccountPresenter, viewsList, 'hidden')
         this.init()
     }
 
@@ -266,7 +266,7 @@ class CreateAccountView extends BaseView {
         this.updatePasswordwarning(passwordWarning)
 
         let noWarnings = (usernameWarning === '' && emailWarning === '' && !passwordWarning.hasWarnings)
-        let fieldsPopulated = this._usernameField.value !== '' && this._emailField.value !== '' && this._passwordField.value !== ''
+        let fieldsPopulated = this._usernameField.value.length > 0 && this._emailField.value.length > 0 && this._passwordField.value.length > 0
 
         this._submitButton.disabled = !(noWarnings && fieldsPopulated)
     }

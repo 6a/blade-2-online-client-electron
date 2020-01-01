@@ -78,14 +78,14 @@ class Localization {
             "en": "Username or password is incorrect."
         }))
 
-        inData.push(new Pair('serverGenericError', {
-            "jp": "予期しないエラーが発生しました。しばらくしてからもう一度試してください。",
-            "en": "An unexpected error occurred. Please try again later."
-        }))
-
         inData.push(new Pair('serverConnectionError', {
             "jp": "サーバーと接続できませんでした。プロクシー又はネットワーク問題による妨害が発生している可能性があります。",
             "en": "Could not connect to the server. A proxy configuration, or some sort of network problem may be blocking the connection."
+        }))
+
+        inData.push(new Pair('genericError', {
+            "jp": "予期しないエラーが発生しました。しばらくしてからもう一度試してください。",
+            "en": "An unexpected error occurred. Please try again later."
         }))
 
         inData.forEach(pair => {

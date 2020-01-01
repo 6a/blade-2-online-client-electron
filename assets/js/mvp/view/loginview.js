@@ -3,7 +3,7 @@ const LoginPresenter = require('../presenter/loginpresenter.js')
 
 class LoginView extends BaseView {
     constructor (viewsList) {
-        super('login', LoginPresenter, viewsList)
+        super('login', LoginPresenter, viewsList, 'hidden')
         this.init()
     }
 
@@ -23,6 +23,8 @@ class LoginView extends BaseView {
     }
 
     getElementReferences() {
+        this._wrapper = document.getElementById('login')
+        this._loginPane = document.getElementById('login-pane')
         this._backgroundVideo = document.getElementById('login-bg-video')
         this._usernameField = document.getElementById('login-username')
         this._usernameSpeechBubble = document.getElementById('login-username-speech-bubble')
@@ -54,6 +56,8 @@ class LoginView extends BaseView {
         this._showhidePasswordCheckbox.addEventListener('mousedown', this.onShowHideMouseDown.bind(this), true)
 
         this._rememberMeCheckbox.addEventListener('click', this.onRememberMeClicked.bind(this), true)
+
+        this._wrapper.addEventListener('transitionend', this.onTransitionEnd.bind(this), false)
     }
 
     removeEventListeners() {
@@ -72,6 +76,8 @@ class LoginView extends BaseView {
         this._showhidePasswordCheckbox.removeEventListener('mousedown', this.onShowHideMouseDown.bind(this), true)
 
         this._rememberMeCheckbox.removeEventListener('click', this.onRememberMeClicked.bind(this), true)
+
+        this._wrapper.removeEventListener('transitionend', this.onTransitionEnd.bind(this), false)
     }
 
     getLoginSettings() {
@@ -94,7 +100,7 @@ class LoginView extends BaseView {
 
     startBackgroundVideo() {
         // TODO - reenable
-        // this._backgroundVideo.play()
+        this._backgroundVideo.play()
     }
 
     updateInputWarnings(usernameWarning, passwordWarning) {
@@ -117,7 +123,7 @@ class LoginView extends BaseView {
         }
 
         let noErrors = usernameWarning.length + passwordWarning.length == 0
-        let fieldsPopulated =  this._usernameField.value.length > 1 && + this._passwordField.value.length > 1
+        let fieldsPopulated =  this._usernameField.value.length > 0 && + this._passwordField.value.length > 0
         
         this._loginButton.disabled = !(fieldsPopulated && noErrors);
     }
@@ -139,10 +145,6 @@ class LoginView extends BaseView {
         }
     }
 
-    setActive(active) {
-        super.setActive(active)
-    }
-
     lockForm() {
         this._usernameField.disabled = true
         this._passwordField.disabled = true
@@ -152,8 +154,8 @@ class LoginView extends BaseView {
         this._createAccountAnchor.style.pointerEvents = 'none'
         this._loginTroubleAnchor.style.pointerEvents = 'none'
 
-        this._interactablesWrapper.classList.add('hidden')
-        this._loaderWrapper.classList.remove('hidden')
+        this.toggleHidden(this._interactablesWrapper, true)
+        this.toggleHidden(this._loaderWrapper, false)
     }
 
     unlockForm() {
@@ -165,8 +167,30 @@ class LoginView extends BaseView {
         this._createAccountAnchor.style.pointerEvents = 'auto'
         this._loginTroubleAnchor.style.pointerEvents = 'auto'
 
-        this._interactablesWrapper.classList.remove('hidden')
-        this._loaderWrapper.classList.add('hidden')
+        this.toggleHidden(this._interactablesWrapper, false)
+        this.toggleHidden(this._loaderWrapper, true)
+    }
+
+    loginFinished(message) {
+        if (message) {
+            this.unlockForm()
+            this.toggleHidden(this._loginErrorText, false)
+            this._loginErrorText.innerHTML = message
+        } else {
+            this.setActive(false)
+        }
+    }
+
+    setActive(active) {
+        super.setActive(active)
+
+        if (active) {
+            this.unlockForm()
+            this.getLoginSettings()
+        } else {
+            this._loginPane.classList.add('slide-out-login-pane')
+            this._backgroundVideo.classList.add('hidden')
+        }
     }
 
     onUsernameFieldChanged() {
@@ -230,6 +254,13 @@ class LoginView extends BaseView {
     onRememberMeClicked() {
         let checked = this._rememberMeCheckbox.checked
         this._presenter.setRememberMe(checked)
+    }
+
+    onTransitionEnd() {
+        if (this._wrapper.classList.contains('hidden')) {
+            this._backgroundVideo.pause()
+            this._backgroundVideo.currentTime = 0
+        } 
     }
 }
 

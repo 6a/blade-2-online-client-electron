@@ -16,7 +16,9 @@ class LoginModel extends BaseModel {
         this.onLoginSettingsRequest = new B2Event('Login Settings Broadcast')
         this.onInputFieldWarningChanged = new B2Event('Input Field State Changed')
         this.onCreateAccountModalRequested = new B2Event('Create Account Modal Requested')
+        this.onLoginFinished = new B2Event('Login Finished')
 
+        this.addEventListener(this._models.get('net').onAuthResponse.register(this.onAuthResponse.bind(this)))
         this.addEventListener(this._models.get('net').onCreateAccountResponse.register(this.onCreateAccountResponse.bind(this)))
 
         this._usernameWarning = ''
@@ -78,8 +80,7 @@ class LoginModel extends BaseModel {
     }
 
     submit(username, password) {
-        // TODO implement
-        console.log(`Login model - received submit | username: ${username}, password: ${password}`)
+        this._models.get('net').sendAuthRequest(username, password)
     }
 
     createAccountClicked() {
@@ -120,6 +121,14 @@ class LoginModel extends BaseModel {
                 rememberme: true,
                 username: response.payload.handle,
             })
+        }
+    }
+
+    onAuthResponse(response) {
+        if (response.code === 0) {
+            this.onLoginFinished.broadcast()
+        } else {
+            this.onLoginFinished.broadcast(response.payload)
         }
     }
 }

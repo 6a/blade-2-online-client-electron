@@ -3,7 +3,7 @@ const LoadingPresenter = require('../presenter/loadingpresenter.js')
 
 class LoadingView extends BaseView {
     constructor (viewsList) {
-        super('loading', LoadingPresenter, viewsList)
+        super('loading', LoadingPresenter, viewsList, 'hidden')
         this.init()
     }
 

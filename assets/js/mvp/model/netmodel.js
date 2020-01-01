@@ -4,15 +4,18 @@ const Localization = require('../utility').Localization
 const appconfig = require('../../appconfig.js')
 const request = require('request')
 
-let errorMap = new Map([
+let b2ResultCode = new Map([
     [0, ""],
 
     // Generic error]
-    [100, Localization.get('serverGenericError')],
-    [101, Localization.get('serverGenericError')],
+    [100, Localization.get('genericError')],
+    [101, Localization.get('genericError')],
+    [102, Localization.get('genericError')],
+    [103, Localization.get('genericError')],
+    [104, Localization.get('genericError')],
 
     // create account handle error]
-    [200, Localization.get('serverGenericError')],
+    [200, Localization.get('genericError')],
     [201, Localization.get('usernameTooShort')],
     [202, Localization.get('usernameCantStartWithSpace')],
     [203, Localization.get('usernameIllegalChars')],
@@ -20,9 +23,15 @@ let errorMap = new Map([
     [205, Localization.get('usernameRude')],
 
     // create account email error]
-    [300, Localization.get('serverGenericError')],
+    [300, Localization.get('genericError')],
     [301, Localization.get('emailInvalid')],
-    [302, Localization.get('emailAlreadyInUse')]
+    [302, Localization.get('emailAlreadyInUse')],
+
+    // auth
+    [500, Localization.get('genericError')],
+    [501, Localization.get('genericError')],
+    [502, Localization.get('genericError')],
+    [503, Localization.get('invalidCredentials')],
 ])
 
 function makeCreateAccountBody(handle, email, password) {
@@ -58,22 +67,22 @@ class NetModel extends BaseModel {
             },
             json: true
         }, (error, response, body) => {
-            if (error) {
-                this.broadcast(9999, Localization.get('serverConnectionError'), this.onCreateAccountResponse)
+            if (response.statusCode == 200) {
+                this.broadcast(0, body.payload, this.onAuthResponse)
                 return
             } 
 
-            if (response.statusCode == 200) {
-                this.broadcast(0, body.payload, this.onCreateAccountResponse)
+            if (error) {
+                this.broadcast(9999, Localization.get('serverConnectionError'), this.onAuthResponse)
                 return
             } 
 
             if (body.code === undefined || body.payload === undefined) {
-                this.broadcast(9999, Localization.get('serverConnectionError'), this.onCreateAccountResponse)
+                this.broadcast(9999, Localization.get('genericError'), this.onAuthResponse)
                 return
             }
             
-            this.broadcast(body.code, this.codeToErrorMessage(body.code), this.onCreateAccountResponse)
+            this.broadcast(body.code, this.codeToErrorMessage(body.code), this.onAuthResponse)
         })
     }
 
@@ -83,18 +92,18 @@ class NetModel extends BaseModel {
             json: true,
             body: makeCreateAccountBody(handle, email, password),
         }, (error, response, body) => {
-            if (error) {
-                this.broadcast(9999, Localization.get('serverConnectionError'), this.onCreateAccountResponse)
-                return
-            } 
-
             if (response.statusCode == 200) {
                 this.broadcast(0, body.payload, this.onCreateAccountResponse)
                 return
             } 
 
-            if (body.code === undefined || body.payload === undefined) {
+            if (error) {
                 this.broadcast(9999, Localization.get('serverConnectionError'), this.onCreateAccountResponse)
+                return
+            } 
+
+            if (body.code === undefined || body.payload === undefined) {
+                this.broadcast(9999, Localization.get('genericError'), this.onCreateAccountResponse)
                 return
             }
             
@@ -110,8 +119,8 @@ class NetModel extends BaseModel {
     }
 
     codeToErrorMessage(code) {
-        if (errorMap.has(code)) {
-            return errorMap.get(code)
+        if (b2ResultCode.has(code)) {
+            return b2ResultCode.get(code)
         }
 
         return ""

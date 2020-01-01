@@ -42,8 +42,11 @@ main {
 }
 
 .bg-video {
+    opacity: 1;
+    visibility: visible;
     position: fixed;
     z-index: -1000;
+    transition: all 0.5s ease-in-out;
 }
 
 .img-full-width {
@@ -471,17 +474,22 @@ a:focus {
 #login {
     opacity: 1;
     visibility: visible;
+    transition: all 0.5s step-end !important;
 }
 
 #login-pane {
     box-sizing: border-box;
     width: 350px;
-    height: 100%;
     background: var(--gscale-90-100);
     padding: 40px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
 
     display: flex;
     flex-direction: column;
+    transition: left 0.5s ease-in-out;
 }
 
 #login-pane h1 {
@@ -491,15 +499,20 @@ a:focus {
 }
 
 #login-button {
-    margin: 40px auto 0 auto;
+    margin: 0 auto 0 auto;
     display: block;
 }
 
 #login-warning-text {
     font-size: 0.7em;
     color: var(--negative);
-    margin-top: 40px;
-    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    height: 32px;
+    line-height: 1.4em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #login-links {
@@ -530,6 +543,10 @@ a:focus {
     align-items: center;
 
     pointer-events: none;
+}
+
+.slide-out-login-pane {
+    left: -350px !important;
 }
 
 /* OPTIONS */
