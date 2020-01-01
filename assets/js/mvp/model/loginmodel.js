@@ -111,14 +111,14 @@ class LoginModel extends BaseModel {
         })
     }
 
-    onCreateAccountResponse(data) {
-        if (data.code === 0) {
-            this._storedUsername = data.message
+    onCreateAccountResponse(response) {
+        if (response.code === 0) {
+            this._storedUsername = response.payload.handle
             this.setRememberMe(true)
     
             this.onLoginSettingsRequest.broadcast({
                 rememberme: true,
-                username: data.message,
+                username: response.payload.handle,
             })
         }
     }

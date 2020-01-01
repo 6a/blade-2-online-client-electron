@@ -110,16 +110,16 @@ class CreateAccountModel extends BaseModel {
         this._models.get('net').sendCreateAccountRequest(username, email, password)
     }
 
-    processCreateAccountResponse(data) {
-        if (data.code === 0) {
-            this.onCreationSuccess.broadcast(data.message)
-        } else if (data.code === 9999 || (data.code >= 0 && data.code < 200)) {
-            this.onServerErrorDialogue.broadcast(data.message)
+    processCreateAccountResponse(response) {
+        if (response.code === 0) {
+            this.onCreationSuccess.broadcast(response.payload.handle)
+        } else if (response.code === 9999 || (response.code >= 0 && response.code < 200)) {
+            this.onServerErrorDialogue.broadcast(response.payload)
         } else {
             let target = ""
-            if (data.code >= 200 && data.code < 300) {
+            if (response.code >= 200 && response.code < 300) {
                 target = "username"
-            } else if (data.code >= 300 && data.code < 400) {
+            } else if (response.code >= 300 && response.code < 400) {
                 target = "email"
             } else {
                 target = "password"
@@ -127,7 +127,7 @@ class CreateAccountModel extends BaseModel {
 
             this.onCreationError.broadcast({
                 target: target,
-                message: data.message
+                message: response.payload
             })
         }
     }

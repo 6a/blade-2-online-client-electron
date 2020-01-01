@@ -51,11 +51,34 @@ class NetModel extends BaseModel {
     }
 
     sendAuthRequest(handle, password) {
-        console.error("sendAuthRequest() not implemented")
+        request.post(`${appconfig.apiURL}/${appconfig.authPath}`, {
+            headers: {
+                'User-Agent': `request.${appconfig.name}.v${appconfig.version}`,
+                "Authorization": `Basic ${btoa(`${handle}:${password}`)}`
+            },
+            json: true
+        }, (error, response, body) => {
+            if (error) {
+                this.broadcast(9999, Localization.get('serverConnectionError'), this.onCreateAccountResponse)
+                return
+            } 
+
+            if (response.statusCode == 200) {
+                this.broadcast(0, body.payload, this.onCreateAccountResponse)
+                return
+            } 
+
+            if (body.code === undefined || body.payload === undefined) {
+                this.broadcast(9999, Localization.get('serverConnectionError'), this.onCreateAccountResponse)
+                return
+            }
+            
+            this.broadcast(body.code, this.codeToErrorMessage(body.code), this.onCreateAccountResponse)
+        })
     }
 
     sendCreateAccountRequest(handle, email, password) {
-        request.post(`${appconfig.api}/${appconfig.users}`, {
+        request.post(`${appconfig.apiURL}/${appconfig.usersPath}`, {
             headers: {'User-Agent': `request.${appconfig.name}.v${appconfig.version}`},
             json: true,
             body: makeCreateAccountBody(handle, email, password),
@@ -66,11 +89,11 @@ class NetModel extends BaseModel {
             } 
 
             if (response.statusCode == 200) {
-                this.broadcast(0, body.message, this.onCreateAccountResponse)
+                this.broadcast(0, body.payload, this.onCreateAccountResponse)
                 return
             } 
 
-            if (body.code === undefined || body.message === undefined) {
+            if (body.code === undefined || body.payload === undefined) {
                 this.broadcast(9999, Localization.get('serverConnectionError'), this.onCreateAccountResponse)
                 return
             }
@@ -79,10 +102,10 @@ class NetModel extends BaseModel {
         })
     }
 
-    broadcast(code, message, event) {
+    broadcast(code, payload, event) {
         event.broadcast({
             code: code,
-            message: message
+            payload: payload
         })
     }
 
