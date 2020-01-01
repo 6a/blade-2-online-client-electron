@@ -3,7 +3,7 @@ const LoginPresenter = require('../presenter/loginpresenter.js')
 
 class LoginView extends BaseView {
     constructor (viewsList) {
-        super('login', LoginPresenter, viewsList, 'hidden')
+        super('login', LoginPresenter, viewsList)
         this.init()
     }
 
@@ -178,6 +178,9 @@ class LoginView extends BaseView {
             this._loginErrorText.innerHTML = message
         } else {
             this.setActive(false)
+            this._wrapper.classList.add('hidden')
+            this._loginPane.classList.add('slide-out-login-pane')
+            this._backgroundVideo.classList.add('hidden')
         }
     }
 
@@ -187,9 +190,6 @@ class LoginView extends BaseView {
         if (active) {
             this.unlockForm()
             this.getLoginSettings()
-        } else {
-            this._loginPane.classList.add('slide-out-login-pane')
-            this._backgroundVideo.classList.add('hidden')
         }
     }
 

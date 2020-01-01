@@ -68,6 +68,8 @@ class CreateAccountView extends BaseView {
         this._closeAnchor.addEventListener('click', this.onCloseClicked.bind(this), false)
         this._successButton.addEventListener('click', this.onSuccessButtonClicked.bind(this), false)
         this._serverErrorButton.addEventListener('click', this.onServerErrorButtonClicked.bind(this), false)
+        
+        document.addEventListener('keydown', this.onKeyDown.bind(this), false)
     }
 
     removeEventListeners() {
@@ -82,6 +84,8 @@ class CreateAccountView extends BaseView {
         this._closeAnchor.removeEventListener('click', this.onCloseClicked.bind(this), false)
         this._successButton.removeEventListener('click', this.onSuccessButtonClicked.bind(this), false)
         this._serverErrorButton.removeEventListener('click', this.onServerErrorButtonClicked.bind(this), false)
+
+        document.removeEventListener('keydown', this.onKeyDown.bind(this), false)
     }
 
     addTabbables() {
@@ -216,6 +220,14 @@ class CreateAccountView extends BaseView {
         this.toggleHidden(this._serverErrorWrapper, true)
 
         this.unlockForm()
+    }
+
+    onKeyDown(event) {
+        if (!this._wrapper.classList.contains('hidden')) {
+            if (event.keyCode == 27) {
+                this._presenter.closeForm()
+            }
+        } 
     }
 
     setPasswordInfoStyle(element, className) {
