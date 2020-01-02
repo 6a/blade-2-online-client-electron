@@ -6,17 +6,18 @@
   "scripts": {
     "start": "electron ."
   },
-  "repository": "",
+  "repository": "https://github.com/6a/blade-2-online-client-electron",
   "keywords": [
     "The Legend of Heroes",
     "Blade II"
   ],
   "author": "James Einosuke Stanton",
-  "license": "None",
+  "license": "MIT",
   "devDependencies": {
     "electron": "^7.1.5"
   },
   "dependencies": {
+    "electron-settings": "^3.2.0",
     "js-yaml": "^3.13.1",
     "request": "^2.88.0"
   }
