@@ -134,6 +134,8 @@ class LoginView extends BaseView {
 
         if (settings.username !== '') {
             this.onUsernameFieldChanged()
+            this._passwordField.value = ''
+            this.toggleHidden(this._loginErrorText, true)
         }
     }
 
