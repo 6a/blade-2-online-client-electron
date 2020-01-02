@@ -7,10 +7,8 @@
             win.minimize(); 
         });
     
-        document.getElementById("opts-button").addEventListener("click", function (e) {
-           document.optsCallback();
-        });
-    
+        // Options button is hooked up from within the app
+   
         document.getElementById("close-button").addEventListener("click", function (e) {
             win.close();
         }); 
