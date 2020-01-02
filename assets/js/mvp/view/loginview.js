@@ -100,7 +100,7 @@ class LoginView extends BaseView {
 
     startBackgroundVideo() {
         // TODO - reenable
-        // this._backgroundVideo.play()
+        this._backgroundVideo.play()
     }
 
     updateInputWarnings(usernameWarning, passwordWarning) {
@@ -178,9 +178,7 @@ class LoginView extends BaseView {
             this._loginErrorText.innerHTML = message
         } else {
             this.setActive(false)
-            this._wrapper.classList.add('hidden')
-            this._loginPane.classList.add('slide-out-login-pane')
-            this._backgroundVideo.classList.add('hidden')
+
         }
     }
 
@@ -190,6 +188,10 @@ class LoginView extends BaseView {
         if (active) {
             this.unlockForm()
             this.getLoginSettings()
+        } else {
+            this._wrapper.classList.add('hidden')
+            this._loginPane.classList.add('slide-out-login-pane')
+            this._backgroundVideo.classList.add('hidden')
         }
     }
 
