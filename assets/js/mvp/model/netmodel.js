@@ -1,7 +1,7 @@
 const BaseModel = require('./basemodel.js')
 const B2Event = require('../utility').B2Event
 const Localization = require('../utility').Localization
-const appconfig = require('../../appconfig.js')
+const appconfig = require('../../utility/appconfig')
 const request = require('request')
 
 let b2ResultCode = new Map([

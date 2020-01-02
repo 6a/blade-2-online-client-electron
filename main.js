@@ -1,24 +1,34 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
+const WindowState = require('./assets/js/utility/windowstate')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 
 function createWindow() {
+    // Get window state
+    const windowState = new WindowState('main')
+
     // Create the browser window.
     mainWindow = new BrowserWindow({
+        title: 'Blade II Online Client',
         width: 1280,
         height: 720,
+        x: windowState.state.x,
+        y: windowState.state.y,
         frame: false,
         resizable: false,
         backgroundColor: '#1a1a1a',
         webPreferences: {
             nodeIntegration: true,
-            preload: path.join(__dirname, 'assets/js/preload.js')
+            preload: path.join(__dirname, 'assets/js/utility/preload.js')
         }
     })
+
+    // Track main window with the window state keeper 
+    windowState.track(mainWindow);
 
     // and load the index.html of the app.
     mainWindow.loadFile(path.join(__dirname, 'app/app.html'))

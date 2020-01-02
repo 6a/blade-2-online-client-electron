@@ -1,8 +1,6 @@
 const BaseModel = require('./basemodel.js')
-const Localization = require('../utility').Localization
-const Validation = require('../utility').Validation
-const B2Event = require('../utility').B2Event
-const Settings = require('../utility/settings.js')
+const { Localization, Validation, B2Event } = require('../utility')
+const Settings = require('../../utility/settings')
 
 class LoginModel extends BaseModel {
     constructor () {
