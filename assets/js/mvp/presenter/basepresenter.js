@@ -1,14 +1,21 @@
-const ModelGetter = require('../utility/modelgetter')
+const Models = require('../utility').Models
 
 class BasePresenter {
     constructor(view) {
         this._view = view
-        this._models = new ModelGetter()
+        this._models = new Models()
         this._eventRefs = []
+
+        this.addEventListener(this.model.onSetActive.register(this.onSetActive.bind(this)))
+        this.addEventListener(this.model.onSetLocked.register(this.onSetLocked.bind(this)))
     }
 
     get name() {
         return this._view._name
+    }
+
+    get models() {
+        return this._models
     }
 
     get model() {
@@ -31,6 +38,10 @@ class BasePresenter {
 
     onSetActive(active) {
         this._view.setActive(active)
+    }
+
+    onSetLocked(locked) {
+        this._view.setLocked(locked)
     }
 }
 

@@ -1,6 +1,7 @@
 const BaseView = require('./baseview.js')
 const CreateAccountPresenter = require('../presenter/createaccountpresenter.js')
 const PasswordWarningState = require('../utility').Containers.PasswordWarningState
+const Models = require('../utility').Models
 
 class CreateAccountView extends BaseView {
     constructor (viewsList) {

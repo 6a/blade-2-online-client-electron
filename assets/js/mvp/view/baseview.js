@@ -27,6 +27,12 @@ class BaseView {
         delete this
     }
 
+    setLocked(locked) {
+        document.activeElement.blur()
+        this.toggleTabbables(!locked)
+
+    }
+
     setActive(active) {
         if (this._wrapper !== undefined && this._wrapper !== null && this._showHideClass !== undefined) {
             if (active) {
@@ -36,9 +42,7 @@ class BaseView {
             }
         }
 
-        document.activeElement.blur()
-
-        this.toggleTabbables(active)
+        this.setLocked(!active)
     }
 
     addTabbables(tabbables) {

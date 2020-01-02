@@ -20,8 +20,8 @@ class CreateAccountModel extends BaseModel {
 
         this.resetWarnings()
 
-        this.addEventListener(this._models.get('login').onCreateAccountModalRequested.register(this.show.bind(this)))
-        this.addEventListener(this._models.get('net').onCreateAccountResponse.register(this.processCreateAccountResponse.bind(this)))
+        this.addEventListener(this.models.get('login').onCreateAccountModalRequested.register(this.show.bind(this)))
+        this.addEventListener(this.models.get('net').onCreateAccountResponse.register(this.processCreateAccountResponse.bind(this)))
 
         this._active = false
     }
@@ -31,6 +31,7 @@ class CreateAccountModel extends BaseModel {
     }
 
     closeForm() {
+        this.models.get(this.models.popToPrevious(this.name)).setLocked(false)
         this.hide()
         this.resetWarnings()
     }
@@ -109,7 +110,7 @@ class CreateAccountModel extends BaseModel {
     }
 
     submit(username, email, password) {
-        this._models.get('net').sendCreateAccountRequest(username, email, password)
+        this.models.get('net').sendCreateAccountRequest(username, email, password)
     }
 
     processCreateAccountResponse(response) {

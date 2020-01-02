@@ -18,8 +18,8 @@ class LoginModel extends BaseModel {
         this.onCreateAccountModalRequested = new B2Event('Create Account Modal Requested')
         this.onLoginFinished = new B2Event('Login Finished')
 
-        this.addEventListener(this._models.get('net').onAuthResponse.register(this.onAuthResponse.bind(this)))
-        this.addEventListener(this._models.get('net').onCreateAccountResponse.register(this.onCreateAccountResponse.bind(this)))
+        this.addEventListener(this.models.get('net').onAuthResponse.register(this.onAuthResponse.bind(this)))
+        this.addEventListener(this.models.get('net').onCreateAccountResponse.register(this.onCreateAccountResponse.bind(this)))
 
         this._usernameWarning = ''
         this._passwordWarning = ''
@@ -27,7 +27,7 @@ class LoginModel extends BaseModel {
         this._rememberMe = false
         this._storedUsername = ''
 
-        this._active = true
+        this.show()
     }
 
     destroy() {
@@ -82,12 +82,12 @@ class LoginModel extends BaseModel {
     }
 
     submit(username, password) {
-        this._models.get('net').sendAuthRequest(username, password)
+        this.models.get('net').sendAuthRequest(username, password)
     }
 
     createAccountClicked() {
+        this.setLocked(true)
         this.onCreateAccountModalRequested.broadcast()
-        this.hide()
     }
 
     setRememberMe(remember) {
