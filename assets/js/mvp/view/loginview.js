@@ -100,7 +100,7 @@ class LoginView extends BaseView {
 
     startBackgroundVideo() {
         // TODO - reenable
-        this._backgroundVideo.play()
+        // this._backgroundVideo.play()
     }
 
     updateInputWarnings(usernameWarning, passwordWarning) {
