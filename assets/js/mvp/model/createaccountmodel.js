@@ -22,6 +22,8 @@ class CreateAccountModel extends BaseModel {
 
         this.addEventListener(this._models.get('login').onCreateAccountModalRequested.register(this.show.bind(this)))
         this.addEventListener(this._models.get('net').onCreateAccountResponse.register(this.processCreateAccountResponse.bind(this)))
+
+        this._active = false
     }
 
     destroy() {

@@ -6,6 +6,7 @@ class BaseModel {
         this._name = modelName
         this._models = new ModelGetter()
         this._eventRefs = []
+        this._active = false
     }
 
     get name () {
@@ -28,10 +29,12 @@ class BaseModel {
 
     show() {
         this.onSetActive.broadcast(true)
+        this._active = true
     }
 
     hide() {
         this.onSetActive.broadcast(false)
+        this._active = false
     }
 }
 

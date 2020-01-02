@@ -46,6 +46,7 @@ class NetModel extends BaseModel {
     constructor () {
         super('net')
         this.init()
+        this._active = true
     }
 
     init() {

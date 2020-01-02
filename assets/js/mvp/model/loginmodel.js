@@ -26,6 +26,8 @@ class LoginModel extends BaseModel {
 
         this._rememberMe = false
         this._storedUsername = ''
+
+        this._active = true
     }
 
     destroy() {

@@ -18,6 +18,8 @@ class LoadingModel extends BaseModel {
         this.onItemLoaded = new B2Event('Item Loaded')
         this.onLoadingComplete = new B2Event('Loading Complete')
 
+        this._active = true
+
         this.addFonts()
         this.addImages()
         this.addVideos()
