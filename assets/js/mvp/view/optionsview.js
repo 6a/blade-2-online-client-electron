@@ -21,6 +21,25 @@ class OptionsView extends BaseView {
 
     getElementReferences() {
         this._wrapper = document.getElementById('options')
+        this._title = document.getElementById('options-title')
+        this._resetAnchor = document.getElementById('options-reset')
+        this._doneButton = document.getElementById('options-done')
+        this._nav = {
+            general: document.getElementById('options-nav-general'),
+            screen: document.getElementById('options-nav-screen'),
+            sound: document.getElementById('options-nav-sound'),
+            about: document.getElementById('options-nav-about'),
+            termsOfUse: document.getElementById('options-nav-terms-of-use'),
+            licenses: document.getElementById('options-nav-licenses'),
+        }
+        this._containers = {
+            general: document.getElementById('options-general'),
+            screen: document.getElementById('options-screen'),
+            sound: document.getElementById('options-sound'),
+            about: document.getElementById('options-about'),
+            termsOfUse: document.getElementById('options-terms-of-use'),
+            licenses: document.getElementById('options-licenses'),  
+        }
     }
 
     addEventListeners() {

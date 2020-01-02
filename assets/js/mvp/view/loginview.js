@@ -151,7 +151,7 @@ class LoginView extends BaseView {
         this._usernameField.disabled = true
         this._passwordField.disabled = true
         this._rememberMeCheckbox.disabled = true
-        this._loginButton.disabled = true
+        this._loginButton.pointerEvents = 'none'
         this._showhidePasswordCheckbox.disabled = true
         this._createAccountAnchor.style.pointerEvents = 'none'
         this._loginTroubleAnchor.style.pointerEvents = 'none'
@@ -164,7 +164,7 @@ class LoginView extends BaseView {
         this._usernameField.disabled = false
         this._passwordField.disabled = false
         this._rememberMeCheckbox.disabled = false
-        this._loginButton.disabled = false
+        this._loginButton.pointerEvents = 'auto'
         this._showhidePasswordCheckbox.disabled = false
         this._createAccountAnchor.style.pointerEvents = 'auto'
         this._loginTroubleAnchor.style.pointerEvents = 'auto'

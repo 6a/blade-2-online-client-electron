@@ -121,41 +121,51 @@
 
     <div class="page backdrop hidden" id="options">
       <div id="options-modal" class="modal">
-        <section id="options-header" class="options-frame">
+        <div id="options-header" class="options-frame">
           <h1 id="options-title">一般設定</h1>
-        </section>
-        <section id="options-nav">
-          <button>一般</button>
-          <button>画面</button>
-          <button>サウンド</button>
-          <button>本ゲームについて</button>
-          <button>利用規約</button>
-          <button>ライセンス</button>
-        </section>
-        <section id="options-content">
+        </div>
+        <div id="options-nav">
+          <button id="options-nav-general" data-lkey="titleGeneral" data-navtarget="general" class="nav-button-current">一般</button>
+          <button id="options-nav-screen" data-lkey="titleScreen" data-navtarget="screen">画面</button>
+          <button id="options-nav-sound" data-lkey="titleSound" data-navtarget="sound">サウンド</button>
+          <button id="options-nav-about" data-lkey="titleAbout" data-navtarget="about">本ゲームについて</button>
+          <button id="options-nav-terms-of-use" data-lkey="titleTermsOfUse" data-navtarget="terms-of-use">利用規約</button>
+          <button id="options-nav-licenses" data-lkey="titleLicenses" data-navtarget="licenses">ライセンス</button>
+        </div>
+        <div id="options-content">
           <section id="options-general" class="options-panel">
-
+            <div class="options-item">
+              <label for="options-general-language">表示言語</label>
+              <select id="options-general-language">
+                <option value="jp" selected>日本語</option>
+                <option value="en">English</option>
+              </select>
+            </div>
+            <div class="options-item">
+              <label for="options-general-master-volume">マスター音量</label>
+              <input id="options-general-master-volume" type="range" min="0" max="100" value="80">
+            </div>
           </section>
-          <section id="options-screen" class="options-panel">
+          <section id="options-screen" class="options-panel hidden">
             
           </section>
-          <section id="options-sound" class="options-panel">
+          <section id="options-sound" class="options-panel hidden">
             
           </section>
-          <section id="options-about" class="options-panel">
+          <section id="options-about" class="options-panel hidden">
             
           </section>
-          <section id="options-terms-of-use" class="options-panel">
+          <section id="options-terms-of-use" class="options-panel hidden">
             
           </section>
-          <section id="options-licenses" class="options-panel">
+          <section id="options-licenses" class="options-panel hidden">
             
           </section>
-        </section>
-        <section id="options-buttons" class="options-frame">
-          <a href="">リセット</a>
-          <button>完了</button>
-        </section>
+        </div>
+        <div id="options-buttons" class="options-frame">
+          <a id="options-reset">リセット</a>
+          <button id="options-done">完了</button>
+        </div>
       </div>
     </div>
 

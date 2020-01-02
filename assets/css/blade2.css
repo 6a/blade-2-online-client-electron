@@ -422,6 +422,7 @@ a {
     font-weight: 600;
 
     transition: all 0.1s ease-in-out;
+    cursor: pointer;
 }
 
 a:hover, a:focus:hover {
@@ -561,11 +562,12 @@ a:focus {
     grid-template-columns: auto 1fr;
     grid-template-rows: 50px auto 50px;
 
-    width: 500px;
+    width: 600px;
     height: 500px;
 }
 
 #options-nav {
+    min-width: 152px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -591,6 +593,13 @@ a:focus {
 
 #options-nav button:active {
     background-color: var(--gscale-70-100);
+}
+
+.nav-button-current {
+    background-color: var(--gscale-20-100) !important;
+    color: var(--gscale-90-100) !important;
+    cursor: default;
+    pointer-events: none;
 }
 
 #options-header {
@@ -636,7 +645,6 @@ a:focus {
     background-color: var(--positive-dark);
 }
 
-
 #options-buttons a {
     margin: 0 20px;
     font-size: 0.6em;
@@ -649,12 +657,83 @@ a:focus {
 
 #options-content {
     overflow-y: auto;
-    padding: 20px;
     box-sizing: border-box;
 
     border-top: 2px solid var(--gscale-10-100);
     border-bottom: 2px solid var(--gscale-10-100);
     border-left: 2px solid var(--gscale-10-100);
+    position: relative;
+}
+
+.options-panel {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.options-item {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.options-item label {
+    font-size: 0.8em;
+    font-weight: 500;
+}
+
+.options-item select {
+    height: 34px;
+    font-size: 0.8em;
+    font-family: 'Noto Sans JP';
+    width: 200px;
+    border: 1px solid var(--gscale-50-100);
+    box-shadow: none;
+    -webkit-appearance: none;
+    background: url(../images/arrow-down-filled-triangle.svg) calc(100% - 10px) / 15px no-repeat white;
+    padding: 4px 35px 4px 10px;
+    transition: border 0.2s ease-in-out;
+    outline: none;
+}
+
+.options-item select:hover, .options-item select:focus, .options-item select:active {
+    border: 1px solid var(--gscale-10-100);
+}
+
+.options-item input[type=range] {
+    width: 200px;
+    -webkit-appearance: none;  
+    height: 34px; 
+    background: #fff;
+    outline: none; 
+    border: 1px solid var(--gscale-50-100);
+    box-shadow: none;
+    box-sizing: border-box;
+    transition: border 0.2s ease-in-out;
+    overflow-y: hidden;
+    margin: 0;
+}
+
+.options-item input[type=range]:hover {
+    border: 1px solid var(--gscale-10-100);
+}
+
+.options-item input[type=range]:hover::-webkit-slider-thumb {
+    box-shadow: -100vw 0 0 100vw var(--gscale-10-100);
+}
+
+.options-item input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 0; 
+    height: 100%;
+    background: #fff;
+    box-shadow: -100vw 0 0 100vw var(--gscale-20-100);
+    transition: box-shadow 0.2s ease-in-out;
+    border: none;
 }
 
 /* CREATE ACCOUNT */
