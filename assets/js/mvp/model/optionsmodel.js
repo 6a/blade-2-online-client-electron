@@ -1,6 +1,6 @@
 const BaseModel = require('./basemodel.js')
-const B2Event = require('../utility').B2Event
-const Localization = require('../utility').Localization
+const { B2Event, Localization, Containers } = require('../utility')
+const Settings = require('../../utility/settings')
 const fs = require('fs')
 const MarkdownIt = require('markdown-it')
 
@@ -20,6 +20,7 @@ class OptionsModel extends BaseModel {
     init() {
         super.init()
 
+        this.onSettingsReady = new B2Event('Settings Ready')
         this.onLicenseInfoReady = new B2Event('License Info Ready')
         this.onTermsOfUseReady = new B2Event('Terms of Use Ready')
         this.onAboutReady = new B2Event('About Ready')
@@ -36,6 +37,25 @@ class OptionsModel extends BaseModel {
     closeForm() {
         this.models.get(this.models.popToPrevious(this.name)).show()
         this.hide()
+    }
+
+    loadSettings() {
+        let general = {
+            locale: Settings.get(Settings.KEY_LOCALE),
+            masterVolume: Settings.get(Settings.KEY_MASTER_VOLUME),
+            disableBackgroundVideos: Settings.get(Settings.KEY_DISABLE_BACKGROUND_VIDEOS),
+        }
+
+        let screen = {
+
+        }
+
+        let sound = {
+
+        }
+
+        var opts = new Containers.Options(general, screen, sound)
+        this.onSettingsReady.broadcast(opts)
     }
 
     loadLicenses() {
@@ -71,7 +91,7 @@ class OptionsModel extends BaseModel {
         })
     }
 
-    loadPair(en, jp, localizationKey, callBack) {
+    loadLocalizedPair(en, jp, localizationKey, callBack) {
         let files = {
             en: en,
             jp: jp
@@ -98,7 +118,7 @@ class OptionsModel extends BaseModel {
     }
 
     loadTermsOfUse() {
-        this.loadPair(TERMSOFUSE_EN, TERMSOFUSE_JP, 'termsOfUse', (pair) => {
+        this.loadLocalizedPair(TERMSOFUSE_EN, TERMSOFUSE_JP, 'termsOfUse', (pair) => {
             let md = new MarkdownIt()
             Object.keys(pair).forEach((key) => {
                 pair[key] = md.render(pair[key])
@@ -110,7 +130,7 @@ class OptionsModel extends BaseModel {
     }
 
     loadAbout() {
-        this.loadPair(ABOUT_EN, ABOUT_JP, 'about', (pair) => {
+        this.loadLocalizedPair(ABOUT_EN, ABOUT_JP, 'about', (pair) => {
             let md = new MarkdownIt({ linkify: true })
             Object.keys(pair).forEach((key) => {
                 pair[key] = md.render(pair[key])
@@ -119,6 +139,10 @@ class OptionsModel extends BaseModel {
             Localization.add('about', pair.jp, pair.en)
             this.onAboutReady.broadcast()
         })
+    }
+
+    settingChanged(setting, newValue) {
+        Settings.set(setting, newValue)
     }
 
     onOptionsClicked() {

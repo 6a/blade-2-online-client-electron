@@ -1,5 +1,5 @@
 const BaseModel = require('./basemodel.js')
-const { Localization, Validation, B2Event } = require('../utility')
+const { Validation, B2Event } = require('../utility')
 const Settings = require('../../utility/settings')
 
 class LoginModel extends BaseModel {
@@ -36,9 +36,9 @@ class LoginModel extends BaseModel {
         this._usernameWarning = ''
         
         if (username.length < 2) {
-            this._usernameWarning = Localization.get('usernameTooShort')
+            this._usernameWarning = 'usernameTooShort'
         } else if (!Validation.noSpaceAtStart.test(username)) {
-            this._usernameWarning = Localization.get('usernameCantStartWithSpace')
+            this._usernameWarning = 'usernameCantStartWithSpace'
         }
     }
 
@@ -46,7 +46,7 @@ class LoginModel extends BaseModel {
         this._passwordWarning = ''
 
         if (password.length == 0) {
-            this._passwordWarning = Localization.get('passwordEmpty')
+            this._passwordWarning = 'passwordEmpty'
         } 
     }
 

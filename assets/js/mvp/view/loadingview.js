@@ -27,8 +27,7 @@ class LoadingView extends BaseView {
         this._loadingBar.style.backgroundColor = `hsla(0, 0%, ${50 + progress * 50}%, 1)`
         this._loadingBar.style.boxShadow = `0 0 12px hsla(0, 0%, ${50 + progress * 50}%, 1)`
 
-        // TODO revert to 1
-        if (progress >= 0) 
+        if (progress >= 1) 
         {
             this._presenter.loadingComplete()
 

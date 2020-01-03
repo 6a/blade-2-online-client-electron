@@ -1,5 +1,6 @@
 const fs = require('fs');
 const yaml = require('js-yaml')
+const Settings = require('../../utility/settings')
 
 const LOCALIZATIONS = 'assets/docs/localizations/localizations.yaml'
 const DEFAULT_ENCODING = 'utf8'
@@ -21,10 +22,13 @@ class Pair {
 }
 
 class Localization {
-    constructor(locales, initialLocale) {
+    constructor(locales) {
         this._locales = locales
-        this._currentLocale = initialLocale
+    }
+
+    init () {
         this.load()
+        this.setLocale(Settings.get(Settings.KEY_LOCALE))
     }
 
     load() {
@@ -53,8 +57,31 @@ class Localization {
     }
 
     setLocale(locale) {
-        if (locale in this._locales) {
+        if (this._locales.includes(locale)) {
             this._currentLocale = locale
+            
+            let localizationTargets = document.querySelectorAll('[data-lkey]')
+            
+            localizationTargets.forEach((element) => {
+                let key = element.dataset.lkey
+                let justify = element.dataset.justify
+                let type = element.nodeName
+
+                if (key !== '') {
+                    if (['H1', 'H2', 'H3', 'H4', 'H5', 'LABEL', 'DIV', 'P', 'BUTTON', 'A', 'SECTION', 'LI'].includes(type)) {
+                        element.innerHTML = this.get(key)
+                    } else if (['INPUT'].includes(type)) {
+                        element.placeholder = this.get(key)
+                    } else if (justify == "true") {
+                        if (this.justifyText()) {
+                            element.classList.add('justify-text')
+                        } else {
+                            element.classList.remove('justify-text')
+                        }
+                    }
+                }
+            })
+
         } else {
             console.error(`Cannot swap to locale [ ${locale} ] as it has not been configured`)
         }
@@ -84,4 +111,4 @@ class Localization {
     }
 }
 
-module.exports = new Localization(['en', 'jp'], 'jp')
+module.exports = new Localization(['en', 'jp'])

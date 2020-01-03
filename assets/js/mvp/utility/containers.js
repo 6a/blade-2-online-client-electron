@@ -39,6 +39,27 @@ PasswordWarningState.INACTIVE = 'inactive'
 PasswordWarningState.PASS = 'pass'
 PasswordWarningState.FAIL = 'fail'
 
+class Options {
+    constructor(general, screen, sound) {
+        this._general = general
+        this._screen = screen
+        this._sound = sound
+    }
+
+    get general() {
+        return this._general
+    }
+
+    get screen() {
+        return this._screen
+    }
+
+    get sound() {
+        return this._sound
+    }
+}
+
 module.exports = {
-    PasswordWarningState
+    PasswordWarningState,
+    Options
 }

@@ -63,7 +63,7 @@
       </div>
     </div>
 
-    <div class="page backdrop hidden" id="create-account">
+    <div class="page backdrop hidden no-pointer-events" id="create-account">
       <section id="create-account-modal" class="modal">
         <h1 data-lkey="carveAPath">「この手で道を切り拓く」</h1>
         <h2 data-lkey="bladeIICreateAccount">BLADE II ONLINE アカウント作成</h2>
@@ -119,10 +119,10 @@
       </section>
     </div>
 
-    <div class="page backdrop hidden" id="options">
+    <div class="page backdrop hidden no-pointer-events" id="options">
       <div id="options-modal" class="modal">
         <div id="options-header" class="options-frame">
-          <h1 id="options-title" data-lkey="">一般設定</h1>
+          <h1 id="options-title" data-lkey="titleGeneral">一般設定</h1>
         </div>
         <div id="options-nav">
           <button id="options-nav-general" data-navtarget="general" class="nav-button-current" data-lkey="labelGeneral">一般設定</button>
@@ -135,19 +135,19 @@
         <div id="options-content">
           <section id="options-general" class="options-panel">
             <div class="options-item">
-              <label for="options-general-language" data-lkey="displayLanguage">表示言語</label>
-              <select id="options-general-language">
+              <label for="options-general-locale" data-lkey="displayLanguage">表示言語</label>
+              <select id="options-general-locale" data-setting="locale">
                 <option value="jp" selected>日本語</option>
                 <option value="en">English</option>
               </select>
             </div>
             <div class="options-item">
               <label for="options-general-master-volume" data-lkey="masterVolume">マスター音量</label>
-              <input id="options-general-master-volume" type="range" min="0" max="100" value="80">
+              <input id="options-general-master-volume" type="range" min="0" max="1" value="0.8" step="0.01" data-setting="masterVolume">
             </div>
             <div class="options-item">
               <label for="options-general-disable-dynamic-login-bg" data-lkey="disableBackgroundVideos">背景動画を再生しない</label>
-              <input id="options-general-disable-dynamic-login-bg" type="checkbox">
+              <input id="options-general-disable-dynamic-login-bg" type="checkbox" data-setting="disableBackgroundVideos">
             </div>
           </section>
           <section id="options-screen" class="options-panel hidden">
@@ -156,10 +156,10 @@
           <section id="options-sound" class="options-panel hidden">
             
           </section>
-          <section id="options-about" class="options-panel hidden markdown-target" data-lkey="about" data-justify="true">
+          <section id="options-about" class="options-panel hidden markdown-target" data-lkey="" data-justify="true">
             
           </section>
-          <section id="options-terms-of-use" class="options-panel hidden markdown-target" data-lkey="termsOfUse" data-justify="true">
+          <section id="options-terms-of-use" class="options-panel hidden markdown-target" data-lkey="" data-justify="true">
             
           </section>
           <section id="options-licenses" class="options-panel hidden markdown-target">

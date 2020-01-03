@@ -1,12 +1,19 @@
 const fs = require('fs');
 const yaml = require('js-yaml')
+var Localization = require('../mvp/utility').Localization
 
 const DEFAULT_SETTINGS = new Map([
-    ['username', '']
+    ['username', ''],
+    ['locale', 'jp'],
+    ['masterVolume', 0.8],
+    ['disableBackgroundVideos', false]
 ])
 
 const KEYS = {
-    USERNAME: 'username'
+    USERNAME: 'username',
+    LOCALE: 'locale',
+    MASTER_VOLUME: 'masterVolume',
+    DISABLE_BACKGROUND_VIDEOS: 'disableBackgroundVideos'
 }
 
 const SETTINGS_FILE = './user-settings.yaml'
@@ -78,6 +85,9 @@ function save(data) {
 class Settings {
     constructor() {
         this.KEY_USERNAME = KEYS.USERNAME
+        this.KEY_LOCALE = KEYS.LOCALE
+        this.KEY_MASTER_VOLUME = KEYS.MASTER_VOLUME
+        this.KEY_DISABLE_BACKGROUND_VIDEOS = KEYS.DISABLE_BACKGROUND_VIDEOS
         
         loadSettingsOrMakeDefault()
     }
@@ -87,6 +97,11 @@ class Settings {
     }
 
     set(key, value) {
+        if (key === 'locale') {
+            if (!Localization) Localization = require('../mvp/utility').Localization
+            Localization.setLocale(value)
+        }
+
         DATA.settings[key] = value
         save(DATA.settings)
     }

@@ -1,5 +1,6 @@
 const BaseView = require('./baseview.js')
 const LoginPresenter = require('../presenter/loginpresenter.js')
+const Localization = require('../utility').Localization
 
 class LoginView extends BaseView {
     constructor (viewsList) {
@@ -103,32 +104,36 @@ class LoginView extends BaseView {
         // this._backgroundVideo.play()
     }
 
-    updateInputWarnings(usernameWarning, passwordWarning) {
-        if (usernameWarning !== '') {
+    updateInputWarnings(usernameLKey, passwordLKey) {
+        if (usernameLKey !== '') {
             this._usernameField.classList.add('warning-outline')
             this._usernameSpeechBubble.classList.remove('hidden')
-            this._usernameSpeechBubble.innerHTML = usernameWarning
+            this._usernameSpeechBubble.innerHTML = Localization.get(usernameLKey)
+            this._usernameSpeechBubble.dataset.lkey = usernameLKey
         } else {
             this._usernameField.classList.remove('warning-outline')
             this._usernameSpeechBubble.classList.add('hidden')
         }
 
-        if (passwordWarning !== '') {
+        if (passwordLKey !== '') {
             this._passwordField.classList.add('warning-outline')
             this._passwordSpeechBubble.classList.remove('hidden')
-            this._passwordSpeechBubble.innerHTML = passwordWarning
+            this._passwordSpeechBubble.innerHTML = Localization.get(passwordLKey)
+            this._passwordSpeechBubble.dataset.lkey = passwordLKey
         } else {
             this._passwordField.classList.remove('warning-outline')
             this._passwordSpeechBubble.classList.add('hidden')
         }
 
-        let noErrors = usernameWarning.length + passwordWarning.length == 0
+        let noErrors = usernameLKey.length + passwordLKey.length == 0
         let fieldsPopulated =  this._usernameField.value.length > 0 && + this._passwordField.value.length > 0
         
         this._loginButton.disabled = !(fieldsPopulated && noErrors);
     }
 
     applySettings(settings) {
+        if (settings.username === this._usernameField.value) return
+
         this._rememberMeCheckbox.checked = settings.rememberme
         this._usernameField.value = settings.username
 
@@ -173,14 +178,14 @@ class LoginView extends BaseView {
         this.toggleHidden(this._loaderWrapper, true)
     }
 
-    loginFinished(message) {
-        if (message) {
+    loginFinished(warningLkey) {
+        if (warningLkey !== '') {
             this.unlockForm()
             this.toggleHidden(this._loginErrorText, false)
-            this._loginErrorText.innerHTML = message
+            this._loginErrorText.innerHTML = Localization.get(warningLkey)
+            this._loginErrorText.dataset.lkey = warningLkey
         } else {
             this.setActive(false)
-
         }
     }
 
@@ -189,6 +194,7 @@ class LoginView extends BaseView {
 
         if (active) {
             this.unlockForm()
+
             this.getLoginSettings()
         } else {
             this._wrapper.classList.add('hidden')

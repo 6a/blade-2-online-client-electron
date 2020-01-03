@@ -1,7 +1,7 @@
 const BaseView = require('./baseview.js')
 const CreateAccountPresenter = require('../presenter/createaccountpresenter.js')
 const PasswordWarningState = require('../utility').Containers.PasswordWarningState
-const Models = require('../utility').Models
+const Localization = require('../utility').Localization
 
 class CreateAccountView extends BaseView {
     constructor (viewsList) {
@@ -240,10 +240,10 @@ class CreateAccountView extends BaseView {
         element.classList.add(className)
     }
 
-    updateWarnings(warnings) {
-        let usernameWarning = warnings.usernameWarning
-        let emailWarning = warnings.emailWarning
-        let passwordWarning = warnings.passwordWarning
+    updateWarnings(lKeys) {
+        let usernameWarning = lKeys.usernameWarning
+        let emailWarning = lKeys.emailWarning
+        let passwordWarning = lKeys.passwordWarning
 
         if (usernameWarning !== '') {
             this._usernameField.classList.add('border-bottom-negative')
@@ -270,11 +270,17 @@ class CreateAccountView extends BaseView {
             this._passwordField.classList.remove('warning-outline')
         }
 
-        this.toggleHidden(this._usernameWarning, usernameWarning === '')
-        this._usernameWarning.innerHTML = usernameWarning
+        this.toggleHidden(this._usernameWarning, usernameWarning === '')     
+        if (usernameWarning !== '') {
+            this._usernameWarning.innerHTML = Localization.get(usernameWarning)
+            this._usernameWarning.dataset.lkey = usernameWarning
+        }
 
         this.toggleHidden(this._emailWarning, emailWarning === '')
-        this._emailWarning.innerHTML = emailWarning
+        if (emailWarning !== '') {
+            this._emailWarning.innerHTML = Localization.get(emailWarning)
+            this._emailWarning.dataset.lkey = emailWarning
+        }
 
         this.updatePasswordwarning(passwordWarning)
 
@@ -319,28 +325,31 @@ class CreateAccountView extends BaseView {
         this._successUsername.innerHTML = username
     }
 
-    showServerErrorDialogue(message) {
+    showServerErrorDialogue(lKey) {
         this.toggleHidden(this._loaderWrapper, true)
         this.toggleHidden(this._serverErrorWrapper, false)
 
-        this._serverErrorText.innerHTML = message
+        this._serverErrorText.innerHTML = Localization.get(lKey)
+        this._serverErrorText.dataset.lkey = lKey
     }
 
-    displayCreationErrors(target, message) {
+    displayCreationErrors(target, lKey) {
         this.toggleHidden(this._loaderWrapper, true)
         this.toggleHidden(this._interactablesWrapper, false)
         this.unlockForm()
 
         if (target === 'username') {
             this.toggleHidden(this._usernameWarning, false)
-            this._usernameWarning.innerHTML = message
+            this._usernameWarning.innerHTML = Localization.get(lKey)
+            this._usernameWarning.dataset.lkey = lKey
             this._usernameField.classList.add('border-bottom-negative')
             this._usernameField.classList.remove('border-bottom-positive')
         } else if (target === 'email') {
             this.toggleHidden(this._emailWarning, false)
-            this._emailWarning.innerHTML = message
+            this._emailWarning.innerHTML = Localization.get(lKey)
+            this._emailWarning.dataset.lkey = lKey
             this._emailField.classList.add('warning-outline')
-        } 
+        }
     }
 }
 

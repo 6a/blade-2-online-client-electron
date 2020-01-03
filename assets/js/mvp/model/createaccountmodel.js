@@ -53,11 +53,11 @@ class CreateAccountModel extends BaseModel {
         this._usernameWarning = ''
         
         if (username.length < 2) {
-            this._usernameWarning = Localization.get('usernameTooShort')
+            this._usernameWarning = 'usernameTooShort'
         } else if (!Validation.noSpaceAtStart.test(username)) {
-            this._usernameWarning = Localization.get('usernameCantStartWithSpace')
+            this._usernameWarning = 'usernameCantStartWithSpace'
         } else if (!Validation.usernameValidChars.test(username)) {
-            this._usernameWarning = Localization.get('usernameIllegalChars')
+            this._usernameWarning = 'usernameIllegalChars'
         } 
     }
 
@@ -65,7 +65,7 @@ class CreateAccountModel extends BaseModel {
         this._emailWarning = ''
         
         if (email.length < 5 || !Validation.emailValidFormat.test(email)) {
-            this._emailWarning = Localization.get('emailInvalid')
+            this._emailWarning = 'emailInvalid'
         } 
     }
 

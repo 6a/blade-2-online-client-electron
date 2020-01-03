@@ -17,7 +17,7 @@ class OptionsView extends BaseView {
         this.getElementReferences()
         this.addEventListeners()
         this.addTabbables()
-        this.requestOptions()
+        this.requestSettings()
         this.requestLicenses()
         this.requestTermsOfUse()
         this.requestAbout()
@@ -49,14 +49,20 @@ class OptionsView extends BaseView {
             licenses: document.getElementById('options-licenses'),  
         }
         this._general = {
-            language: document.getElementById('options-general-language'), 
-            masterVolume: document.getElementById('options-general-master-volume'), 
+            language: document.getElementById('options-general-locale'), 
+            masterVolume: document.getElementById('options-general-master-volume'),
+            disableBackgroundVideos: document.getElementById('options-general-disable-dynamic-login-bg'),
         }
     }
 
     addEventListeners() {
         this._doneButton.addEventListener('click', this.onDoneButtonClicked.bind(this), false)
         this._resetAnchor.addEventListener('click', this.onResetAnchorClicked.bind(this), false)
+
+        Object.values(this._general).forEach((element) => {
+            element.addEventListener('input', this.onSettingChanged.bind(this), false)
+        })     
+
 
         Object.values(this._nav).forEach((element) => {
             element.addEventListener('click', this.onNavButtonClicked.bind(this), false)
@@ -103,8 +109,8 @@ class OptionsView extends BaseView {
         this._nav[target].classList.add('nav-button-current')
     }
 
-    requestOptions() {
-
+    requestSettings() {
+        this._presenter.requestSettings()
     }
 
     requestLicenses() {
@@ -117,6 +123,19 @@ class OptionsView extends BaseView {
 
     requestAbout() {
         this._presenter.requestAbout()
+    }
+
+    setSettings(settings) {
+        // General 
+        this._general.language.value = settings.general.locale
+        this._general.masterVolume.value = settings.general.masterVolume
+        this._general.disableBackgroundVideos.checked = settings.general.disableBackgroundVideos
+
+        // Screen
+
+        // Sound
+
+
     }
 
     setLicenseInfo(licenses) {
@@ -140,6 +159,7 @@ class OptionsView extends BaseView {
 
     updateTermsOfUse() {
         this._containers.termsOfUse.innerHTML = Localization.get('termsOfUse')
+        this._containers.termsOfUse.dataset.lkey = 'termsOfUse'
 
         if (Localization.justifyText()) {
             this._containers.termsOfUse.classList.add('justify-text')
@@ -150,6 +170,7 @@ class OptionsView extends BaseView {
 
     updateAbout() {
         this._containers.about.innerHTML = Localization.get('about')
+        this._containers.about.dataset.lkey = 'about'
         
         if (Localization.justifyText()) {
             this._containers.about.classList.add('justify-text')
@@ -185,6 +206,26 @@ class OptionsView extends BaseView {
         this.setCurrentNavButton(target)
 
         this._title.innerHTML = Localization.get(localizationTarget)
+        this._title.dataset.lkey = localizationTarget
+    }
+
+    onSettingChanged(event) {
+        let element = event.srcElement
+        let elementType = element.nodeName
+        let inputType = element.type
+
+        let value 
+        if (elementType === 'SELECT' || (elementType === 'INPUT' && inputType === 'range')) {
+            value = element.value
+            if (!isNaN(value)) {
+                value = +value
+            }
+
+        } else if (elementType === 'INPUT' && inputType === 'checkbox') {
+            value = element.checked
+        }
+
+        this._presenter.settingChanged(element.dataset.setting, value)
     }
 }
 

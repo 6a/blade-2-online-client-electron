@@ -19,6 +19,7 @@
     }
 
     function start() {
+        mvp.utility.Localization.init()
         createModels()
         createViewsAndPresenters()
     }

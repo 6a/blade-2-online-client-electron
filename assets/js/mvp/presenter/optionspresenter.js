@@ -9,6 +9,7 @@ class OptionsPresenter extends BasePresenter {
     init() {
         super.init()
 
+        this.addEventListener(this.model.onSettingsReady.register(this.onSettingsReady.bind(this)))
         this.addEventListener(this.model.onLicenseInfoReady.register(this.onLicenseInfoReady.bind(this)))
         this.addEventListener(this.model.onTermsOfUseReady.register(this.onTermsOfUseReady.bind(this)))
         this.addEventListener(this.model.onAboutReady.register(this.onAboutReady.bind(this)))
@@ -22,6 +23,10 @@ class OptionsPresenter extends BasePresenter {
         this.model.closeForm()
     }
 
+    requestSettings() {
+        this.model.loadSettings()
+    }
+
     requestLicenses() {
         this.model.loadLicenses()
     }
@@ -32,6 +37,14 @@ class OptionsPresenter extends BasePresenter {
 
     requestAbout() {
         this.model.loadAbout()
+    }
+
+    settingChanged(setting, newValue) {
+        this.model.settingChanged(setting, newValue)
+    }
+
+    onSettingsReady(settings) {
+        this._view.setSettings(settings)
     }
 
     onLicenseInfoReady(licenses) {

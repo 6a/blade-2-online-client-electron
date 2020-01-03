@@ -4,35 +4,7 @@ const Localization = require('../utility').Localization
 const appconfig = require('../../utility/appconfig')
 const request = require('request')
 
-let b2ResultCode = new Map([
-    [0, ""],
-
-    // Generic error]
-    [100, Localization.get('genericError')],
-    [101, Localization.get('genericError')],
-    [102, Localization.get('genericError')],
-    [103, Localization.get('genericError')],
-    [104, Localization.get('genericError')],
-
-    // create account handle error]
-    [200, Localization.get('genericError')],
-    [201, Localization.get('usernameTooShort')],
-    [202, Localization.get('usernameCantStartWithSpace')],
-    [203, Localization.get('usernameIllegalChars')],
-    [204, Localization.get('usernameAlreadyInUse')],
-    [205, Localization.get('usernameRude')],
-
-    // create account email error]
-    [300, Localization.get('genericError')],
-    [301, Localization.get('emailInvalid')],
-    [302, Localization.get('emailAlreadyInUse')],
-
-    // auth
-    [500, Localization.get('genericError')],
-    [501, Localization.get('genericError')],
-    [502, Localization.get('genericError')],
-    [503, Localization.get('invalidCredentials')],
-])
+let b2ResultCode = new Map()
 
 function makeCreateAccountBody(handle, email, password) {
     return {
@@ -51,6 +23,36 @@ class NetModel extends BaseModel {
 
     init() {
         super.init()
+
+        b2ResultCode = new Map([
+            [0, ""],
+        
+            // Generic error]
+            [100, 'genericError'],
+            [101, 'genericError'],
+            [102, 'genericError'],
+            [103, 'genericError'],
+            [104, 'genericError'],
+        
+            // create account handle error]
+            [200, 'genericError'],
+            [201, 'usernameTooShort'],
+            [202, 'usernameCantStartWithSpace'],
+            [203, 'usernameIllegalChars'],
+            [204, 'usernameAlreadyInUse'],
+            [205, 'usernameRude'],
+        
+            // create account email error]
+            [300, 'genericError'],
+            [301, 'emailInvalid'],
+            [302, 'emailAlreadyInUse'],
+        
+            // auth
+            [500, 'genericError'],
+            [501, 'genericError'],
+            [502, 'genericError'],
+            [503, 'invalidCredentials'],
+        ])
 
         this.onAuthResponse = new B2Event('Auth Request Response')
         this.onCreateAccountResponse = new B2Event('Create Account Request Response')
@@ -74,12 +76,12 @@ class NetModel extends BaseModel {
             } 
 
             if (error) {
-                this.broadcast(9999, Localization.get('serverConnectionError'), this.onAuthResponse)
+                this.broadcast(9999, 'serverConnectionError', this.onAuthResponse)
                 return
             } 
 
             if (body.code === undefined || body.payload === undefined) {
-                this.broadcast(9999, Localization.get('genericError'), this.onAuthResponse)
+                this.broadcast(9999, 'genericError', this.onAuthResponse)
                 return
             }
             
@@ -99,12 +101,12 @@ class NetModel extends BaseModel {
             } 
 
             if (error) {
-                this.broadcast(9999, Localization.get('serverConnectionError'), this.onCreateAccountResponse)
+                this.broadcast(9999, 'serverConnectionError', this.onCreateAccountResponse)
                 return
             } 
 
             if (body.code === undefined || body.payload === undefined) {
-                this.broadcast(9999, Localization.get('genericError'), this.onCreateAccountResponse)
+                this.broadcast(9999, 'genericError', this.onCreateAccountResponse)
                 return
             }
             
