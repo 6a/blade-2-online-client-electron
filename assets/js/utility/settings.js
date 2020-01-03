@@ -1,6 +1,5 @@
 const fs = require('fs');
 const yaml = require('js-yaml')
-const screen = require('electron')
 
 const DEFAULT_SETTINGS = new Map([
     ['username', '']
