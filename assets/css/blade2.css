@@ -41,11 +41,30 @@ main {
     transition: all 0.5s ease-in-out;
 }
 
-.bg-video {
-    opacity: 1;
+.bg-video-wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
     visibility: visible;
-    position: fixed;
-    z-index: -1000;
+    opacity: 1;
+    transition: all 0.5s ease-in-out;
+}
+
+.bg-video {
+    position: absolute;
+    width: 100%;
+    height: 100%;;
+}
+
+.bg-video-poster {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    visibility: visible;
+    opacity: 1;
     transition: all 0.5s ease-in-out;
 }
 

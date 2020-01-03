@@ -27,6 +27,8 @@ class LoginView extends BaseView {
         this._wrapper = document.getElementById('login')
         this._loginPane = document.getElementById('login-pane')
         this._backgroundVideo = document.getElementById('login-bg-video')
+        this._backgroundVideoWrapper = document.getElementById('login-bg-video-wrapper')
+        this._backgroundVideoPoster = document.getElementById('login-bg-video-poster')
         this._usernameField = document.getElementById('login-username')
         this._usernameSpeechBubble = document.getElementById('login-username-speech-bubble')
         this._passwordField = document.getElementById('login-password')
@@ -97,10 +99,6 @@ class LoginView extends BaseView {
         ]
 
         super.addTabbables(tabbables)
-    }
-
-    startBackgroundVideo() {
-        this._backgroundVideo.play()
     }
     
     updateInputWarnings(usernameLKey, passwordLKey) {
@@ -198,15 +196,17 @@ class LoginView extends BaseView {
         } else {
             this._wrapper.classList.add('hidden')
             this._loginPane.classList.add('slide-out-login-pane')
-            this._backgroundVideo.classList.add('hidden')
+            this._backgroundVideoWrapper.classList.add('hidden')
         }
     }
 
     toggleBackgroundVideo(disabled) {
         if (disabled) {
             this._backgroundVideo.pause()
+            this.toggleHidden(this._backgroundVideoPoster, false)
         } else {
             this._backgroundVideo.play()
+            this.toggleHidden(this._backgroundVideoPoster, true)
         }
     }
 

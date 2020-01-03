@@ -20,9 +20,14 @@
   </header>
   <main id="app">
     <div class="page" id="login">
-      <video id="login-bg-video" class="bg-video" loop muted>
-        <source src="../assets/videos/sen-2-op-muted.mp4" type="video/mp4">
-      </video>
+      <div id="login-bg-video-wrapper" class="bg-video-wrapper">
+        <video id="login-bg-video" class="bg-video" loop muted>
+          <source src="../assets/videos/sen-2-op-muted.mp4" type="video/mp4">
+        </video>
+        <img id="login-bg-video-poster" class="bg-video-poster hidden" src="../assets/images/login-bg-static.jpg" alt="">
+      </div>
+
+
       <div id="login-pane">
         <img class="img-full-width" src="../assets/images/logo.png">
         <h1 data-lkey="login">サインイン</h1>

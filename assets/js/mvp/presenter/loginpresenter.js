@@ -46,7 +46,7 @@ class LoginPresenter extends BasePresenter {
 
     onReady(playVideo) {
         this._view.selectInputField()
-        if (playVideo) this._view.startBackgroundVideo()
+        this._view.toggleBackgroundVideo(!playVideo)
     }
 
     onInputFieldWarningChanged(data) {
