@@ -25,31 +25,31 @@
       </video>
       <div id="login-pane">
         <img class="img-full-width" src="../assets/images/logo.png">
-        <h1>サインイン</h1>
+        <h1 data-lkey="login">サインイン</h1>
 
         <section id="login-dynamic-wrapper">
           <div id="login-interactable-wrapper">
             <div class="text-input-wrapper">
               <input id="login-username" type="text" placeholder=" " class="input-standard">            
-              <div class="text-input-label-wrapper"><label for="login-username" class="text-input-label">ユーザー名</label></div>
-              <div id="login-username-speech-bubble" class="speech-bubble hidden">ユーザー名の先頭に空白文字を使用できません</div>
+              <div class="text-input-label-wrapper"><label for="login-username" class="text-input-label" data-lkey="username">ユーザー名</label></div>
+              <div id="login-username-speech-bubble" class="speech-bubble hidden" data-lkey="">ユーザー名の先頭に空白文字を使用できません</div>
             </div>
     
             <div class="text-input-wrapper">
               <input id="login-password" type="password" placeholder=" " class="input-standard">
-              <div class="text-input-label-wrapper"><label for="login-password" class="text-input-label">パスワード</label></div>
+              <div class="text-input-label-wrapper"><label for="login-password" class="text-input-label" data-lkey="password">パスワード</label></div>
               <input type="checkbox" id="login-showhide-password-toggle" class="visibility-toggle">
-              <div id="login-password-speech-bubble" class="speech-bubble hidden">ユーザー名の先頭に空白文字を使用できません</div>
+              <div id="login-password-speech-bubble" class="speech-bubble hidden" data-lkey="">ユーザー名の先頭に空白文字を使用できません</div>
             </div>
    
             <div class="checkbox-wrapper">
               <input id="login-remember-me" type="checkbox" class="checkbox-standard">
-              <label class="checkbox-text" for="login-remember-me">ユーザー名を記憶</label>
+              <label class="checkbox-text" for="login-remember-me" data-lkey="rememberMe">ユーザー名を記憶</label>
             </div>
             
-            <p id="login-warning-text" class="hidden">ユーザー名又はパスワードが無効です</p>
+            <p id="login-warning-text" class="hidden" data-lkey="">ユーザー名又はパスワードが無効です</p>
 
-            <button id="login-button" disabled>実行</button>
+            <button id="login-button" disabled data-lkey="login">サインイン</button>
           </div>
           <div id="login-loader-wrapper" class="hidden">
             <div class="spinner"></div>
@@ -57,96 +57,96 @@
         </section>
        
         <section id="login-links">
-          <a id="login-create-account" href="">アカウントを作成</a>
-          <a id="login-trouble" href="">サインインできない場合</a>
+          <a id="login-create-account" href="" data-lkey="createAccount">アカウントを作成</a>
+          <a id="login-trouble" href="" data-lkey="troubleLoggingIn">サインインできない場合</a>
         </section>
       </div>
     </div>
 
     <div class="page backdrop hidden" id="create-account">
       <section id="create-account-modal" class="modal">
-        <h1>「この手で道を切り拓く」</h1>
-        <h2>BLADE II ONLINE アカウント作成</h2>
+        <h1 data-lkey="carveAPath">「この手で道を切り拓く」</h1>
+        <h2 data-lkey="bladeIICreateAccount">BLADE II ONLINE アカウント作成</h2>
         <div id="create-account-dynamic-wrapper">
           <div id="create-account-interactables-wrapper">
-            <input id="create-account-username" type="text" placeholder="ユーザー名" maxlength="20">
-            <p id="create-account-username-warning" class="create-account-warning hidden">ユーザー名は2文字でなければなりません</p> 
+            <input id="create-account-username" type="text" placeholder="ユーザー名" maxlength="20" data-lkey="username">
+            <p id="create-account-username-warning" class="create-account-warning hidden" data-lkey="">ユーザー名は2文字でなければなりません</p> 
 
             <div id="create-account-email-password-wrapper" class="">
               <div id="create-account-email-wrapper">
                 <div class="text-input-wrapper">
                   <input id="create-account-email" type="text" placeholder=" " class="input-standard" maxlength="60">
-                  <div class="text-input-label-wrapper"><label for="create-account-email" class="text-input-label">メールアドレス</label></div>
+                  <div class="text-input-label-wrapper"><label for="create-account-email" class="text-input-label" data-lkey="email">メールアドレス</label></div>
                 </div>
-                <p id="create-account-email-warning" class="hidden warning-text">有効なメールアドレスを指定してください</p> 
+                <p id="create-account-email-warning" class="hidden warning-text" data-lkey="">有効なメールアドレスを指定してください</p> 
               </div>
               <div id="create-account-password-wrapper">
                 <div class="text-input-wrapper">
                   <input id="create-account-password" type="password" placeholder=" " class="input-standard" maxlength="60">
-                  <div class="text-input-label-wrapper"><label for="create-account-password" class="text-input-label">パスワード</label></div>
+                  <div class="text-input-label-wrapper"><label for="create-account-password" class="text-input-label" data-lkey="password">パスワード</label></div>
                   <input type="checkbox" id="create-account-showhide-password-toggle" class="visibility-toggle">
                 </div>
                 <div id="create-account-password-reqs" class="hidden">
-                  <p id="create-account-password-warning-header" class="warning-text">パスワードは以下の要件を満たすように指定してください</p>
+                  <p id="create-account-password-warning-header" class="warning-text" data-lkey="passwordReqsHeader">パスワードは以下の要件を満たすように指定してください</p>
                   <ul>
-                    <li id="create-account-password-req-ascii" class="ca-li-inactive">半角英数字と ASCII 記号のみを含むこと、及び</li>
-                    <li id="create-account-password-req-15-chars" class="ca-li-inactive">15 文字であること、又は</li>
-                    <li id="create-account-password-req-8-chars" class="ca-li-inactive">8 文字であり</li>
-                    <li id="create-account-password-req-1-numeral" class="ca-li-inactive">1 数字以上を含むこと及び</li>
-                    <li id="create-account-password-req-1-lowercase" class="ca-li-inactive">1 小文字以上を含むこと</li>
+                    <li id="create-account-password-req-ascii" class="ca-li-inactive" data-lkey="passwordReqsASCII">半角英数字と ASCII 記号のみを含むこと、及び</li>
+                    <li id="create-account-password-req-15-chars" class="ca-li-inactive" data-lkey="passwordReqsFifteenChars">15 文字であること、又は</li>
+                    <li id="create-account-password-req-8-chars" class="ca-li-inactive" data-lkey="passwordReqsEightChars">8 文字であり</li>
+                    <li id="create-account-password-req-1-numeral" class="ca-li-inactive" data-lkey="passwordReqsOneNumeral">1 数字以上を含むこと及び</li>
+                    <li id="create-account-password-req-1-lowercase" class="ca-li-inactive" data-lkey="passwordReqsOneLowercase">1 小文字以上を含むこと</li>
                   </ul>
                 </div>
               </div>
             </div>
 
-            <button id="create-account-button" disabled>今すぐ作成</button>
+            <button id="create-account-button" disabled data-lkey="createButton">今すぐ作成</button>
           </div>
           <div id="create-account-loader-wrapper" class="create-account-toggle-panel hidden">
             <div class="spinner"></div>
           </div>
           <div id="create-account-success-wrapper" class="create-account-toggle-panel hidden">
             <h1 id="create-account-success-username">阿良々木</h1>
-            <h3>上記のアカウントが作成されました！</h3>
-            <button id="create-account-success-button">作成を終了</button>
+            <h3 data-lkey="aboveAccountCreated">上記のアカウントが作成されました！</h3>
+            <button id="create-account-success-button" data-lkey="accountCreationFinish">作成を終了</button>
           </div>
           <div id="create-account-server-error-wrapper" class="create-account-toggle-panel hidden">
-            <h2>エラー</h2>
-            <p id="create-account-server-error-text">予期しないエラーが発生しました。しばらくしてからもう一度試してください</p>
-            <button id="create-account-server-error-button">閉じる</button>
+            <h2 data-lkey="error">エラー</h2>
+            <p id="create-account-server-error-text" data-lkey="">予期しないエラーが発生しました。しばらくしてからもう一度試してください</p>
+            <button id="create-account-server-error-button" data-lkey="close">閉じる</button>
           </div>
         </div>
-        <a id="create-account-close" href="">サインインへ戻る</a>
+        <a id="create-account-close" href="" data-lkey="backToLogin">サインインへ戻る</a>
       </section>
     </div>
 
     <div class="page backdrop hidden" id="options">
       <div id="options-modal" class="modal">
         <div id="options-header" class="options-frame">
-          <h1 id="options-title">一般設定</h1>
+          <h1 id="options-title" data-lkey="">一般設定</h1>
         </div>
         <div id="options-nav">
-          <button id="options-nav-general" data-navtarget="general" class="nav-button-current">一般</button>
-          <button id="options-nav-screen" data-navtarget="screen">画面</button>
-          <button id="options-nav-sound" data-navtarget="sound">サウンド</button>
-          <button id="options-nav-about" data-navtarget="about">本ゲームについて</button>
-          <button id="options-nav-terms-of-use" data-navtarget="termsOfUse">利用規約</button>
-          <button id="options-nav-licenses" data-navtarget="licenses">ライセンス</button>
+          <button id="options-nav-general" data-navtarget="general" class="nav-button-current" data-lkey="labelGeneral">一般設定</button>
+          <button id="options-nav-screen" data-navtarget="screen" data-lkey="labelScreen">画面設定</button>
+          <button id="options-nav-sound" data-navtarget="sound" data-lkey="labelSound">サウンド設定</button>
+          <button id="options-nav-about" data-navtarget="about" data-lkey="labelAbout">本ゲームについて</button>
+          <button id="options-nav-terms-of-use" data-navtarget="termsOfUse" data-lkey="labelTermsOfUse">利用規約</button>
+          <button id="options-nav-licenses" data-navtarget="licenses" data-lkey="labelLicenses">ライセンス</button>
         </div>
         <div id="options-content">
           <section id="options-general" class="options-panel">
             <div class="options-item">
-              <label for="options-general-language">表示言語</label>
+              <label for="options-general-language" data-lkey="displayLanguage">表示言語</label>
               <select id="options-general-language">
                 <option value="jp" selected>日本語</option>
                 <option value="en">English</option>
               </select>
             </div>
             <div class="options-item">
-              <label for="options-general-master-volume">マスター音量</label>
+              <label for="options-general-master-volume" data-lkey="masterVolume">マスター音量</label>
               <input id="options-general-master-volume" type="range" min="0" max="100" value="80">
             </div>
             <div class="options-item">
-              <label for="options-general-disable-dynamic-login-bg">背景動画を再生しない</label>
+              <label for="options-general-disable-dynamic-login-bg" data-lkey="disableBackgroundVideos">背景動画を再生しない</label>
               <input id="options-general-disable-dynamic-login-bg" type="checkbox">
             </div>
           </section>
@@ -156,10 +156,10 @@
           <section id="options-sound" class="options-panel hidden">
             
           </section>
-          <section id="options-about" class="options-panel hidden markdown-target">
+          <section id="options-about" class="options-panel hidden markdown-target" data-lkey="about" data-justify="true">
             
           </section>
-          <section id="options-terms-of-use" class="options-panel hidden markdown-target">
+          <section id="options-terms-of-use" class="options-panel hidden markdown-target" data-lkey="termsOfUse" data-justify="true">
             
           </section>
           <section id="options-licenses" class="options-panel hidden markdown-target">
@@ -167,8 +167,8 @@
           </section>
         </div>
         <div id="options-buttons" class="options-frame">
-          <a id="options-reset">リセット</a>
-          <button id="options-done">完了</button>
+          <a id="options-reset" data-lkey="reset">リセット</a>
+          <button id="options-done" data-lkey="done">完了</button>
         </div>
       </div>
     </div>

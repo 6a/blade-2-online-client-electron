@@ -139,10 +139,8 @@ class OptionsView extends BaseView {
     }
 
     updateTermsOfUse() {
-        let md = new MarkdownIt()
-        let newContent = md.render(Localization.get('termsOfUse'))
+        this._containers.termsOfUse.innerHTML = Localization.get('termsOfUse')
 
-        this._containers.termsOfUse.innerHTML = newContent
         if (Localization.justifyText()) {
             this._containers.termsOfUse.classList.add('justify-text')
         } else {
@@ -151,10 +149,8 @@ class OptionsView extends BaseView {
     }
 
     updateAbout() {
-        let md = new MarkdownIt({ linkify: true })
-        let newContent = md.render(Localization.get('about'))
-
-        this._containers.about.innerHTML = newContent
+        this._containers.about.innerHTML = Localization.get('about')
+        
         if (Localization.justifyText()) {
             this._containers.about.classList.add('justify-text')
         } else {

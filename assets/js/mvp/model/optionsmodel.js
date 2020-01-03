@@ -1,7 +1,8 @@
 const BaseModel = require('./basemodel.js')
 const B2Event = require('../utility').B2Event
-const fs = require('fs')
 const Localization = require('../utility').Localization
+const fs = require('fs')
+const MarkdownIt = require('markdown-it')
 
 const LICENSE_PATH = 'assets/docs/third-party-licenses'
 const TERMSOFUSE_EN = 'assets/docs/terms-of-use/tou-en.md'
@@ -70,7 +71,7 @@ class OptionsModel extends BaseModel {
         })
     }
 
-    loadPair(en, jp, localizationKey, onDone) {
+    loadPair(en, jp, localizationKey, callBack) {
         let files = {
             en: en,
             jp: jp
@@ -89,8 +90,7 @@ class OptionsModel extends BaseModel {
                     let markdown = content.toString()
                     contentStrings[key] = markdown
                     if (contentStrings.en !== '' && contentStrings.jp !== '') {
-                        Localization.add(localizationKey, contentStrings.jp, contentStrings.en)
-                        onDone.broadcast()
+                        callBack(contentStrings)
                     }
                 }
             })
@@ -98,11 +98,27 @@ class OptionsModel extends BaseModel {
     }
 
     loadTermsOfUse() {
-        this.loadPair(TERMSOFUSE_EN, TERMSOFUSE_JP, 'termsOfUse', this.onTermsOfUseReady)
+        this.loadPair(TERMSOFUSE_EN, TERMSOFUSE_JP, 'termsOfUse', (pair) => {
+            let md = new MarkdownIt()
+            Object.keys(pair).forEach((key) => {
+                pair[key] = md.render(pair[key])
+            })
+
+            Localization.add('termsOfUse', pair.jp, pair.en)
+            this.onTermsOfUseReady.broadcast()
+        })
     }
 
     loadAbout() {
-        this.loadPair(ABOUT_EN, ABOUT_JP, 'about', this.onAboutReady)
+        this.loadPair(ABOUT_EN, ABOUT_JP, 'about', (pair) => {
+            let md = new MarkdownIt({ linkify: true })
+            Object.keys(pair).forEach((key) => {
+                pair[key] = md.render(pair[key])
+            })
+
+            Localization.add('about', pair.jp, pair.en)
+            this.onAboutReady.broadcast()
+        })
     }
 
     onOptionsClicked() {

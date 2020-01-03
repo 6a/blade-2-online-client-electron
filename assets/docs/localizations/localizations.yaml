@@ -1,6 +1,66 @@
-signin: 
+login: 
   en: Login
   jp: サインイン
+username:
+  en: Username
+  jp: ユーザー名
+email:
+  en: Email address
+  jp: メールアドレス
+password:
+  en: Password
+  jp: パスワード
+rememberMe:
+  en: Remember me
+  jp: ユーザー名を記憶
+createAccount:
+  en: Create Account
+  jp: アカウントを作成
+troubleLoggingIn:
+  en: Trouble signing in?
+  jp: サインインできない場合
+carveAPath:
+  en: Become a Legend
+  jp: 「この手で道を切り拓く」
+bladeIICreateAccount:
+  en: BLADE II ONLINE Account Creation
+  jp: BLADE II ONLINE アカウント作成
+passwordReqsHeader:
+  en: Please ensure that your password matches the criteria below
+  jp: パスワードは以下の要件を満たすように指定してください
+passwordReqsASCII:
+  en: Contains only half-width ASCII characters and symbols as well as
+  jp: 半角英数字と ASCII 記号のみを含むこと、及び
+passwordReqsFifteenChars:
+  en: Containing 15 or more characters or
+  jp: 15 文字であること、又は
+passwordReqsEightChars:
+  en: Containing 8 or more characters whilst
+  jp: 8 文字であり
+passwordReqsOneNumeral:
+  en: Containing at least one digit and
+  jp: 1 数字以上を含むこと及び
+passwordReqsOneLowercase:
+  en: Containing at least one lower case letter
+  jp: 1 小文字以上を含むこと
+createButton:
+  en: Create
+  jp: 今すぐ作成
+aboveAccountCreated:
+  en: Your account shown above has been created!
+  jp: 上記のアカウントが作成されました！
+accountCreationFinish:
+  en: Done
+  jp: 作成を終了
+error:
+  en: Error
+  jp: エラー
+close:
+  en: Close
+  jp: 閉じる
+backToLogin:
+  en: Back to Login
+  jp: サインインへ戻る
 usernameTooShort:
   en: Username must be at at least 2 characters long.
   jp: ユーザー名は２文字以上でなければなりません。
@@ -37,11 +97,29 @@ serverConnectionError:
 genericError:
   en: An unexpected error occurred. Please try again later.
   jp: 予期しないエラーが発生しました。しばらくしてからもう一度試してください。
+labelGeneral:
+  en: General Settings
+  jp: 一般設定
+labelScreen:
+  en: Screen Settings
+  jp: 画面設定
+labelSound:
+  en: Sound Settings
+  jp: サウンド設定
+labelAbout:
+  en: About Blade II Online
+  jp: Blade II Online について
+labelTermsOfUse:
+  en: Terms of Use
+  jp: 利用規約
+labelLicenses:
+  en: Third party licenses
+  jp: ライセンス
 titleGeneral:
   en: General Settings
   jp: 一般設定
 titleScreen:
-  en: General Settings
+  en: Screen Settings
   jp: 画面設定
 titleSound:
   en: Sound Settings
@@ -55,3 +133,18 @@ titleTermsOfUse:
 titleLicenses:
   en: Third party licenses
   jp: サードパーティーライセンス
+displayLanguage:
+  en: Display language
+  jp: 表示言語
+masterVolume:
+  en: Master Volume
+  jp: マスター音量
+disableBackgroundVideos:
+  en: Disable Background videos
+  jp: 背景動画を再生しない
+reset:
+  en: Reset
+  jp: リセット
+done:
+  en: Done
+  jp: 完了
