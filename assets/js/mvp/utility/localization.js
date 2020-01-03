@@ -1,3 +1,9 @@
+const fs = require('fs');
+const yaml = require('js-yaml')
+
+const LOCALIZATIONS = 'assets/docs/localizations/localizations.yaml'
+const DEFAULT_ENCODING = 'utf8'
+
 class Pair {
     constructor(key, data) {
         this._key = key
@@ -22,103 +28,24 @@ class Localization {
     }
 
     load() {
-        // TODO later this should be loaded from a config file
-        
         this._localizations = new Map()
-        
         let inData = []
-        inData.push(new Pair('usernameTooShort', {
-            "jp": "ユーザー名は２文字以上でなければなりません。",
-            "en": "Username must be at at least 2 characters long."
-        }))
 
-        inData.push(new Pair('usernameCantStartWithSpace', {
-            "jp": "ユーザー名の先頭に空白文字を使用できません。",
-            "en": "Username cannot start with a space."
-        }))
-
-        inData.push(new Pair('usernameIllegalChars', {
-            "jp": "ユーザー名には、全ての全角文字及び、全ての半角英数字と、ある特定の記号しか使用できません。",
-            "en": "Usernames can only contain full-width japanese characters, half-width alphanumerical characters and certain symbols."
-        }))
-
-        inData.push(new Pair('usernameAlreadyInUse', {
-            "jp": "指定されたユーザー名は既に使用されています。",
-            "en": "The specified username is already in use."
-        }))
-
-        inData.push(new Pair('usernameRude', {
-            "jp": "ユーザー名に暴言を含まないように指定してください。",
-            "en": "Usernames can not contain profanity."
-        }))
-
-
-        inData.push(new Pair('emailInvalid', {
-            "jp": "有効なメールアドレスを指定してください。",
-            "en": "Please provide a valid email address."
-        }))
-
-        inData.push(new Pair('emailAlreadyInUse', {
-            "jp": "指定されたメールアドレスは既に使用されています。",
-            "en": "The specified email address is already in use."
-        }))
-
-        inData.push(new Pair('passwordEmpty', {
-            "jp": "パスワードを指定してください。",
-            "en": "Please enter your password."
-        }))
-
-        inData.push(new Pair('passwordTooShort', {
-            "jp": "パスワードは８文字以上でなければなりません。",
-            "en": "Password must be at at least 8 characters long."
-        }))
-
-        inData.push(new Pair('invalidCredentials', {
-            "jp": "ユーザー名又はパスワードが無効です。",
-            "en": "Username or password is incorrect."
-        }))
-
-        inData.push(new Pair('serverConnectionError', {
-            "jp": "サーバーと接続できませんでした。プロクシー又はネットワーク問題による妨害が発生している可能性があります。",
-            "en": "Could not connect to the server. A proxy configuration, or some sort of network problem may be blocking the connection."
-        }))
-
-        inData.push(new Pair('genericError', {
-            "jp": "予期しないエラーが発生しました。しばらくしてからもう一度試してください。",
-            "en": "An unexpected error occurred. Please try again later."
-        }))
-
-        // Titles for options
-
-        inData.push(new Pair('titleGeneral', {
-            "jp": "一般設定",
-            "en": "General Settings"
-        }))
-
-        inData.push(new Pair('titleScreen', {
-            "jp": "画面設定",
-            "en": "General Settings"
-        }))
-
-        inData.push(new Pair('titleSound', {
-            "jp": "サウンド設定",
-            "en": "Sound Settings"
-        }))
-
-        inData.push(new Pair('titleAbout', {
-            "jp": "Blade II Online について",
-            "en": "About Blade II Online"
-        }))
-
-        inData.push(new Pair('titleTermsOfUse', {
-            "jp": "利用規約",
-            "en": "Terms of Use"
-        }))
-
-        inData.push(new Pair('titleLicenses', {
-            "jp": "サードパーティーライセンス",
-            "en": "Third party licenses"
-        }))
+        try {
+            let fileContents = fs.readFileSync(LOCALIZATIONS, DEFAULT_ENCODING);
+            let data = yaml.safeLoad(fileContents);
+    
+            if (typeof(data) === 'string') 
+            {
+                throw new Error('Localizations file appears to be incorrectly formatted')
+            } else {
+                Object.keys(data).forEach((key) => {
+                    inData.push(new Pair(key, data[key]))
+                })
+            }
+        } catch (e) {
+            console.error(`Could not load localization data:\n${e}`)
+        }
 
         inData.forEach(pair => {
             this._localizations.set(pair.key, pair.data)

@@ -1,0 +1,57 @@
+signin: 
+  en: Login
+  jp: サインイン
+usernameTooShort:
+  en: Username must be at at least 2 characters long.
+  jp: ユーザー名は２文字以上でなければなりません。
+usernameCantStartWithSpace:
+  en: Username cannot start with a space.
+  jp: ユーザー名の先頭に空白文字を使用できません。
+usernameIllegalChars:
+  en: Usernames can only contain full-width japanese characters, half-width alphanumerical characters and certain symbols.
+  jp: ユーザー名には、全ての全角文字及び、全ての半角英数字と、ある特定の記号しか使用できません。
+usernameAlreadyInUse:
+  en: The specified username is already in use.
+  jp: 指定されたユーザー名は既に使用されています。
+usernameRude:
+  en: Usernames can not contain profanity.
+  jp: ユーザー名に暴言を含まないように指定してください。
+emailInvalid:
+  en: Please provide a valid email address.
+  jp: 有効なメールアドレスを指定してください。
+emailAlreadyInUse:
+  en: The specified email address is already in use.
+  jp: 指定されたメールアドレスは既に使用されています。
+passwordEmpty:
+  en: Please enter your password.
+  jp: パスワードを指定してください。
+passwordTooShort:
+  en: Password must be at at least 8 characters long.
+  jp: パスワードは８文字以上でなければなりません。
+invalidCredentials:
+  en: Username or password is incorrect.
+  jp: ユーザー名又はパスワードが無効です。
+serverConnectionError:
+  en: Could not connect to the server. A proxy configuration, or some sort of network problem may be blocking the connection.
+  jp: サーバーと接続できませんでした。プロクシー又はネットワーク問題による妨害が発生している可能性があります。
+genericError:
+  en: An unexpected error occurred. Please try again later.
+  jp: 予期しないエラーが発生しました。しばらくしてからもう一度試してください。
+titleGeneral:
+  en: General Settings
+  jp: 一般設定
+titleScreen:
+  en: General Settings
+  jp: 画面設定
+titleSound:
+  en: Sound Settings
+  jp: サウンド設定
+titleAbout:
+  en: About Blade II Online
+  jp: Blade II Online について
+titleTermsOfUse:
+  en: Terms of Use
+  jp: 利用規約
+titleLicenses:
+  en: Third party licenses
+  jp: サードパーティーライセンス
