@@ -19,5 +19,8 @@ The back-end infrastructure is supported by various technologies, using various 
 - Persistent data storage etc using [RDS for MySQL](https://aws.amazon.com/rds/mysql/).
 - REST API using [Lambda](https://aws.amazon.com/lambda/) (with logic written in Go) and [API Gateway](https://aws.amazon.com/api-gateway/) that offers auth, leaderboards, account manipulation/lookup etc.
 
-#### Thanks for checking out my game!
-James Einosuke Stanton
+---
+
+### Thanks for checking out my game!
+
+- James Einosuke Stanton

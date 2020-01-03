@@ -8,7 +8,7 @@ Blade II Online（ブレード・ツー・オンライン）は、[ロンドン�
 
 視野を広げると同時に、チャレンジを求めるため、原作のブレードのコンセプトを拡張し、世界中のどこにでもいる相手と遊べる、オンライン版を作ろうとしました。今まで得てきた知識と共に、インターンシップで重ねた重要な実践や経験を採用し、オンラインゲーム機能、ユーザーアカウント、ユーザー認証、プロフィール、ハイスコア、ログイン等を提供するバックエンド・システムの全体尚、ゲームのラーンチャーとゲームそのものを企画し、開発しました。
 
-本ゲームのラーンチャーを、JavaScript でコードを書き、HTML と CSS で UI を構成し、 [Electron](https://electronjs.org/) で作成しました。[League of Legends](https://jp.leagueoflegends.com/ja/) や [DotA 2](https://wikiwiki.jp/dota2/%E3%82%B2%E3%83%BC%E3%83%A0%E6%A6%82%E8%A6%81) のようなオンラインゲームと同様に様々な機能を含むラーンチャーを提供したかった私は、特に面白い [League of Legends ラーンチャーの最新版のアーキテクチャー](https://technology.riotgames.com/news/architecture-league-client-update)を記述する記事を読み、やはり Electron はこのラーンチャーのニーズ、残っている時間やリソースに関して最も相応しいと判断しました。急速なプロトタイピング、コンパイル時間の無さ、沢山の強力なオープンソースライブラリーが開発をより速く、楽にしました。
+本ゲームのラーンチャーを、JavaScript でコードを書き、HTML と CSS で UI を構成し、[Electron](https://electronjs.org/) で作成しました。[League of Legends](https://jp.leagueoflegends.com/ja/) や [DotA 2](https://wikiwiki.jp/dota2/%E3%82%B2%E3%83%BC%E3%83%A0%E6%A6%82%E8%A6%81) のようなオンラインゲームと同様に様々な機能を含むラーンチャーを提供したかった私は、特に面白い [League of Legends ラーンチャーの最新版のアーキテクチャー](https://technology.riotgames.com/news/architecture-league-client-update)を記述する記事を読み、やはり Electron はこのラーンチャーのニーズ、残っている開発時間やリソースに関して最も相応しいと判断しました。急速なプロトタイピング、コンパイル時間の無さ、沢山の強力なオープンソースライブラリーが開発をより速く、楽にしました。
 
 ゲームそのものは [Unreal Engine 4](https://www.unrealengine.com/ja/what-is-unreal-engine-4) で開発しました。可能な限りゲームとエンジンロジックは C++ を利用し、実装しました。個人的に意見を述べると、[Unity](https://unity.com/ja) で開発するのは Unreal Engine より楽だと思いますが、C++ を活かしたゲーム作成の経験が不足していたと思っていましたし、今でもそう思います。
 
@@ -20,5 +20,8 @@ Blade II Online（ブレード・ツー・オンライン）は、[ロンドン�
 - [RDS for MySQL](https://aws.amazon.com/rds/mysql/) を活用する データ保存。
 - 認証、ハイスコア、アカウント操作・検索等を提供する、[Lambda](https://aws.amazon.com/lambda/) と [API Gateway](https://aws.amazon.com/api-gateway/) を用いる、Go で書いた REST API。
 
-#### 本ゲームをお試しいただき誠に感謝いたします。
-スタントン・ジェームズ瑛之助
+---
+
+### 本ゲームをお試しいただき誠に感謝いたします。
+
+- スタントン・ジェームズ瑛之助
