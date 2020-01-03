@@ -3,9 +3,11 @@ const B2Event = require('../utility').B2Event
 const fs = require('fs')
 const Localization = require('../utility').Localization
 
-const licensePath = 'assets/docs/third-party-licenses'
-const termsOfUseEN = 'assets/docs/terms-of-use/tou-en.md'
-const termsOfUseJP = 'assets/docs/terms-of-use/tou-jp.md'
+const LICENSE_PATH = 'assets/docs/third-party-licenses'
+const TERMSOFUSE_EN = 'assets/docs/terms-of-use/tou-en.md'
+const TERMSOFUSE_JP = 'assets/docs/terms-of-use/tou-jp.md'
+const ABOUT_EN = 'assets/docs/about/about-en.md'
+const ABOUT_JP = 'assets/docs/about/about-jp.md'
 
 class OptionsModel extends BaseModel {
     constructor () {
@@ -19,6 +21,7 @@ class OptionsModel extends BaseModel {
 
         this.onLicenseInfoReady = new B2Event('License Info Ready')
         this.onTermsOfUseReady = new B2Event('Terms of Use Ready')
+        this.onAboutReady = new B2Event('About Ready')
 
         // this.addEventListener(this.models.get('net').onCreateAccountResponse.register(this.processCreateAccountResponse.bind(this)))
         
@@ -34,8 +37,8 @@ class OptionsModel extends BaseModel {
         this.hide()
     }
 
-    requestLicenses() {
-        fs.readdir(licensePath, (err, fileNames) => {
+    loadLicenses() {
+        fs.readdir(LICENSE_PATH, (err, fileNames) => {
             let files = []
             let done = 0
             let expected = 0
@@ -47,9 +50,9 @@ class OptionsModel extends BaseModel {
 
             expected = fileNames.length
             fileNames.forEach((filename) => {
-                fs.readFile(`${licensePath}/${filename}`, (err, content) => {
+                fs.readFile(`${LICENSE_PATH}/${filename}`, (err, content) => {
                     if (err) {
-                        console.err(`[Options] failed to read file [${licensePath}/${filename}]:\n${err}`) 
+                        console.err(`[Options] failed to read file [${LICENSE_PATH}/${filename}]:\n${err}`) 
                         this.onLicenseInfoReady.broadcast(files)
                     } else {
                         files.push(content.toString())
@@ -67,13 +70,13 @@ class OptionsModel extends BaseModel {
         })
     }
 
-    requestTermsOfUse() {
+    loadPair(en, jp, localizationKey, onDone) {
         let files = {
-            en: termsOfUseEN,
-            jp: termsOfUseJP
+            en: en,
+            jp: jp
         }
 
-        let tou = {
+        let contentStrings = {
             en: "",
             jp: ""
         }
@@ -81,17 +84,25 @@ class OptionsModel extends BaseModel {
         Object.keys(files).forEach((key) => {
             fs.readFile(files[key], (err, content) => {
                 if (err) {
-                    console.err(`[Options] failed to read terms of use [${files[key]}]:\n${err}`)
+                    console.err(`[Options] failed to read ${localizationKey} file [${files[key]}]:\n${err}`)
                 } else {
                     let markdown = content.toString()
-                    tou[key] = markdown
-                    if (tou.en !== '' && tou.jp !== '') {
-                        Localization.add('termsOfUse', tou.jp, tou.en)
-                        this.onTermsOfUseReady.broadcast()
+                    contentStrings[key] = markdown
+                    if (contentStrings.en !== '' && contentStrings.jp !== '') {
+                        Localization.add(localizationKey, contentStrings.jp, contentStrings.en)
+                        onDone.broadcast()
                     }
                 }
             })
         })
+    }
+
+    loadTermsOfUse() {
+        this.loadPair(TERMSOFUSE_EN, TERMSOFUSE_JP, 'termsOfUse', this.onTermsOfUseReady)
+    }
+
+    loadAbout() {
+        this.loadPair(ABOUT_EN, ABOUT_JP, 'about', this.onAboutReady)
     }
 
     onOptionsClicked() {

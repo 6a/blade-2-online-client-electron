@@ -20,6 +20,7 @@ class OptionsView extends BaseView {
         this.requestOptions()
         this.requestLicenses()
         this.requestTermsOfUse()
+        this.requestAbout()
     }
 
     destroy() {
@@ -114,6 +115,10 @@ class OptionsView extends BaseView {
         this._presenter.requestTermsOfUse()
     }
 
+    requestAbout() {
+        this._presenter.requestAbout()
+    }
+
     setLicenseInfo(licenses) {
         let md = new MarkdownIt()
         let newContent = ""
@@ -142,6 +147,18 @@ class OptionsView extends BaseView {
             this._containers.termsOfUse.classList.add('justify-text')
         } else {
             this._containers.termsOfUse.classList.remove('justify-text')
+        }
+    }
+
+    updateAbout() {
+        let md = new MarkdownIt({ linkify: true })
+        let newContent = md.render(Localization.get('about'))
+
+        this._containers.about.innerHTML = newContent
+        if (Localization.justifyText()) {
+            this._containers.about.classList.add('justify-text')
+        } else {
+            this._containers.about.classList.remove('justify-text')
         }
     }
 
