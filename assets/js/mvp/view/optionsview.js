@@ -133,9 +133,9 @@ class OptionsView extends BaseView {
         this._containers.licenses.innerHTML = newContent
     }
 
-    setTermsOfUse(tou) {
+    updateTermsOfUse() {
         let md = new MarkdownIt()
-        let newContent = md.render(tou)
+        let newContent = md.render(Localization.get('termsOfUse'))
 
         this._containers.termsOfUse.innerHTML = newContent
         if (Localization.justifyText()) {

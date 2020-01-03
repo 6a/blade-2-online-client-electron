@@ -141,6 +141,13 @@ class Localization {
         }
     }
 
+    add(key, dataJP, dataEN) {
+        this._localizations.set(key, {
+            jp: dataJP,
+            en: dataEN
+        })
+    }
+
     getLocale() {
         return this._currentLocale
     }

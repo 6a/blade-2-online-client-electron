@@ -33,8 +33,8 @@ class OptionsPresenter extends BasePresenter {
         this._view.setLicenseInfo(licenses)
     }
 
-    onTermsOfUseReady(tou) {
-        this._view.setTermsOfUse(tou)
+    onTermsOfUseReady() {
+        this._view.updateTermsOfUse()
     }
 }
 

@@ -12,10 +12,6 @@ class OptionsModel extends BaseModel {
         super('options')
         this.init()
         this._active = false
-        this._termsOfUse = {
-            en: "",
-            jp: ""
-        }
     }
 
     init() {
@@ -77,15 +73,21 @@ class OptionsModel extends BaseModel {
             jp: termsOfUseJP
         }
 
+        let tou = {
+            en: "",
+            jp: ""
+        }
+
         Object.keys(files).forEach((key) => {
             fs.readFile(files[key], (err, content) => {
                 if (err) {
                     console.err(`[Options] failed to read terms of use [${files[key]}]:\n${err}`)
                 } else {
                     let markdown = content.toString()
-                    this._termsOfUse[key] = markdown
-                    if (this._termsOfUse.en !== '' && this._termsOfUse.jp !== '') {
-                        this.onTermsOfUseReady.broadcast(this._termsOfUse[Localization.getLocale()])
+                    tou[key] = markdown
+                    if (tou.en !== '' && tou.jp !== '') {
+                        Localization.add('termsOfUse', tou.jp, tou.en)
+                        this.onTermsOfUseReady.broadcast()
                     }
                 }
             })
