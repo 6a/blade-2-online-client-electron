@@ -52,7 +52,6 @@ class WindowState {
 
     save() {
         this._state = new WindowStateValues(this._window.getBounds())
-        console.log(this._state)
         electronSettings.set(`windowState.${this._windowName}`, this._state.toObject())
     }
 }
