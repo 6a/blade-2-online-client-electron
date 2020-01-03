@@ -100,10 +100,9 @@ class LoginView extends BaseView {
     }
 
     startBackgroundVideo() {
-        // TODO - reenable
-        // this._backgroundVideo.play()
+        this._backgroundVideo.play()
     }
-
+    
     updateInputWarnings(usernameLKey, passwordLKey) {
         if (usernameLKey !== '') {
             this._usernameField.classList.add('warning-outline')
@@ -200,6 +199,14 @@ class LoginView extends BaseView {
             this._wrapper.classList.add('hidden')
             this._loginPane.classList.add('slide-out-login-pane')
             this._backgroundVideo.classList.add('hidden')
+        }
+    }
+
+    toggleBackgroundVideo(disabled) {
+        if (disabled) {
+            this._backgroundVideo.pause()
+        } else {
+            this._backgroundVideo.play()
         }
     }
 

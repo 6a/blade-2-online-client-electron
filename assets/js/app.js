@@ -5,10 +5,10 @@
 
     function createModels() {
         models.add(new mvp.model.LoadingModel())
+        models.add(new mvp.model.OptionsModel())
         models.add(new mvp.model.NetModel())
         models.add(new mvp.model.LoginModel())
         models.add(new mvp.model.CreateAccountModel())
-        models.add(new mvp.model.OptionsModel())
     }
 
     function createViewsAndPresenters() {

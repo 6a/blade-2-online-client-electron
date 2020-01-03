@@ -105,6 +105,11 @@ class Settings {
         DATA.settings[key] = value
         save(DATA.settings)
     }
+
+    reset() {
+        createDefault()
+        DATA.settings = Object.fromEntries(DEFAULT_SETTINGS)
+    }
 }
 
 module.exports = new Settings()

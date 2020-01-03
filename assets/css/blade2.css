@@ -575,7 +575,7 @@ a:focus {
 }
 
 #options-nav {
-    min-width: 152px;
+    min-width: 200px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -695,7 +695,7 @@ a:focus {
 }
 
 .options-item label {
-    font-size: 0.8em;
+    font-size: 0.75em;
     font-weight: 500;
 }
 
@@ -703,7 +703,7 @@ a:focus {
     height: 34px;
     font-size: 0.8em;
     font-family: 'Noto Sans JP';
-    width: 200px;
+    width: 180px;
     border: 1px solid var(--gscale-50-100);
     box-shadow: none;
     -webkit-appearance: none;
@@ -718,7 +718,7 @@ a:focus {
 }
 
 .options-item input[type=range] {
-    width: 200px;
+    width: 180px;
     -webkit-appearance: none;  
     height: 34px; 
     background: #fff;

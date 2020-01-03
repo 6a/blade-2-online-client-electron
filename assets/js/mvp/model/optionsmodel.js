@@ -24,6 +24,7 @@ class OptionsModel extends BaseModel {
         this.onLicenseInfoReady = new B2Event('License Info Ready')
         this.onTermsOfUseReady = new B2Event('Terms of Use Ready')
         this.onAboutReady = new B2Event('About Ready')
+        this.onSettingChanged = new B2Event('Setting Changed')
 
         // this.addEventListener(this.models.get('net').onCreateAccountResponse.register(this.processCreateAccountResponse.bind(this)))
         
@@ -143,6 +144,10 @@ class OptionsModel extends BaseModel {
 
     settingChanged(setting, newValue) {
         Settings.set(setting, newValue)
+        this.onSettingChanged.broadcast({
+            setting: setting,
+            newValue: newValue
+        })
     }
 
     onOptionsClicked() {

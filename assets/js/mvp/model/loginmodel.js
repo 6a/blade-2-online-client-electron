@@ -11,13 +11,17 @@ class LoginModel extends BaseModel {
     init() {
         super.init()
 
+        this.onReady = new B2Event('Loading Complete Relay')
         this.onLoginSettingsRequest = new B2Event('Login Settings Broadcast')
         this.onInputFieldWarningChanged = new B2Event('Input Field State Changed')
         this.onCreateAccountModalRequested = new B2Event('Create Account Modal Requested')
         this.onLoginFinished = new B2Event('Login Finished')
+        this.onToggleBackgroundVideo = new B2Event('Toggle Background Video')
 
+        this.addEventListener(this.models.get('loading').onLoadingComplete.register(this.onLoadingComplete.bind(this)))
         this.addEventListener(this.models.get('net').onAuthResponse.register(this.onAuthResponse.bind(this)))
         this.addEventListener(this.models.get('net').onCreateAccountResponse.register(this.onCreateAccountResponse.bind(this)))
+        this.addEventListener(this.models.get('options').onSettingChanged.register(this.onSettingChanged.bind(this)))
 
         this._usernameWarning = ''
         this._passwordWarning = ''
@@ -112,6 +116,10 @@ class LoginModel extends BaseModel {
         })
     }
 
+    onLoadingComplete() {
+        this.onReady.broadcast(!Settings.get(Settings.KEY_DISABLE_BACKGROUND_VIDEOS))
+    }
+
     onCreateAccountResponse(response) {
         if (response.code === 0) {
             this._storedUsername = response.payload.handle
@@ -129,6 +137,12 @@ class LoginModel extends BaseModel {
             this.onLoginFinished.broadcast()
         } else {
             this.onLoginFinished.broadcast(response.payload)
+        }
+    }
+
+    onSettingChanged(setting) {
+        if (setting.setting === 'disableBackgroundVideos') {
+            this.onToggleBackgroundVideo.broadcast(setting.newValue)
         }
     }
 }

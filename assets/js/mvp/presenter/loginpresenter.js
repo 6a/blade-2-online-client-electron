@@ -9,10 +9,11 @@ class LoginPresenter extends BasePresenter {
     init() {
         super.init()
 
-        this.addEventListener(this.models.get('loading').onLoadingComplete.register(this.onLoadingComplete.bind(this)))
+        this.addEventListener(this.model.onReady.register(this.onReady.bind(this)))
         this.addEventListener(this.model.onInputFieldWarningChanged.register(this.onInputFieldWarningChanged.bind(this)))
         this.addEventListener(this.model.onLoginSettingsRequest.register(this.onLoginSettingsRequest.bind(this)))
         this.addEventListener(this.model.onLoginFinished.register(this.onLoginFinished.bind(this)))
+        this.addEventListener(this.model.onToggleBackgroundVideo.register(this.onToggleBackgroundVideo.bind(this)))
     }
 
     destroy() {
@@ -43,9 +44,9 @@ class LoginPresenter extends BasePresenter {
         this.model.requestLoginSettings()
     }
 
-    onLoadingComplete() {
+    onReady(playVideo) {
         this._view.selectInputField()
-        this._view.startBackgroundVideo()
+        if (playVideo) this._view.startBackgroundVideo()
     }
 
     onInputFieldWarningChanged(data) {
@@ -58,6 +59,10 @@ class LoginPresenter extends BasePresenter {
 
     onLoginFinished(error) {
         this._view.loginFinished(error)
+    }
+
+    onToggleBackgroundVideo(disabled) {
+        this._view.toggleBackgroundVideo(disabled)
     }
 }
 
