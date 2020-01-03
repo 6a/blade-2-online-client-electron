@@ -827,6 +827,7 @@ a:focus {
 .markdown-target ul {
     list-style: disc;
     padding: 0 0 0 30px;
+    margin: 0 0 10px 0;
 }
 
 .markdown-target ul li {
@@ -841,6 +842,15 @@ a:focus {
 
 .markdown-target strong {
     font-weight: 700;
+}
+
+.markdown-target a {
+    font-weight: 400;
+    color: var(--link);
+}
+
+.markdown-target a:hover, .markdown-target a:focus:hover {
+    color: var(--link-hovered);
 }
 
 /* CREATE ACCOUNT */
