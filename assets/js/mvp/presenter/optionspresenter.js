@@ -10,6 +10,7 @@ class OptionsPresenter extends BasePresenter {
         super.init()
 
         this.addEventListener(this.model.onLicenseInfoReady.register(this.onLicenseInfoReady.bind(this)))
+        this.addEventListener(this.model.onTermsOfUseReady.register(this.onTermsOfUseReady.bind(this)))
     }
 
     destroy() {
@@ -24,8 +25,16 @@ class OptionsPresenter extends BasePresenter {
         this.model.requestLicenses()
     }
 
+    requestTermsOfUse() {
+        this.model.requestTermsOfUse()
+    }
+
     onLicenseInfoReady(licenses) {
         this._view.setLicenseInfo(licenses)
+    }
+
+    onTermsOfUseReady(tou) {
+        this._view.setTermsOfUse(tou)
     }
 }
 

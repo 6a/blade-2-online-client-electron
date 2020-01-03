@@ -140,6 +140,14 @@ class Localization {
             console.error(`No localization exists for key [ ${key} ]`)
         }
     }
+
+    getLocale() {
+        return this._currentLocale
+    }
+
+    justifyText() {
+        return ['jp'].includes(this._currentLocale)
+    }
 }
 
 module.exports = new Localization(['en', 'jp'], 'jp')

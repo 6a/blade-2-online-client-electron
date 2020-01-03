@@ -19,6 +19,7 @@ class OptionsView extends BaseView {
         this.addTabbables()
         this.requestOptions()
         this.requestLicenses()
+        this.requestTermsOfUse()
     }
 
     destroy() {
@@ -109,6 +110,10 @@ class OptionsView extends BaseView {
         this._presenter.requestLicenses()
     }
 
+    requestTermsOfUse() {
+        this._presenter.requestTermsOfUse()
+    }
+
     setLicenseInfo(licenses) {
         let md = new MarkdownIt()
         let newContent = ""
@@ -126,6 +131,18 @@ class OptionsView extends BaseView {
         }
 
         this._containers.licenses.innerHTML = newContent
+    }
+
+    setTermsOfUse(tou) {
+        let md = new MarkdownIt()
+        let newContent = md.render(tou)
+
+        this._containers.termsOfUse.innerHTML = newContent
+        if (Localization.justifyText()) {
+            this._containers.termsOfUse.classList.add('justify-text')
+        } else {
+            this._containers.termsOfUse.classList.remove('justify-text')
+        }
     }
 
     onResetAnchorClicked(event) {
