@@ -31,6 +31,10 @@
     --positive-darker: hsl(135, 62%, 38%);
     --positive-dark: hsl(135, 62%, 33%);
 
+    --link: hsl(222, 62%, 43%);
+    --link-hovered: hsl(222, 62%, 63%);
+    --link-clicked: hsl(222, 62%, 23%);
+
     --transparent: #00000000;
 
     /* DEBUG */
