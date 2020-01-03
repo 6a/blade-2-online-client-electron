@@ -88,6 +88,38 @@ class Localization {
             "en": "An unexpected error occurred. Please try again later."
         }))
 
+        // Titles for options
+
+        inData.push(new Pair('titleGeneral', {
+            "jp": "一般設定",
+            "en": "General Settings"
+        }))
+
+        inData.push(new Pair('titleScreen', {
+            "jp": "画面設定",
+            "en": "General Settings"
+        }))
+
+        inData.push(new Pair('titleSound', {
+            "jp": "サウンド設定",
+            "en": "Sound Settings"
+        }))
+
+        inData.push(new Pair('titleAbout', {
+            "jp": "Blade II Online について",
+            "en": "About Blade II Online"
+        }))
+
+        inData.push(new Pair('titleTermsOfUse', {
+            "jp": "利用規約",
+            "en": "Terms of Use"
+        }))
+
+        inData.push(new Pair('titleLicenses', {
+            "jp": "サードパーティーライセンス",
+            "en": "Third party licenses"
+        }))
+
         inData.forEach(pair => {
             this._localizations.set(pair.key, pair.data)
         });

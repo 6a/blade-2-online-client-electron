@@ -9,7 +9,7 @@ class OptionsPresenter extends BasePresenter {
     init() {
         super.init()
 
-        
+        this.addEventListener(this.model.onLicenseInfoReady.register(this.onLicenseInfoReady.bind(this)))
     }
 
     destroy() {
@@ -18,6 +18,14 @@ class OptionsPresenter extends BasePresenter {
 
     closeForm() {
         this.model.closeForm()
+    }
+
+    requestLicenses() {
+        this.model.requestLicenses()
+    }
+
+    onLicenseInfoReady(licenses) {
+        this._view.setLicenseInfo(licenses)
     }
 }
 
