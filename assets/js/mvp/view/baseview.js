@@ -37,8 +37,10 @@ class BaseView {
         if (this._wrapper !== undefined && this._wrapper !== null && this._showHideClass !== undefined) {
             if (active) {
                 this._wrapper.classList.remove(this._showHideClass)
+                this._wrapper.classList.remove('no-pointer-events')
             } else {
                 this._wrapper.classList.add(this._showHideClass)
+                this._wrapper.classList.add('no-pointer-events')
             }
         }
 
