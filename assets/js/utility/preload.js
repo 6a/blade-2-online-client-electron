@@ -4,10 +4,10 @@
 
     const { Models, containers } = require('../mvp/utility')
 
-
-
     function addEventListeners() {
         let win = remote.getCurrentWindow()
+        let models = new Models()
+
         document.getElementById("min-button").addEventListener("click", function (e) {
             win.minimize(); 
         });
@@ -16,6 +16,9 @@
 
         // Callback from quit modal
         function onQuitConfirmed() {
+            // TODO when queueing is implemented, disconnect from queue before quit
+            // or at least send the quit request (but maybe dont wait for it)
+
             win.close();
         }
    
@@ -23,8 +26,6 @@
         // Open a dialogue box instead of immediately closing the app
         // This feels pretty hacky so please dont look at this function, actually.
         document.getElementById("close-button").addEventListener("click", function (e) {
-            var models = new Models()
-            
             let opts = new containers.MessageConfig({
                 titleLKey: 'confirmation',
                 questionLKey: 'msgQuitQuestion',
@@ -32,7 +33,6 @@
                 positiveButtonTextLKey: 'quit',
                 positiveButtonCallback: onQuitConfirmed,
                 negativeButtonTextLKey: 'cancel',
-    
             })
 
             models.get('message').open(opts)
