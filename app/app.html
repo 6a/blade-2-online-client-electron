@@ -20,6 +20,10 @@
   </header>
 
   <main id="app">
+    <div class="page" id="lobby-loader">
+      
+    </div>
+
     <div class="page" id="login">
       <div id="login-bg-video-wrapper" class="bg-video-wrapper">
         <video id="login-bg-video" class="bg-video" loop muted>
@@ -148,7 +152,7 @@
             </div>
             <div class="options-item">
               <label for="options-general-master-volume" data-lkey="masterVolume">マスター音量</label>
-              <input id="options-general-master-volume" type="range" min="0" max="1" value="0.8" step="0.01" data-setting="masterVolume">
+              <input id="options-general-master-volume" type="range" min="0" max="1" value="0.8" step="0.05" data-setting="masterVolume">
             </div>
             <div class="options-item">
               <label for="options-general-disable-dynamic-login-bg" data-lkey="disableBackgroundVideos">背景動画を再生しない</label>
@@ -156,19 +160,27 @@
             </div>
           </div>
           <div id="options-screen" class="options-panel hidden">
-            
+
           </div>
           <div id="options-sound" class="options-panel hidden">
-            
+            <div class="options-item">
+              <label for="options-sound-master-volume" data-lkey="masterVolume">マスター音量</label>
+              <input id="options-sound-master-volume" type="range" min="0" max="1" value="0.8" step="0.05" data-setting="masterVolume">
+            </div>
+            <div class="options-item">
+              <label for="options-sound-background-music-volume" data-lkey="backgroundMusicVolume">BGM 音量</label>
+              <input id="options-sound-background-music-volume" type="range" min="0" max="1" value="0.8" step="0.05" data-setting="backgroundMusicVolume">
+            </div>
+            <div class="options-item">
+              <label for="options-sound-sound-effects-volume" data-lkey="soundEffectsVolume">SFX 音量</label>
+              <input id="options-sound-sound-effects-volume" type="range" min="0" max="1" value="0.8" step="0.05" data-setting="soundEffectsVolume">
+            </div>
           </div>
           <div id="options-about" class="options-panel hidden markdown-target" data-lkey="" data-justify="true">
-            
           </div>
           <div id="options-terms-of-use" class="options-panel hidden markdown-target" data-lkey="" data-justify="true">
-            
           </div>
           <div id="options-licenses" class="options-panel hidden markdown-target">
-            
           </div>
         </div>
         <div id="options-buttons" class="options-frame">

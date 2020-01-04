@@ -6,7 +6,7 @@ const DEFAULT_SETTINGS = new Map([
     ['username', ''],
     ['locale', 'jp'],
     ['masterVolume', 0.8],
-    ['backroundMusicVolume', 0.8],
+    ['backgroundMusicVolume', 0.8],
     ['soundEffectsVolume', 0.8],
     ['disableBackgroundVideos', false]
 ])

@@ -139,6 +139,12 @@ displayLanguage:
 masterVolume:
   en: Master Volume
   jp: マスター音量
+backgroundMusicVolume:
+  en: BGM Volume
+  jp: BGM 音量
+soundEffectsVolume:
+  en: SFX Volume
+  jp: SFX 音量
 disableBackgroundVideos:
   en: Disable background videos
   jp: 背景動画を再生しない

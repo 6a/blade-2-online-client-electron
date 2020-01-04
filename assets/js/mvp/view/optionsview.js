@@ -54,6 +54,11 @@ class OptionsView extends BaseView {
             masterVolume: document.getElementById('options-general-master-volume'),
             disableBackgroundVideos: document.getElementById('options-general-disable-dynamic-login-bg'),
         }
+        this._sound = {
+            masterVolume: document.getElementById('options-sound-master-volume'),
+            backgroundMusicVolume: document.getElementById('options-sound-background-music-volume'),
+            soundEffectsVolume: document.getElementById('options-sound-sound-effects-volume'),
+        }
     }
 
     addEventListeners() {
@@ -66,7 +71,11 @@ class OptionsView extends BaseView {
 
         Object.values(this._general).forEach((element) => {
             element.addEventListener('input', this.onSettingChanged.bind(this), false)
-        })     
+        })
+
+        Object.values(this._sound).forEach((element) => {
+            element.addEventListener('input', this.onSettingChanged.bind(this), false)
+        })    
         
         document.addEventListener('keydown', this.onEscDown.bind(this), false)
     }
@@ -82,6 +91,10 @@ class OptionsView extends BaseView {
         Object.values(this._general).forEach((element) => {
             element.removeEventListener('input', this.onSettingChanged.bind(this), false)
         })        
+
+        Object.values(this._sound).forEach((element) => {
+            element.removeEventListener('input', this.onSettingChanged.bind(this), false)
+        })    
 
         document.removeEventListener('keydown', this.onEscDown.bind(this), false)
     }
@@ -138,8 +151,9 @@ class OptionsView extends BaseView {
         // Screen
 
         // Sound
-
-
+        this._sound.masterVolume.value = settings.sound.masterVolume
+        this._sound.backgroundMusicVolume.value = settings.sound.backgroundMusicVolume
+        this._sound.soundEffectsVolume.value = settings.sound.soundEffectsVolume
     }
 
     setLicenseInfo(licenses) {
@@ -196,6 +210,7 @@ class OptionsView extends BaseView {
 
     onSettingChanged(event) {
         let element = event.srcElement
+        let id = event.srcElement.id
         let elementType = element.nodeName
         let inputType = element.type
 
@@ -211,6 +226,16 @@ class OptionsView extends BaseView {
         }
 
         this._presenter.settingChanged(element.dataset.setting, value)
+        
+        // Edge cases for elements that appear more than once (so changing it means it needs to be immediately updated)
+        // somewhere else on this view
+        if (id === 'options-general-master-volume') {
+            let val = this._general.masterVolume.value
+            this._sound.masterVolume.value = val
+        } else if (id === 'options-sound-master-volume') {
+            let val = this._sound.masterVolume.value
+            this._general.masterVolume.value = val
+        }
     }
 }
 
