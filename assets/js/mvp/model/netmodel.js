@@ -1,6 +1,5 @@
 const BaseModel = require('./basemodel.js')
 const B2Event = require('../utility').B2Event
-const Localization = require('../utility').Localization
 const appconfig = require('../../utility/appconfig')
 const request = require('request')
 
@@ -58,7 +57,7 @@ class NetModel extends BaseModel {
         this.onCreateAccountResponse = new B2Event('Create Account Request Response')
     }
 
-    destroy() {
+    destroy() { 
         super.destroy()
     }
 
@@ -66,7 +65,7 @@ class NetModel extends BaseModel {
         request.post(`${appconfig.apiURL}/${appconfig.authPath}`, {
             headers: {
                 'User-Agent': `request.${appconfig.name}.v${appconfig.version}`,
-                "Authorization": `Basic ${btoa(`${handle}:${password}`)}`
+                "Authorization": `Basic ${btoa(unescape(encodeURIComponent(`${handle}:${password}`)))}`
             },
             json: true
         }, (error, response, body) => {
