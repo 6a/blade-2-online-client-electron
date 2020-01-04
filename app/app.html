@@ -18,6 +18,7 @@
       <div class="button" id="close-button">&#xE8BB;</div>
     </div>
   </header>
+
   <main id="app">
     <div class="page" id="login">
       <div id="login-bg-video-wrapper" class="bg-video-wrapper">
@@ -32,7 +33,7 @@
         <img class="img-full-width" src="../assets/images/logo.png">
         <h1 data-lkey="login">サインイン</h1>
 
-        <section id="login-dynamic-wrapper">
+        <div id="login-dynamic-wrapper">
           <div id="login-interactable-wrapper">
             <div class="text-input-wrapper">
               <input id="login-username" type="text" placeholder=" " class="input-standard">            
@@ -59,17 +60,17 @@
           <div id="login-loader-wrapper" class="hidden">
             <div class="spinner"></div>
           </div>
-        </section>
+        </div>
        
-        <section id="login-links">
+        <div id="login-links">
           <a id="login-create-account" href="" data-lkey="createAccount">アカウントを作成</a>
           <a id="login-trouble" href="" data-lkey="troubleLoggingIn">サインインできない場合</a>
-        </section>
+        </div>
       </div>
     </div>
 
     <div class="page backdrop hidden no-pointer-events" id="create-account">
-      <section id="create-account-modal" class="modal">
+      <div id="create-account-modal" class="modal">
         <h1 data-lkey="carveAPath">「この手で道を切り拓く」</h1>
         <h2 data-lkey="bladeIICreateAccount">BLADE II ONLINE アカウント作成</h2>
         <div id="create-account-dynamic-wrapper">
@@ -121,7 +122,7 @@
           </div>
         </div>
         <a id="create-account-close" href="" data-lkey="backToLogin">サインインへ戻る</a>
-      </section>
+      </div>
     </div>
 
     <div class="page backdrop hidden no-pointer-events" id="options">
@@ -138,7 +139,7 @@
           <button id="options-nav-licenses" data-navtarget="licenses" data-lkey="labelLicenses">ライセンス</button>
         </div>
         <div id="options-content">
-          <section id="options-general" class="options-panel">
+          <div id="options-general" class="options-panel">
             <div class="options-item">
               <label for="options-general-locale" data-lkey="displayLanguage">表示言語</label>
               <select id="options-general-locale" data-setting="locale">
@@ -154,22 +155,22 @@
               <label for="options-general-disable-dynamic-login-bg" data-lkey="disableBackgroundVideos">背景動画を再生しない</label>
               <input id="options-general-disable-dynamic-login-bg" type="checkbox" data-setting="disableBackgroundVideos">
             </div>
-          </section>
-          <section id="options-screen" class="options-panel hidden">
+          </div>
+          <div id="options-screen" class="options-panel hidden">
             
-          </section>
-          <section id="options-sound" class="options-panel hidden">
+          </div>
+          <div id="options-sound" class="options-panel hidden">
             
-          </section>
-          <section id="options-about" class="options-panel hidden markdown-target" data-lkey="" data-justify="true">
+          </div>
+          <div id="options-about" class="options-panel hidden markdown-target" data-lkey="" data-justify="true">
             
-          </section>
-          <section id="options-terms-of-use" class="options-panel hidden markdown-target" data-lkey="" data-justify="true">
+          </div>
+          <div id="options-terms-of-use" class="options-panel hidden markdown-target" data-lkey="" data-justify="true">
             
-          </section>
-          <section id="options-licenses" class="options-panel hidden markdown-target">
+          </div>
+          <div id="options-licenses" class="options-panel hidden markdown-target">
             
-          </section>
+          </div>
         </div>
         <div id="options-buttons" class="options-frame">
           <a id="options-reset" data-lkey="reset">リセット</a>
@@ -177,13 +178,31 @@
         </div>
       </div>
     </div>
-
+   
     <div class="page" id="loading">
       <div id="loading-bg">
         <h1>初期化中</h1>
         <div id="loading-bar"></div>
       </div>
     </div>
+
   </main>
+
+  <div class="page backdrop " id="msg">
+    <div id="msg-modal" class="modal">
+      <div id="msg-modal-header">
+        <h1 id="msg-modal-title" data-lkey="confirmation">確認</h1>
+      </div>
+      <div id="msg-modal-inner">
+        <h3 id="msg-modal-info">設定を既定値に戻してもいいですか？</h3>
+        <p id="msg-modal-action">保存された設定は全てディフォルト値に戻りますので注意してください。</p>
+      </div>
+      <div id="msg-modal-buttons">
+        <button id="msg-modal-button-positive" data-lkey="">はい</button>
+        <button id="msg-modal-button-negative" data-lkey="">キャンセル</button>
+      </div>
+    </div>
+  </div>
+
   </body>
 </html>

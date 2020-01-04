@@ -148,3 +148,6 @@ reset:
 done:
   en: Done
   jp: 完了
+confirmation:
+  en: Confirmation
+  jp: 確認
