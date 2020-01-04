@@ -9,6 +9,7 @@ class Pair {
     constructor(key, data) {
         this._key = key
         this._data = data
+        this._localizationTargets = undefined
     }
 
     get key() {
@@ -60,9 +61,9 @@ class Localization {
         if (this._locales.includes(locale)) {
             this._currentLocale = locale
             
-            let localizationTargets = document.querySelectorAll('[data-lkey]')
-            
-            localizationTargets.forEach((element) => {
+            if (!this._localizationTargets) this._localizationTargets = document.querySelectorAll('[data-lkey]')
+             
+            this._localizationTargets.forEach((element) => {
                 let key = element.dataset.lkey
                 let justify = element.dataset.justify
                 let type = element.nodeName

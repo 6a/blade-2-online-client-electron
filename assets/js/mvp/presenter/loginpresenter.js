@@ -57,8 +57,8 @@ class LoginPresenter extends BasePresenter {
         this._view.applySettings(settings)
     }
 
-    onLoginFinished(error) {
-        this._view.loginFinished(error)
+    onLoginFinished(msg) {
+        this._view.loginFinished(msg)
     }
 
     onToggleBackgroundVideo(disabled) {

@@ -133,11 +133,8 @@ class LoginModel extends BaseModel {
     }
 
     onAuthResponse(response) {
-        if (response.code === 0) {
-            this.onLoginFinished.broadcast()
-        } else {
-            this.onLoginFinished.broadcast(response.payload)
-        }
+        let msg = typeof(response.payload) === 'string' ? response.payload : ''
+        this.onLoginFinished.broadcast(msg)
     }
 
     onSettingChanged(setting) {
