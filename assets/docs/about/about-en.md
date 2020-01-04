@@ -2,7 +2,7 @@
 
 Blade II Online is a game that I developed as my "Individual Project" (roughly equivalent to a disseration) during my final year at [Kingston University London](https://www.kingston.ac.uk/).
 
-Blade (also known as Blade II or Gate of Avalon, depending on the game) is a one versus one card game that appears as a minigame in various [Nihon Falcom](https://en.wikipedia.org/wiki/Nihon_Falcom) games such as [The Legend of Heroes - Trails of Cold Steel II](http://www.trailsofcoldsteel.com/cs2/) and [Tokyo Xanadu](https://en.wikipedia.org/wiki/Tokyo_Xanadu).
+Blade (also known as Blade II or Gate of Avalon, depending on the game) is a one versus one card game that appears as a minigame in various [Nihon Falcom](https://en.wikipedia.org/wiki/Nihon_Falcom) titles such as [The Legend of Heroes - Trails of Cold Steel II](http://www.trailsofcoldsteel.com/cs2/) and [Tokyo Xanadu](https://en.wikipedia.org/wiki/Tokyo_Xanadu).
 
 I really enjoyed playing Blade, in its various forms, during my playthroughs of these games. So much so that I decided to recreate it for my final project.
 

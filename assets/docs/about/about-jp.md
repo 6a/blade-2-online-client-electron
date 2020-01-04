@@ -2,7 +2,7 @@
 
 Blade II Online（ブレード・ツー・オンライン）は、[ロンドン・キングストン大学](https://www.kingston.ac.uk/) での最後の学年中開発した "Individual Project"（訳して個人プロジェクト、学位論文に近い）となったゲームです。
 
-ブレード（ゲームによってブレードII、ゲート・オブ・アヴァロン）は[英雄伝説 閃の軌跡II](https://www.falcom.co.jp/sen2/kai/) や[東京ザナドゥ](https://www.falcom.co.jp/txana_explus/)等の[日本ファルコム](https://www.falcom.co.jp/)のゲームでミニゲームとして含まれる一対一のカードゲームです。
+ブレード（ゲームによってブレードIIかゲート・オブ・アヴァロン）は[英雄伝説 閃の軌跡II](https://www.falcom.co.jp/sen2/kai/) や[東京ザナドゥ](https://www.falcom.co.jp/txana_explus/)等の[日本ファルコム](https://www.falcom.co.jp/)の作品でミニゲームとして含まれる一対一のカードゲームです。
 
 例のゲームをプレイ中様々な形のブレードを遊ぶのがとても気に入り、大学の最終プロジェクトとしてリメイクしようと決断しました。
 
