@@ -151,3 +151,9 @@ done:
 confirmation:
   en: Confirmation
   jp: 確認
+msgResetQuestion:
+  en: Are you sure you want to restore default settings?
+  jp: 設定を既定値に戻してもいいですか？
+msgResetInfo:
+  en: All saved values will be reverted to their default values.
+  jp: 保存された設定は全てディフォルト値に戻りますので注意してください。
