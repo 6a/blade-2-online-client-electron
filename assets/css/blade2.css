@@ -126,18 +126,6 @@ main {
     margin-bottom: 10px !important;
 }
 
-.exit-button {
-    position: absolute;
-    z-index: 1;
-    font-family: 'Segoe MDL2 Assets';
-    font-size: 25px;
-    font-weight: 800;
-
-    color: var(--negative);
-
-    cursor: pointer;
-}
-
 .text-positive {
     color: var(--positive) !important;
 }
