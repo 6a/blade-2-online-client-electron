@@ -73,7 +73,9 @@ class Localization {
                         element.innerHTML = this.get(key)
                     } else if (['INPUT'].includes(type)) {
                         element.placeholder = this.get(key)
-                    } else if (justify == "true") {
+                    } 
+                    
+                    if (justify === "true") {
                         if (this.justifyText()) {
                             element.classList.add('justify-text')
                         } else {

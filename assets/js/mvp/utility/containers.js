@@ -46,20 +46,38 @@ class Options {
         this._sound = sound
     }
 
-    get general() {
-        return this._general
+    get general() { return this._general }
+    get screen() { return this._screen }
+    get sound() { return this._sound }
+}
+
+class MessageConfig {
+    constructor({titleLKey = 'confirmation', questionLKey = '', infoLKey = '', positiveButtonTextLKey = 'yes',
+    positiveButtonCallback = undefined, negativeButtonTextLKey = 'cancel', negativeButtonCallback = undefined}) {
+        if (positiveButtonCallback === undefined) {
+            console.error('PositiveCallBack is undefined')
+        }
+
+        this._titleLKey = titleLKey
+        this._questionLKey = questionLKey
+        this._infoLKey = infoLKey
+        this._positiveButtonTextLKey = positiveButtonTextLKey
+        this._positiveButtonCallback = positiveButtonCallback
+        this._negativeButtonTextLKey = negativeButtonTextLKey
+        this._negativeButtonCallback = negativeButtonCallback
     }
 
-    get screen() {
-        return this._screen
-    }
-
-    get sound() {
-        return this._sound
-    }
+    get titleLKey() { return this._titleLKey }
+    get questionLKey() { return this._questionLKey }
+    get infoLKey() { return this._infoLKey }
+    get positiveButtonTextLKey() { return this._positiveButtonTextLKey }
+    get positiveButtonCallback() { return this._positiveButtonCallback }
+    get negativeButtonTextLKey() { return this._negativeButtonTextLKey }
+    get negativeButtonCallback() { return this._negativeButtonCallback }
 }
 
 module.exports = {
     PasswordWarningState,
-    Options
+    Options,
+    MessageConfig
 }

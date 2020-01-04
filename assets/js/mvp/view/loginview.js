@@ -1,6 +1,5 @@
 const BaseView = require('./baseview.js')
 const LoginPresenter = require('../presenter/loginpresenter.js')
-const Localization = require('../utility').Localization
 
 class LoginView extends BaseView {
     constructor (viewsList) {
@@ -105,8 +104,7 @@ class LoginView extends BaseView {
         if (usernameLKey !== '') {
             this._usernameField.classList.add('warning-outline')
             this._usernameSpeechBubble.classList.remove('hidden')
-            this._usernameSpeechBubble.innerHTML = Localization.get(usernameLKey)
-            this._usernameSpeechBubble.dataset.lkey = usernameLKey
+            this.setLocalizedInnerHTML(this._usernameSpeechBubble, usernameLKey)
         } else {
             this._usernameField.classList.remove('warning-outline')
             this._usernameSpeechBubble.classList.add('hidden')
@@ -115,8 +113,7 @@ class LoginView extends BaseView {
         if (passwordLKey !== '') {
             this._passwordField.classList.add('warning-outline')
             this._passwordSpeechBubble.classList.remove('hidden')
-            this._passwordSpeechBubble.innerHTML = Localization.get(passwordLKey)
-            this._passwordSpeechBubble.dataset.lkey = passwordLKey
+            this.setLocalizedInnerHTML(this._passwordSpeechBubble, passwordLKey)
         } else {
             this._passwordField.classList.remove('warning-outline')
             this._passwordSpeechBubble.classList.add('hidden')
@@ -179,8 +176,7 @@ class LoginView extends BaseView {
         if (warningLkey !== '') {
             this.unlockForm()
             this.toggleHidden(this._loginErrorText, false)
-            this._loginErrorText.innerHTML = Localization.get(warningLkey)
-            this._loginErrorText.dataset.lkey = warningLkey
+            this.setLocalizedInnerHTML(this._loginErrorText, warningLkey)
         } else {
             this.setActive(false)
         }

@@ -1,8 +1,7 @@
 const BaseModel = require('./basemodel.js')
 const B2Event = require('../utility').B2Event
 const Validation = require('../utility').Validation
-const Localization = require('../utility').Localization
-const PasswordWarningState = require('../utility').Containers.PasswordWarningState
+const PasswordWarningState = require('../utility').containers.PasswordWarningState
 
 class CreateAccountModel extends BaseModel {
     constructor () {

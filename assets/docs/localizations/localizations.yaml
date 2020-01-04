@@ -157,3 +157,9 @@ msgResetQuestion:
 msgResetInfo:
   en: All saved values will be reverted to their default values.
   jp: 保存された設定は全てディフォルト値に戻りますので注意してください。
+yes:
+  en: 'Yes'
+  jp: はい
+cancel:
+  en: Cancel
+  jp: キャンセル

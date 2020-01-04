@@ -1,6 +1,5 @@
 const BaseView = require('./baseview.js')
 const OptionsPresenter = require('../presenter/optionspresenter.js')
-const Localization = require('../utility').Localization
 const MarkdownIt = require('markdown-it')
 
 const CapitalizeFirstCharRegex = /^\w/
@@ -21,6 +20,8 @@ class OptionsView extends BaseView {
         this.requestLicenses()
         this.requestTermsOfUse()
         this.requestAbout()
+
+        this.toggleTabbables(false)
     }
 
     destroy() {
@@ -59,16 +60,15 @@ class OptionsView extends BaseView {
         this._doneButton.addEventListener('click', this.onDoneButtonClicked.bind(this), false)
         this._resetAnchor.addEventListener('click', this.onResetAnchorClicked.bind(this), false)
 
+        Object.values(this._nav).forEach((element) => {
+            element.addEventListener('click', this.onNavButtonClicked.bind(this), false)
+        })   
+
         Object.values(this._general).forEach((element) => {
             element.addEventListener('input', this.onSettingChanged.bind(this), false)
         })     
-
-
-        Object.values(this._nav).forEach((element) => {
-            element.addEventListener('click', this.onNavButtonClicked.bind(this), false)
-        })        
         
-        document.addEventListener('keydown', this.onKeyDown.bind(this), false)
+        document.addEventListener('keydown', this.onEscDown.bind(this), false)
     }
 
     removeEventListeners() {
@@ -77,9 +77,13 @@ class OptionsView extends BaseView {
 
         Object.values(this._nav).forEach((element) => {
             element.removeEventListener('click', this.onNavButtonClicked.bind(this), false)
-        })
+        })   
 
-        document.removeEventListener('keydown', this.onKeyDown.bind(this), false)
+        Object.values(this._general).forEach((element) => {
+            element.removeEventListener('input', this.onSettingChanged.bind(this), false)
+        })        
+
+        document.removeEventListener('keydown', this.onEscDown.bind(this), false)
     }
 
     addTabbables() {
@@ -158,55 +162,36 @@ class OptionsView extends BaseView {
     }
 
     updateTermsOfUse() {
-        this._containers.termsOfUse.innerHTML = Localization.get('termsOfUse')
-        this._containers.termsOfUse.dataset.lkey = 'termsOfUse'
-
-        if (Localization.justifyText()) {
-            this._containers.termsOfUse.classList.add('justify-text')
-        } else {
-            this._containers.termsOfUse.classList.remove('justify-text')
-        }
+        this.setLocalizedInnerHTML(this._containers.termsOfUse, 'termsOfUse')
     }
 
     updateAbout() {
-        this._containers.about.innerHTML = Localization.get('about')
-        this._containers.about.dataset.lkey = 'about'
-        
-        if (Localization.justifyText()) {
-            this._containers.about.classList.add('justify-text')
-        } else {
-            this._containers.about.classList.remove('justify-text')
-        }
+        this.setLocalizedInnerHTML(this._containers.about, 'about')
+    }
+
+    resetMessageCallback() {
+        this._presenter.requestSettingsReset()
     }
 
     onResetAnchorClicked(event) {
         event.preventDefault()
-        // Load defaults
 
+        this._presenter.showResetMessage(this.resetMessageCallback.bind(this))
     }
 
     onDoneButtonClicked() {
         this._presenter.closeForm()
     }
 
-    onKeyDown(event) {
-        if (!this._wrapper.classList.contains('hidden')) {
-            if (event.keyCode == 27) {
-                this._presenter.closeForm()
-            }
-        } 
-    }
-
     onNavButtonClicked(event) {
         let element = event.srcElement
         let target = element.dataset.navtarget
-        let localizationTarget = `title${target.replace(CapitalizeFirstCharRegex, (c) => c.toUpperCase())}`
+        let lKey = `title${target.replace(CapitalizeFirstCharRegex, (c) => c.toUpperCase())}`
 
         this.setContentPanel(target)
         this.setCurrentNavButton(target)
 
-        this._title.innerHTML = Localization.get(localizationTarget)
-        this._title.dataset.lkey = localizationTarget
+        this.setLocalizedInnerHTML(this._title, lKey)
     }
 
     onSettingChanged(event) {

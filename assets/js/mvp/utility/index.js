@@ -4,5 +4,5 @@ module.exports = {
     EventRef: require('./event.js').EventRef,
     Localization: require('./localization.js'),
     Validation: require('./validation.js'),
-    Containers: require('./containers.js')
+    containers: require('./containers.js')
 }

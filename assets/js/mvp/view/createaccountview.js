@@ -1,7 +1,6 @@
 const BaseView = require('./baseview.js')
 const CreateAccountPresenter = require('../presenter/createaccountpresenter.js')
-const PasswordWarningState = require('../utility').Containers.PasswordWarningState
-const Localization = require('../utility').Localization
+const PasswordWarningState = require('../utility').containers.PasswordWarningState
 
 class CreateAccountView extends BaseView {
     constructor (viewsList) {
@@ -70,7 +69,7 @@ class CreateAccountView extends BaseView {
         this._successButton.addEventListener('click', this.onSuccessButtonClicked.bind(this), false)
         this._serverErrorButton.addEventListener('click', this.onServerErrorButtonClicked.bind(this), false)
         
-        document.addEventListener('keydown', this.onKeyDown.bind(this), false)
+        document.addEventListener('keydown', this.onEscDown.bind(this), false)
     }
 
     removeEventListeners() {
@@ -86,7 +85,7 @@ class CreateAccountView extends BaseView {
         this._successButton.removeEventListener('click', this.onSuccessButtonClicked.bind(this), false)
         this._serverErrorButton.removeEventListener('click', this.onServerErrorButtonClicked.bind(this), false)
 
-        document.removeEventListener('keydown', this.onKeyDown.bind(this), false)
+        document.removeEventListener('keydown', this.onEscDown.bind(this), false)
     }
 
     addTabbables() {
@@ -223,14 +222,6 @@ class CreateAccountView extends BaseView {
         this.unlockForm()
     }
 
-    onKeyDown(event) {
-        if (!this._wrapper.classList.contains('hidden')) {
-            if (event.keyCode == 27) {
-                this._presenter.closeForm()
-            }
-        } 
-    }
-
     setPasswordInfoStyle(element, className) {
         const classes = ['ca-li-inactive', 'ca-li-pass', 'ca-li-fail']
         classes.forEach((c) => {
@@ -272,14 +263,12 @@ class CreateAccountView extends BaseView {
 
         this.toggleHidden(this._usernameWarning, usernameWarning === '')     
         if (usernameWarning !== '') {
-            this._usernameWarning.innerHTML = Localization.get(usernameWarning)
-            this._usernameWarning.dataset.lkey = usernameWarning
+            this.setLocalizedInnerHTML(this._usernameWarning, usernameWarning)
         }
 
         this.toggleHidden(this._emailWarning, emailWarning === '')
         if (emailWarning !== '') {
-            this._emailWarning.innerHTML = Localization.get(emailWarning)
-            this._emailWarning.dataset.lkey = emailWarning
+            this.setLocalizedInnerHTML(this._emailWarning, emailWarning)
         }
 
         this.updatePasswordwarning(passwordWarning)
@@ -329,8 +318,7 @@ class CreateAccountView extends BaseView {
         this.toggleHidden(this._loaderWrapper, true)
         this.toggleHidden(this._serverErrorWrapper, false)
 
-        this._serverErrorText.innerHTML = Localization.get(lKey)
-        this._serverErrorText.dataset.lkey = lKey
+        this.setLocalizedInnerHTML(this._serverErrorText, lKey)
     }
 
     displayCreationErrors(target, lKey) {
@@ -340,14 +328,12 @@ class CreateAccountView extends BaseView {
 
         if (target === 'username') {
             this.toggleHidden(this._usernameWarning, false)
-            this._usernameWarning.innerHTML = Localization.get(lKey)
-            this._usernameWarning.dataset.lkey = lKey
+            this.setLocalizedInnerHTML(this._usernameWarning, lKey)
             this._usernameField.classList.add('border-bottom-negative')
             this._usernameField.classList.remove('border-bottom-positive')
         } else if (target === 'email') {
             this.toggleHidden(this._emailWarning, false)
-            this._emailWarning.innerHTML = Localization.get(lKey)
-            this._emailWarning.dataset.lkey = lKey
+            this.setLocalizedInnerHTML(this._emailWarning, lKey)
             this._emailField.classList.add('warning-outline')
         }
     }

@@ -1,4 +1,4 @@
-
+const { Localization, Models } = require('../utility')
 
 class BaseView {
     constructor(name, presenterType, viewsList, showHideClass) {
@@ -64,6 +64,27 @@ class BaseView {
             element.classList.add('hidden')
         } else {
             element.classList.remove('hidden')
+        }
+    }
+
+    setLocalizedInnerHTML(element, lkey) {
+        element.innerHTML = Localization.get(lkey)
+        element.dataset.lkey = lkey
+
+        if (element.dataset.justify === 'true') {
+            if (Localization.justifyText()) {
+                element.classList.add('justify-text')
+            } else {
+                element.classList.remove('justify-text')
+            }
+        }
+    }
+
+    onEscDown(event) {
+        if (new Models().peekCurrentName() === this.name) {
+            if (event.keyCode === 27) {
+                this._presenter.closeForm()
+            }
         }
     }
 }

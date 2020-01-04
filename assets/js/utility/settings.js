@@ -82,6 +82,16 @@ function save(data) {
     fs.writeFile(SETTINGS_FILE, yamlStr, DEFAULT_ENCODING, () => {});
 }
 
+function setInternal(key, value, writeToFile = true) {
+    if (key === 'locale') {
+        if (!Localization) Localization = require('../mvp/utility').Localization
+        Localization.setLocale(value)
+    }
+
+    DATA.settings[key] = value
+    if (writeToFile) save(DATA.settings)
+}
+
 class Settings {
     constructor() {
         this.KEY_USERNAME = KEYS.USERNAME
@@ -96,19 +106,21 @@ class Settings {
         return DATA.settings[key]
     }
 
-    set(key, value) {
-        if (key === 'locale') {
-            if (!Localization) Localization = require('../mvp/utility').Localization
-            Localization.setLocale(value)
-        }
+    getAll() {
+        return DATA.settings
+    }
 
-        DATA.settings[key] = value
-        save(DATA.settings)
+    set(key, value) {
+        setInternal(key, value, true)
     }
 
     reset() {
-        createDefault()
-        DATA.settings = Object.fromEntries(DEFAULT_SETTINGS)
+        let defaults = Object.fromEntries(DEFAULT_SETTINGS)
+        Object.keys(defaults).forEach((key) => {
+            setInternal(key, defaults[key], false)
+        })
+
+        save(DATA.settings)
     }
 }
 

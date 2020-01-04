@@ -1,5 +1,5 @@
 const BaseModel = require('./basemodel.js')
-const { B2Event, Localization, Containers } = require('../utility')
+const { B2Event, Localization, containers } = require('../utility')
 const Settings = require('../../utility/settings')
 const fs = require('fs')
 const MarkdownIt = require('markdown-it')
@@ -14,7 +14,6 @@ class OptionsModel extends BaseModel {
     constructor () {
         super('options')
         this.init()
-        this._active = false
     }
 
     init() {
@@ -29,6 +28,8 @@ class OptionsModel extends BaseModel {
         // this.addEventListener(this.models.get('net').onCreateAccountResponse.register(this.processCreateAccountResponse.bind(this)))
         
         document.getElementById("opts-button").addEventListener("click", this.onOptionsClicked.bind(this), false);
+
+        this._active = false
     }
 
     destroy() {
@@ -55,7 +56,7 @@ class OptionsModel extends BaseModel {
 
         }
 
-        var opts = new Containers.Options(general, screen, sound)
+        var opts = new containers.Options(general, screen, sound)
         this.onSettingsReady.broadcast(opts)
     }
 
@@ -147,6 +148,33 @@ class OptionsModel extends BaseModel {
         this.onSettingChanged.broadcast({
             setting: setting,
             newValue: newValue
+        })
+    }
+
+    showResetMessage(positiveCallback) {
+        let opts = new containers.MessageConfig({
+            titleLKey: 'confirmation',
+            questionLKey: 'msgResetQuestion',
+            infoLKey: 'msgResetInfo',
+            positiveButtonTextLKey: 'yes',
+            positiveButtonCallback: positiveCallback,
+            negativeButtonTextLKey: 'cancel',
+
+        })
+
+        this.models.get('message').open(opts)
+    }
+
+    resetSettings() {
+        Settings.reset()
+        this.loadSettings()
+
+        let allSettings = Settings.getAll()
+        Object.keys(allSettings).forEach((key) => {
+            this.onSettingChanged.broadcast({
+                setting: key,
+                newValue: allSettings[key]
+            })
         })
     }
 

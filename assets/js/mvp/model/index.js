@@ -3,5 +3,6 @@ module.exports = {
     NetModel: require('./netmodel.js'),
     LoadingModel: require('./loadingmodel.js'),
     CreateAccountModel: require('./createaccountmodel.js'),
-    OptionsModel: require('./optionsmodel.js')
+    OptionsModel: require('./optionsmodel.js'),
+    MessageModel: require('./messagemodel.js')
 }

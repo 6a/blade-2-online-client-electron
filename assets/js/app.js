@@ -9,6 +9,7 @@
         models.add(new mvp.model.NetModel())
         models.add(new mvp.model.LoginModel())
         models.add(new mvp.model.CreateAccountModel())
+        models.add(new mvp.model.MessageModel())
     }
 
     function createViewsAndPresenters() {
@@ -16,6 +17,7 @@
         views.push(new mvp.view.LoginView(views))
         views.push(new mvp.view.CreateAccountView(views))
         views.push(new mvp.view.OptionsView(views))
+        views.push(new mvp.view.MessageView(views))
     }
 
     function start() {

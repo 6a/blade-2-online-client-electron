@@ -39,8 +39,16 @@ class OptionsPresenter extends BasePresenter {
         this.model.loadAbout()
     }
 
+    requestSettingsReset() {
+        this.model.resetSettings()  
+    }
+
     settingChanged(setting, newValue) {
         this.model.settingChanged(setting, newValue)
+    }
+
+    showResetMessage(positiveCallback) {
+        this.model.showResetMessage(positiveCallback)
     }
 
     onSettingsReady(settings) {
