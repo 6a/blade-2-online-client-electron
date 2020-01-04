@@ -1,11 +1,13 @@
 const fs = require('fs');
 const yaml = require('js-yaml')
-var Localization = require('../mvp/utility').Localization
+let Localization = require('../mvp/utility').Localization
 
 const DEFAULT_SETTINGS = new Map([
     ['username', ''],
     ['locale', 'jp'],
     ['masterVolume', 0.8],
+    ['backroundMusicVolume', 0.8],
+    ['soundEffectsVolume', 0.8],
     ['disableBackgroundVideos', false]
 ])
 
@@ -13,6 +15,8 @@ const KEYS = {
     USERNAME: 'username',
     LOCALE: 'locale',
     MASTER_VOLUME: 'masterVolume',
+    BGM_VOLUME: 'backroundMusicVolume',
+    SFX_VOLUME: 'soundEffectsVolume',
     DISABLE_BACKGROUND_VIDEOS: 'disableBackgroundVideos'
 }
 
@@ -94,11 +98,7 @@ function setInternal(key, value, writeToFile = true) {
 
 class Settings {
     constructor() {
-        this.KEY_USERNAME = KEYS.USERNAME
-        this.KEY_LOCALE = KEYS.LOCALE
-        this.KEY_MASTER_VOLUME = KEYS.MASTER_VOLUME
-        this.KEY_DISABLE_BACKGROUND_VIDEOS = KEYS.DISABLE_BACKGROUND_VIDEOS
-        
+        this.KEYS = KEYS
         loadSettingsOrMakeDefault()
     }
 

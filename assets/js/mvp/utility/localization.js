@@ -29,7 +29,7 @@ class Localization {
 
     init () {
         this.load()
-        this.setLocale(Settings.get(Settings.KEY_LOCALE))
+        this.setLocale(Settings.get(Settings.KEYS.LOCALE))
     }
 
     load() {

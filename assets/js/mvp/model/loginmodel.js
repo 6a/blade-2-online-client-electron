@@ -67,9 +67,9 @@ class LoginModel extends BaseModel {
         this._rememberMe = (username !== undefined && username !== '')
 
         if (this._rememberMe) {
-            Settings.set(Settings.KEY_USERNAME, username)
+            Settings.set(Settings.KEYS.USERNAME, username)
         } else {
-            Settings.set(Settings.KEY_USERNAME, '')
+            Settings.set(Settings.KEYS.USERNAME, '')
         }
 
         this._storedUsername = username
@@ -95,14 +95,14 @@ class LoginModel extends BaseModel {
     setRememberMe(remember) {
         this._rememberMe = remember
         if (remember) {
-            Settings.set(Settings.KEY_USERNAME, this._storedUsername)
+            Settings.set(Settings.KEYS.USERNAME, this._storedUsername)
         } else {
-            Settings.set(Settings.KEY_USERNAME, '')
+            Settings.set(Settings.KEYS.USERNAME, '')
         }
     }
 
     requestLoginSettings() {
-        this._storedUsername = Settings.get(Settings.KEY_USERNAME)
+        this._storedUsername = Settings.get(Settings.KEYS.USERNAME)
         if (this._storedUsername !== undefined && this._storedUsername !== "") {
             this._rememberMe = true
         } else {
@@ -117,7 +117,7 @@ class LoginModel extends BaseModel {
     }
 
     onLoadingComplete() {
-        this.onReady.broadcast(!Settings.get(Settings.KEY_DISABLE_BACKGROUND_VIDEOS))
+        this.onReady.broadcast(!Settings.get(Settings.KEYS.DISABLE_BACKGROUND_VIDEOS))
     }
 
     onCreateAccountResponse(response) {

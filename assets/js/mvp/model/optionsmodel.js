@@ -43,9 +43,9 @@ class OptionsModel extends BaseModel {
 
     loadSettings() {
         let general = {
-            locale: Settings.get(Settings.KEY_LOCALE),
-            masterVolume: Settings.get(Settings.KEY_MASTER_VOLUME),
-            disableBackgroundVideos: Settings.get(Settings.KEY_DISABLE_BACKGROUND_VIDEOS),
+            locale: Settings.get(Settings.KEYS.LOCALE),
+            masterVolume: Settings.get(Settings.KEYS.MASTER_VOLUME),
+            disableBackgroundVideos: Settings.get(Settings.KEYS.DISABLE_BACKGROUND_VIDEOS),
         }
 
         let screen = {
@@ -53,10 +53,12 @@ class OptionsModel extends BaseModel {
         }
 
         let sound = {
-
+            masterVolume: Settings.get(Settings.KEYS.MASTER_VOLUME),
+            backgroundMusicVolume: Settings.get(Settings.KEYS.BGM_VOLUME),
+            soundEffectsVolume: Settings.get(Settings.KEYS.SFX_VOLUME),
         }
 
-        var opts = new containers.Options(general, screen, sound)
+        let opts = new containers.Options(general, screen, sound)
         this.onSettingsReady.broadcast(opts)
     }
 
