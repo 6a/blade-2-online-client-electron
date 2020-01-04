@@ -1,5 +1,5 @@
 module.exports = {
-    Models: require('./modelgetter.js'),
+    Models: require('./models.js'),
     B2Event: require('./event.js').B2Event,
     EventRef: require('./event.js').EventRef,
     Localization: require('./localization.js'),

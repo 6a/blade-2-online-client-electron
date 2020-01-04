@@ -2,6 +2,10 @@
     const remote = require('electron').remote
     const { shell } = require('electron')
 
+    const { Models, containers } = require('../mvp/utility')
+
+
+
     function addEventListeners() {
         let win = remote.getCurrentWindow()
         document.getElementById("min-button").addEventListener("click", function (e) {
@@ -9,9 +13,29 @@
         });
     
         // Options button is hooked up from within the app
-   
-        document.getElementById("close-button").addEventListener("click", function (e) {
+
+        // Callback from quit modal
+        function onQuitConfirmed() {
             win.close();
+        }
+   
+        // The close button is hooked up so that it calls the message model open function to
+        // Open a dialogue box instead of immediately closing the app
+        // This feels pretty hacky so please dont look at this function, actually.
+        document.getElementById("close-button").addEventListener("click", function (e) {
+            var models = new Models()
+            
+            let opts = new containers.MessageConfig({
+                titleLKey: 'confirmation',
+                questionLKey: 'msgQuitQuestion',
+                infoLKey: 'msgQuitInfo',
+                positiveButtonTextLKey: 'quit',
+                positiveButtonCallback: onQuitConfirmed,
+                negativeButtonTextLKey: 'cancel',
+    
+            })
+
+            models.get('message').open(opts)
         }); 
 
         // Allow url hyperlinks to be opened in the users default browser

@@ -152,14 +152,23 @@ confirmation:
   en: Confirmation
   jp: 確認
 msgResetQuestion:
-  en: Are you sure you want to restore default settings?
+  en: Perform factory reset?
   jp: 設定を既定値に戻してもいいですか？
 msgResetInfo:
-  en: All saved values will be reverted to their default values.
-  jp: 保存された設定は全てディフォルト値に戻りますので注意してください。
+  en: All settings values will be reverted to their default values.
+  jp: 設定値は全てディフォルト値に戻りますので注意してください。
 yes:
   en: 'Yes'
   jp: はい
 cancel:
   en: Cancel
   jp: キャンセル
+quit:
+  en: Quit
+  jp: 終了
+msgQuitQuestion: 
+  en: Are you sure you want to quit?
+  jp: アプリを終了してもいいですか？
+msgQuitInfo: 
+  en: If you are currently in a matchmaking queue, you will be removed and lose your place in the queue.
+  jp: マッチメイキングキュー中であれば、キューから外され、順番をなくします。
