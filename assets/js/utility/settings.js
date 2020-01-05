@@ -1,5 +1,6 @@
 const fs = require('fs');
 const yaml = require('js-yaml')
+const Timer = require('../utility/timer')
 let Localization = require('../mvp/utility').Localization
 
 const DEFAULT_SETTINGS = new Map([
@@ -8,7 +9,13 @@ const DEFAULT_SETTINGS = new Map([
     ['masterVolume', 0.8],
     ['backgroundMusicVolume', 0.8],
     ['soundEffectsVolume', 0.8],
-    ['disableBackgroundVideos', false]
+    ['disableBackgroundVideos', false],
+    ['resolution', '1920x1080'],
+    ['screenMode', 'borderlessFullscreen'],
+    ['disableVSync', false],
+    ['antiAliasing', 3],
+    ['shadowQuality', 3],
+    ['postProcessing', 3],
 ])
 
 const KEYS = {
@@ -17,7 +24,13 @@ const KEYS = {
     MASTER_VOLUME: 'masterVolume',
     BGM_VOLUME: 'backroundMusicVolume',
     SFX_VOLUME: 'soundEffectsVolume',
-    DISABLE_BACKGROUND_VIDEOS: 'disableBackgroundVideos'
+    DISABLE_BACKGROUND_VIDEOS: 'disableBackgroundVideos',
+    RESOLUTION: 'resolution',
+    SCREEN_MODE: 'screenMode',
+    DISABLE_VSYNC: 'disableVSync',
+    ANTI_ALIASING: 'antiAliasing',
+    SHADOW_QUALITY: 'shadowQuality',
+    POST_PROCESSING: 'postProcessing',
 }
 
 const SETTINGS_FILE = './user-settings.yaml'
@@ -25,6 +38,8 @@ const DEFAULT_ENCODING = 'utf8'
 const DATA = { settings: {}}
 
 function loadSettingsOrMakeDefault() {
+    let timer = new Timer()
+
     try {
         let fileContents = fs.readFileSync(SETTINGS_FILE, DEFAULT_ENCODING);
         let data = yaml.safeLoad(fileContents);
@@ -70,6 +85,8 @@ function loadSettingsOrMakeDefault() {
 
         console.error(`Could not load user settings\n${e}`)
     }
+
+    timer.printElapsed('Settings data')
 }
 
 function createDefault() {

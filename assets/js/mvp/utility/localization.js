@@ -1,6 +1,7 @@
 const fs = require('fs');
 const yaml = require('js-yaml')
 const Settings = require('../../utility/settings')
+const Timer = require('../../utility/timer')
 
 const LOCALIZATIONS = 'assets/docs/localizations/localizations.yaml'
 const DEFAULT_ENCODING = 'utf8'
@@ -33,6 +34,8 @@ class Localization {
     }
 
     load() {
+        let timer = new Timer()
+
         this._localizations = new Map()
         let inData = []
 
@@ -55,6 +58,8 @@ class Localization {
         inData.forEach(pair => {
             this._localizations.set(pair.key, pair.data)
         });
+
+        timer.printElapsed('Localization data')
     }
 
     setLocale(locale) {
@@ -69,7 +74,7 @@ class Localization {
                 let type = element.nodeName
 
                 if (key !== '') {
-                    if (['H1', 'H2', 'H3', 'H4', 'H5', 'LABEL', 'DIV', 'P', 'BUTTON', 'A', 'SECTION', 'LI'].includes(type)) {
+                    if (['H1', 'H2', 'H3', 'H4', 'H5', 'LABEL', 'DIV', 'P', 'BUTTON', 'A', 'SECTION', 'LI', 'OPTION'].includes(type)) {
                         element.innerHTML = this.get(key)
                     } else if (['INPUT'].includes(type)) {
                         element.placeholder = this.get(key)

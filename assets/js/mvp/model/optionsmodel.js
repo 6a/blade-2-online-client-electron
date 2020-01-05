@@ -3,6 +3,7 @@ const { B2Event, Localization, containers } = require('../utility')
 const Settings = require('../../utility/settings')
 const fs = require('fs')
 const MarkdownIt = require('markdown-it')
+const Timer = require('../../utility/timer')
 
 const LICENSE_PATH = 'assets/docs/third-party-licenses'
 const TERMSOFUSE_EN = 'assets/docs/terms-of-use/tou-en.md'
@@ -49,7 +50,12 @@ class OptionsModel extends BaseModel {
         }
 
         let screen = {
-
+            resolution: Settings.get(Settings.KEYS.RESOLUTION),
+            screenMode: Settings.get(Settings.KEYS.SCREEN_MODE),
+            disableVSync: Settings.get(Settings.KEYS.DISABLE_VSYNC),
+            antiAliasing: Settings.get(Settings.KEYS.ANTI_ALIASING),
+            shadowQuality: Settings.get(Settings.KEYS.SHADOW_QUALITY),
+            postProcessing: Settings.get(Settings.KEYS.POST_PROCESSING),
         }
 
         let sound = {
@@ -63,6 +69,8 @@ class OptionsModel extends BaseModel {
     }
 
     loadLicenses() {
+        let timer = new Timer()
+
         fs.readdir(LICENSE_PATH, (err, fileNames) => {
             let files = []
             let done = 0
@@ -88,6 +96,8 @@ class OptionsModel extends BaseModel {
                             })
 
                             this.onLicenseInfoReady.broadcast(files)
+
+                            timer.printElapsed('License files')
                         }
                     }
                 })
@@ -122,6 +132,8 @@ class OptionsModel extends BaseModel {
     }
 
     loadTermsOfUse() {
+        let timer = new Timer()
+
         this.loadLocalizedPair(TERMSOFUSE_EN, TERMSOFUSE_JP, 'termsOfUse', (pair) => {
             let md = new MarkdownIt()
             Object.keys(pair).forEach((key) => {
@@ -130,10 +142,13 @@ class OptionsModel extends BaseModel {
 
             Localization.add('termsOfUse', pair.jp, pair.en)
             this.onTermsOfUseReady.broadcast()
+            timer.printElapsed('Terms of Use files')
         })
     }
 
     loadAbout() {
+        let timer = new Timer()
+
         this.loadLocalizedPair(ABOUT_EN, ABOUT_JP, 'about', (pair) => {
             let md = new MarkdownIt({ linkify: true })
             Object.keys(pair).forEach((key) => {
@@ -142,6 +157,7 @@ class OptionsModel extends BaseModel {
 
             Localization.add('about', pair.jp, pair.en)
             this.onAboutReady.broadcast()
+            timer.printElapsed('About files')
         })
     }
 

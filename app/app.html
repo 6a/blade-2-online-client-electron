@@ -135,7 +135,7 @@
         </div>
         <div id="options-nav">
           <button id="options-nav-general" data-navtarget="general" class="nav-button-current" data-lkey="labelGeneral">一般設定</button>
-          <button id="options-nav-screen" data-navtarget="screen" data-lkey="labelScreen">画面設定</button>
+          <button id="options-nav-screen" data-navtarget="screen" data-lkey="labelScreen">ゲーム内・画面設定</button>
           <button id="options-nav-sound" data-navtarget="sound" data-lkey="labelSound">サウンド設定</button>
           <button id="options-nav-about" data-navtarget="about" data-lkey="labelAbout">本ゲームについて</button>
           <button id="options-nav-terms-of-use" data-navtarget="termsOfUse" data-lkey="labelTermsOfUse">利用規約</button>
@@ -161,6 +161,59 @@
           </div>
           <div id="options-screen" class="options-panel hidden">
 
+            <h2 data-lkey="displaySettings">ディスプレイ設定</h2>
+            <div class="options-item">
+              <label for="options-screen-resolution" data-lkey="resolution">解像度</label>
+              <select id="options-screen-resolution" data-setting="resolution">
+                <option value="1280x720">1280x720</option>
+                <option value="1600x900">1600x900</option>
+                <option value="1920x1080" selected>1920x1080</option>
+              </select>
+            </div>
+            <div class="options-item">
+              <label for="options-screen-screen-mode" data-lkey="screenMode">画面モード</label>
+              <select id="options-screen-screen-mode" data-setting="screenMode">
+                <option value="fullscreen" data-lkey="fullscreen">フルスクリーン</option>
+                <option value="borderlessFullscreen" data-lkey="borderlessFullscreen">仮想ウィンドウ</option>
+                <option value="windowed" data-lkey="windowed" selected>ウィンドウ</option>
+              </select>
+            </div>
+            <div class="options-item">
+              <label for="options-screen-disable-vsync" data-lkey="disableVSync">垂直同期を無効にする</label>
+              <input id="options-screen-disable-vsync" type="checkbox" data-setting="disableVSync">
+            </div>
+
+            <h2 data-lkey="renderingSettings">レンダリング設定</h2>
+            <div class="options-item">
+              <label for="options-screen-anti-aliasing" data-lkey="antiAliasing">アンチエイリアス</label>
+              <select id="options-screen-anti-aliasing" data-setting="antiAliasing">
+                <option value="0" data-lkey="disabled">無効</option>
+                <option value="1" data-lkey="lowQuality">低級</option>
+                <option value="2" data-lkey="normalQuality">中級</option>
+                <option value="3" data-lkey="highQuality">高級</option>
+                <option value="4" data-lkey="epicQuality" selected>超級</option>
+              </select>
+            </div>
+            <div class="options-item">
+              <label for="options-screen-shadow-quality" data-lkey="shadowQuality">シャドウ クオリティ</label>
+              <select id="options-screen-shadow-quality" data-setting="shadowQuality">
+                <option value="0" data-lkey="disabled">無効</option>
+                <option value="1" data-lkey="lowQuality">低級</option>
+                <option value="2" data-lkey="normalQuality">中級</option>
+                <option value="3" data-lkey="highQuality">高級</option>
+                <option value="4" data-lkey="epicQuality" selected>超級</option>
+              </select>
+            </div>
+            <div class="options-item">
+              <label for="options-screen-post-processing" data-lkey="postProcessing">ポスト プロセシング</label>
+              <select id="options-screen-post-processing" data-setting="postProcessing">
+                <option value="0" data-lkey="disabled">無効</option>
+                <option value="1" data-lkey="lowQuality">低級</option>
+                <option value="2" data-lkey="normalQuality">中級</option>
+                <option value="3" data-lkey="highQuality">高級</option>
+                <option value="4" data-lkey="epicQuality" selected>超級</option>
+              </select>
+            </div>
           </div>
           <div id="options-sound" class="options-panel hidden">
             <div class="options-item">

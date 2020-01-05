@@ -54,6 +54,14 @@ class OptionsView extends BaseView {
             masterVolume: document.getElementById('options-general-master-volume'),
             disableBackgroundVideos: document.getElementById('options-general-disable-dynamic-login-bg'),
         }
+        this._screen = {
+            resolution: document.getElementById('options-screen-resolution'),
+            screenMode: document.getElementById('options-screen-screen-mode'),
+            disableVSync: document.getElementById('options-screen-disable-vsync'),
+            antiAliasing: document.getElementById('options-screen-anti-aliasing'),
+            shadowQuality: document.getElementById('options-screen-shadow-quality'),
+            postProcessing: document.getElementById('options-screen-post-processing'),
+        }
         this._sound = {
             masterVolume: document.getElementById('options-sound-master-volume'),
             backgroundMusicVolume: document.getElementById('options-sound-background-music-volume'),
@@ -73,6 +81,10 @@ class OptionsView extends BaseView {
             element.addEventListener('input', this.onSettingChanged.bind(this), false)
         })
 
+        Object.values(this._screen).forEach((element) => {
+            element.addEventListener('input', this.onSettingChanged.bind(this), false)
+        })    
+
         Object.values(this._sound).forEach((element) => {
             element.addEventListener('input', this.onSettingChanged.bind(this), false)
         })    
@@ -90,7 +102,11 @@ class OptionsView extends BaseView {
 
         Object.values(this._general).forEach((element) => {
             element.removeEventListener('input', this.onSettingChanged.bind(this), false)
-        })        
+        })       
+        
+        Object.values(this._screen).forEach((element) => {
+            element.removeEventListener('input', this.onSettingChanged.bind(this), false)
+        })    
 
         Object.values(this._sound).forEach((element) => {
             element.removeEventListener('input', this.onSettingChanged.bind(this), false)
@@ -149,6 +165,12 @@ class OptionsView extends BaseView {
         this._general.disableBackgroundVideos.checked = settings.general.disableBackgroundVideos
 
         // Screen
+        this._screen.resolution.value = settings.screen.resolution
+        this._screen.screenMode.value = settings.screen.screenMode
+        this._screen.disableVSync.checked = settings.screen.disableVSync
+        this._screen.antiAliasing.value = settings.screen.antiAliasing
+        this._screen.shadowQuality.value = settings.screen.shadowQuality
+        this._screen.postProcessing.value = settings.screen.postProcessing
 
         // Sound
         this._sound.masterVolume.value = settings.sound.masterVolume

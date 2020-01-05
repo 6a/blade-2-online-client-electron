@@ -577,7 +577,7 @@ a:focus {
     grid-template-columns: auto 1fr;
     grid-template-rows: 50px auto 50px;
 
-    width: 600px;
+    width: 650px;
     height: 500px;
 }
 
@@ -639,7 +639,6 @@ a:focus {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
 }
 
 #options-buttons button {
@@ -695,10 +694,22 @@ a:focus {
 
 .options-item {
     width: 100%;
-    height: 60px;
+    height: 34px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 26px;
+    margin-bottom: 26px;
+
+    position: relative;
+}
+
+.options-item:first-child {
+    margin-top: 0;
+}
+
+.options-item:last-child {
+    margin-bottom: 0;
 }
 
 .options-item label {
@@ -708,9 +719,9 @@ a:focus {
 
 .options-item select {
     height: 34px;
-    font-size: 0.8em;
+    font-size: 0.7em;
     font-family: 'Noto Sans JP';
-    width: 180px;
+    min-width: 190px;
     border: 1px solid var(--gscale-50-100);
     box-shadow: none;
     -webkit-appearance: none;
@@ -725,7 +736,7 @@ a:focus {
 }
 
 .options-item input[type=range] {
-    width: 180px;
+    width: 190px;
     -webkit-appearance: none;  
     height: 34px; 
     background: #fff;
@@ -779,6 +790,11 @@ a:focus {
 
 .options-item input[type=checkbox]:hover {
     border: 1px solid var(--gscale-10-100);
+}
+
+.options-panel h2 {
+    text-align: center;
+    font-weight: 600;
 }
 
 .markdown-target {

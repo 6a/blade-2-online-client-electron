@@ -101,8 +101,8 @@ labelGeneral:
   en: General Settings
   jp: 一般設定
 labelScreen:
-  en: Screen Settings
-  jp: 画面設定
+  en: Graphic Settings
+  jp: グラフィック設定
 labelSound:
   en: Sound Settings
   jp: サウンド設定
@@ -119,8 +119,8 @@ titleGeneral:
   en: General Settings
   jp: 一般設定
 titleScreen:
-  en: Screen Settings
-  jp: 画面設定
+  en: In Game Graphics Settings
+  jp: ゲーム内グラフィック設定
 titleSound:
   en: Sound Settings
   jp: サウンド設定
@@ -178,3 +178,51 @@ msgQuitQuestion:
 msgQuitInfo: 
   en: If you are currently in a matchmaking queue, you will be removed and lose your place in the queue.
   jp: マッチメイキングキュー中であれば、キューから外され、順番をなくします。
+displaySettings:
+  en: Screen Settings
+  jp: 画面設定
+resolution:
+  en: Resolution
+  jp: 解像度
+screenMode:
+  en: Screen Mode
+  jp: 画面モード
+disableVSync:
+  en: Disable VSync
+  jp: 垂直同期を無効にする
+renderingSettings:
+  en: Rendering Settings
+  jp: レンダリング設定
+antiAliasing:
+  en: Anti Aliasing
+  jp: アンチエイリアス
+shadowQuality:
+  en: Shadow Quality
+  jp: シャドウ クオリティ
+postProcessing:
+  en: Post Processing
+  jp: ポスト プロセシング
+disabled:
+  en: Disabled 
+  jp: 無効
+lowQuality:
+  en: Low
+  jp: 低級
+normalQuality:
+  en: Normal
+  jp: 中級
+highQuality:
+  en: High
+  jp: 高級
+epicQuality:
+  en: Epic
+  jp: 超級
+fullscreen:
+  en: Fullscreen
+  jp: フルスクリーン
+borderlessFullscreen:
+  en: Borderless Fullscreen
+  jp: 仮想ウィンドウ
+windowed:
+  en: Windowed
+  jp: ウィンドウ
