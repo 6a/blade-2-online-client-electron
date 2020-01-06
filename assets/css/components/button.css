@@ -1,0 +1,31 @@
+button {
+    -webkit-appearance: none;
+    outline: none;
+    border: none;
+    padding: 14px 20px;
+    min-width: 100px;
+    background-color: var(--affirmative);
+    font-family: 'Noto Sans JP';
+
+    color: var(--gscale-90-100);
+    font-weight: 500;
+    font-size: 0.8em;
+
+    transition: all 0.1s ease-in-out;
+}
+
+button:hover {
+    background-color: var(--affirmative-darker);
+}
+
+button:active {
+    background-color: var(--affirmative-dark);
+}
+
+button:not(:disabled) {
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: var(--gscale-70-100);
+}

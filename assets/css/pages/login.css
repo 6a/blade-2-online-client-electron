@@ -1,0 +1,77 @@
+#login {
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.5s step-end !important;
+}
+
+#login-pane {
+    box-sizing: border-box;
+    width: 350px;
+    background: var(--gscale-90-100);
+    padding: 40px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    display: flex;
+    flex-direction: column;
+    transition: left 0.5s ease-in-out;
+}
+
+#login-pane h1 {
+    margin: 80px 0 25px 0;
+    font-weight: 600;
+    font-size: 1.5em;
+}
+
+#login-button {
+    margin: 0 auto 0 auto;
+    display: block;
+}
+
+#login-warning-text {
+    font-size: 0.7em;
+    color: var(--negative);
+    margin-top: 30px;
+    margin-bottom: 30px;
+    height: 32px;
+    line-height: 1.4em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#login-links {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    margin-top: auto;
+}
+
+#login-links a {
+    font-size: 0.6em;
+    padding-top: 4px;
+}
+
+#login-dynamic-wrapper {
+    position: relative;
+}
+
+#login-loader-wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    pointer-events: none;
+}
+
+.slide-out-login-pane {
+    left: -350px !important;
+}

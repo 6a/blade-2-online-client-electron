@@ -1,0 +1,17 @@
+a {
+    outline: none;
+    text-decoration: none;
+    color: var(--gscale-50-100);
+    font-weight: 600;
+
+    transition: all 0.1s ease-in-out;
+    cursor: pointer;
+}
+
+a:hover, a:focus:hover {
+    color: var(--affirmative);
+}
+
+a:focus {
+    color: var(--gscale-30-100);
+}
