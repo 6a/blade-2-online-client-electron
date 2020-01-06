@@ -1,7 +1,7 @@
 const fs = require('fs');
 const yaml = require('js-yaml')
 const Timer = require('../utility/timer')
-let Localization = require('../mvp/utility').Localization
+let Localization = require('../mvp/utility').Localization // This module is probably initialized after settings, so its required here but re-required later if falsey
 
 const DEFAULT_SETTINGS = new Map([
     ['username', ''],
