@@ -100,11 +100,6 @@ main {
     animation: spin 1.5s linear infinite;
 }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
 .backdrop {
     background-color: var(--backdrop);
     transition: all 0.5s ease-in-out;
@@ -184,4 +179,11 @@ a {
 
 .justify-text {
     text-align: justify !important;
+}
+
+/* KEYFRAMES */
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

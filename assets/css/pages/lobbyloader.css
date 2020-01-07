@@ -1,0 +1,27 @@
+#lobby-loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--gscale-10-100);
+}
+
+#lobby-loader-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--transparent);
+    color: var(--gscale-90-100);
+}
+
+#lobby-loader .spinner {
+    border-top: 6px solid var(--affirmative);
+    border-left: 6px solid var(--affirmative);
+    border-bottom: 6px solid var(--affirmative);
+}
+
+#lobby-loader-content-wrapper h1 {
+    margin-bottom: 20px;
+}

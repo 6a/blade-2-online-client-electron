@@ -226,3 +226,18 @@ borderlessFullscreen:
 windowed:
   en: Windowed
   jp: ウィンドウ
+connecting:
+  en: Connecting to Server
+  jp: サーバーと接続しています
+play:
+  en: Play
+  jp: プレイ
+home:
+  en: Home
+  jp: ホーム
+profile:
+  en: Profile
+  jp: プロフィール
+leaderboards:
+  en: Leaderboards
+  jp: ハイスコア

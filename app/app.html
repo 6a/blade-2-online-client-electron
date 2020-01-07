@@ -21,10 +21,13 @@
 
   <main id="app">
     <div class="page" id="lobby-loader">
-      
+      <div id="lobby-loader-content-wrapper" class="modal">
+        <h1 id="lobby-loader-message" data-lkey="connecting">サーバーと接続しています</h1>
+        <div id="lobby-loader-spinner" class="spinner"></div>
+      </div>
     </div>
 
-    <div class="page" id="login">
+    <div class="page hidden no-pointer-events" id="login">
       <div id="login-bg-video-wrapper" class="bg-video-wrapper">
         <video id="login-bg-video" class="bg-video" loop muted>
           <source src="../assets/videos/sen-2-op-muted.mp4" type="video/mp4">
@@ -125,6 +128,20 @@
           </div>
         </div>
         <a id="create-account-close" href="" data-lkey="backToLogin">サインインへ戻る</a>
+      </div>
+    </div>
+
+    <div class="page" id="lobby">
+      <div id="lobby-background">
+        <div id="lobby-contents" class="lobby-panel">
+  
+        </div>
+        <div id="lobby-header-nav">
+          <button id="lobby-home-button" class="lobby-header-nav-button-current" data-lkey="home">ホーム</button>
+          <button id="lobby-play-button" data-lkey="play">プレイ</button>
+          <button id="lobby-profile-button" data-lkey="profile">プロフィール</button>
+          <button id="lobby-leaderboards-button" data-lkey="leaderboards">ハイスコア</button>
+        </div>
       </div>
     </div>
 
@@ -242,14 +259,13 @@
         </div>
       </div>
     </div>
-   
+  
     <div class="page" id="loading">
       <div id="loading-bg">
         <h1>初期化中</h1>
         <div id="loading-bar"></div>
       </div>
     </div>
-
   </main>
 
   <div class="page backdrop hidden no-pointer-events" id="msg">
@@ -267,6 +283,8 @@
       </div>
     </div>
   </div>
+
+
 
   </body>
 </html>
