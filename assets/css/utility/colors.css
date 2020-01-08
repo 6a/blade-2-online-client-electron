@@ -2,6 +2,14 @@
     --lighten-20: hsla(0, 0%, 90%, 0.2);
 
     --darken-10: hsla(0, 0%, 10%, 0.1);
+    --darken-20: hsla(0, 0%, 10%, 0.2);
+    --darken-30: hsla(0, 0%, 10%, 0.3);
+    --darken-40: hsla(0, 0%, 10%, 0.4);
+    --darken-50: hsla(0, 0%, 10%, 0.5);
+    --darken-60: hsla(0, 0%, 10%, 0.6);
+    --darken-70: hsla(0, 0%, 10%, 0.7);
+    --darken-80: hsla(0, 0%, 10%, 0.8);
+    --darken-90: hsla(0, 0%, 10%, 0.9);
 
     --gscale-100-100: hsla(0, 0%, 100%, 1);
     --gscale-90-100: hsla(0, 0%, 90%, 1);

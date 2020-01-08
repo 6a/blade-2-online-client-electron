@@ -181,6 +181,15 @@ a {
     text-align: justify !important;
 }
 
+.cover-scanlines {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url(../../images/scanlines.png);
+    background-repeat: repeat;
+    background-color: var(--darken-60);
+}
+
 /* KEYFRAMES */
 
 @keyframes spin {
