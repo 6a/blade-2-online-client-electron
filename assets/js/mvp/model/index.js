@@ -4,5 +4,6 @@ module.exports = {
     LoadingModel: require('./loadingmodel.js'),
     CreateAccountModel: require('./createaccountmodel.js'),
     OptionsModel: require('./optionsmodel.js'),
-    MessageModel: require('./messagemodel.js')
+    MessageModel: require('./messagemodel.js'),
+    LobbyModel: require('./lobbymodel.js')
 }

@@ -3,5 +3,6 @@ module.exports = {
     LoginView: require('./loginview.js'),
     CreateAccountView: require('./createaccountview.js'),
     OptionsView: require('./optionsview.js'),
-    MessageView: require('./messageview.js')
+    MessageView: require('./messageview.js'),
+    LobbyView: require('./lobbyview.js')
 }
