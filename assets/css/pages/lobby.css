@@ -48,6 +48,10 @@
 #lobby-content-inner-home {
     padding: 50px;
     box-sizing: border-box;
+
+    display: grid;
+    grid-template-columns: 700px 1fr;
+    gap: 50px;
 }
 
 #lobby-header-nav {

@@ -20,7 +20,53 @@
   </header>
 
   <main id="app">
-    <div class="page" id="lobby-loader">
+    <div class="page" id="lobby">
+      <div id="lobby-background">
+        <div id="lobby-content" class="lobby-panel">
+          <div id="lobby-content-home" class="lobby-content-panel">
+            <img src="../assets/images/backgrounds/bg-home.png" class="img-full-width-abs">
+            <div class="cover-scanlines"></div>
+            <div id="lobby-content-inner-home" class="lobby-content-panel-inner">
+              <div id="lobby-content-home-media">
+                
+              </div>
+              <div id="lobby-content-home-content">
+
+              </div>
+            </div>
+          </div>
+          <div id="lobby-content-play" class="lobby-content-panel no-pointer-events hidden">
+            <img src="../assets/images/backgrounds/bg-play.png" class="img-full-width-abs">
+            <div class="cover-scanlines"></div>
+            <div class="lobby-content-panel-inner">
+
+            </div>
+          </div>
+          <div id="lobby-content-profile" class="lobby-content-panel no-pointer-events hidden">
+            <img src="../assets/images/backgrounds/bg-profile.png" class="img-full-width-abs">
+            <div class="cover-scanlines"></div>
+            <div class="lobby-content-panel-inner">
+
+            </div>
+          </div>
+          <div id="lobby-content-leaderboards" class="lobby-content-panel no-pointer-events hidden">
+            <img src="../assets/images/backgrounds/bg-leaderboards.png" class="img-full-width-abs">
+            <div class="cover-scanlines"></div>
+            <div class="lobby-content-panel-inner">
+
+            </div>
+          </div>
+        </div>
+        <div id="lobby-header-nav">
+          <button id="lobby-home-button" class="lobby-header-nav-button-current" data-lkey="home" data-navtarget="home">ホーム</button>
+          <button id="lobby-play-button" data-lkey="play" data-navtarget="play">プレイ</button>
+          <button id="lobby-profile-button" data-lkey="profile" data-navtarget="profile">プロフィール</button>
+          <button id="lobby-leaderboards-button" data-lkey="leaderboards" data-navtarget="leaderboards">ハイスコア</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="page hidden no-pointer-events" id="lobby-loader">
       <div id="lobby-loader-content-wrapper" class="modal">
         <h1 id="lobby-loader-message" data-lkey="connecting">サーバーと接続しています</h1>
         <div id="lobby-loader-spinner" class="spinner"></div>
@@ -131,51 +177,7 @@
       </div>
     </div>
 
-    <div class="page" id="lobby">
-      <div id="lobby-background">
-        <div id="lobby-content" class="lobby-panel">
-          <div id="lobby-content-home" class="lobby-content-panel">
-            <img src="../assets/images/backgrounds/bg-home.png" class="img-full-width-abs">
-            <div class="cover-scanlines"></div>
-            <div id="lobby-content-inner-home" class="lobby-content-panel-inner">
-              <div id="lobby-content-home-media">
-                
-              </div>
-              <div id="lobby-content-home-content">
 
-              </div>
-            </div>
-          </div>
-          <div id="lobby-content-play" class="lobby-content-panel no-pointer-events hidden">
-            <img src="../assets/images/backgrounds/bg-play.png" class="img-full-width-abs">
-            <div class="cover-scanlines"></div>
-            <div class="lobby-content-panel-inner">
-
-            </div>
-          </div>
-          <div id="lobby-content-profile" class="lobby-content-panel no-pointer-events hidden">
-            <img src="../assets/images/backgrounds/bg-profile.png" class="img-full-width-abs">
-            <div class="cover-scanlines"></div>
-            <div class="lobby-content-panel-inner">
-
-            </div>
-          </div>
-          <div id="lobby-content-leaderboards" class="lobby-content-panel no-pointer-events hidden">
-            <img src="../assets/images/backgrounds/bg-leaderboards.png" class="img-full-width-abs">
-            <div class="cover-scanlines"></div>
-            <div class="lobby-content-panel-inner">
-
-            </div>
-          </div>
-        </div>
-        <div id="lobby-header-nav">
-          <button id="lobby-home-button" class="lobby-header-nav-button-current" data-lkey="home" data-navtarget="home">ホーム</button>
-          <button id="lobby-play-button" data-lkey="play" data-navtarget="play">プレイ</button>
-          <button id="lobby-profile-button" data-lkey="profile" data-navtarget="profile">プロフィール</button>
-          <button id="lobby-leaderboards-button" data-lkey="leaderboards" data-navtarget="leaderboards">ハイスコア</button>
-        </div>
-      </div>
-    </div>
 
     <div class="page backdrop hidden no-pointer-events" id="options">
       <div id="options-modal" class="modal">
@@ -315,8 +317,6 @@
       </div>
     </div>
   </div>
-
-
 
   </body>
 </html>
