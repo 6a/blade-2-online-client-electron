@@ -33,9 +33,17 @@
     height: 100%;
 }
 
-.lobby-content-panel img {
-    width: 100%;
+.lobby-content-panel-inner {
     position: absolute;
+    width: 100%;
+    height: calc(100% - 82px);
+
+    box-sizing: border-box;
+}
+
+#lobby-content-inner-home {
+    padding: 50px;
+    box-sizing: border-box;
 }
 
 #lobby-header-nav {

@@ -68,6 +68,12 @@ main {
     height: auto;
 }
 
+.img-full-width-abs {
+    width: 100%;
+    height: auto;
+    position: absolute;
+}
+
 .img-half-width {
     width: 50%;
     height: auto;
