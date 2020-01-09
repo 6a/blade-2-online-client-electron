@@ -22,6 +22,7 @@ function createWindow() {
         resizable: false,
         backgroundColor: '#1a1a1a',
         webPreferences: {
+            webviewTag: true,
             nodeIntegration: true,
             preload: path.join(__dirname, 'assets/js/utility/preload.js')
         }

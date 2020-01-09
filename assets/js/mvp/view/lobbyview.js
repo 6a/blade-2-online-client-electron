@@ -38,18 +38,31 @@ class LobbyView extends BaseView {
             profile: document.getElementById('lobby-content-profile'),
             leaderboards: document.getElementById('lobby-content-leaderboards'),
         }
+
+        this._pageComponents = {
+            play: {
+                matchmaking: document.getElementById('lobby-play-matchmaking-button'),
+                botGame: document.getElementById('lobby-play-bot-game-button'),
+            }
+        }
     }
 
     addEventListeners() {
         Object.values(this._nav).forEach((element) => {
             element.addEventListener('click', this.onNavButtonClicked.bind(this), false)
         })
+
+        this._pageComponents.play.matchmaking.addEventListener('click', this.onMatchmakingClicked.bind(this), false)
+        this._pageComponents.play.botGame.addEventListener('click', this.onBotGameClicked.bind(this), false)
     }
 
     removeEventListeners() {
         Object.values(this._nav).forEach((element) => {
             element.removeEventListener('click', this.onNavButtonClicked.bind(this), false)
         }) 
+
+        this._pageComponents.play.matchmaking.removeEventListener('click', this.onMatchmakingClicked.bind(this), false)
+        this._pageComponents.play.botGame.removeEventListener('click', this.onBotGameClicked.bind(this), false)
     }
 
     addTabbables() {
@@ -60,9 +73,12 @@ class LobbyView extends BaseView {
     setContentPanel(target) {
         Object.values(this._containers).forEach((element) => {
             this.toggleHidden(element, true)
+            element.classList.add('no-pointer-events')
         })
 
         this.toggleHidden(this._containers[target], false)
+        this._containers[target].classList.remove('no-pointer-events')
+
     }
 
     setCurrentNavButton(target) {
@@ -79,6 +95,14 @@ class LobbyView extends BaseView {
 
         this.setContentPanel(target)
         this.setCurrentNavButton(target)
+    }
+
+    onMatchmakingClicked() {
+        
+    }
+    
+    onBotGameClicked() {
+        
     }
 }
 

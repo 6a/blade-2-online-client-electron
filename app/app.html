@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; media-src *">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; media-src *; frame-src https://www.youtube-nocookie.com">
     <title>Blade II Online - Client</title>
     <link rel="stylesheet" href="../assets/css/blade2.css">
 
@@ -27,19 +27,18 @@
             <img src="../assets/images/backgrounds/bg-home.png" class="img-full-width-abs">
             <div class="cover-scanlines"></div>
             <div id="lobby-content-inner-home" class="lobby-content-panel-inner">
-              <div id="lobby-content-home-media">
-                
-              </div>
-              <div id="lobby-content-home-content">
-
-              </div>
+              <img class="img-third-width" src="../assets/images/logo.png">
+              <h1 data-lkey="welcomeToBlade">ブレードII のロビーへようこそ！</h1>
+              <p data-lkey="welcomeL1">下のタブで、マッチメイキングを開始したり、プロフィールやハイスコアを閲覧することができます。</p>
+              <p data-lkey="welcomeL2">初心者のプレーヤーには、「プレイ」ボタンを押して「AI マッチ」を選択することを勧めます。</p>
             </div>
           </div>
           <div id="lobby-content-play" class="lobby-content-panel no-pointer-events hidden">
             <img src="../assets/images/backgrounds/bg-play.png" class="img-full-width-abs">
             <div class="cover-scanlines"></div>
-            <div class="lobby-content-panel-inner">
-
+            <div id="lobby-content-inner-play" class="lobby-content-panel-inner">
+              <button id="lobby-play-matchmaking-button">マッチメイキング</button>
+              <button id="lobby-play-bot-game-button">AI マッチ</button>
             </div>
           </div>
           <div id="lobby-content-profile" class="lobby-content-panel no-pointer-events hidden">
@@ -61,7 +60,7 @@
           <button id="lobby-home-button" class="lobby-header-nav-button-current" data-lkey="home" data-navtarget="home">ホーム</button>
           <button id="lobby-play-button" data-lkey="play" data-navtarget="play">プレイ</button>
           <button id="lobby-profile-button" data-lkey="profile" data-navtarget="profile">プロフィール</button>
-          <button id="lobby-leaderboards-button" data-lkey="leaderboards" data-navtarget="leaderboards">ハイスコア</button>
+          <button id="lobby-leaderboards-button" data-lkey="leaderboards" data-navtarget="leaderboards">ランキング</button>
         </div>
       </div>
     </div>

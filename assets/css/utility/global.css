@@ -79,6 +79,11 @@ main {
     height: auto;
 }
 
+.img-third-width {
+    width: 33.3333333333333333333333%;
+    height: auto;
+}
+
 .img-quarter-width {
     width: 25%;
     height: auto;
