@@ -20,47 +20,47 @@
   </header>
 
   <main id="app">
-    <div class="page hidden no-pointer-events" id="lobby">
+    <div class="page" id="lobby">
       <div id="lobby-background">
-        <div id="lobby-content" class="lobby-panel">
-          <div id="lobby-content-home" class="lobby-content-panel">
-            <img src="../assets/images/backgrounds/bg-home.png" class="img-full-width-abs">
-            <div class="cover-scanlines"></div>
-            <div id="lobby-content-inner-home" class="lobby-content-panel-inner">
-              <img class="img-third-width" src="../assets/images/logo.png">
-              <h1 data-lkey="welcomeToBlade">ブレードII のロビーへようこそ！</h1>
-              <p data-lkey="welcomeL1">下のタブで、マッチメイキングを開始したり、プロフィールやハイスコアを閲覧することができます。</p>
-              <p data-lkey="welcomeL2">初心者のプレーヤーには、「プレイ」ボタンを押して「AI マッチ」を選択することを勧めます。</p>
+        <img id="lobby-background-image-home" src="../assets/images/backgrounds/bg-home.png" class="img-full-width-abs">
+        <img id="lobby-background-image-play" src="../assets/images/backgrounds/bg-play.png" class="img-full-width-abs hidden">
+        <img id="lobby-background-image-profile" src="../assets/images/backgrounds/bg-profile.png" class="img-full-width-abs hidden">
+        <img id="lobby-background-image-leaderboards" src="../assets/images/backgrounds/bg-leaderboards.png" class="img-full-width-abs hidden">
+        <div class="cover-scanlines"></div>
+      </div>
+      <div id="lobby-content">
+        <div id="lobby-selecter-border">
+          <div id="lobby-selector-circle-outer">
+            <div id="lobby-selector-circle-inner">
+              <div id="lobby-selector-item-home" class="lobby-selector-item">
+                <div>
+                  <p>home</p>
+                </div>
+              </div>
+              <div id="lobby-selector-item-play"  class="lobby-selector-item">
+                <div>
+                  <p>play</p>
+                </div>
+              </div>
+              <div id="lobby-selector-item-profile" class="lobby-selector-item">
+                <div>
+                  <p>profile</p>
+                </div>
+              </div>
+              <div id="lobby-selector-item-leaderboards" class="lobby-selector-item">
+                <div>
+                  <p>leaderboards</p>
+                </div>
+              </div>
+            </div>
+            <div id="lobby-selector-current-item-wrapper">
+              <div id="lobby-selector-current-item-border-fill">
+                <div id="lobby-selector-current-item-inner">
+                
+                </div>
+              </div>
             </div>
           </div>
-          <div id="lobby-content-play" class="lobby-content-panel no-pointer-events hidden">
-            <img src="../assets/images/backgrounds/bg-play.png" class="img-full-width-abs">
-            <div class="cover-scanlines"></div>
-            <div id="lobby-content-inner-play" class="lobby-content-panel-inner">
-              <button id="lobby-play-matchmaking-button">マッチメイキング</button>
-              <button id="lobby-play-bot-game-button">AI マッチ</button>
-            </div>
-          </div>
-          <div id="lobby-content-profile" class="lobby-content-panel no-pointer-events hidden">
-            <img src="../assets/images/backgrounds/bg-profile.png" class="img-full-width-abs">
-            <div class="cover-scanlines"></div>
-            <div class="lobby-content-panel-inner">
-
-            </div>
-          </div>
-          <div id="lobby-content-leaderboards" class="lobby-content-panel no-pointer-events hidden">
-            <img src="../assets/images/backgrounds/bg-leaderboards.png" class="img-full-width-abs">
-            <div class="cover-scanlines"></div>
-            <div class="lobby-content-panel-inner">
-
-            </div>
-          </div>
-        </div>
-        <div id="lobby-header-nav">
-          <button id="lobby-home-button" class="lobby-header-nav-button-current" data-lkey="home" data-navtarget="home">ホーム</button>
-          <button id="lobby-play-button" data-lkey="play" data-navtarget="play">プレイ</button>
-          <button id="lobby-profile-button" data-lkey="profile" data-navtarget="profile">プロフィール</button>
-          <button id="lobby-leaderboards-button" data-lkey="leaderboards" data-navtarget="leaderboards">ランキング</button>
         </div>
       </div>
     </div>
@@ -72,7 +72,7 @@
       </div>
     </div>
 
-    <div class="page" id="login">
+    <div class="page hidden no-pointer-events" id="login">
       <div id="login-bg-video-wrapper" class="bg-video-wrapper">
         <video id="login-bg-video" class="bg-video" loop muted>
           <source src="../assets/videos/sen-2-op-muted.mp4" type="video/mp4">
