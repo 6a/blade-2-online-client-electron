@@ -10,6 +10,7 @@
         models.add(new mvp.model.LoginModel())
         models.add(new mvp.model.CreateAccountModel())
         models.add(new mvp.model.MessageModel())
+        models.add(new mvp.model.LobbyLoaderModel())
         models.add(new mvp.model.LobbyModel())
     }
 
@@ -19,6 +20,7 @@
         views.push(new mvp.view.CreateAccountView(views))
         views.push(new mvp.view.OptionsView(views))
         views.push(new mvp.view.MessageView(views))
+        views.push(new mvp.view.LobbyLoaderView(views))
         views.push(new mvp.view.LobbyView(views))
     }
 
