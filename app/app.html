@@ -25,31 +25,26 @@
         <img id="lobby-background-image-home" src="../assets/images/backgrounds/01610-ds1-1340x1340.jpg" class="img-full-width-abs">
         <img id="lobby-background-image-play" src="../assets/images/backgrounds/bg-play.png" class="img-full-width-abs hidden">
         <img id="lobby-background-image-profile" src="../assets/images/backgrounds/bg-profile.png" class="img-full-width-abs hidden">
-        <img id="lobby-background-image-leaderboards" src="../assets/images/backgrounds/bg-leaderboards.png" class="img-full-width-abs hidden">
+        <img id="lobby-background-image-rankings" src="../assets/images/backgrounds/bg-rankings.png" class="img-full-width-abs hidden">
         <div class="cover-scanlines"></div>
       </div>
       <div id="lobby-content">
         <div id="lobby-selecter-border">
           <div id="lobby-selector-circle-outer">
             <div id="lobby-selector-circle-inner">
-              <div id="lobby-selector-item-home" class="lobby-selector-item">
-                <div>
-                  <p>home</p>
-                </div>
-              </div>
-              <div id="lobby-selector-item-play"  class="lobby-selector-item">
-                <div>
-                  <p>play</p>
-                </div>
-              </div>
-              <div id="lobby-selector-item-profile" class="lobby-selector-item">
-                <div>
-                  <p>profile</p>
-                </div>
-              </div>
-              <div id="lobby-selector-item-leaderboards" class="lobby-selector-item">
-                <div>
-                  <p>leaderboards</p>
+              <div id="lobby-selector-current-item-wrapper">
+                <div id="lobby-selector-current-item-border-fill">
+                  <div class="lobby-inner-border-ring">
+                    <div id="lobby-selector-current-item-inner">
+                      <div id="lobby-selector-current-inner-bg">
+                        <div id="lobby-selector-current-inner-fill">
+                          <div id="lobby-selector-label-wrapper">
+                            <h1>Home</h1>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div id="lobby-selector-bracket-bottom" class="lobby-selector-bracket-outer">
@@ -69,15 +64,24 @@
                 </div>
                 
               </div>
-            </div>
-            <div id="lobby-selector-current-item-wrapper">
-              <div id="lobby-selector-current-item-border-fill">
-                <div class="lobby-inner-border-ring">
-                  <div class="lobby-inner-ring">
-                    <div id="lobby-selector-current-item-inner">
-                  
-                    </div>
-                  </div>
+              <div id="lobby-selector-item-home" class="lobby-selector-item">
+                <div>
+                  <p class="no-pointer-events hidden">home</p>
+                </div>
+              </div>
+              <div id="lobby-selector-item-play"  class="lobby-selector-item">
+                <div>
+                  <p>play</p>
+                </div>
+              </div>
+              <div id="lobby-selector-item-profile" class="lobby-selector-item">
+                <div>
+                  <p>profile</p>
+                </div>
+              </div>
+              <div id="lobby-selector-item-rankings" class="lobby-selector-item">
+                <div>
+                  <p>rankings</p>
                 </div>
               </div>
             </div>

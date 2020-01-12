@@ -60,15 +60,15 @@
     position: relative;
 }
 
-
 #lobby-selector-circle-inner > *:nth-of-type(1) { transform: rotate(0deg) translate(calc(198px - 10px)) rotate(-0deg); }
-#lobby-selector-circle-inner > *:nth-of-type(2) { transform: rotate(90deg) translate(calc(198px - 10px)) rotate(-90deg); }
-#lobby-selector-circle-inner > *:nth-of-type(3) { transform: rotate(180deg) translate(calc(198px - 10px)) rotate(-180deg); }
-#lobby-selector-circle-inner > *:nth-of-type(4) { transform: rotate(270deg) translate(calc(198px - 10px)) rotate(-270deg); }
+#lobby-selector-circle-inner > *:nth-of-type(2) { transform: rotate(90deg) translate(calc(198px - 10px)) rotate(-135deg); }
+#lobby-selector-circle-inner > *:nth-of-type(3) { transform: rotate(180deg) translate(calc(198px - 10px)) rotate(-225deg); }
+#lobby-selector-circle-inner > *:nth-of-type(4) { transform: rotate(270deg) translate(calc(198px - 10px)) rotate(-315deg); }
 
-#lobby-selector-circle-inner > *:nth-of-type(5) { transform: rotate(90deg) translate(calc(198px - 10px)) rotate(-135deg); }
-#lobby-selector-circle-inner > *:nth-of-type(6) { transform: rotate(180deg) translate(calc(198px - 10px)) rotate(-225deg); }
-#lobby-selector-circle-inner > *:nth-of-type(7) { transform: rotate(270deg) translate(calc(198px - 10px)) rotate(-315deg); }
+#lobby-selector-circle-inner > *:nth-of-type(5) { transform: rotate(0deg) translate(calc(198px - 10px)) rotate(-0deg); }
+#lobby-selector-circle-inner > *:nth-of-type(6) { transform: rotate(90deg) translate(calc(198px - 10px)) rotate(-90deg); }
+#lobby-selector-circle-inner > *:nth-of-type(7) { transform: rotate(180deg) translate(calc(198px - 10px)) rotate(-180deg); }
+#lobby-selector-circle-inner > *:nth-of-type(8) { transform: rotate(270deg) translate(calc(198px - 10px)) rotate(-270deg); }
 
 .lobby-selector-bracket-outer {
     display: block;
@@ -130,8 +130,21 @@
     width: 100%;
     height: 100%;
     border-radius: 50%;
+    position: relative;
 
     background-color: var(--gscale-90-100);
+}
+
+.lobby-selector-item > div > p {
+    position: absolute;
+    left: 40%;
+    top: 65%;
+
+    text-shadow: 0 0 8px var(--gscale-10-100);
+    color: var(--gscale-90-100);
+    font-size: 1.5em;
+
+    font-family: 'Trajan Pro Regular', 'Noto Serif JP';
 }
 
 #lobby-selector-current-item-wrapper {
@@ -152,30 +165,82 @@
     justify-content: center;
     align-items: center;
 
+    z-index: -2;
+
     width: 100%;
     height: 100%;
     border-radius: 50%;
 
     box-sizing: border-box;
     border: 12px solid var(--gscale-90-50);
+
+    position: relative;
 }
 
-.lobby-inner-ring {
+#lobby-selector-current-inner-bg {
+    background: radial-gradient(circle, transparent 0%, transparent 50%, var(--affirmative-50) 100%);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+
+    z-index: -2;
+
+    position: relative;
+
     display: flex;
     justify-content: center;
     align-items: center;
+}
 
+#lobby-selector-current-inner-fill {
     width: 75%;
     height: 75%;
-
     border-radius: 50%;
-    border: 2px solid var(--gscale-10-100);
+    
+    position: relative;
+
+    background-color: var(--gscale-90-100);
+    border: 4px solid var(--gscale-10-100);
+}
+
+#lobby-selector-label-wrapper {
+    background-color: var(--gscale-90-100);
+    position: absolute;
+    left: -10%;
+    z-index: -1;
+
+    top: 50%;
+    margin-top: -30px;
+    
+    box-sizing: border-box;
+    height: 60px;
+    width: 315px;
+
+    border: 4px solid var(--gscale-10-100);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
+
+#lobby-selector-label-wrapper h1 {
+    display: block;
+    margin-left: 110px;
+    font-size: 1.6em;
+    color: var(--gscale-10-50);
+    text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+
+    font-family: 'Trajan Pro Regular', 'Noto Serif JP';
 }
 
 .lobby-inner-border-ring {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    position: relative;
+
+    z-index: -2;
 
     width: 100%;
     height: 100%;
@@ -188,6 +253,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    position: relative;
 
     width: 100%;
     height: 100%;

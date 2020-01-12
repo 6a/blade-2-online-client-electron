@@ -29,14 +29,14 @@ class LobbyView extends BaseView {
         //     home: document.getElementById('lobby-home-button'),
         //     play: document.getElementById('lobby-play-button'),
         //     profile: document.getElementById('lobby-profile-button'),
-        //     leaderboards: document.getElementById('lobby-leaderboards-button'),
+        //     rankings: document.getElementById('lobby-rankings-button'),
         // }
 
         // this._containers = {
         //     home: document.getElementById('lobby-content-home'),
         //     play: document.getElementById('lobby-content-play'),
         //     profile: document.getElementById('lobby-content-profile'),
-        //     leaderboards: document.getElementById('lobby-content-leaderboards'),
+        //     rankings: document.getElementById('lobby-content-rankings'),
         // }
 
         // this._pageComponents = {

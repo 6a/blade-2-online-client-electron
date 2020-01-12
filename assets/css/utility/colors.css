@@ -33,7 +33,7 @@
 
     --backdrop: hsla(0, 0%, 10%, 0.4);
 
-    --affirmative: hsla(0, 75%, 38%, 1);
+    --affirmative: hsla(0, 75%, 38%, 1); --affirmative-50: hsla(0, 75%, 38%, 0.5);
     --affirmative-darker: hsla(0, 80%, 33%, 1);
     --affirmative-dark: hsla(0, 85%, 28%, 1);
 
