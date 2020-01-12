@@ -33,9 +33,16 @@
 
     --backdrop: hsla(0, 0%, 10%, 0.4);
 
-    --affirmative: hsla(0, 75%, 38%, 1); --affirmative-50: hsla(0, 75%, 38%, 0.5);
-    --affirmative-darker: hsla(0, 80%, 33%, 1);
-    --affirmative-dark: hsla(0, 85%, 28%, 1);
+    --affirmative: hsl(229, 75%, 38%); --affirmative-50: hsla(229, 75%, 38%, 0.5);
+    --affirmative-darker: hsla(229, 75%, 33%);
+    --affirmative-dark: hsla(229, 75%, 28%);
+
+    --hl-subtle-red: #884e4e; 
+    --hl-subtle-blue: #4e5d88; 
+    --hl-subtle-green: #348038; 
+    --hl-subtle-yellow: #807b34; 
+
+    --hl-bold-blue: hsl(224, 100%, 51%);
 
     --negative: hsla(0, 62%, 43%, 1);
 
