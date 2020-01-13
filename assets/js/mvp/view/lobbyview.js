@@ -16,6 +16,9 @@ class LobbyView extends BaseView {
         this.addTabbables()
 
         this.toggleTabbables(false)
+
+        this._pageIndex = 0
+        this._pageCount = 4
     }
 
     destroy() {
@@ -25,44 +28,37 @@ class LobbyView extends BaseView {
     getElementReferences() {
         this._wrapper = document.getElementById('lobby')
 
-        // this._nav = {
-        //     home: document.getElementById('lobby-home-button'),
-        //     play: document.getElementById('lobby-play-button'),
-        //     profile: document.getElementById('lobby-profile-button'),
-        //     rankings: document.getElementById('lobby-rankings-button'),
-        // }
+        this._buttons = {
+            mainButton: document.getElementById('lobby-main-button'),
+            upButton: document.getElementById('lobby-nav-up-button'),
+            downButton: document.getElementById('lobby-nav-down-button'),
+        }
 
-        // this._containers = {
-        //     home: document.getElementById('lobby-content-home'),
-        //     play: document.getElementById('lobby-content-play'),
-        //     profile: document.getElementById('lobby-content-profile'),
-        //     rankings: document.getElementById('lobby-content-rankings'),
-        // }
+        
+        this._selectors = {
+            rankings: document.getElementById('lobby-selector-item-rankings'),
+            home: document.getElementById('lobby-selector-item-home'),
+            play: document.getElementById('lobby-selector-item-play'),
+            profile: document.getElementById('lobby-selector-item-profile')
+        }
 
-        // this._pageComponents = {
-        //     play: {
-        //         matchmaking: document.getElementById('lobby-play-matchmaking-button'),
-        //         botGame: document.getElementById('lobby-play-bot-game-button'),
-        //     }
-        // }
+        this._backgrounds = {
+            home: document.getElementById('lobby-background-image-home'),
+            play: document.getElementById('lobby-background-image-play'),
+            profile: document.getElementById('lobby-background-image-profile'),
+            rankings: document.getElementById('lobby-background-image-rankings')
+        }
     }
 
     addEventListeners() {
-        // Object.values(this._nav).forEach((element) => {
-        //     element.addEventListener('click', this.onNavButtonClicked.bind(this), false)
-        // })
-
         // this._pageComponents.play.matchmaking.addEventListener('click', this.onMatchmakingClicked.bind(this), false)
-        // this._pageComponents.play.botGame.addEventListener('click', this.onBotGameClicked.bind(this), false)
+        this._buttons.upButton.addEventListener('click', this.onUpClicked.bind(this), false)
+        this._buttons.downButton.addEventListener('click', this.onDownClicked.bind(this), false)
     }
 
     removeEventListeners() {
-        // Object.values(this._nav).forEach((element) => {
-        //     element.removeEventListener('click', this.onNavButtonClicked.bind(this), false)
-        // }) 
-
-        // this._pageComponents.play.matchmaking.removeEventListener('click', this.onMatchmakingClicked.bind(this), false)
-        // this._pageComponents.play.botGame.removeEventListener('click', this.onBotGameClicked.bind(this), false)
+        this._buttons.upButton.removeEventListener('click', this.onUpClicked.bind(this), false)
+        this._buttons.downButton.removeEventListener('click', this.onDownClicked.bind(this), false)
     }
 
     addTabbables() {
@@ -103,6 +99,40 @@ class LobbyView extends BaseView {
     
     onBotGameClicked() {
         
+    }
+
+    onUpClicked() {
+        ++this._pageIndex
+
+        let target = Math.abs(this._pageIndex % this._pageCount)
+
+        let iteration = 0
+        Object.values(this._backgrounds).forEach((element) => {
+            if (iteration === target) {
+                element.classList.remove('hidden', 'no-pointer-events')
+            } else {
+                element.classList.add('hidden', 'no-pointer-events')
+            }
+
+            ++iteration
+        })
+    }
+
+    onDownClicked() {
+        --this._pageIndex
+
+        let target = Math.abs(this._pageIndex % this._pageCount)
+
+        let iteration = 0
+        Object.values(this._backgrounds).forEach((element) => {
+            if (iteration === target) {
+                element.classList.remove('hidden', 'no-pointer-events')
+            } else {
+                element.classList.add('hidden', 'no-pointer-events')
+            }
+
+            ++iteration
+        })
     }
 }
 

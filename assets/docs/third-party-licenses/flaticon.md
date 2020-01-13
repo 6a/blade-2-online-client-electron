@@ -9,7 +9,6 @@
 - Play icon: **Freepik**
 - Podium icon: **Freepik**
 - Tick icon: **Freepik**
-
+- Up icon: **Freepik**
 - Show/hide eye icons: **Those Icons**
 - Profile icon: **Kiranshastry**
-
