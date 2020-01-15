@@ -33,9 +33,9 @@
 
     --backdrop: hsla(0, 0%, 10%, 0.4);
 
-    --affirmative: hsl(229, 75%, 38%); --affirmative-50: hsla(229, 75%, 38%, 0.5);
-    --affirmative-darker: hsla(229, 75%, 33%);
-    --affirmative-dark: hsla(229, 75%, 28%);
+    --affirmative: hsl(2, 68%, 45%); --affirmative-50: hsla(2, 68%, 45%, 0.5);
+    --affirmative-darker: hsla(2, 68%, 40%);
+    --affirmative-dark: hsla(2, 68%, 35%);
 
     --hl-subtle-red: #884e4e; 
     --hl-subtle-blue: #4e5d88; 
