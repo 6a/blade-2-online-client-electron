@@ -2,6 +2,9 @@ const BaseView = require('./baseview.js')
 const LobbyPresenter = require('../presenter/lobbypresenter.js')
 const MarkdownIt = require('markdown-it')
 
+const DEFAULT_SELECTOR_OFFSET = 208
+const NINENTY_DEGREES = 90
+
 class LobbyView extends BaseView {
     constructor (viewsList) {
         super('lobby', LobbyPresenter, viewsList, 'hidden')
@@ -36,10 +39,10 @@ class LobbyView extends BaseView {
 
         
         this._selectors = {
-            rankings: document.getElementById('lobby-selector-item-rankings'),
             home: document.getElementById('lobby-selector-item-home'),
             play: document.getElementById('lobby-selector-item-play'),
-            profile: document.getElementById('lobby-selector-item-profile')
+            profile: document.getElementById('lobby-selector-item-profile'),
+            rankings: document.getElementById('lobby-selector-item-rankings')
         }
 
         this._backgrounds = {
@@ -85,6 +88,30 @@ class LobbyView extends BaseView {
         // this._nav[target].classList.add('lobby-header-nav-button-current')
     }
 
+    rotateSelectors() {
+        let target = Math.abs(this._pageIndex % this._pageCount)
+
+        let backgroundsArray = Object.values(this._backgrounds)
+        let selectorsArray = Object.values(this._selectors)
+
+        for (let index = 0; index < backgroundsArray.length; index++) {
+            let background = backgroundsArray[index]
+            if (index === target) {
+                background.classList.remove('hidden', 'no-pointer-events')
+            } else {
+                background.classList.add('hidden', 'no-pointer-events')
+            }
+
+            let selector = selectorsArray[index]
+
+            let angle = (this._pageIndex * NINENTY_DEGREES) + (index * NINENTY_DEGREES)
+            let offset = DEFAULT_SELECTOR_OFFSET
+            let transformString = `rotate(${angle}deg) translate(${offset}px) rotate(${-angle}deg)`
+
+            selector.style.transform = transformString
+        }
+    }
+
     onNavButtonClicked(event) {
         // let element = event.srcElement
         // let target = element.dataset.navtarget
@@ -102,37 +129,13 @@ class LobbyView extends BaseView {
     }
 
     onUpClicked() {
-        ++this._pageIndex
-
-        let target = Math.abs(this._pageIndex % this._pageCount)
-
-        let iteration = 0
-        Object.values(this._backgrounds).forEach((element) => {
-            if (iteration === target) {
-                element.classList.remove('hidden', 'no-pointer-events')
-            } else {
-                element.classList.add('hidden', 'no-pointer-events')
-            }
-
-            ++iteration
-        })
+        this._pageIndex--
+        this.rotateSelectors()
     }
 
     onDownClicked() {
-        --this._pageIndex
-
-        let target = Math.abs(this._pageIndex % this._pageCount)
-
-        let iteration = 0
-        Object.values(this._backgrounds).forEach((element) => {
-            if (iteration === target) {
-                element.classList.remove('hidden', 'no-pointer-events')
-            } else {
-                element.classList.add('hidden', 'no-pointer-events')
-            }
-
-            ++iteration
-        })
+        this._pageIndex++
+        this.rotateSelectors()
     }
 }
 

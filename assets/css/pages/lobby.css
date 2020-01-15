@@ -60,15 +60,15 @@
     position: relative;
 }
 
-#lobby-selector-circle-inner > *:nth-of-type(2) { transform: rotate(0deg) translate(calc(198px - 10px)) rotate(-0deg); }
-#lobby-selector-circle-inner > *:nth-of-type(3) { transform: rotate(90deg) translate(calc(198px - 10px)) rotate(-135deg); }
-#lobby-selector-circle-inner > *:nth-of-type(4) { transform: rotate(180deg) translate(calc(198px - 10px)) rotate(-225deg); }
-#lobby-selector-circle-inner > *:nth-of-type(5) { transform: rotate(270deg) translate(calc(198px - 10px)) rotate(-315deg); }
+#lobby-selector-circle-inner > *:nth-of-type(2) { transform: rotate(0deg) translate(208px) rotate(-0deg); }
+#lobby-selector-circle-inner > *:nth-of-type(3) { transform: rotate(90deg) translate(208px) rotate(-135deg); }
+#lobby-selector-circle-inner > *:nth-of-type(4) { transform: rotate(180deg) translate(208px) rotate(-225deg); }
+#lobby-selector-circle-inner > *:nth-of-type(5) { transform: rotate(270deg) translate(208px) rotate(-315deg); }
 
-#lobby-selector-circle-inner > :not(.kinematic):nth-of-type(6) { transform: rotate(0deg) translate(calc(198px - 10px)) rotate(-0deg); }
-#lobby-selector-circle-inner > :not(.kinematic):nth-of-type(7) { transform: rotate(90deg) translate(calc(198px - 10px)) rotate(-90deg); }
-#lobby-selector-circle-inner > :not(.kinematic):nth-of-type(8) { transform: rotate(180deg) translate(calc(198px - 10px)) rotate(-180deg); }
-#lobby-selector-circle-inner > :not(.kinematic):nth-of-type(9) { transform: rotate(270deg) translate(calc(198px - 10px)) rotate(-270deg); }
+#lobby-selector-circle-inner > :not(.kinematic):nth-of-type(6) { transform: rotate(0deg) translate(208px) rotate(-0deg); }
+#lobby-selector-circle-inner > :not(.kinematic):nth-of-type(7) { transform: rotate(90deg) translate(208px) rotate(-90deg); }
+#lobby-selector-circle-inner > :not(.kinematic):nth-of-type(8) { transform: rotate(180deg) translate(208px) rotate(-180deg); }
+#lobby-selector-circle-inner > :not(.kinematic):nth-of-type(9) { transform: rotate(270deg) translate(208px) rotate(-270deg); }
 
 .inner-radial-blue {
     width: 100%;
@@ -192,7 +192,7 @@
     height: 170px;
     margin: -87px;
 
-    transform: translate(calc(198px - 10px));
+    transform: translate(208px);
     border: 2px solid var(--gscale-10-100);
 }
 
@@ -282,6 +282,10 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+#lobby-selector-current-buttons-wrapper > button:hover {
+    box-shadow: 0 0 8px var(--affirmative);
 }
 
 #lobby-nav-up-button {
