@@ -22,6 +22,7 @@ class LobbyView extends BaseView {
 
         this._pageIndex = 0
         this._pageCount = 4
+        this._animating = false
     }
 
     destroy() {
@@ -37,12 +38,18 @@ class LobbyView extends BaseView {
             downButton: document.getElementById('lobby-nav-down-button'),
         }
 
-        
         this._selectors = {
             home: document.getElementById('lobby-selector-item-home'),
             play: document.getElementById('lobby-selector-item-play'),
             profile: document.getElementById('lobby-selector-item-profile'),
             rankings: document.getElementById('lobby-selector-item-rankings')
+        }
+
+        this._selectorText = {
+            home: document.getElementById('lobby-selector-item-text-home'),
+            play: document.getElementById('lobby-selector-item-text-play'),
+            profile: document.getElementById('lobby-selector-item-text-profile'),
+            rankings: document.getElementById('lobby-selector-item-text-rankings')
         }
 
         this._backgrounds = {
@@ -93,8 +100,11 @@ class LobbyView extends BaseView {
 
         let backgroundsArray = Object.values(this._backgrounds)
         let selectorsArray = Object.values(this._selectors)
+        let selectorText = Object.values(this._selectorText)
 
-        for (let index = 0; index < backgroundsArray.length; index++) {
+        for (let index = 0; index < this._pageCount; index++) {
+
+            // Backgrounds
             let background = backgroundsArray[index]
             if (index === target) {
                 background.classList.remove('hidden', 'no-pointer-events')
@@ -102,13 +112,21 @@ class LobbyView extends BaseView {
                 background.classList.add('hidden', 'no-pointer-events')
             }
 
+            // Selector rotation
             let selector = selectorsArray[index]
-
             let angle = (this._pageIndex * NINENTY_DEGREES) + (index * NINENTY_DEGREES)
             let offset = DEFAULT_SELECTOR_OFFSET
             let transformString = `rotate(${angle}deg) translate(${offset}px) rotate(${-angle}deg)`
 
             selector.style.transform = transformString
+
+            // Selector text
+            let text = selectorText[index]
+            if (index === target) {
+                text.classList.add('hidden', 'no-pointer-events')
+            } else {
+                text.classList.remove('hidden', 'no-pointer-events')
+            }
         }
     }
 
