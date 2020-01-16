@@ -2,7 +2,7 @@ const BaseView = require('./baseview.js')
 const LobbyPresenter = require('../presenter/lobbypresenter.js')
 const MarkdownIt = require('markdown-it')
 
-const DEFAULT_SELECTOR_OFFSET = 208
+const DEFAULT_SELECTOR_OFFSET = 190
 const NINENTY_DEGREES = 90
 
 class LobbyView extends BaseView {
@@ -37,7 +37,14 @@ class LobbyView extends BaseView {
             upButton: document.getElementById('lobby-nav-up-button'),
             downButton: document.getElementById('lobby-nav-down-button'),
         }
-
+        
+        this._mainButtonText = {
+            home: document.getElementById('lobby-selector-label-text-home'),
+            play: document.getElementById('lobby-selector-label-text-play'),
+            profile: document.getElementById('lobby-selector-label-text-profile'),
+            rankings: document.getElementById('lobby-selector-label-text-rankings')
+        }
+        
         this._selectors = {
             home: document.getElementById('lobby-selector-item-home'),
             play: document.getElementById('lobby-selector-item-play'),
@@ -61,14 +68,21 @@ class LobbyView extends BaseView {
     }
 
     addEventListeners() {
-        // this._pageComponents.play.matchmaking.addEventListener('click', this.onMatchmakingClicked.bind(this), false)
         this._buttons.upButton.addEventListener('click', this.onUpClicked.bind(this), false)
         this._buttons.downButton.addEventListener('click', this.onDownClicked.bind(this), false)
+
+        Object.values(this._selectors).forEach((element) => {
+            element.addEventListener('transitionend', this.onLobbyRotationAnimationFinished.bind(this), false)
+        })
     }
 
     removeEventListeners() {
         this._buttons.upButton.removeEventListener('click', this.onUpClicked.bind(this), false)
         this._buttons.downButton.removeEventListener('click', this.onDownClicked.bind(this), false)
+
+        Object.values(this._selectors).forEach((element) => {
+            element.removeEventListener('transitionend', this.onLobbyRotationAnimationFinished.bind(this), false)
+        })
     }
 
     addTabbables() {
@@ -95,12 +109,15 @@ class LobbyView extends BaseView {
         // this._nav[target].classList.add('lobby-header-nav-button-current')
     }
 
-    rotateSelectors() {
-        let target = Math.abs(this._pageIndex % this._pageCount)
+    updateSelectorPositions() {
+        let targetRaw = this._pageIndex % this._pageCount
+        let target = Math.abs(targetRaw)
+        target = targetRaw > 0 ? 4 - target : target
 
         let backgroundsArray = Object.values(this._backgrounds)
         let selectorsArray = Object.values(this._selectors)
-        let selectorText = Object.values(this._selectorText)
+        let selectorTexts = Object.values(this._selectorText)
+        let buttonTexts = Object.values(this._mainButtonText)
 
         for (let index = 0; index < this._pageCount; index++) {
 
@@ -117,15 +134,22 @@ class LobbyView extends BaseView {
             let angle = (this._pageIndex * NINENTY_DEGREES) + (index * NINENTY_DEGREES)
             let offset = DEFAULT_SELECTOR_OFFSET
             let transformString = `rotate(${angle}deg) translate(${offset}px) rotate(${-angle}deg)`
-
             selector.style.transform = transformString
 
             // Selector text
-            let text = selectorText[index]
+            let selectorText = selectorTexts[index]
             if (index === target) {
-                text.classList.add('hidden', 'no-pointer-events')
+                selectorText.classList.add('hidden', 'no-pointer-events')
             } else {
-                text.classList.remove('hidden', 'no-pointer-events')
+                selectorText.classList.remove('hidden', 'no-pointer-events')
+            }
+
+            // Button text
+            let buttonText = buttonTexts[index]
+            if (index === target) {
+                buttonText.classList.remove('hidden', 'no-pointer-events')
+            } else {
+                buttonText.classList.add('hidden', 'no-pointer-events')
             }
         }
     }
@@ -147,13 +171,23 @@ class LobbyView extends BaseView {
     }
 
     onUpClicked() {
+        if (this._animating) return
+        this._animating = true
+
         this._pageIndex--
-        this.rotateSelectors()
+        this.updateSelectorPositions()
     }
 
     onDownClicked() {
+        if (this._animating) return
+        this._animating = true
+
         this._pageIndex++
-        this.rotateSelectors()
+        this.updateSelectorPositions()
+    }
+
+    onLobbyRotationAnimationFinished() {
+        this._animating = false
     }
 }
 

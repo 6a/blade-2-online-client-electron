@@ -31,7 +31,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 245px;
+    margin-right: 260px;
     margin-left: 30px;
 
     position: relative;
@@ -66,15 +66,15 @@
     position: relative;
 }
 
-#lobby-selector-circle-inner > *:nth-of-type(2) { transform: rotate(0deg) translate(208px) rotate(-0deg); }
-#lobby-selector-circle-inner > *:nth-of-type(3) { transform: rotate(90deg) translate(208px) rotate(-135deg); }
-#lobby-selector-circle-inner > *:nth-of-type(4) { transform: rotate(180deg) translate(208px) rotate(-225deg); }
-#lobby-selector-circle-inner > *:nth-of-type(5) { transform: rotate(270deg) translate(208px) rotate(-315deg); }
+#lobby-selector-circle-inner > *:nth-of-type(2) { transform: rotate(0deg) translate(190px) rotate(-0deg); }
+#lobby-selector-circle-inner > *:nth-of-type(3) { transform: rotate(90deg) translate(190px) rotate(-135deg); }
+#lobby-selector-circle-inner > *:nth-of-type(4) { transform: rotate(180deg) translate(190px) rotate(-225deg); }
+#lobby-selector-circle-inner > *:nth-of-type(5) { transform: rotate(270deg) translate(190px) rotate(-315deg); }
 
-#lobby-selector-circle-inner > *:nth-of-type(6) { transform: rotate(0deg) translate(208px) rotate(-0deg); }
-#lobby-selector-circle-inner > *:nth-of-type(7) { transform: rotate(90deg) translate(208px) rotate(-90deg); }
-#lobby-selector-circle-inner > *:nth-of-type(8) { transform: rotate(180deg) translate(208px) rotate(-180deg); }
-#lobby-selector-circle-inner > *:nth-of-type(9) { transform: rotate(270deg) translate(208px) rotate(-270deg); }
+#lobby-selector-circle-inner > *:nth-of-type(6) { transform: rotate(0deg) translate(190px) rotate(-0deg); }
+#lobby-selector-circle-inner > *:nth-of-type(7) { transform: rotate(90deg) translate(190px) rotate(-90deg); }
+#lobby-selector-circle-inner > *:nth-of-type(8) { transform: rotate(180deg) translate(190px) rotate(-180deg); }
+#lobby-selector-circle-inner > *:nth-of-type(9) { transform: rotate(270deg) translate(190px) rotate(-270deg); }
 
 .inner-radial-blue {
     width: 100%;
@@ -200,7 +200,7 @@
     height: 170px;
     margin: -87px;
 
-    transform: translate(208px);
+    transform: translate(190px);
     border: 2px solid var(--gscale-10-100);
 }
 
@@ -258,7 +258,7 @@
     
     box-sizing: border-box;
     height: 60px;
-    width: 315px;
+    width: 335px;
 
     border: 4px solid var(--gscale-10-100);
 } 
@@ -304,21 +304,34 @@
     transform: rotate(180deg);
 }
 
-#lobby-selector-label-padding button {
+#lobby-selector-label-padding > button {
     padding: 0;
-    font-size: 1.6em;
-    color: var(--gscale-40-100);
-
-    font-family: 'Trajan Pro Regular', 'Noto Serif JP';
-    
     background-color: transparent;
+    width: 100%;
+    height: 100%;
+    position: relative;
 }
 
-#lobby-selector-label-padding button:hover {
+#lobby-selector-label-padding > button > div {
+    position: absolute;
+    font-size: 1.5em;
+    color: var(--gscale-40-100);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out, color 0.1s ease-in-out, text-shadow 0.1s ease-in-out;
+
+    font-family: 'Trajan Pro Regular', 'Noto Serif JP';
+}   
+
+#lobby-selector-label-padding > button:hover > div {
     color: var(--affirmative);
 } 
 
-#lobby-selector-label-padding button:active {
+#lobby-selector-label-padding > button:active > div {
     color: var(--affirmative);
     text-shadow: 0 0 8px var(--affirmative);
 } 
