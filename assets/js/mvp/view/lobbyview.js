@@ -5,6 +5,8 @@ const MarkdownIt = require('markdown-it')
 const DEFAULT_SELECTOR_OFFSET = 190
 const NINENTY_DEGREES = 90
 
+const LOBBY_BUTTON_TEXT_STATE = ['lobby-main-button-text-state-active', 'lobby-main-button-text-state-below', 'hidden', 'lobby-main-button-text-state-above']
+
 class LobbyView extends BaseView {
     constructor (viewsList) {
         super('lobby', LobbyPresenter, viewsList, 'hidden')
@@ -109,7 +111,9 @@ class LobbyView extends BaseView {
         // this._nav[target].classList.add('lobby-header-nav-button-current')
     }
 
-    updateSelectorPositions() {
+    updateSelectorPositions(indexChange) {
+        this._pageIndex += indexChange;
+
         let targetRaw = this._pageIndex % this._pageCount
         let target = Math.abs(targetRaw)
         target = targetRaw > 0 ? 4 - target : target
@@ -120,7 +124,6 @@ class LobbyView extends BaseView {
         let buttonTexts = Object.values(this._mainButtonText)
 
         for (let index = 0; index < this._pageCount; index++) {
-
             // Backgrounds
             let background = backgroundsArray[index]
             if (index === target) {
@@ -146,11 +149,18 @@ class LobbyView extends BaseView {
 
             // Button text
             let buttonText = buttonTexts[index]
-            if (index === target) {
-                buttonText.classList.remove('hidden', 'no-pointer-events')
-            } else {
-                buttonText.classList.add('hidden', 'no-pointer-events')
-            }
+            let offsetIndex = (index + this._pageIndex) % this._pageCount
+            offsetIndex = offsetIndex < 0 ? 4 + offsetIndex : offsetIndex
+
+            let replacement = LOBBY_BUTTON_TEXT_STATE[offsetIndex]
+            buttonText.classList.add(replacement)
+
+            buttonText.classList.replace('hidden', replacement)
+            buttonText.classList.replace('lobby-main-button-text-state-above', replacement)
+            buttonText.classList.replace('lobby-main-button-text-state-below', replacement)
+            buttonText.classList.replace('lobby-main-button-text-state-active', replacement)
+
+            console.log(`index: ${index} | target: ${target} | offsetIndex: ${offsetIndex}`)
         }
     }
 
@@ -174,16 +184,14 @@ class LobbyView extends BaseView {
         if (this._animating) return
         this._animating = true
 
-        this._pageIndex--
-        this.updateSelectorPositions()
+        this.updateSelectorPositions(-1)
     }
 
     onDownClicked() {
         if (this._animating) return
         this._animating = true
 
-        this._pageIndex++
-        this.updateSelectorPositions()
+        this.updateSelectorPositions(1)
     }
 
     onLobbyRotationAnimationFinished() {
