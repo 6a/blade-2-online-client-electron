@@ -241,12 +241,6 @@ profile:
 rankings:
   en: Rankings
   jp: ランキング
-welcomeToBlade:
-  en: Welcome to the Blade II Online Lobby
-  jp: ブレードII オンラインのロビーへようこそ！
-welcomeL1:
-  en: By selecting one of the tabs below, you can start matchmaking, browse your profile, or see the ranked leaderboards.
-  jp: 下のタブで、マッチメイキングを開始したり、プロフィールやランキングランキングを閲覧することができます。
-welcomeL2:
-  en: New players may find it beneficial to hit the [ Play ] button, and select [ Bot Game ] to play against the offline AI.
-  jp: 初心者のプレーヤーには、「プレイ」ボタンを押してから「AI マッチ」を選択し、オフライン AI と一戦することを勧めます。
+searchingForAGame:
+  en: Finding Match...
+  jp: マッチを探索中

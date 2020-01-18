@@ -139,6 +139,12 @@ class LobbyView extends BaseView {
             let transformString = `rotate(${angle}deg) translate(${offset}px) rotate(${-angle}deg)`
             selector.style.transform = transformString
 
+            if (index === target) {
+                selector.classList.add('lobby-selector-active')
+            } else {
+                selector.classList.remove('lobby-selector-active')
+            }
+
             // Selector text
             let selectorText = selectorTexts[index]
             if (index === target) {
