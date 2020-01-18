@@ -12,7 +12,7 @@ I developed the launcher for this game using [Electron](https://electronjs.org/)
 
 I developed the actual game itself using [Unreal Engine 4](https://www.unrealengine.com/en-US/what-is-unreal-engine-4). Where possible, I made use of C++ to implement both engine and gameplay logic. While I personally find it easier to develop with [Unity](https://unity.com/), I believed (and still believe) that I need more experience developing games using C++. 
 
-All the graphical assets that I made myself were made using [Maya](https://www.autodesk.com/products/maya/overview) or [GIMP](https://www.gimp.org/), while the rest were taken from various free or open source offerings (see Licenses tab for details)
+All the graphical assets that I made myself were made using [Maya](https://www.autodesk.com/products/maya/overview) or [GIMP](https://www.gimp.org/), while the rest were taken from various free or open source offerings (see Licenses tab for details).
 
 The back-end infrastructure is supported by various technologies, using various [AWS](https://aws.amazon.com/) services:
 - Gameserver written in Go, reverse proxied using [NGINX](https://www.nginx.com/) and hosted on an [EC2](https://aws.amazon.com/ec2/?nc2=h_ql_prod_fs_ec2) virtual machine.
