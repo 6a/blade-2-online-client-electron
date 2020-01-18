@@ -278,13 +278,23 @@ a {
         border-color: hsl(0, 68%, 45%);
     }
 
+    25% {
+        box-shadow: 0 0 6px hsl(172, 57%, 45%);
+        border-color: hsl(172, 57%, 45%);
+    }
+
     50% {
-        box-shadow: 0 0 6px hsl(180, 68%, 45%);
-        border-color: hsl(180, 68%, 45%);
+        box-shadow: 0 0 6px hsl(209, 77%, 45%);
+        border-color: hsl(214, 72%, 45%);
+    }
+
+    75% {
+        box-shadow: 0 0 6px hsl(311, 72%, 45%);
+        border-color: hsl(311, 72%, 45%);
     }
 
     100% {
-        box-shadow: 0 0 6px hsl(360, 68%, 45%);
-        border-color: hsl(360, 68%, 45%);
+        box-shadow: 0 0 6px hsl(0, 68%, 45%);
+        border-color: hsl(0, 68%, 45%);
     }
 }

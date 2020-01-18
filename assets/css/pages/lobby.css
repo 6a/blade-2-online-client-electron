@@ -418,6 +418,7 @@
     transition: all 0.3s ease-in-out;
 
     border-left: 10px solid var(--gscale-10-100);
+    animation: notification-border-pulse 4s infinite linear;
 }
 
 .lobby-notification {
@@ -470,4 +471,26 @@
 
 #lobby-queue-notification-big {
 
+}
+
+@keyframes notification-border-pulse {
+    0% {
+        border-color: hsl(0, 68%, 45%);
+    }
+
+    25% {
+        border-color: hsl(172, 57%, 45%);
+    }
+
+    50% {
+        border-color: hsl(214, 72%, 45%);
+    }
+
+    75% {
+        border-color: hsl(311, 72%, 45%);
+    }
+
+    100% {
+        border-color: hsl(0, 68%, 45%);
+    }
 }
