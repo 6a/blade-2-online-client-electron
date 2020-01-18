@@ -256,6 +256,10 @@ a {
     transform: rotateX(180deg) translateZ(20px);
 }
 
+.reminder-once {
+    animation: notification-reminder 0.5s 1 ease-in-out !important;
+}
+
 /* KEYFRAMES */
 
 @keyframes spin {
@@ -296,5 +300,53 @@ a {
     100% {
         box-shadow: 0 0 6px hsl(0, 68%, 45%);
         border-color: hsl(0, 68%, 45%);
+    }
+}
+
+@keyframes notification-reminder {
+    10%, 90% {
+        transform: translate3d(-2px, -1px, 0);
+    }
+      
+    20%, 80% {
+        transform: translate3d(-2px, 2px, 0);
+    }
+    
+    30%, 70% {
+        transform: translate3d(-2px, 2px, 0);
+    }
+  
+    50% {
+        transform: translate3d(-2px, 1px, 0);
+        box-shadow: 0 0 6px hsl(0, 68%, 45%);
+        border-color: hsl(0, 68%, 45%);
+    }
+    
+    40%, 60% {
+        transform: translate3d(2px, -2px, 0);
+    }
+}
+
+@keyframes notification-reminder {
+    10%, 90% {
+        transform: translate3d(-1px, 1px, 0);
+    }
+      
+    20%, 80% {
+        transform: translate3d(2px, -2px, 0);
+    }
+    
+    30%, 70% {
+        transform: translate3d(-4px, 3px, 0);
+    }
+  
+    50% {
+        transform: translate3d(-4px, 3px, 0);
+        box-shadow: 0 0 6px hsl(0, 68%, 45%);
+        border-color: hsl(0, 68%, 45%);
+    }
+    
+    40%, 60% {
+        transform: translate3d(4px, -1px, 0);
     }
 }
