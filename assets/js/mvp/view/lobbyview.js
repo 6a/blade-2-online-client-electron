@@ -4,6 +4,7 @@ const MarkdownIt = require('markdown-it')
 
 const DEFAULT_SELECTOR_OFFSET = 190
 const NINENTY_DEGREES = 90
+const QUEUE_TIMER_TICK = 1000 / 10
 
 const LOBBY_BUTTON_TEXT_STATE = ['lobby-main-button-text-state-active', 'lobby-main-button-text-state-below', 'hidden', 'lobby-main-button-text-state-above']
 
@@ -25,6 +26,9 @@ class LobbyView extends BaseView {
         this._pageIndex = 0
         this._pageCount = 4
         this._animating = false
+
+        this._queueTimer
+        this._queueTimerStartTime
     }
 
     destroy() {
@@ -33,6 +37,9 @@ class LobbyView extends BaseView {
 
     getElementReferences() {
         this._wrapper = document.getElementById('lobby')
+
+        this._queueNotification = document.getElementById('lobby-queue-notification')
+        this._queueNotificationTimerText = document.getElementById('lobby-queue-notification-small-timer')
 
         this._buttons = {
             mainButton: document.getElementById('lobby-main-button'),
@@ -155,6 +162,19 @@ class LobbyView extends BaseView {
         this._presenter.startMatchMaking()
     }
 
+    queueTimerTick() {
+        let newTimeSeconds = (Date.now() - this._queueTimerStartTime) / 1000
+        let minutes = Math.floor(newTimeSeconds / 60)
+        let seconds = (newTimeSeconds - (minutes * 60)).toFixed(0)
+
+        this._queueNotificationTimerText.innerHTML = `${minutes}:${String(seconds).padStart(2, '0')}`
+    }
+
+    startQueueTimer() {
+        this._queueTimerStartTime = Date.now()
+        this._queueTimer = setInterval(this.queueTimerTick.bind(this), QUEUE_TIMER_TICK)
+    }
+
     onUpClicked() {
         if (this._animating) return
         this._animating = true
@@ -185,7 +205,7 @@ class LobbyView extends BaseView {
                 break;
 
             case 'play':
-
+                this.onPlayClicked()
                 break;
 
             case 'profile':
@@ -201,7 +221,12 @@ class LobbyView extends BaseView {
         // TODO change this to handle bot and ranked games.
         // For not its gonna just start ranked matchmaking
 
+        this.startMatchMaking()
+    }
 
+    onMatchMakingQueueJoined() {
+        this._queueNotification.classList.remove('lobby-queue-notification-hidden')
+        this.startQueueTimer()
     }
 }
 

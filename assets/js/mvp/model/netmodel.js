@@ -59,6 +59,7 @@ class NetModel extends BaseModel {
 
         this.onAuthResponse = new B2Event('Auth Request Response')
         this.onCreateAccountResponse = new B2Event('Create Account Request Response')
+        this.onMatchMakingConnectComplete = new B2Event('MatchMaking Connect Complete')
     }
 
     destroy() { 
@@ -140,6 +141,15 @@ class NetModel extends BaseModel {
                 // Keepalive code goes here
             }, AUTH_TOKEN_REFRESH_INTERVAL)
         })
+    }
+
+    startMatchMaking() {
+        console.log("Matchmaking starrted")
+
+        // Connect to the matchmaking queue
+
+        // Once connected, fire an event
+        this.onMatchMakingConnectComplete.broadcast("")
     }
 }
 
