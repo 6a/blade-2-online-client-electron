@@ -8,7 +8,7 @@ const NINENTY_DEGREES = 90
 const LOBBY_BUTTON_TEXT_STATE = ['lobby-main-button-text-state-active', 'lobby-main-button-text-state-below', 'hidden', 'lobby-main-button-text-state-above']
 
 class LobbyView extends BaseView {
-    constructor (viewsList) {
+    constructor(viewsList) {
         super('lobby', LobbyPresenter, viewsList, 'hidden')
         this.init()
     }
@@ -39,14 +39,14 @@ class LobbyView extends BaseView {
             upButton: document.getElementById('lobby-nav-up-button'),
             downButton: document.getElementById('lobby-nav-down-button'),
         }
-        
+
         this._mainButtonText = {
             home: document.getElementById('lobby-selector-label-text-home'),
             play: document.getElementById('lobby-selector-label-text-play'),
             profile: document.getElementById('lobby-selector-label-text-profile'),
             rankings: document.getElementById('lobby-selector-label-text-rankings')
         }
-        
+
         this._selectors = {
             home: document.getElementById('lobby-selector-item-home'),
             play: document.getElementById('lobby-selector-item-play'),
@@ -72,6 +72,7 @@ class LobbyView extends BaseView {
     addEventListeners() {
         this._buttons.upButton.addEventListener('click', this.onUpClicked.bind(this), false)
         this._buttons.downButton.addEventListener('click', this.onDownClicked.bind(this), false)
+        this._buttons.mainButton.addEventListener('click', this.onMainButtonClicked.bind(this), false)
 
         Object.values(this._selectors).forEach((element) => {
             element.addEventListener('transitionend', this.onLobbyRotationAnimationFinished.bind(this), false)
@@ -81,6 +82,7 @@ class LobbyView extends BaseView {
     removeEventListeners() {
         this._buttons.upButton.removeEventListener('click', this.onUpClicked.bind(this), false)
         this._buttons.downButton.removeEventListener('click', this.onDownClicked.bind(this), false)
+        this._buttons.mainButton.removeEventListener('click', this.onMainButtonClicked.bind(this), false)
 
         Object.values(this._selectors).forEach((element) => {
             element.removeEventListener('transitionend', this.onLobbyRotationAnimationFinished.bind(this), false)
@@ -90,25 +92,6 @@ class LobbyView extends BaseView {
     addTabbables() {
         let tabbables = []
         super.addTabbables(tabbables)
-    }
-
-    setContentPanel(target) {
-        // Object.values(this._containers).forEach((element) => {
-        //     this.toggleHidden(element, true)
-        //     element.classList.add('no-pointer-events')
-        // })
-
-        // this.toggleHidden(this._containers[target], false)
-        // this._containers[target].classList.remove('no-pointer-events')
-
-    }
-
-    setCurrentNavButton(target) {
-        // Object.values(this._nav).forEach((element) => {
-        //     element.classList.remove('lobby-header-nav-button-current')
-        // })
-
-        // this._nav[target].classList.add('lobby-header-nav-button-current')
     }
 
     updateSelectorPositions(indexChange) {
@@ -165,25 +148,11 @@ class LobbyView extends BaseView {
             buttonText.classList.replace('lobby-main-button-text-state-above', replacement)
             buttonText.classList.replace('lobby-main-button-text-state-below', replacement)
             buttonText.classList.replace('lobby-main-button-text-state-active', replacement)
-
-            console.log(`index: ${index} | target: ${target} | offsetIndex: ${offsetIndex}`)
         }
     }
 
-    onNavButtonClicked(event) {
-        // let element = event.srcElement
-        // let target = element.dataset.navtarget
-
-        // this.setContentPanel(target)
-        // this.setCurrentNavButton(target)
-    }
-
-    onMatchmakingClicked() {
-        
-    }
-    
-    onBotGameClicked() {
-        
+    startMatchMaking() {
+        this._presenter.startMatchMaking()
     }
 
     onUpClicked() {
@@ -202,6 +171,37 @@ class LobbyView extends BaseView {
 
     onLobbyRotationAnimationFinished() {
         this._animating = false
+    }
+
+    onMainButtonClicked() {
+        let current = Math.abs(this._pageIndex % this._pageCount)
+        current = this._pageIndex > 0 ? 4 - current : current
+
+        let target = ['home', 'play', 'profile', 'ranking'][current]
+
+        switch (target) {
+            case 'home':
+
+                break;
+
+            case 'play':
+
+                break;
+
+            case 'profile':
+
+                break;
+            case 'ranking':
+
+                break;
+        }
+    }
+
+    onPlayClicked() {
+        // TODO change this to handle bot and ranked games.
+        // For not its gonna just start ranked matchmaking
+
+
     }
 }
 

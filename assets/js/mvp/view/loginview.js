@@ -14,6 +14,8 @@ class LoginView extends BaseView {
         this.addEventListeners()
         this.getLoginSettings()
         this.addTabbables()
+
+        this._showHideClass = 'hidden'
     }
 
     destroy() {
@@ -187,7 +189,6 @@ class LoginView extends BaseView {
 
         if (active) {
             this.unlockForm()
-
             this.getLoginSettings()
         } else {
             this._wrapper.classList.add('hidden')

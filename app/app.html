@@ -20,7 +20,7 @@
   </header>
 
   <main id="app">
-    <div class="page" id="lobby">
+    <div class="page hidden no-pointer-events" id="lobby">
       <div id="lobby-background">
         <img id="lobby-background-image-home" src="../assets/images/backgrounds/bg-home.png" class="img-full-width-abs">
         <img id="lobby-background-image-play" src="../assets/images/backgrounds/bg-play.png" class="img-full-width-abs hidden">
@@ -101,7 +101,7 @@
         </div>
       </div>
       <div id="lobby-queue-notification-wrapper" class="no-pointer-events">
-        <div id="lobby-queue-notification">
+        <div id="lobby-queue-notification" class="lobby-queue-notification-hidden">
           <div id="lobby-queue-notification-small" class="lobby-notification">
             <div id="lobby-queue-notification-small-loader">
               <div class="cube-spinner">
@@ -132,7 +132,7 @@
       </div>
     </div>
 
-    <div class="page hidden no-pointer-events" id="login">
+    <div class="page" id="login">
       <div id="login-bg-video-wrapper" class="bg-video-wrapper">
         <video id="login-bg-video" class="bg-video" loop muted>
           <source src="../assets/videos/sen-2-op-muted.mp4" type="video/mp4">

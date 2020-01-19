@@ -3,6 +3,9 @@ const B2Event = require('../utility').B2Event
 const appconfig = require('../../utility/appconfig')
 const request = require('request')
 
+const AUTH_TOKEN_REFRESH_MINUTES = 45
+const AUTH_TOKEN_REFRESH_INTERVAL = AUTH_TOKEN_REFRESH_MINUTES * 1000 * 60
+
 let b2ResultCode = new Map()
 
 function makeCreateAccountBody(handle, email, password) {
@@ -18,6 +21,7 @@ class NetModel extends BaseModel {
         super('net')
         this.init()
         this._active = true
+        this._currentAuthData = {}
     }
 
     init() {
@@ -71,6 +75,8 @@ class NetModel extends BaseModel {
         }, (error, response, body) => {
             if (response.statusCode == 200) {
                 this.broadcast(0, body.payload, this.onAuthResponse)
+                this._currentAuthData = body.payload
+                this.keepAuthAlive()
                 return
             } 
 
@@ -126,6 +132,14 @@ class NetModel extends BaseModel {
         }
 
         return ""
+    }
+
+    keepAuthAlive() {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                // Keepalive code goes here
+            }, AUTH_TOKEN_REFRESH_INTERVAL)
+        })
     }
 }
 

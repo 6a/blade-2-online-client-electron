@@ -14,9 +14,9 @@ class LobbyLoaderModel extends BaseModel {
     init() {
         super.init()
 
-        // this.onSettingsReady = new B2Event('Settings Ready')
+        this.onLobbyReady = new B2Event('Lobby Reader')
 
-        // this.addEventListener(this.models.get('net').onCreateAccountResponse.register(this.processCreateAccountResponse.bind(this)))
+        this.addEventListener(this.models.get('login').onLoginFinished.register(this.onLoginFinished.bind(this)))
         
         // document.getElementById("opts-button").addEventListener("click", this.onOptionsClicked.bind(this), false);
 
@@ -25,6 +25,24 @@ class LobbyLoaderModel extends BaseModel {
 
     destroy() {
         super.destroy()
+    }
+
+    onLoginFinished(data) {
+        if (data === "") {
+            this.show()
+
+            // Replace with any pre-loading
+            new Promise(() => {
+                setTimeout(() => {
+                    this.loadingFinished()
+                }, 10);
+            })
+        }
+    }
+
+    loadingFinished() {
+        this.hide()
+        this.onLobbyReady.broadcast()
     }
 }
 
