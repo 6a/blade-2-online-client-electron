@@ -1,10 +1,14 @@
 const BaseModel = require('./basemodel.js')
 const B2Event = require('../utility').B2Event
 const appconfig = require('../../utility/appconfig')
+const websocket = require('../../utility/websocket')
 const request = require('request')
 
 const AUTH_TOKEN_REFRESH_MINUTES = 45
 const AUTH_TOKEN_REFRESH_INTERVAL = AUTH_TOKEN_REFRESH_MINUTES * 1000 * 60
+const BACKEND_SERVER = "wss://b2gs.jstanton.io:443"
+const MATCHMAKING_ENDPOINT = "matchmaking"
+const GAMESERVER_ENDPOINT = "game"
 
 let b2ResultCode = new Map()
 
@@ -22,6 +26,7 @@ class NetModel extends BaseModel {
         this.init()
         this._active = true
         this._currentAuthData = {}
+        this._wsconn
     }
 
     init() {
@@ -60,6 +65,9 @@ class NetModel extends BaseModel {
         this.onAuthResponse = new B2Event('Auth Request Response')
         this.onCreateAccountResponse = new B2Event('Create Account Request Response')
         this.onMatchMakingConnectComplete = new B2Event('MatchMaking Connect Complete')
+        this.onMatchMakingGameFound = new B2Event('MatchMaking Game Found')
+        this.onMatchMakingGameConfirmed = new B2Event('MatchMaking Game Confirmed')
+        
     }
 
     destroy() { 
@@ -144,12 +152,39 @@ class NetModel extends BaseModel {
     }
 
     startMatchMaking() {
-        console.log("Matchmaking starrted")
+        console.log("Matchmaking started")
 
         // Connect to the matchmaking queue
+        this._wsconn = new websocket.B2WS(
+            `${BACKEND_SERVER}/${MATCHMAKING_ENDPOINT}`,
+            this._currentAuthData.pid,
+            this._currentAuthData.authToken,
+            this.onWebsocketEvent.bind(this)
+        )
+    }
 
-        // Once connected, fire an event
-        this.onMatchMakingConnectComplete.broadcast("")
+    onWebsocketEvent(payload) {
+        console.log(payload)
+
+        switch (payload.code) {
+            case 202:
+                
+                break;
+            case 207:
+                this.onMatchMakingConnectComplete.broadcast("")
+                break;
+            case 300:
+                this.onMatchMakingGameFound.broadcast()
+                break;
+            case 302:
+                this.onMatchMakingGameConfirmed.broadcast(payload.message)
+                break;
+            case 303:
+    
+                break;
+            default:
+                break;
+        }
     }
 }
 
