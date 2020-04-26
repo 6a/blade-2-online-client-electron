@@ -6,7 +6,7 @@ const request = require('request')
 
 const AUTH_TOKEN_REFRESH_MINUTES = 45
 const AUTH_TOKEN_REFRESH_INTERVAL = AUTH_TOKEN_REFRESH_MINUTES * 1000 * 60
-const BACKEND_SERVER = "wss://b2gs.jstanton.io:443"
+const BACKEND_SERVER = "ws://localhost:80"
 const MATCHMAKING_ENDPOINT = "matchmaking"
 const GAMESERVER_ENDPOINT = "game"
 
@@ -170,7 +170,7 @@ class NetModel extends BaseModel {
             case 202:
                 
                 break;
-            case 207:
+            case 205:
                 this.onMatchMakingConnectComplete.broadcast("")
                 break;
             case 300:
