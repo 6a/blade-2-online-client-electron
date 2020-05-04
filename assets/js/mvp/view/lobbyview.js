@@ -179,14 +179,14 @@ class LobbyView extends BaseView {
         if (this._animating) return
         this._animating = true
 
-        this.updateSelectorPositions(-1)
+        this.updateSelectorPositions(1)
     }
 
     onDownClicked() {
         if (this._animating) return
         this._animating = true
 
-        this.updateSelectorPositions(1)
+        this.updateSelectorPositions(-1)
     }
 
     onLobbyRotationAnimationFinished() {
@@ -219,9 +219,11 @@ class LobbyView extends BaseView {
 
     onPlayClicked() {
         // TODO change this to handle bot and ranked games.
-        // For not its gonna just start ranked matchmaking
+        // For now its gonna just start ranked matchmaking
 
-        this.startMatchMaking()
+        this._buttons.mainButton.disabled = true
+
+        //this.startMatchMaking()
     }
 
     onMatchMakingQueueJoined() {

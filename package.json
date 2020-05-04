@@ -14,7 +14,7 @@
   "author": "James Einosuke Stanton",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^7.1.7"
+    "electron": "^8.2.5"
   },
   "dependencies": {
     "electron-settings": "^3.2.0",

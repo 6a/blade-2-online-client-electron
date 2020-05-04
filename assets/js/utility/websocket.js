@@ -12,10 +12,6 @@ class B2WS {
         this._onWSEvent = eventCallback
     }
 
-    registerWSEventCallback(func) {
-        this._onWSEvent = func 
-    }
-
     onOpen(evt) {
         this.sendAuth()
     }

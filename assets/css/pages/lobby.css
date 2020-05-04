@@ -297,11 +297,11 @@
 }
 
 #lobby-nav-up-button {
-
+    transform: rotate(180deg);
 }
 
 #lobby-nav-down-button {
-    transform: rotate(180deg);
+
 }
 
 #lobby-selector-label-padding > button {
@@ -328,11 +328,11 @@
     font-family: 'Trajan Pro Regular', 'Noto Serif JP';
 }
 
-#lobby-selector-label-padding > button:hover > div {
+#lobby-selector-label-padding > button:not(:disabled):hover > div {
     color: var(--affirmative);
 }
 
-#lobby-selector-label-padding > button:active > div {
+#lobby-selector-label-padding > button:not(:disabled):active > div {
     color: var(--affirmative);
     text-shadow: 0 0 8px var(--affirmative);
 }

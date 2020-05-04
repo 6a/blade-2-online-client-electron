@@ -166,21 +166,30 @@ class NetModel extends BaseModel {
     onWebsocketEvent(payload) {
         console.log(payload)
 
+        if (payload.code >= 201 && payload.code <= 206) {
+            // Handle error
+            return
+        }
+
         switch (payload.code) {
-            case 202:
-                
-                break;
-            case 205:
-                this.onMatchMakingConnectComplete.broadcast("")
-                break;
             case 300:
+                // Ready check start
                 this.onMatchMakingGameFound.broadcast()
                 break;
+            case 301:
+                // Handle ready check success
+
+                break;
             case 302:
+                // Handle - this needs to be written to file along with all the other launch data
                 this.onMatchMakingGameConfirmed.broadcast(payload.message)
                 break;
             case 303:
-    
+                // handle ready check failure    
+
+                break;
+            case 304:
+                this.onMatchMakingConnectComplete.broadcast("")
                 break;
             default:
                 break;
