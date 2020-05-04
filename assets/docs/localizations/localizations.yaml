@@ -263,7 +263,7 @@ rankedMatch:
   en: Ranked Match
   jp: ランクマッチ
 rankedMatchInfo:
-  en: Play n match versus another online player
+  en: Play a match versus another online player
   jp: 他のオンラインプレイヤーを相手にする
 connectingToServer:
   en: Connecting to Server...
