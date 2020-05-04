@@ -34,7 +34,6 @@ class SelectMatchTypeView extends BaseView {
         this._aiMatchButton.addEventListener('click', this.onAIMatchButtonClicked.bind(this), false)
         this._rankedMatchButton.addEventListener('click', this.onRankedMatchButtonClicked.bind(this), false)
         this._returnButton.addEventListener('click', this.onReturnClicked.bind(this), false)
-        
 
         document.addEventListener('keydown', this.onEscDown.bind(this), false)
     }
