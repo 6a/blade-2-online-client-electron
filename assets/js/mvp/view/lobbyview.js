@@ -8,8 +8,10 @@ const QUEUE_TIMER_TICK = 1000 / 10
 
 const LOBBY_BUTTON_TEXT_STATE = ['lobby-main-button-text-state-active', 'lobby-main-button-text-state-below', 'hidden', 'lobby-main-button-text-state-above']
 
-const QUEUE_NOTIFICATION_LKEY_CONNECTING = "connectingToServer"
-const QUEUE_NOTIFICATION_LKEY_SEARCHING = "searchingForAGame"
+const QUEUE_NOTIFICATION_HIDDEN_CLASS = 'lobby-queue-notification-hidden'
+
+const QUEUE_NOTIFICATION_LKEY_CONNECTING = 'connectingToServer'
+const QUEUE_NOTIFICATION_LKEY_SEARCHING = 'searchingForAGame'
 
 class LobbyView extends BaseView {
     constructor(viewsList) {
@@ -35,6 +37,10 @@ class LobbyView extends BaseView {
         this._queueTimerRunning = false
         this._queueTimerOffset = 0
         this._queueTimeAtLastTick = 0
+        this._queueIntervalHandle
+
+        this._readyCheckBackgroundVideoDisabled = false
+        this._readyCheckInProgress = false
     }
 
     destroy() {
@@ -47,6 +53,9 @@ class LobbyView extends BaseView {
         this._queueNotification = document.getElementById('lobby-queue-notification')
         this._queueNotificationTimerText = document.getElementById('lobby-queue-notification-small-timer')
         this._queueNotificationText = document.getElementById('lobby-queue-notification-small-message')
+
+        this._readyCheckBackgroundVideo = document.getElementById('ready-check-bg-video')
+        this._readyCheckBackgroundVideoPoster = document.getElementById('ready-check-video-poster')
 
         this._buttons = {
             mainButton: document.getElementById('lobby-main-button'),
@@ -185,11 +194,19 @@ class LobbyView extends BaseView {
     }
 
     startQueueTimer() {
-        this._queueTimerStartTime = Date.now()
-        this._queueTimer = setInterval(this.queueTimerTick.bind(this), QUEUE_TIMER_TICK)
+        this._queueTimeAtLastTick = this._queueTimerStartTime = Date.now()
         this._queueTimerRunning = true
         this._queueTimerOffset = 0
-        this._queueTimeAtLastTick = Date.now()
+
+        this._queueTimer = setInterval(this.queueTimerTick.bind(this), QUEUE_TIMER_TICK)
+    }
+
+    pauseTimer() {
+        this._queueTimerRunning = false
+    }
+
+    stopTimer() {
+        clearInterval(this._queueTimer)
     }
 
     onUpClicked() {
@@ -239,7 +256,7 @@ class LobbyView extends BaseView {
     }
 
     onMatchMakingStarted() {
-        this._queueNotification.classList.remove('lobby-queue-notification-hidden')
+        this._queueNotification.classList.remove(QUEUE_NOTIFICATION_HIDDEN_CLASS)
 
         this._queueNotificationText.dataset.lkey = QUEUE_NOTIFICATION_LKEY_CONNECTING
         this._queueNotificationText.innerHTML = Localization.get(QUEUE_NOTIFICATION_LKEY_CONNECTING)
@@ -248,10 +265,35 @@ class LobbyView extends BaseView {
     }
 
     onMatchMakingQueueJoined() {
-        this._queueNotification.classList.remove('lobby-queue-notification-hidden')
+        this._queueNotification.classList.remove(QUEUE_NOTIFICATION_HIDDEN_CLASS)
 
         this._queueNotificationText.dataset.lkey = QUEUE_NOTIFICATION_LKEY_SEARCHING
         this._queueNotificationText.innerHTML = Localization.get(QUEUE_NOTIFICATION_LKEY_SEARCHING)
+    }
+
+    onMatchMakingReadyCheckStarted() {
+        this.pauseTimer()
+
+        if (!this._readyCheckBackgroundVideoDisabled) {
+            this._readyCheckBackgroundVideo.play()
+        }
+
+        this._readyCheckInProgress = true
+    }
+
+    toggleBackgroundVideo(disabled) {
+        if (disabled) {
+            this._readyCheckBackgroundVideo.pause()
+            this.toggleHidden(this._readyCheckBackgroundVideoPoster, false)
+        } else {
+            if (this._readyCheckInProgress) {
+                this._readyCheckBackgroundVideo.play()
+            }
+
+            this.toggleHidden(this._readyCheckBackgroundVideoPoster, true)
+        }
+
+        this._readyCheckBackgroundVideoDisabled = disabled
     }
 }
 

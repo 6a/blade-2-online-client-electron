@@ -11,6 +11,8 @@ class LobbyPresenter extends BasePresenter {
         
         this.addEventListener(this.model.onMatchMakingStarted.register(this.onMatchMakingStarted.bind(this)))
         this.addEventListener(this.model.onMatchMakingQueueJoined.register(this.onMatchMakingQueueJoined.bind(this)))
+        this.addEventListener(this.model.onMatchMakingReadyCheckStarted.register(this.onMatchMakingReadyCheckStarted.bind(this)))
+        this.addEventListener(this.model.onToggleBackgroundVideo.register(this.onToggleBackgroundVideo.bind(this)))
     }
 
     destroy() {
@@ -27,6 +29,14 @@ class LobbyPresenter extends BasePresenter {
 
     onMatchMakingQueueJoined() {
         this._view.onMatchMakingQueueJoined()
+    }
+
+    onMatchMakingReadyCheckStarted() {
+        this._view.onMatchMakingReadyCheckStarted()
+    }
+
+    onToggleBackgroundVideo(disabled) {
+        this._view.toggleBackgroundVideo(disabled)
     }
 }
 

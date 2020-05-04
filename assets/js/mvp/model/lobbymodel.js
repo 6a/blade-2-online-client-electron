@@ -14,13 +14,19 @@ class LobbyModel extends BaseModel {
     init() {
         super.init()
 
-        this.onMatchMakingStarted = new B2Event('MatchMaking Queue Joined')
+        this.onMatchMakingStarted = new B2Event('MatchMaking Started')
         this.onMatchMakingQueueJoined = new B2Event('MatchMaking Queue Joined')
+        this.onMatchMakingReadyCheckStarted = new B2Event('MatchMaking Ready Check Started')
         this.onMatchSelectModalSelected = new B2Event('Match Select Modal Selected')
+        this.onToggleBackgroundVideo = new B2Event('Toggle Background Video')
 
         // this.addEventListener(this.models.get('lobbyloader').onLobbyReady.register(this.onLobbyReady.bind(this)))
-        this.addEventListener(this.models.get('net').onMatchMakingConnectComplete.register(this.onMatchMakingConnectComplete.bind(this)))
         this.addEventListener(this.models.get('net').onMatchMakingConnectStarted.register(this.onMatchMakingConnectStarted.bind(this)))
+        this.addEventListener(this.models.get('net').onMatchMakingConnectComplete.register(this.onMatchMakingConnectComplete.bind(this)))
+        this.addEventListener(this.models.get('net').onMatchMakingGameFound.register(this.onMatchMakingGameFound.bind(this)))
+
+        this.addEventListener(this.models.get('options').onSettingChanged.register(this.onSettingChanged.bind(this)))
+
         this.addEventListener(this.models.get('login').onLoginFinished.register(this.show.bind(this)))
 
         // this.addEventListener(this.models.get('net').onCreateAccountResponse.register(this.processCreateAccountResponse.bind(this)))
@@ -57,6 +63,16 @@ class LobbyModel extends BaseModel {
             this.onMatchMakingQueueJoined.broadcast()
         } else {
             this._playDisabled = false
+        }
+    }
+
+    onMatchMakingGameFound() {
+        this.onMatchMakingReadyCheckStarted.broadcast()
+    }
+
+    onSettingChanged(setting) {
+        if (setting.setting === 'disableBackgroundVideos') {
+            this.onToggleBackgroundVideo.broadcast(setting.newValue)
         }
     }
 }

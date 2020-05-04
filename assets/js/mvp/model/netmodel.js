@@ -154,7 +154,7 @@ class NetModel extends BaseModel {
 
     startMatchMaking() {
         console.log("Matchmaking started")
-        this.onMatchMakingConnectStarted.broadcast("")
+        this.onMatchMakingConnectStarted.broadcast()
 
         // Connect to the matchmaking queue
         this._wsconn = new websocket.B2WS(
@@ -191,7 +191,7 @@ class NetModel extends BaseModel {
 
                 break;
             case 304:
-                this.onMatchMakingConnectComplete.broadcast("")
+                this.onMatchMakingConnectComplete.broadcast()
                 break;
             default:
                 break;
