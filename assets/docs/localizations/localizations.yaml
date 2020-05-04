@@ -242,7 +242,7 @@ rankings:
   en: Rankings
   jp: ランキング
 searchingForAGame:
-  en: Finding Match...
+  en: Searching for a Match...
   jp: マッチを探索中
 return:
   en: Return
@@ -265,3 +265,6 @@ rankedMatch:
 rankedMatchInfo:
   en: Play n match versus another online player
   jp: 他のオンラインプレイヤーを相手にする
+connectingToServer:
+  en: Connecting to Server...
+  jp: サーバーに接続中

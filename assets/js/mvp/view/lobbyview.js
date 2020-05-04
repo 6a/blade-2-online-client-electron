@@ -1,12 +1,15 @@
 const BaseView = require('./baseview.js')
 const LobbyPresenter = require('../presenter/lobbypresenter.js')
-const MarkdownIt = require('markdown-it')
+const { Localization } = require('../utility')
 
 const DEFAULT_SELECTOR_OFFSET = 190
 const NINENTY_DEGREES = 90
 const QUEUE_TIMER_TICK = 1000 / 10
 
 const LOBBY_BUTTON_TEXT_STATE = ['lobby-main-button-text-state-active', 'lobby-main-button-text-state-below', 'hidden', 'lobby-main-button-text-state-above']
+
+const QUEUE_NOTIFICATION_LKEY_CONNECTING = "connectingToServer"
+const QUEUE_NOTIFICATION_LKEY_SEARCHING = "searchingForAGame"
 
 class LobbyView extends BaseView {
     constructor(viewsList) {
@@ -29,6 +32,9 @@ class LobbyView extends BaseView {
 
         this._queueTimer
         this._queueTimerStartTime
+        this._queueTimerRunning = false
+        this._queueTimerOffset = 0
+        this._queueTimeAtLastTick = 0
     }
 
     destroy() {
@@ -40,6 +46,7 @@ class LobbyView extends BaseView {
 
         this._queueNotification = document.getElementById('lobby-queue-notification')
         this._queueNotificationTimerText = document.getElementById('lobby-queue-notification-small-timer')
+        this._queueNotificationText = document.getElementById('lobby-queue-notification-small-message')
 
         this._buttons = {
             mainButton: document.getElementById('lobby-main-button'),
@@ -163,16 +170,26 @@ class LobbyView extends BaseView {
     }
 
     queueTimerTick() {
-        let newTimeSeconds = (Date.now() - this._queueTimerStartTime) / 1000
-        let minutes = Math.floor(newTimeSeconds / 60)
-        let seconds = (newTimeSeconds - (minutes * 60)).toFixed(0)
+        if (this._queueTimerRunning) {
+            let newTimeSeconds = (Date.now() - this._queueTimerStartTime - this._queueTimerOffset) / 1000
+            let minutes = Math.floor(newTimeSeconds / 60)
+            let seconds = (newTimeSeconds - (minutes * 60)).toFixed(0)
+    
+            this._queueNotificationTimerText.innerHTML = `${minutes}:${String(seconds).padStart(2, '0')}`
+        } else {
+            let elapsedSinceLastTick = Date.now() - this._queueTimeAtLastTick
+            this._queueTimerOffset += elapsedSinceLastTick
 
-        this._queueNotificationTimerText.innerHTML = `${minutes}:${String(seconds).padStart(2, '0')}`
+            this._queueTimeAtLastTick = Date.now()
+        }
     }
 
     startQueueTimer() {
         this._queueTimerStartTime = Date.now()
         this._queueTimer = setInterval(this.queueTimerTick.bind(this), QUEUE_TIMER_TICK)
+        this._queueTimerRunning = true
+        this._queueTimerOffset = 0
+        this._queueTimeAtLastTick = Date.now()
     }
 
     onUpClicked() {
@@ -221,9 +238,20 @@ class LobbyView extends BaseView {
         this._presenter.playClicked()
     }
 
+    onMatchMakingStarted() {
+        this._queueNotification.classList.remove('lobby-queue-notification-hidden')
+
+        this._queueNotificationText.dataset.lkey = QUEUE_NOTIFICATION_LKEY_CONNECTING
+        this._queueNotificationText.innerHTML = Localization.get(QUEUE_NOTIFICATION_LKEY_CONNECTING)
+
+        this.startQueueTimer()
+    }
+
     onMatchMakingQueueJoined() {
         this._queueNotification.classList.remove('lobby-queue-notification-hidden')
-        this.startQueueTimer()
+
+        this._queueNotificationText.dataset.lkey = QUEUE_NOTIFICATION_LKEY_SEARCHING
+        this._queueNotificationText.innerHTML = Localization.get(QUEUE_NOTIFICATION_LKEY_SEARCHING)
     }
 }
 

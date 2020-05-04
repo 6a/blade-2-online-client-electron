@@ -64,6 +64,7 @@ class NetModel extends BaseModel {
 
         this.onAuthResponse = new B2Event('Auth Request Response')
         this.onCreateAccountResponse = new B2Event('Create Account Request Response')
+        this.onMatchMakingConnectStarted = new B2Event('MatchMaking Connect Started')
         this.onMatchMakingConnectComplete = new B2Event('MatchMaking Connect Complete')
         this.onMatchMakingGameFound = new B2Event('MatchMaking Game Found')
         this.onMatchMakingGameConfirmed = new B2Event('MatchMaking Game Confirmed')
@@ -153,6 +154,7 @@ class NetModel extends BaseModel {
 
     startMatchMaking() {
         console.log("Matchmaking started")
+        this.onMatchMakingConnectStarted.broadcast("")
 
         // Connect to the matchmaking queue
         this._wsconn = new websocket.B2WS(

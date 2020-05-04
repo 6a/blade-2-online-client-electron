@@ -9,6 +9,7 @@ class LobbyPresenter extends BasePresenter {
     init() {
         super.init()
         
+        this.addEventListener(this.model.onMatchMakingStarted.register(this.onMatchMakingStarted.bind(this)))
         this.addEventListener(this.model.onMatchMakingQueueJoined.register(this.onMatchMakingQueueJoined.bind(this)))
     }
 
@@ -20,8 +21,8 @@ class LobbyPresenter extends BasePresenter {
         this.model.playClicked()
     }
 
-    startMatchMaking() {
-        this.model.startMatchMaking()
+    onMatchMakingStarted() {
+        this._view.onMatchMakingStarted()
     }
 
     onMatchMakingQueueJoined() {

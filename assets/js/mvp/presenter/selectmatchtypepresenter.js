@@ -17,6 +17,18 @@ class SelectMatchTypePresenter extends BasePresenter {
     closeForm() {
         this.model.closeForm()
     }
+
+    requestTutorial() {
+        this.model.requestTutorial()
+    }
+
+    requestAIMatch() {
+        this.model.requestAIMatch()
+    }
+
+    requestRankedMatch() {
+        this.model.requestRankedMatch()
+    }
 }
 
 module.exports = SelectMatchTypePresenter

@@ -1,5 +1,5 @@
 const BaseModel = require('./basemodel.js')
-const { B2Event, Localization, containers } = require('../utility')
+const { B2Event } = require('../utility')
 
 class MessageModal extends BaseModel {
     constructor () {

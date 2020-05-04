@@ -30,8 +30,12 @@ class SelectMatchTypeView extends BaseView {
     }
 
     addEventListeners() {
+        this._tutorialButton.addEventListener('click', this.onTutorialButtonClicked.bind(this), false)
+        this._aiMatchButton.addEventListener('click', this.onAIMatchButtonClicked.bind(this), false)
+        this._rankedMatchButton.addEventListener('click', this.onRankedMatchButtonClicked.bind(this), false)
         this._returnButton.addEventListener('click', this.onReturnClicked.bind(this), false)
         
+
         document.addEventListener('keydown', this.onEscDown.bind(this), false)
     }
 
@@ -52,8 +56,26 @@ class SelectMatchTypeView extends BaseView {
         super.addTabbables(tabbables)
     }
 
+    onTutorialButtonClicked(event) {
+        event.preventDefault()
+        this._presenter.requestTutorial()
+        this._presenter.closeForm()
+    }
+
+    onAIMatchButtonClicked(event) {
+        event.preventDefault()
+        this._presenter.requestAIMatch()
+        this._presenter.closeForm()
+    }
+
+    onRankedMatchButtonClicked(event) {
+        event.preventDefault()
+        this._presenter.requestRankedMatch()
+        this._presenter.closeForm()
+    }
+
     onReturnClicked(event) {
-        event.preventDefault();
+        event.preventDefault()
         this._presenter.closeForm()
     }
 }
