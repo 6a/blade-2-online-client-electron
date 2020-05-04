@@ -84,10 +84,6 @@ class BaseView {
                 if (event.keyCode === 27) {
                     this._presenter.closeForm()
                 }
-    
-                if (!event.id) {
-                    event.id = 4
-                }
 
                 event.handled = true
             } 
