@@ -244,3 +244,24 @@ rankings:
 searchingForAGame:
   en: Finding Match...
   jp: マッチを探索中
+return:
+  en: Return
+  jp: 戻る
+tutorial:
+  en: Tutorial
+  jp: チュートリアル
+tutorialInfo:
+  en: Learn about Blade II Online's cards and rules
+  jp: ブレード II オンラインのカードとルールについて教えてもらう
+aiMatch:
+  en: Practice Match
+  jp: 訓練マッチ
+aiMatchInfo:
+  en: Play a match versus the computer
+  jp: コンピュータープレイヤーを相手にする
+rankedMatch:
+  en: Ranked Match
+  jp: ランクマッチ
+rankedMatchInfo:
+  en: Play n match versus another online player
+  jp: 他のオンラインプレイヤーを相手にする

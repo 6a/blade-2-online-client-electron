@@ -125,6 +125,61 @@
       </div>
     </div>
 
+    <div class="page backdrop hidden no-pointer-events" id="select-match-type">
+      <div id="lobby-match-type-select-wrapper">
+        <button id="lobby-match-type-select-row-tutorial" class="lobby-match-type-select-row">
+          <span class="force-layout">
+            <div class="lobby-match-type-select-icon-wrapper">
+              <div class="lobby-match-type-select-icon">
+                <div class="lobby-match-type-select-img">
+              
+                </div>
+              </div>
+            </div>
+            <div class="lobby-match-type-select-content">
+              <h1 data-lkey="tutorial">チュートリアル</h1>
+              <p data-lkey="tutorialInfo">ブレード II オンラインのカードとルールについて教えてもらう</p>
+            </div>
+          </span>
+        </button>
+        <button id="lobby-match-type-select-row-ai-match" class="lobby-match-type-select-row">
+          <span class="force-layout">
+            <div class="lobby-match-type-select-icon-wrapper">
+              <div class="lobby-match-type-select-icon">
+                <div class="lobby-match-type-select-img">
+              
+                </div>
+              </div>
+            </div>
+            <div class="lobby-match-type-select-content">
+              <h1 data-lkey="aiMatch">訓練マッチ</h1>
+              <p data-lkey="aiMatchInfo">コンピュータープレイヤーを相手にする</p>
+            </div>
+          </span>
+        </button>
+        <button id="lobby-match-type-select-row-ranked-match" class="lobby-match-type-select-row">
+          <span class="force-layout">
+            <div class="lobby-match-type-select-icon-wrapper">
+              <div class="lobby-match-type-select-icon">
+                <div class="lobby-match-type-select-img">
+              
+                </div>
+              </div>
+            </div>
+            <div class="lobby-match-type-select-content">
+              <h1 data-lkey="rankedMatch">ランクマッチ</h1>
+              <p data-lkey="rankedMatchInfo">他のオンラインプレイヤーを相手にする</p>
+            </div>
+          </span>
+        </button>
+        <div class="lobby-match-type-select-control-wrapper">
+          <button id="lobby-match-type-select-return-button">
+            <p data-lkey="return">戻る</p>
+          </button>
+        </div>
+      </div>
+    </div>
+
     <div class="page hidden no-pointer-events" id="lobby-loader">
       <div id="lobby-loader-content-wrapper" class="modal">
         <h1 id="lobby-loader-message" data-lkey="connecting">サーバーと接続しています</h1>
@@ -132,7 +187,7 @@
       </div>
     </div>
 
-    <div class="page hidden no-pointer-events" id="login">
+    <div class="page" id="login">
       <div id="login-bg-video-wrapper" class="bg-video-wrapper">
         <video id="login-bg-video" class="bg-video" loop muted>
           <source src="../assets/videos/sen-2-op-muted.mp4" type="video/mp4">
@@ -235,8 +290,6 @@
         <a id="create-account-close" href="" data-lkey="backToLogin">サインインへ戻る</a>
       </div>
     </div>
-
-
 
     <div class="page backdrop hidden no-pointer-events" id="options">
       <div id="options-modal" class="modal">
@@ -353,7 +406,7 @@
       </div>
     </div>
   
-    <div class="page" id="loading">
+    <div class="page backdrop hidden no-pointer-events" id="loading">
       <div id="loading-bg">
         <h1>初期化中</h1>
         <div id="loading-bar"></div>

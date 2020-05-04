@@ -15,9 +15,11 @@ class LobbyModel extends BaseModel {
         super.init()
 
         this.onMatchMakingQueueJoined = new B2Event('MatchMaking Queue Joined')
+        this.onMatchSelectModalSelected = new B2Event('Match Select Modal Selected')
 
-        this.addEventListener(this.models.get('lobbyloader').onLobbyReady.register(this.onLobbyReady.bind(this)))
+        // this.addEventListener(this.models.get('lobbyloader').onLobbyReady.register(this.onLobbyReady.bind(this)))
         this.addEventListener(this.models.get('net').onMatchMakingConnectComplete.register(this.onMatchMakingConnectComplete.bind(this)))
+        this.addEventListener(this.models.get('login').onLoginFinished.register(this.show.bind(this)))
 
         // this.addEventListener(this.models.get('net').onCreateAccountResponse.register(this.processCreateAccountResponse.bind(this)))
         
@@ -32,6 +34,11 @@ class LobbyModel extends BaseModel {
 
     onLobbyReady() {
         this.show()
+    }
+
+    playClicked() {
+        this.setLocked(true)
+        this.onMatchSelectModalSelected.broadcast()
     }
 
     startMatchMaking() {

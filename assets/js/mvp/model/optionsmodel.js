@@ -38,7 +38,7 @@ class OptionsModel extends BaseModel {
     }
 
     closeForm() {
-        this.models.get(this.models.popToPrevious(this.name)).show()
+        this.models.get(this.models.popToPrevious(this.name)).setLocked(false)
         this.hide()
     }
 

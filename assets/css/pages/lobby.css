@@ -300,10 +300,6 @@
     transform: rotate(180deg);
 }
 
-#lobby-nav-down-button {
-
-}
-
 #lobby-selector-label-padding > button {
     padding: 0;
     background-color: transparent;
@@ -468,10 +464,161 @@
     color: var(--gscale-40-100);
 }
 
-
-#lobby-queue-notification-big {
-
+#lobby-match-type-select-wrapper {
+    background-color: var(--gscale-90-100);
+    color: var(--gscale-10-100);
+    top: 95px;
+    right: 200px;
+    bottom: 95px;
+    left: 200px;
+    position: absolute;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 50px;
 }
+
+.lobby-match-type-select-row {
+    padding: 0;
+    min-width: initial;
+    background: url("../../images/880x160-transparent.png");
+    transition: all 0.2s ease-in-out;
+}
+
+.lobby-match-type-select-row > .force-layout {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    height: 120px;
+    background-color: transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+.lobby-match-type-select-row:hover > .force-layout {
+    background-color: var(--drop-shadow);
+}
+
+.lobby-match-type-select-row:hover .lobby-match-type-select-icon {
+    border: 3px solid var(--affirmative);
+}
+
+.lobby-match-type-select-row:hover .lobby-match-type-select-img {
+    filter: none;
+}
+
+.lobby-match-type-select-icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lobby-match-type-select-icon {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    border: 3px solid var(--gscale-90-100);
+    background-color: var(--gscale-10-100);
+    transition: all 0.2s ease-in-out;
+}
+
+.lobby-match-type-select-img {
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-size: 70%;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    filter: contrast(0) brightness(1.8);
+    transition: all 0.2s ease-in-out;
+}
+
+
+.lobby-match-type-select-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.lobby-match-type-select-content > h1, .lobby-match-type-select-content > p {
+    text-shadow: 0 0 4px var(--gscale-90-100);
+    transition: all 0.2s ease-in-out;
+}
+
+.lobby-match-type-select-row:hover h1, .lobby-match-type-select-row:hover p {
+    text-shadow: 0 0 4px var(--gscale-10-100);
+    color: var(--gscale-90-100);
+}
+
+.lobby-match-type-select-content > h1 {
+    color: var(--gscale-10-100);
+    font-size: 1.6em;
+}
+
+.lobby-match-type-select-content > p {
+    color: var(--gscale-30-100);
+    font-size: 1.2em;
+}
+
+
+#lobby-match-type-select-row-tutorial {
+    border-bottom: 2px solid var(--gscale-10-100);
+}
+
+#lobby-match-type-select-row-tutorial .lobby-match-type-select-img {
+    background-image: url("../../images/icons/tutorial.svg");
+} 
+
+#lobby-match-type-select-row-tutorial:hover {
+    background: url("../../images/game-type-backrounds/game-type-select-row-bg-tutorial.png");
+} 
+
+#lobby-match-type-select-row-ai-match {
+    border-top: 1px solid black;
+    border-bottom: 1px solid var(--gscale-10-100);
+}
+
+#lobby-match-type-select-row-ai-match .lobby-match-type-select-img {
+    background-image: url("../../images/icons/brain-with-chip.svg");
+} 
+
+
+#lobby-match-type-select-row-ai-match:hover {
+    background: url("../../images/game-type-backrounds/game-type-select-row-bg-ai-match.png");
+} 
+
+#lobby-match-type-select-row-ranked-match {
+    border-top: 2px solid var(--gscale-10-100);
+}
+
+#lobby-match-type-select-row-ranked-match .lobby-match-type-select-img {
+    background-image: url("../../images/icons/network.svg");
+} 
+
+#lobby-match-type-select-row-ranked-match:hover {
+    background: url("../../images/game-type-backrounds/game-type-select-row-bg-ranked-match.png");
+} 
+
+.lobby-match-type-select-control-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    background-color: var(--gscale-10-100);
+}
+
+.lobby-match-type-select-control-wrapper button {
+    font-size: 0.7em;
+    font-weight: 400;
+
+    min-width: 0;
+    padding: 10px 20px;
+    margin: 0 5px;
+
+    background-color: var(--positive);
+}
+
+/* #lobby-queue-notification-big {
+
+} */
 
 @keyframes notification-border-pulse {
     0% {

@@ -218,12 +218,7 @@ class LobbyView extends BaseView {
     }
 
     onPlayClicked() {
-        // TODO change this to handle bot and ranked games.
-        // For now its gonna just start ranked matchmaking
-
-        this._buttons.mainButton.disabled = true
-
-        //this.startMatchMaking()
+        this._presenter.playClicked()
     }
 
     onMatchMakingQueueJoined() {

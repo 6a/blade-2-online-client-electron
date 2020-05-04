@@ -80,9 +80,17 @@ class BaseView {
 
     onEscDown(event) {
         if (new Models().peekCurrentName() === this.name) {
-            if (event.keyCode === 27) {
-                this._presenter.closeForm()
-            }
+            if (!event.handled) {
+                if (event.keyCode === 27) {
+                    this._presenter.closeForm()
+                }
+    
+                if (!event.id) {
+                    event.id = 4
+                }
+
+                event.handled = true
+            } 
         }
     }
 }

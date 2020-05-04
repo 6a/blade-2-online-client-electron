@@ -5,6 +5,7 @@ module.exports = {
     CreateAccountModel: require('./createaccountmodel.js'),
     OptionsModel: require('./optionsmodel.js'),
     MessageModel: require('./messagemodel.js'),
-    LobbyLoaderModel: require('./lobbyloadermodel.js'),
-    LobbyModel: require('./lobbymodel.js')
+    // LobbyLoaderModel: require('./lobbyloadermodel.js'),
+    LobbyModel: require('./lobbymodel.js'),
+    SelectMatchTypeModel: require('./selectmatchtypemodel.js'),
 }

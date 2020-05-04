@@ -16,6 +16,10 @@ class LobbyPresenter extends BasePresenter {
         super.destroy()
     }
 
+    playClicked() {
+        this.model.playClicked()
+    }
+
     startMatchMaking() {
         this.model.startMatchMaking()
     }
