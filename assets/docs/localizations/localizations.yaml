@@ -289,3 +289,6 @@ opponentFailedReadyCheck:
 preparingMatch:
   en: Preparing match...
   jp: マッチを準備中
+trayIconTooltip:
+  en: Blade II Online - Match in Progress
+  jp: ブレード II オンライン - マッチが進行中

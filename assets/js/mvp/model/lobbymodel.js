@@ -1,9 +1,6 @@
 const BaseModel = require('./basemodel.js')
-const { B2Event, Localization, containers } = require('../utility')
+const { B2Event } = require('../utility')
 const Settings = require('../../utility/settings')
-const fs = require('fs')
-const MarkdownIt = require('markdown-it')
-const Timer = require('../../utility/timer')
 
 class LobbyModel extends BaseModel {
     constructor () {
@@ -108,7 +105,6 @@ class LobbyModel extends BaseModel {
     }
 
     onSettingChanged(setting) {
-        console.log(setting)
         if (setting.setting === 'disableBackgroundVideos') {
             this.onToggleBackgroundVideo.broadcast(setting.newValue)
         }
