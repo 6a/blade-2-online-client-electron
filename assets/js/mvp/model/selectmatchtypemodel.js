@@ -10,7 +10,7 @@ class SelectMatchTypeModel extends BaseModel {
     init() {
         super.init()
 
-        this.onInputFieldWarningChanged = new B2Event('Input Field State Changed')
+        this.onLocalMatchStarted = new B2Event('Local Match Started')
 
         this.addEventListener(this.models.get('lobby').onMatchSelectModalSelected.register(this.show.bind(this)))
         this.addEventListener(this.models.get('net').onMatchMakingConnectComplete.register(this.onMatchMakingConnectComplete.bind(this)))
@@ -29,10 +29,12 @@ class SelectMatchTypeModel extends BaseModel {
 
     requestTutorial() {
         this.models.get('bootstrapper').requestTutorial()
+        this.models.get('lobby').enablePlay()
     }
 
     requestAIMatch() {
         this.models.get('bootstrapper').requestAImatch()
+        this.models.get('lobby').enablePlay()
     }
 
     requestRankedMatch() {

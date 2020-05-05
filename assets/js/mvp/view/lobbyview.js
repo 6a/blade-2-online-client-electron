@@ -15,6 +15,7 @@ const DEFAULT_HIDDEN_CLASS = 'hidden'
 
 const LKEY_CONNECTING = 'connectingToServer'
 const LKEY_SEARCHING = 'searchingForAGame'
+const LKEY_READY_CHECKING = 'readyChecking'
 const LKEY_WAITING_FOR_OPPONENT_TO_ACCEPT = 'waitingForOpponentToAccept'
 const LKEY_PREPARING_MATCH = 'preparingMatch'
 const LKEY_FAILED_READY_CHECK = 'failedReadyCheck'
@@ -251,23 +252,19 @@ class LobbyView extends BaseView {
     matchMakingStarted() {
         this._queueNotification.classList.remove(QUEUE_NOTIFICATION_HIDDEN_CLASS)
 
-        this._queueNotificationText.dataset.lkey = LKEY_CONNECTING
-        this._queueNotificationText.innerHTML = Localization.get(LKEY_CONNECTING)
-
+        this.setQueueNotificationInfoText(LKEY_CONNECTING)
         this.startQueueTimer()
     }
 
     matchMakingQueueJoined() {
-        this._queueNotification.classList.remove(QUEUE_NOTIFICATION_HIDDEN_CLASS)
-
-        this._queueNotificationText.dataset.lkey = LKEY_SEARCHING
-        this._queueNotificationText.innerHTML = Localization.get(LKEY_SEARCHING)
+        this.setQueueNotificationInfoText(LKEY_SEARCHING)
     }
 
     matchMakingReadyCheckStarted() {
         this.cancelReadyCheckClose()
 
         this.pauseQueueTimer()
+        this.setQueueNotificationInfoText(LKEY_READY_CHECKING)
         
         this._readyCheckWrapper.classList.remove(...READY_CHECK_HIDDEN_CLASSES)
         this._readyCheckProgressBar.classList.add(READY_CHECK_PROGRESS_BAR_ANIMATION_CLASS)
@@ -286,6 +283,7 @@ class LobbyView extends BaseView {
     matchMakingEndReadyCheck(resumeTimer) {
         if (resumeTimer) {
             this.resumeQueueTimer()
+            this.setQueueNotificationInfoText(LKEY_SEARCHING)
         } else {
             this.stopQueueTimer()
         }
@@ -300,6 +298,11 @@ class LobbyView extends BaseView {
     setReadyCheckInfoText(lkey) {
         this._readyCheckInfoText.dataset.lkey = lkey
         this._readyCheckInfoText.innerHTML = Localization.get(lkey)
+    }
+
+    setQueueNotificationInfoText(lkey) {
+        this._queueNotificationText.dataset.lkey = lkey
+        this._queueNotificationText.innerHTML = Localization.get(lkey)
     }
 
     matchMakingComplete() {

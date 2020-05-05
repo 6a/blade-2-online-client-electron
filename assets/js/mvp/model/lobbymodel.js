@@ -40,12 +40,7 @@ class LobbyModel extends BaseModel {
 
         this.addEventListener(this.models.get('login').onLoginFinished.register(this.show.bind(this)))
 
-        // this.addEventListener(this.models.get('net').onCreateAccountResponse.register(this.processCreateAccountResponse.bind(this)))
-        
-        // document.getElementById("opts-button").addEventListener("click", this.onOptionsClicked.bind(this), false);
-
         this._active = false
-
         this._playDisabled = false;
     }
 
@@ -73,6 +68,10 @@ class LobbyModel extends BaseModel {
         this.models.get('net').acceptReadyCheck()
     }
 
+    enablePlay() {
+        this._playDisabled = false
+    }
+    
     onMatchMakingConnectStarted() {
         this.onMatchMakingStarted.broadcast()
     }
@@ -101,7 +100,6 @@ class LobbyModel extends BaseModel {
     
     onMatchMakingOpponentFailedToAccept () {
         this.onMatchMakingOpponentFailedReadyCheck.broadcast()
-        this._playDisabled = false
     }
 
     onMatchMakingFailedToAccept() {

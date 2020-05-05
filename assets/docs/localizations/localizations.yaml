@@ -241,9 +241,15 @@ profile:
 rankings:
   en: Rankings
   jp: ランキング
+connectingToServer:
+  en: Connecting to Server...
+  jp: サーバーに接続中
 searchingForAGame:
   en: Searching for a Match...
   jp: マッチを探索中
+readyChecking:
+  en: Performing Ready Check...
+  jp: 準備確認中
 return:
   en: Return
   jp: 戻る
@@ -265,9 +271,6 @@ rankedMatch:
 rankedMatchInfo:
   en: Play a match versus another online player
   jp: 他のオンラインプレイヤーを相手にする
-connectingToServer:
-  en: Connecting to Server...
-  jp: サーバーに接続中
 matchFound:
   en: MATCH FOUND
   jp: マッチが見つかりました
