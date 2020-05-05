@@ -5,6 +5,7 @@ const { Localization } = require('../utility')
 const DEFAULT_SELECTOR_OFFSET = 190
 const NINENTY_DEGREES = 90
 const QUEUE_TIMER_TICK = 1000 / 10
+const READY_CHECK_TICK = 1000 / 10
 
 const LOBBY_BUTTON_TEXT_STATE = ['lobby-main-button-text-state-active', 'lobby-main-button-text-state-below', 'hidden', 'lobby-main-button-text-state-above']
 
@@ -12,6 +13,10 @@ const QUEUE_NOTIFICATION_HIDDEN_CLASS = 'lobby-queue-notification-hidden'
 
 const QUEUE_NOTIFICATION_LKEY_CONNECTING = 'connectingToServer'
 const QUEUE_NOTIFICATION_LKEY_SEARCHING = 'searchingForAGame'
+
+const QUEUE_READY_CHECK_HIDDEN_CLASS = 'hidden'
+const QUEUE_READY_CHECK_PROGRESS_BAR_CLASS = 'scale-x-linear-20s'
+const FORCE_TRANSITION_END_CLASS = 'force-transition-finish'
 
 class LobbyView extends BaseView {
     constructor(viewsList) {
@@ -32,15 +37,19 @@ class LobbyView extends BaseView {
         this._pageCount = 4
         this._animating = false
 
-        this._queueTimer
+        this._queueTimerHandle
         this._queueTimerStartTime
         this._queueTimerRunning = false
         this._queueTimerOffset = 0
         this._queueTimeAtLastTick = 0
-        this._queueIntervalHandle
 
         this._readyCheckBackgroundVideoDisabled = false
         this._readyCheckInProgress = false
+
+        this._readyCheckTimerHandle
+        this._readyCheckStartTime
+
+        this._presenter.requestBackgroundVideoActive()
     }
 
     destroy() {
@@ -54,8 +63,10 @@ class LobbyView extends BaseView {
         this._queueNotificationTimerText = document.getElementById('lobby-queue-notification-small-timer')
         this._queueNotificationText = document.getElementById('lobby-queue-notification-small-message')
 
+        this._readyCheckWrapper = document.getElementById('lobby-queue-ready-check-wrapper')
         this._readyCheckBackgroundVideo = document.getElementById('ready-check-bg-video')
         this._readyCheckBackgroundVideoPoster = document.getElementById('ready-check-video-poster')
+        this._readyCheckProgressBar = document.getElementById('lobby-queue-ready-check-loading-bar-fill')
 
         this._buttons = {
             mainButton: document.getElementById('lobby-main-button'),
@@ -198,15 +209,31 @@ class LobbyView extends BaseView {
         this._queueTimerRunning = true
         this._queueTimerOffset = 0
 
-        this._queueTimer = setInterval(this.queueTimerTick.bind(this), QUEUE_TIMER_TICK)
+        this._queueTimerHandle = setInterval(this.queueTimerTick.bind(this), QUEUE_TIMER_TICK)
     }
 
-    pauseTimer() {
+    pauseQueueTimer() {
         this._queueTimerRunning = false
     }
 
-    stopTimer() {
-        clearInterval(this._queueTimer)
+    stopQueueTimer() {
+        clearInterval(this._queueTimerHandle)
+    }
+
+    readyCheckTick() {
+        let newTimeSeconds = (Date.now() - this._queueTimerStartTime) / 1000
+        
+        // Set timer text
+    }
+
+    startReadyCheck() {
+        this._readyCheckInProgress = true
+        this._readyCheckStartTime = Date().now()
+        this._readyCheckTimerHandle = setInterval(this.readyCheckTick.bind(this), READY_CHECK_TICK)
+    }
+
+    stopReadyCheck() {
+        clearInterval(this._readyCheckTimerHandle)
     }
 
     onUpClicked() {
@@ -272,13 +299,16 @@ class LobbyView extends BaseView {
     }
 
     onMatchMakingReadyCheckStarted() {
-        this.pauseTimer()
+        this.pauseQueueTimer()
+
+        this._readyCheckWrapper.classList.remove(QUEUE_READY_CHECK_HIDDEN_CLASS)
+        this._readyCheckProgressBar.classList.add(QUEUE_READY_CHECK_PROGRESS_BAR_CLASS)
 
         if (!this._readyCheckBackgroundVideoDisabled) {
             this._readyCheckBackgroundVideo.play()
         }
 
-        this._readyCheckInProgress = true
+        startReadyCheck()
     }
 
     toggleBackgroundVideo(disabled) {

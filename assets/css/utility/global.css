@@ -260,6 +260,15 @@ a {
     animation: notification-reminder 0.5s 1 ease-in-out !important;
 }
 
+.scale-x-linear-20s {
+    transition: all 20s linear;
+    transform: scaleX(1) !important;
+}
+
+.force-transition-finish {
+    transition: none !important;
+}
+
 /* KEYFRAMES */
 
 @keyframes spin {

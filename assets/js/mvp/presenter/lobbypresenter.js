@@ -23,6 +23,10 @@ class LobbyPresenter extends BasePresenter {
         this.model.playClicked()
     }
 
+    requestBackgroundVideoActive() {
+        this.model.requestBackgroundVideoActive()
+    }
+
     onMatchMakingStarted() {
         this._view.onMatchMakingStarted()
     }

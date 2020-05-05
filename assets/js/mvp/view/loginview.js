@@ -3,7 +3,7 @@ const LoginPresenter = require('../presenter/loginpresenter.js')
 
 class LoginView extends BaseView {
     constructor (viewsList) {
-        super('login', LoginPresenter, viewsList)
+        super('login', LoginPresenter, viewsList, 'hidden')
         this.init()
     }
 
@@ -14,8 +14,6 @@ class LoginView extends BaseView {
         this.addEventListeners()
         this.getLoginSettings()
         this.addTabbables()
-
-        this._showHideClass = 'hidden'
     }
 
     destroy() {

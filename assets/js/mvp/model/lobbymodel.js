@@ -54,6 +54,10 @@ class LobbyModel extends BaseModel {
         }
     }
 
+    requestBackgroundVideoActive() {
+        this.onToggleBackgroundVideo.broadcast(Settings.get(Settings.KEYS.DISABLE_BACKGROUND_VIDEOS))
+    }
+
     onMatchMakingConnectStarted() {
         this.onMatchMakingStarted.broadcast()
     }
@@ -71,6 +75,7 @@ class LobbyModel extends BaseModel {
     }
 
     onSettingChanged(setting) {
+        console.log(setting)
         if (setting.setting === 'disableBackgroundVideos') {
             this.onToggleBackgroundVideo.broadcast(setting.newValue)
         }
