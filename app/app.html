@@ -20,8 +20,7 @@
   </header>
 
   <main id="app">
-    <div class="page" id="lobby">
-    <!-- <div class="page hidden no-pointer-events" id="lobby"> -->
+    <div class="page hidden no-pointer-events" id="lobby">
       <div id="lobby-background">
         <img id="lobby-background-image-home" src="../assets/images/backgrounds/bg-home.png" class="img-full-width-abs">
         <img id="lobby-background-image-play" src="../assets/images/backgrounds/bg-play.png" class="img-full-width-abs hidden">
@@ -121,20 +120,33 @@
           </div>
         </div>
       </div>
-    <div id="lobby-queue-ready-check-wrapper">
-      <div class="lobby-queue-ready-check">
-        <div id="ready-check-video-wrapper" class="bg-video-wrapper">
-          <video id="ready-check-bg-video" class="bg-video" muted>
-            <source src="../assets/videos/sen-2-ready-check-background.mp4" type="video/mp4">
-          </video>
-          <img id="ready-check-video-poster" class="bg-video-poster hidden" src="../assets/images/video-static/ready-check-bg-static.jpg" alt="">
-        </div>
-        <div id="lobby-queue-ready-check-progress-bar-background">
-          <div id="lobby-queue-ready-check-progress-bar-fill"></div>
+      <div id="lobby-queue-ready-check-wrapper" class="hidden no-pointer-events">
+        <div class="lobby-queue-ready-check">
+          <div id="ready-check-video-wrapper" class="bg-video-wrapper">
+            <video id="ready-check-bg-video" class="bg-video" muted>
+              <source src="../assets/videos/sen-2-ready-check-background.mp4" type="video/mp4">
+            </video>
+            <img id="ready-check-video-poster" class="bg-video-poster hidden" src="../assets/images/video-static/ready-check-bg-static.jpg" alt="">
+          </div>
+          <div class="lobby-queue-ready-check-content">
+            <h1 data-lkey="matchFound">マッチが見つかりました</h1>
+            <div id="ready-check-interactables-wrapper">
+              <div id="ready-check-buttons-wrapper">
+                <button id="ready-check-accept-button">
+                  <p data-lkey="accept">受けて立つ</p>
+                </button>
+              </div>
+              <div class="no-pointer-events">
+                <p id="ready-check-info-text" data-lkey="waitingForOpponentToAccept" class="hidden">相手の受け入れを待っています</p>
+              </div>
+            </div>
+          </div>
+          <div id="lobby-queue-ready-check-progress-bar-background">
+            <div id="lobby-queue-ready-check-progress-bar-fill"></div>
+          </div>
         </div>
       </div>
     </div>
-
     <div class="page backdrop hidden no-pointer-events" id="select-match-type">
       <div id="lobby-match-type-select-wrapper">
         <button id="lobby-match-type-select-row-tutorial" class="lobby-match-type-select-row">
@@ -197,7 +209,7 @@
       </div>
     </div>
 
-    <div class="page hidden no-pointer-events" id="login">
+    <div class="page" id="login">
       <div id="login-bg-video-wrapper" class="bg-video-wrapper">
         <video id="login-bg-video" class="bg-video" loop muted>
           <source src="../assets/videos/sen-2-op-muted.mp4" type="video/mp4">

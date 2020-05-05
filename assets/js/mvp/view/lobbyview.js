@@ -10,13 +10,20 @@ const READY_CHECK_TICK = 1000 / 10
 const LOBBY_BUTTON_TEXT_STATE = ['lobby-main-button-text-state-active', 'lobby-main-button-text-state-below', 'hidden', 'lobby-main-button-text-state-above']
 
 const QUEUE_NOTIFICATION_HIDDEN_CLASS = 'lobby-queue-notification-hidden'
+const READY_CHECK_HIDDEN_CLASSES = ['hidden', 'no-pointer-events']
+const DEFAULT_HIDDEN_CLASS = 'hidden'
 
-const QUEUE_NOTIFICATION_LKEY_CONNECTING = 'connectingToServer'
-const QUEUE_NOTIFICATION_LKEY_SEARCHING = 'searchingForAGame'
+const LKEY_CONNECTING = 'connectingToServer'
+const LKEY_SEARCHING = 'searchingForAGame'
+const LKEY_WAITING_FOR_OPPONENT_TO_ACCEPT = 'waitingForOpponentToAccept'
+const LKEY_PREPARING_MATCH = 'preparingMatch'
+const LKEY_FAILED_READY_CHECK = 'failedReadyCheck'
+const LKEY_OPPONENT_FAILED_READY_CHECK = 'opponentFailedReadyCheck'
 
-const QUEUE_READY_CHECK_HIDDEN_CLASS = 'hidden'
-const QUEUE_READY_CHECK_PROGRESS_BAR_CLASS = 'scale-x-linear-20s'
-const FORCE_TRANSITION_END_CLASS = 'force-transition-finish'
+const READY_CHECK_PROGRESS_BAR_ANIMATION_CLASS = 'ready-check-20s'
+const READY_CHECK_PROGRESS_BAR_WARNING_FLASH_CLASS = 'ready-check-progress-bar-flash-20s'
+const READY_CHECK_FORCE_TRANSITION_END_CLASS = 'force-transition-finish'
+const READY_CHECK_POST_CONFIRM_WAIT = 5000
 
 class LobbyView extends BaseView {
     constructor(viewsList) {
@@ -43,11 +50,11 @@ class LobbyView extends BaseView {
         this._queueTimerOffset = 0
         this._queueTimeAtLastTick = 0
 
+        this._delayedReadyCheckClose
         this._readyCheckBackgroundVideoDisabled = false
         this._readyCheckInProgress = false
-
-        this._readyCheckTimerHandle
-        this._readyCheckStartTime
+        this._opponentAcceptedReadyCheck = false
+        this._acceptedReadyCheck = false
 
         this._presenter.requestBackgroundVideoActive()
     }
@@ -66,7 +73,11 @@ class LobbyView extends BaseView {
         this._readyCheckWrapper = document.getElementById('lobby-queue-ready-check-wrapper')
         this._readyCheckBackgroundVideo = document.getElementById('ready-check-bg-video')
         this._readyCheckBackgroundVideoPoster = document.getElementById('ready-check-video-poster')
-        this._readyCheckProgressBar = document.getElementById('lobby-queue-ready-check-loading-bar-fill')
+        this._readyCheckProgressBar = document.getElementById('lobby-queue-ready-check-progress-bar-fill')
+        this._readyCheckProgressBarWrapper = document.getElementById('lobby-queue-ready-check-progress-bar-background')
+        this._readyCheckInfoText = document.getElementById('ready-check-info-text')
+        this._readyCheckAcceptButton = document.getElementById('ready-check-accept-button')
+        this._readyCheckButtonsWrapper = document.getElementById('ready-check-buttons-wrapper')
 
         this._buttons = {
             mainButton: document.getElementById('lobby-main-button'),
@@ -107,6 +118,7 @@ class LobbyView extends BaseView {
         this._buttons.upButton.addEventListener('click', this.onUpClicked.bind(this), false)
         this._buttons.downButton.addEventListener('click', this.onDownClicked.bind(this), false)
         this._buttons.mainButton.addEventListener('click', this.onMainButtonClicked.bind(this), false)
+        this._readyCheckAcceptButton.addEventListener('click', this.onReadyCheckAccepted.bind(this), false)
 
         Object.values(this._selectors).forEach((element) => {
             element.addEventListener('transitionend', this.onLobbyRotationAnimationFinished.bind(this), false)
@@ -216,24 +228,142 @@ class LobbyView extends BaseView {
         this._queueTimerRunning = false
     }
 
+    resumeQueueTimer() {
+        this._queueTimerRunning = true
+    }
+
     stopQueueTimer() {
         clearInterval(this._queueTimerHandle)
     }
 
-    readyCheckTick() {
-        let newTimeSeconds = (Date.now() - this._queueTimerStartTime) / 1000
-        
-        // Set timer text
-    }
-
     startReadyCheck() {
         this._readyCheckInProgress = true
-        this._readyCheckStartTime = Date().now()
-        this._readyCheckTimerHandle = setInterval(this.readyCheckTick.bind(this), READY_CHECK_TICK)
     }
 
-    stopReadyCheck() {
-        clearInterval(this._readyCheckTimerHandle)
+    matchMakingOpponentReady() {
+        this._opponentAcceptedReadyCheck = true
+
+        if (this._acceptedReadyCheck) {
+            this.setReadyCheckInfoText(LKEY_PREPARING_MATCH)
+        }
+    }
+
+    matchMakingStarted() {
+        this._queueNotification.classList.remove(QUEUE_NOTIFICATION_HIDDEN_CLASS)
+
+        this._queueNotificationText.dataset.lkey = LKEY_CONNECTING
+        this._queueNotificationText.innerHTML = Localization.get(LKEY_CONNECTING)
+
+        this.startQueueTimer()
+    }
+
+    matchMakingQueueJoined() {
+        this._queueNotification.classList.remove(QUEUE_NOTIFICATION_HIDDEN_CLASS)
+
+        this._queueNotificationText.dataset.lkey = LKEY_SEARCHING
+        this._queueNotificationText.innerHTML = Localization.get(LKEY_SEARCHING)
+    }
+
+    matchMakingReadyCheckStarted() {
+        this.cancelReadyCheckClose()
+
+        this.pauseQueueTimer()
+        
+        this._readyCheckWrapper.classList.remove(...READY_CHECK_HIDDEN_CLASSES)
+        this._readyCheckProgressBar.classList.add(READY_CHECK_PROGRESS_BAR_ANIMATION_CLASS)
+        this._readyCheckProgressBarWrapper.classList.add(READY_CHECK_PROGRESS_BAR_WARNING_FLASH_CLASS)
+        this._readyCheckButtonsWrapper.classList.remove(DEFAULT_HIDDEN_CLASS)
+        this._readyCheckInfoText.classList.add(DEFAULT_HIDDEN_CLASS)
+
+        if (!this._readyCheckBackgroundVideoDisabled) {
+            this._readyCheckBackgroundVideo.currentTime = 0
+            this._readyCheckBackgroundVideo.play()
+        }
+
+        this.startReadyCheck()
+    }
+
+    matchMakingEndReadyCheck(resumeTimer) {
+        if (resumeTimer) {
+            this.resumeQueueTimer()
+        } else {
+            this.stopQueueTimer()
+        }
+
+        this._readyCheckWrapper.classList.add(...READY_CHECK_HIDDEN_CLASSES)
+        this._readyCheckProgressBar.classList.remove(READY_CHECK_PROGRESS_BAR_ANIMATION_CLASS)
+        this._readyCheckProgressBarWrapper.classList.remove(READY_CHECK_PROGRESS_BAR_WARNING_FLASH_CLASS, READY_CHECK_FORCE_TRANSITION_END_CLASS)
+
+        this._readyCheckBackgroundVideo.pause()
+    }
+
+    setReadyCheckInfoText(lkey) {
+        this._readyCheckInfoText.dataset.lkey = lkey
+        this._readyCheckInfoText.innerHTML = Localization.get(lkey)
+    }
+
+    matchMakingComplete() {
+        this.readyCheckShowInfo()
+        this.setReadyCheckInfoText(LKEY_PREPARING_MATCH)
+        this._queueNotification.classList.add(QUEUE_NOTIFICATION_HIDDEN_CLASS)
+
+        this.cancelReadyCheckClose()
+
+        this._delayedReadyCheckClose = setTimeout(() => {
+            this.matchMakingEndReadyCheck(false)
+        }, READY_CHECK_POST_CONFIRM_WAIT);
+    }
+
+    opponentFailedReadyCheck() {
+        this.readyCheckShowInfo()
+        this.setReadyCheckInfoText(LKEY_OPPONENT_FAILED_READY_CHECK)
+
+        this.cancelReadyCheckClose()
+
+        this._delayedReadyCheckClose = setTimeout(() => {
+            this.matchMakingEndReadyCheck(true)
+        }, READY_CHECK_POST_CONFIRM_WAIT);
+    }
+
+    failedReadyCheck() {
+        this.readyCheckShowInfo()
+        this.setReadyCheckInfoText(LKEY_FAILED_READY_CHECK)
+        this._queueNotification.classList.add(QUEUE_NOTIFICATION_HIDDEN_CLASS)
+
+        this.cancelReadyCheckClose()
+
+        this._delayedReadyCheckClose = setTimeout(() => {
+            this.matchMakingEndReadyCheck(false)
+        }, READY_CHECK_POST_CONFIRM_WAIT);
+    }
+
+    readyCheckShowInfo() {
+        this._readyCheckProgressBar.classList.replace(READY_CHECK_PROGRESS_BAR_ANIMATION_CLASS, READY_CHECK_FORCE_TRANSITION_END_CLASS)
+        this._readyCheckProgressBarWrapper.classList.remove(READY_CHECK_PROGRESS_BAR_WARNING_FLASH_CLASS)
+        this._readyCheckInfoText.classList.remove(DEFAULT_HIDDEN_CLASS)
+        this._readyCheckButtonsWrapper.classList.add(DEFAULT_HIDDEN_CLASS)
+    }
+
+    cancelReadyCheckClose() {
+        if (this._delayedReadyCheckClose) {
+            clearTimeout(this._delayedReadyCheckClose)
+            this._delayedReadyCheckClose = null
+        }
+    }
+
+    toggleBackgroundVideo(disabled) {
+        if (disabled) {
+            this._readyCheckBackgroundVideo.pause()
+            this.toggleHidden(this._readyCheckBackgroundVideoPoster, false)
+        } else {
+            if (this._readyCheckInProgress) {
+                this._readyCheckBackgroundVideo.play()
+            }
+
+            this.toggleHidden(this._readyCheckBackgroundVideoPoster, true)
+        }
+
+        this._readyCheckBackgroundVideoDisabled = disabled
     }
 
     onUpClicked() {
@@ -282,48 +412,17 @@ class LobbyView extends BaseView {
         this._presenter.playClicked()
     }
 
-    onMatchMakingStarted() {
-        this._queueNotification.classList.remove(QUEUE_NOTIFICATION_HIDDEN_CLASS)
+    onReadyCheckAccepted() {
+        this._presenter.acceptReadyCheck()
+        this._acceptedReadyCheck = true
 
-        this._queueNotificationText.dataset.lkey = QUEUE_NOTIFICATION_LKEY_CONNECTING
-        this._queueNotificationText.innerHTML = Localization.get(QUEUE_NOTIFICATION_LKEY_CONNECTING)
+        this.readyCheckShowInfo()
 
-        this.startQueueTimer()
-    }
-
-    onMatchMakingQueueJoined() {
-        this._queueNotification.classList.remove(QUEUE_NOTIFICATION_HIDDEN_CLASS)
-
-        this._queueNotificationText.dataset.lkey = QUEUE_NOTIFICATION_LKEY_SEARCHING
-        this._queueNotificationText.innerHTML = Localization.get(QUEUE_NOTIFICATION_LKEY_SEARCHING)
-    }
-
-    onMatchMakingReadyCheckStarted() {
-        this.pauseQueueTimer()
-
-        this._readyCheckWrapper.classList.remove(QUEUE_READY_CHECK_HIDDEN_CLASS)
-        this._readyCheckProgressBar.classList.add(QUEUE_READY_CHECK_PROGRESS_BAR_CLASS)
-
-        if (!this._readyCheckBackgroundVideoDisabled) {
-            this._readyCheckBackgroundVideo.play()
-        }
-
-        startReadyCheck()
-    }
-
-    toggleBackgroundVideo(disabled) {
-        if (disabled) {
-            this._readyCheckBackgroundVideo.pause()
-            this.toggleHidden(this._readyCheckBackgroundVideoPoster, false)
+        if (this._opponentAcceptedReadyCheck) {
+            this.setReadyCheckInfoText(LKEY_PREPARING_MATCH)
         } else {
-            if (this._readyCheckInProgress) {
-                this._readyCheckBackgroundVideo.play()
-            }
-
-            this.toggleHidden(this._readyCheckBackgroundVideoPoster, true)
+            this.setReadyCheckInfoText(LKEY_WAITING_FOR_OPPONENT_TO_ACCEPT)
         }
-
-        this._readyCheckBackgroundVideoDisabled = disabled
     }
 }
 

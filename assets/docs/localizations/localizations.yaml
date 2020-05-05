@@ -268,3 +268,21 @@ rankedMatchInfo:
 connectingToServer:
   en: Connecting to Server...
   jp: サーバーに接続中
+matchFound:
+  en: MATCH FOUND
+  jp: マッチが見つかりました
+accept:
+  en: Accept
+  jp: 受けて立つ
+waitingForOpponentToAccept:
+  en: Waiting for Opponent to Accept
+  jp: 相手の受け入れを待っています
+failedReadyCheck:
+  en: You did not accept the match, so you have been removed from the match making queue
+  jp: マッチを受け入れなかったため、マッチメイキングキューから除去されました
+opponentFailedReadyCheck:
+  en: Your opponent did not accept the match, and you have been returned to the matchmaking queue
+  jp: 相手はマッチを受け入れなかったため、マッチメイキングキューに戻りました
+preparingMatch:
+  en: Preparing match...
+  jp: マッチを準備中

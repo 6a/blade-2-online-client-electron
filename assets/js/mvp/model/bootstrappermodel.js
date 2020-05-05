@@ -1,6 +1,8 @@
 const BaseModel = require('./basemodel.js')
 const { B2Event } = require('../utility')
 
+const RANKED_MATCH_DELAY = 5000
+
 class BootStrapperModel extends BaseModel {
     constructor () {
         super('bootstrapper')
@@ -10,22 +12,25 @@ class BootStrapperModel extends BaseModel {
     init() {
         super.init()
 
+        this.addEventListener(this.models.get('net').onMatchMakingGameConfirmed.register(this.requestRankedMatch.bind(this)))
     }
 
     destroy() {
         super.destroy()
     }
 
-    startTutorial() {
-
+    requestTutorial() {
+        console.log(`Starting Tutorial`)
     }
 
-    startAIMatch() {
-        
+    requestAImatch() {
+        console.log(`Starting AI Match`)
     }
 
-    startRankedMatch() {
-        
+    requestRankedMatch(matchID) {
+        console.log(`Starting match with id [${matchID}]`)
+
+        // Delay for 2s then start bootstrap
     }
 }
 

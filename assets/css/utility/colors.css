@@ -28,14 +28,17 @@
     --gscale-05-100: hsla(0, 0%, 5%, 1);
     --gscale-00-100: black;
 
+    --affirmative-alt: hsla(215, 85%, 45%, 1);
+    --affirmative-alt-darker: hsla(215, 85%, 40%, 1);
+    --affirmative-alt-dark: hsla(215, 85%, 35%, 1);
 
     --drop-shadow: hsla(0, 0%, 10%, 0.4);
 
     --backdrop: hsla(0, 0%, 10%, 0.4);
 
     --affirmative: hsl(2, 68%, 45%); --affirmative-50: hsla(2, 68%, 45%, 0.5); --affirmative-90: hsla(2, 68%, 45%, 0.9);
-    --affirmative-darker: hsla(2, 68%, 40%);
-    --affirmative-dark: hsla(2, 68%, 35%);
+    --affirmative-darker: hsl(2, 68%, 40%);
+    --affirmative-dark: hsl(2, 68%, 35%);
 
     --hl-subtle-red: #884e4e; 
     --hl-subtle-blue: #4e5d88; 

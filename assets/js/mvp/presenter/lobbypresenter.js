@@ -8,11 +8,17 @@ class LobbyPresenter extends BasePresenter {
 
     init() {
         super.init()
+
+        
         
         this.addEventListener(this.model.onMatchMakingStarted.register(this.onMatchMakingStarted.bind(this)))
         this.addEventListener(this.model.onMatchMakingQueueJoined.register(this.onMatchMakingQueueJoined.bind(this)))
         this.addEventListener(this.model.onMatchMakingReadyCheckStarted.register(this.onMatchMakingReadyCheckStarted.bind(this)))
         this.addEventListener(this.model.onToggleBackgroundVideo.register(this.onToggleBackgroundVideo.bind(this)))
+        this.addEventListener(this.model.onMatchMakingOpponentReady.register(this.onMatchMakingOpponentReady.bind(this)))
+        this.addEventListener(this.model.onMatchMakingComplete.register(this.onMatchMakingComplete.bind(this)))
+        this.addEventListener(this.model.onMatchMakingOpponentFailedReadyCheck.register(this.onMatchMakingOpponentFailedReadyCheck.bind(this)))
+        this.addEventListener(this.model.onMatchMakingFailedReadyCheck.register(this.onMatchMakingFailedReadyCheck.bind(this)))    
     }
 
     destroy() {
@@ -27,16 +33,36 @@ class LobbyPresenter extends BasePresenter {
         this.model.requestBackgroundVideoActive()
     }
 
+    acceptReadyCheck() {
+        this.model.acceptReadyCheck()
+    }
+
     onMatchMakingStarted() {
-        this._view.onMatchMakingStarted()
+        this._view.matchMakingStarted()
     }
 
     onMatchMakingQueueJoined() {
-        this._view.onMatchMakingQueueJoined()
+        this._view.matchMakingQueueJoined()
     }
 
     onMatchMakingReadyCheckStarted() {
-        this._view.onMatchMakingReadyCheckStarted()
+        this._view.matchMakingReadyCheckStarted()
+    }
+
+    onMatchMakingOpponentReady() {
+        this._view.matchMakingOpponentReady()
+    }
+
+    onMatchMakingComplete() {
+        this._view.matchMakingComplete()
+    }
+
+    onMatchMakingOpponentFailedReadyCheck() {
+        this._view.opponentFailedReadyCheck()
+    }
+
+    onMatchMakingFailedReadyCheck() {
+        this._view.failedReadyCheck()
     }
 
     onToggleBackgroundVideo(disabled) {

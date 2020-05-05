@@ -68,7 +68,9 @@ class NetModel extends BaseModel {
         this.onMatchMakingConnectComplete = new B2Event('MatchMaking Connect Complete')
         this.onMatchMakingGameFound = new B2Event('MatchMaking Game Found')
         this.onMatchMakingGameConfirmed = new B2Event('MatchMaking Game Confirmed')
-        
+        this.onMatchMakingOpponentAccepted = new B2Event('MatchMaking Opponent Accepted')
+        this.onMatchMakingOpponentFailedToAccept = new B2Event('MatchMaking Opponent Failed To Accept')
+        this.onMatchMakingFailedToAccept = new B2Event('MatchMaking Failed To Accept')
     }
 
     destroy() { 
@@ -165,6 +167,10 @@ class NetModel extends BaseModel {
         )
     }
 
+    acceptReadyCheck() {
+        this._wsconn.sendAccept()
+    }
+
     onWebsocketEvent(payload) {
         console.log(payload)
 
@@ -175,23 +181,22 @@ class NetModel extends BaseModel {
 
         switch (payload.code) {
             case 300:
-                // Ready check start
-                this.onMatchMakingGameFound.broadcast()
-                break;
-            case 301:
-                // Handle ready check success
-
+                this.onMatchMakingGameFound.broadcast("")
                 break;
             case 302:
-                // Handle - this needs to be written to file along with all the other launch data
                 this.onMatchMakingGameConfirmed.broadcast(payload.message)
                 break;
             case 303:
-                // handle ready check failure    
-
+                this.onMatchMakingFailedToAccept.broadcast("")
                 break;
             case 304:
-                this.onMatchMakingConnectComplete.broadcast()
+                this.onMatchMakingConnectComplete.broadcast("")
+                break;
+            case 305:
+                this.onMatchMakingOpponentAccepted.broadcast("")
+                break;
+            case 306:
+                this.onMatchMakingOpponentFailedToAccept.broadcast("")
                 break;
             default:
                 break;

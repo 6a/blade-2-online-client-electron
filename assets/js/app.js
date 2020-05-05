@@ -4,10 +4,10 @@
     const views = [] // We store a reference to all the views so that they dont get gc'd
 
     function createModels() {
-        models.add(new mvp.model.BootStrapperModel())
         models.add(new mvp.model.LoadingModel())
         models.add(new mvp.model.OptionsModel())
         models.add(new mvp.model.NetModel())
+        models.add(new mvp.model.BootStrapperModel())
         models.add(new mvp.model.LoginModel())
         models.add(new mvp.model.CreateAccountModel())
         models.add(new mvp.model.MessageModel())
