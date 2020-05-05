@@ -69,3 +69,6 @@ ts-gen
 
 # user settings
 user-settings.yaml
+
+# game build
+/assets/game

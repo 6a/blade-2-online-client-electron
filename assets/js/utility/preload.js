@@ -89,7 +89,7 @@
         })
     }
 
-    function setUpTrayIcon() {
+    function setUpTrayIconFunctions() {
         document.requestHideToTray = function () {
             createTrayIcon()
             win.hide();
@@ -103,6 +103,6 @@
 
     window.addEventListener('DOMContentLoaded', () => {
         addEventListeners()
-        setUpTrayIcon()
+        setUpTrayIconFunctions()
     })
 })()

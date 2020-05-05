@@ -33,7 +33,7 @@ class SelectMatchTypeModel extends BaseModel {
     }
 
     requestAIMatch() {
-        this.models.get('bootstrapper').requestAImatch()
+        this.models.get('bootstrapper').requestAIMatch()
         this.models.get('lobby').enablePlay()
     }
 
