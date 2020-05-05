@@ -2,6 +2,7 @@ const BaseModel = require('./basemodel.js')
 const { B2Event, FileWriter } = require('../utility')
 
 const RANKED_MATCH_DELAY = 5000
+const LAUNCH_FILE_DELIMITER = ':'
 
 class BootStrapperModel extends BaseModel {
     constructor () {
@@ -36,7 +37,11 @@ class BootStrapperModel extends BaseModel {
 
         this._launchFileWriteTimeStart = Date.now()
         let fileWriter = new FileWriter('launch.conf')
-        fileWriter.writeDelimited(['this', 'is', 'a', 'test', 424, 29.1, matchID], ":", this.launchConfigWriteCallback.bind(this))
+        let config = this.models.get('options').getLaunchConfigData()
+        let userSettings = this.models.get('net').getLaunchConfigData()
+        let dataToWrite = userSettings.concat([matchID], config)
+
+        fileWriter.writeDelimited(dataToWrite, LAUNCH_FILE_DELIMITER, this.launchConfigWriteCallback.bind(this))
     }
 
     launchConfigWriteCallback(error) {

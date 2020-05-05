@@ -115,8 +115,8 @@ class Localization {
     }
 
     justifyText() {
-        return ['jp'].includes(this._currentLocale)
+        return ['ja-JP'].includes(this._currentLocale)
     }
 }
 
-module.exports = new Localization(['en', 'jp'])
+module.exports = new Localization(['en', 'ja-JP'])

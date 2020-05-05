@@ -184,16 +184,31 @@ class OptionsModel extends BaseModel {
     }
 
     resetSettings() {
-        Settings.reset()
-        this.loadSettings()
+        // Settings.reset()
+        // this.loadSettings()
 
-        let allSettings = Settings.getAll()
-        Object.keys(allSettings).forEach((key) => {
-            this.onSettingChanged.broadcast({
-                setting: key,
-                newValue: allSettings[key]
-            })
-        })
+        // let allSettings = Settings.getAll()
+        // Object.keys(allSettings).forEach((key) => {
+        //     this.onSettingChanged.broadcast({
+        //         setting: key,
+        //         newValue: allSettings[key]
+        //     })
+        // })
+    }
+
+    getLaunchConfigData() {
+        return [
+            Settings.get(Settings.KEYS.LOCALE),
+            Settings.get(Settings.KEYS.RESOLUTION),
+            Settings.screenModeStringToInt(Settings.get(Settings.KEYS.SCREEN_MODE)),
+            Settings.get(Settings.KEYS.DISABLE_VSYNC) ? 0 : 1,
+            Settings.get(Settings.KEYS.ANTI_ALIASING),
+            Settings.get(Settings.KEYS.SHADOW_QUALITY),
+            Settings.get(Settings.KEYS.POST_PROCESSING),
+            Settings.get(Settings.KEYS.MASTER_VOLUME),
+            Settings.get(Settings.KEYS.BGM_VOLUME),
+            Settings.get(Settings.KEYS.SFX_VOLUME),
+        ]
     }
 
     onOptionsClicked() {

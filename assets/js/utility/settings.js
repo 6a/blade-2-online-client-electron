@@ -5,7 +5,7 @@ let Localization = require('../mvp/utility').Localization // This module is prob
 
 const DEFAULT_SETTINGS = new Map([
     ['username', ''],
-    ['locale', 'jp'],
+    ['locale', 'ja-JP'],
     ['masterVolume', 0.8],
     ['backgroundMusicVolume', 0.8],
     ['soundEffectsVolume', 0.8],
@@ -22,7 +22,7 @@ const KEYS = {
     USERNAME: 'username',
     LOCALE: 'locale',
     MASTER_VOLUME: 'masterVolume',
-    BGM_VOLUME: 'backroundMusicVolume',
+    BGM_VOLUME: 'backgroundMusicVolume',
     SFX_VOLUME: 'soundEffectsVolume',
     DISABLE_BACKGROUND_VIDEOS: 'disableBackgroundVideos',
     RESOLUTION: 'resolution',
@@ -138,6 +138,15 @@ class Settings {
         })
 
         save(DATA.settings)
+    }
+
+    screenModeStringToInt(screenModeString) {
+        switch (screenModeString) {
+            case 'fullscreen': return 0
+            case 'borderlessFullscreen': return 1        
+            case 'windowed': return 2 
+            default: return 0
+        }
     }
 }
 

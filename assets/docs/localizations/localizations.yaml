@@ -1,294 +1,294 @@
 login: 
   en: Login
-  jp: サインイン
+  ja-JP: サインイン
 username:
   en: Username
-  jp: ユーザー名
+  ja-JP: ユーザー名
 email:
   en: Email address
-  jp: メールアドレス
+  ja-JP: メールアドレス
 password:
   en: Password
-  jp: パスワード
+  ja-JP: パスワード
 rememberMe:
   en: Remember me
-  jp: ユーザー名を記憶
+  ja-JP: ユーザー名を記憶
 createAccount:
   en: Create Account
-  jp: アカウントを作成
+  ja-JP: アカウントを作成
 troubleLoggingIn:
   en: Trouble signing in?
-  jp: サインインできない場合
+  ja-JP: サインインできない場合
 carveAPath:
   en: Become a Legend
-  jp: 「この手で道を切り拓く」
+  ja-JP: 「この手で道を切り拓く」
 bladeIICreateAccount:
   en: BLADE II ONLINE Account Creation
-  jp: BLADE II ONLINE アカウント作成
+  ja-JP: BLADE II ONLINE アカウント作成
 passwordReqsHeader:
   en: Please ensure that your password matches the criteria below
-  jp: パスワードは以下の要件を満たすように指定してください
+  ja-JP: パスワードは以下の要件を満たすように指定してください
 passwordReqsASCII:
   en: Contains only half-width ASCII characters and symbols as well as
-  jp: 半角英数字と ASCII 記号のみを含むこと、及び
+  ja-JP: 半角英数字と ASCII 記号のみを含むこと、及び
 passwordReqsFifteenChars:
   en: Containing 15 or more characters or
-  jp: 15 文字であること、又は
+  ja-JP: 15 文字であること、又は
 passwordReqsEightChars:
   en: Containing 8 or more characters whilst
-  jp: 8 文字であり
+  ja-JP: 8 文字であり
 passwordReqsOneNumeral:
   en: Containing at least one digit and
-  jp: 1 数字以上を含むこと及び
+  ja-JP: 1 数字以上を含むこと及び
 passwordReqsOneLowercase:
   en: Containing at least one lower case letter
-  jp: 1 小文字以上を含むこと
+  ja-JP: 1 小文字以上を含むこと
 createButton:
   en: Create
-  jp: 今すぐ作成
+  ja-JP: 今すぐ作成
 aboveAccountCreated:
   en: Your account has been created!
-  jp: 上記のアカウントが作成されました！
+  ja-JP: 上記のアカウントが作成されました！
 accountCreationFinish:
   en: Done
-  jp: 作成を終了
+  ja-JP: 作成を終了
 error:
   en: Error
-  jp: エラー
+  ja-JP: エラー
 close:
   en: Close
-  jp: 閉じる
+  ja-JP: 閉じる
 backToLogin:
   en: Back to Login
-  jp: サインインへ戻る
+  ja-JP: サインインへ戻る
 usernameTooShort:
   en: Username must be at at least 2 characters long.
-  jp: ユーザー名は２文字以上でなければなりません。
+  ja-JP: ユーザー名は２文字以上でなければなりません。
 usernameCantStartWithSpace:
   en: Username cannot start with a space.
-  jp: ユーザー名の先頭に空白文字を使用できません。
+  ja-JP: ユーザー名の先頭に空白文字を使用できません。
 usernameIllegalChars:
   en: Usernames can only contain full-width japanese characters, half-width alphanumerical characters and certain symbols.
-  jp: ユーザー名には、全ての全角文字及び、全ての半角英数字と、ある特定の記号しか使用できません。
+  ja-JP: ユーザー名には、全ての全角文字及び、全ての半角英数字と、ある特定の記号しか使用できません。
 usernameAlreadyInUse:
   en: The specified username is already in use.
-  jp: 指定されたユーザー名は既に使用されています。
+  ja-JP: 指定されたユーザー名は既に使用されています。
 usernameRude:
   en: Usernames can not contain profanity.
-  jp: ユーザー名に暴言を含まないように指定してください。
+  ja-JP: ユーザー名に暴言を含まないように指定してください。
 emailInvalid:
   en: Please provide a valid email address.
-  jp: 有効なメールアドレスを指定してください。
+  ja-JP: 有効なメールアドレスを指定してください。
 emailAlreadyInUse:
   en: The specified email address is already in use.
-  jp: 指定されたメールアドレスは既に使用されています。
+  ja-JP: 指定されたメールアドレスは既に使用されています。
 passwordEmpty:
   en: Please enter your password.
-  jp: パスワードを指定してください。
+  ja-JP: パスワードを指定してください。
 passwordTooShort:
   en: Password must be at at least 8 characters long.
-  jp: パスワードは８文字以上でなければなりません。
+  ja-JP: パスワードは８文字以上でなければなりません。
 invalidCredentials:
   en: Username or password is incorrect.
-  jp: ユーザー名又はパスワードが無効です。
+  ja-JP: ユーザー名又はパスワードが無効です。
 serverConnectionError:
   en: Could not connect to the server. A proxy configuration, or some sort of network problem may be blocking the connection.
-  jp: サーバーと接続できませんでした。プロクシー又はネットワーク問題による妨害が発生している可能性があります。
+  ja-JP: サーバーと接続できませんでした。プロクシー又はネットワーク問題による妨害が発生している可能性があります。
 genericError:
   en: An unexpected error occurred. Please try again later.
-  jp: 予期しないエラーが発生しました。しばらくしてからもう一度試してください。
+  ja-JP: 予期しないエラーが発生しました。しばらくしてからもう一度試してください。
 labelGeneral:
   en: General Settings
-  jp: 一般設定
+  ja-JP: 一般設定
 labelScreen:
   en: Graphic Settings
-  jp: グラフィック設定
+  ja-JP: グラフィック設定
 labelSound:
   en: Sound Settings
-  jp: サウンド設定
+  ja-JP: サウンド設定
 labelAbout:
   en: About Blade II Online
-  jp: Blade II Online について
+  ja-JP: Blade II Online について
 labelTermsOfUse:
   en: Terms of Use
-  jp: 利用規約
+  ja-JP: 利用規約
 labelLicenses:
   en: Third Party Licenses
-  jp: ライセンス
+  ja-JP: ライセンス
 titleGeneral:
   en: General Settings
-  jp: 一般設定
+  ja-JP: 一般設定
 titleScreen:
   en: In Game Graphics Settings
-  jp: ゲーム内グラフィック設定
+  ja-JP: ゲーム内グラフィック設定
 titleSound:
   en: Sound Settings
-  jp: サウンド設定
+  ja-JP: サウンド設定
 titleAbout:
   en: About Blade II Online
-  jp: Blade II Online について
+  ja-JP: Blade II Online について
 titleTermsOfUse:
   en: Terms of Use
-  jp: 利用規約
+  ja-JP: 利用規約
 titleLicenses:
   en: Third party licenses
-  jp: サードパーティーライセンス
+  ja-JP: サードパーティーライセンス
 displayLanguage:
   en: Display language
-  jp: 表示言語
+  ja-JP: 表示言語
 masterVolume:
   en: Master Volume
-  jp: マスター音量
+  ja-JP: マスター音量
 backgroundMusicVolume:
   en: BGM Volume
-  jp: BGM 音量
+  ja-JP: BGM 音量
 soundEffectsVolume:
   en: SFX Volume
-  jp: SFX 音量
+  ja-JP: SFX 音量
 disableBackgroundVideos:
   en: Disable background videos
-  jp: 背景動画を再生しない
+  ja-JP: 背景動画を再生しない
 reset:
   en: Reset
-  jp: リセット
+  ja-JP: リセット
 done:
   en: Done
-  jp: 完了
+  ja-JP: 完了
 confirmation:
   en: Confirmation
-  jp: 確認
+  ja-JP: 確認
 msgResetQuestion:
   en: Perform factory reset?
-  jp: 設定を既定値に戻してもいいですか？
+  ja-JP: 設定を既定値に戻してもいいですか？
 msgResetInfo:
   en: All settings values will be reverted to their default values.
-  jp: 設定値は全てディフォルト値に戻りますので注意してください。
+  ja-JP: 設定値は全てディフォルト値に戻りますので注意してください。
 yes:
   en: 'Yes'
-  jp: はい
+  ja-JP: はい
 cancel:
   en: Cancel
-  jp: キャンセル
+  ja-JP: キャンセル
 quit:
   en: Quit
-  jp: 終了
+  ja-JP: 終了
 msgQuitQuestion: 
   en: Are you sure you want to quit?
-  jp: アプリを終了してもいいですか？
+  ja-JP: アプリを終了してもいいですか？
 msgQuitInfo: 
   en: If you are currently in a matchmaking queue, you will be removed and lose your place in the queue.
-  jp: マッチメイキングキュー中であれば、キューから外され、順番をなくします。
+  ja-JP: マッチメイキングキュー中であれば、キューから外され、順番をなくします。
 displaySettings:
   en: Screen Settings
-  jp: 画面設定
+  ja-JP: 画面設定
 resolution:
   en: Resolution
-  jp: 解像度
+  ja-JP: 解像度
 screenMode:
   en: Screen Mode
-  jp: 画面モード
+  ja-JP: 画面モード
 disableVSync:
   en: Disable VSync
-  jp: 垂直同期を無効にする
+  ja-JP: 垂直同期を無効にする
 renderingSettings:
   en: Rendering Settings
-  jp: レンダリング設定
+  ja-JP: レンダリング設定
 antiAliasing:
   en: Anti Aliasing
-  jp: アンチエイリアス
+  ja-JP: アンチエイリアス
 shadowQuality:
   en: Shadow Quality
-  jp: シャドウ クオリティ
+  ja-JP: シャドウ クオリティ
 postProcessing:
   en: Post Processing
-  jp: ポスト プロセシング
+  ja-JP: ポスト プロセシング
 disabled:
   en: Disabled 
-  jp: 無効
+  ja-JP: 無効
 lowQuality:
   en: Low
-  jp: 低級
+  ja-JP: 低級
 normalQuality:
   en: Normal
-  jp: 中級
+  ja-JP: 中級
 highQuality:
   en: High
-  jp: 高級
+  ja-JP: 高級
 epicQuality:
   en: Epic
-  jp: 超級
+  ja-JP: 超級
 fullscreen:
   en: Fullscreen
-  jp: フルスクリーン
+  ja-JP: フルスクリーン
 borderlessFullscreen:
   en: Borderless Fullscreen
-  jp: 仮想ウィンドウ
+  ja-JP: 仮想ウィンドウ
 windowed:
   en: Windowed
-  jp: ウィンドウ
+  ja-JP: ウィンドウ
 connecting:
   en: Connecting to Server
-  jp: サーバーと接続しています
+  ja-JP: サーバーと接続しています
 play:
   en: Play
-  jp: プレイ
+  ja-JP: プレイ
 home:
   en: Home
-  jp: ホーム
+  ja-JP: ホーム
 profile:
   en: Profile
-  jp: プロフィール
+  ja-JP: プロフィール
 rankings:
   en: Rankings
-  jp: ランキング
+  ja-JP: ランキング
 connectingToServer:
   en: Connecting to Server...
-  jp: サーバーに接続中
+  ja-JP: サーバーに接続中
 searchingForAGame:
   en: Searching for a Match...
-  jp: マッチを探索中
+  ja-JP: マッチを探索中
 readyChecking:
   en: Performing Ready Check...
-  jp: 準備確認中
+  ja-JP: 準備確認中
 return:
   en: Return
-  jp: 戻る
+  ja-JP: 戻る
 tutorial:
   en: Tutorial
-  jp: チュートリアル
+  ja-JP: チュートリアル
 tutorialInfo:
   en: Learn about Blade II Online's cards and rules
-  jp: ブレード II オンラインのカードとルールについて教えてもらう
+  ja-JP: ブレード II オンラインのカードとルールについて教えてもらう
 aiMatch:
   en: Practice Match
-  jp: 訓練マッチ
+  ja-JP: 訓練マッチ
 aiMatchInfo:
   en: Play a match versus the computer
-  jp: コンピュータープレイヤーを相手にする
+  ja-JP: コンピュータープレイヤーを相手にする
 rankedMatch:
   en: Ranked Match
-  jp: ランクマッチ
+  ja-JP: ランクマッチ
 rankedMatchInfo:
   en: Play a match versus another online player
-  jp: 他のオンラインプレイヤーを相手にする
+  ja-JP: 他のオンラインプレイヤーを相手にする
 matchFound:
   en: MATCH FOUND
-  jp: マッチが見つかりました
+  ja-JP: マッチが見つかりました
 accept:
   en: Accept
-  jp: 受けて立つ
+  ja-JP: 受けて立つ
 waitingForOpponentToAccept:
   en: Waiting for Opponent to Accept
-  jp: 相手の受け入れを待っています
+  ja-JP: 相手の受け入れを待っています
 failedReadyCheck:
   en: You did not accept the match, so you have been removed from the match making queue
-  jp: マッチを受け入れなかったため、マッチメイキングキューから除去されました
+  ja-JP: マッチを受け入れなかったため、マッチメイキングキューから除去されました
 opponentFailedReadyCheck:
   en: Your opponent did not accept the match, and you have been returned to the matchmaking queue
-  jp: 相手はマッチを受け入れなかったため、マッチメイキングキューに戻りました
+  ja-JP: 相手はマッチを受け入れなかったため、マッチメイキングキューに戻りました
 preparingMatch:
   en: Preparing match...
-  jp: マッチを準備中
+  ja-JP: マッチを準備中
 trayIconTooltip:
   en: Blade II Online - Match in Progress
-  jp: ブレード II オンライン - マッチが進行中
+  ja-JP: ブレード II オンライン - マッチが進行中
