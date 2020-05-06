@@ -160,22 +160,28 @@ class OptionsView extends BaseView {
 
     setSettings(settings) {
         // General 
-        this._general.language.value = settings.general.locale
-        this._general.masterVolume.value = settings.general.masterVolume
-        this._general.disableBackgroundVideos.checked = settings.general.disableBackgroundVideos
+        if (settings.general !== null) {
+            this._general.language.value = settings.general.locale
+            this._general.masterVolume.value = settings.general.masterVolume
+            this._general.disableBackgroundVideos.checked = settings.general.disableBackgroundVideos
+        }
 
         // Screen
-        this._screen.resolution.value = settings.screen.resolution
-        this._screen.screenMode.value = settings.screen.screenMode
-        this._screen.disableVSync.checked = settings.screen.disableVSync
-        this._screen.antiAliasing.value = settings.screen.antiAliasing
-        this._screen.shadowQuality.value = settings.screen.shadowQuality
-        this._screen.postProcessing.value = settings.screen.postProcessing
+        if (settings.screen !== null) {
+            this._screen.resolution.value = settings.screen.resolution
+            this._screen.screenMode.value = settings.screen.screenMode
+            this._screen.disableVSync.checked = settings.screen.disableVSync
+            this._screen.antiAliasing.value = settings.screen.antiAliasing
+            this._screen.shadowQuality.value = settings.screen.shadowQuality
+            this._screen.postProcessing.value = settings.screen.postProcessing
+        }
 
         // Sound
-        this._sound.masterVolume.value = settings.sound.masterVolume
-        this._sound.backgroundMusicVolume.value = settings.sound.backgroundMusicVolume
-        this._sound.soundEffectsVolume.value = settings.sound.soundEffectsVolume
+        if (settings.sound !== null) {
+            this._sound.masterVolume.value = settings.sound.masterVolume
+            this._sound.backgroundMusicVolume.value = settings.sound.backgroundMusicVolume
+            this._sound.soundEffectsVolume.value = settings.sound.soundEffectsVolume
+        }
     }
 
     setLicenseInfo(licenses) {

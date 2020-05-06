@@ -79,11 +79,10 @@ class BootStrapperModel extends BaseModel {
     }
 
     execFileCallback(err, data) {
-        if (err) {
+        if (err !== null) {
             console.log(err)
         } 
-        
-        this.onGameClosed.broadcast(!err)
+        this.onGameClosed.broadcast(err !== null)
         document.requestShowFromTray()
     }
 

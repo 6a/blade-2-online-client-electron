@@ -77,6 +77,23 @@ class OptionsModel extends BaseModel {
         this.onSettingsReady.broadcast(opts)
     }
 
+    loadPostGameConfigChanges() {
+        let general = {
+            locale: Settings.get(Settings.KEYS.LOCALE),
+            masterVolume: Settings.get(Settings.KEYS.MASTER_VOLUME),
+            disableBackgroundVideos: Settings.get(Settings.KEYS.DISABLE_BACKGROUND_VIDEOS),
+        }
+
+        let sound = {
+            masterVolume: Settings.get(Settings.KEYS.MASTER_VOLUME),
+            backgroundMusicVolume: Settings.get(Settings.KEYS.BGM_VOLUME),
+            soundEffectsVolume: Settings.get(Settings.KEYS.SFX_VOLUME),
+        }
+
+        let opts = new containers.Options(general, null, sound)
+        this.onSettingsReady.broadcast(opts)
+    }
+
     loadLicenses() {
         let timer = new Timer()
 
@@ -256,6 +273,8 @@ class OptionsModel extends BaseModel {
                     let error = new Error(`SFX volume value could not be parsed`)
                     console.log("Out settings parse error: " + error)
                 }
+
+                this.loadPostGameConfigChanges()
             }
         }
     }
