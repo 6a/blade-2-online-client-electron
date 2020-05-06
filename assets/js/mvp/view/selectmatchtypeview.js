@@ -58,12 +58,16 @@ class SelectMatchTypeView extends BaseView {
     onTutorialButtonClicked(event) {
         event.preventDefault()
         this._presenter.requestTutorial()
+
+        this._wrapper.classList.add('force-no-transition')
         this._presenter.closeForm()
     }
 
     onAIMatchButtonClicked(event) {
         event.preventDefault()
         this._presenter.requestAIMatch()
+
+        this._wrapper.classList.add('force-no-transition')
         this._presenter.closeForm()
     }
 
@@ -76,6 +80,14 @@ class SelectMatchTypeView extends BaseView {
     onReturnClicked(event) {
         event.preventDefault()
         this._presenter.closeForm()
+    }
+
+    setActive(active) {
+        if (active) {
+            this._wrapper.classList.remove('force-no-transition')
+        }
+
+        super.setActive(active)
     }
 }
 

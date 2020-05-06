@@ -78,10 +78,10 @@ class BootStrapperModel extends BaseModel {
     execFileCallback(err, data) {
         if (err) {
             console.log(err)
-        }
 
-        if (data) {
-            console.log("data: " + data)
+            if (data) {
+                console.log("data: " + data)
+            }
         }
 
         document.requestShowFromTray()
@@ -89,7 +89,7 @@ class BootStrapperModel extends BaseModel {
 
     delayedStart() {
         let now = Date.now()
-        let remainingDelay = this._isBootStrappingRankedGame ? RANKED_MATCH_DELAY - (now - this._launchFileWriteTimeStart) : 0
+        let remainingDelay = this._isBootStrappingRankedGame ? RANKED_MATCH_DELAY - (now - this._launchFileWriteTimeStart) : 100
 
         if (now - this._launchFileWriteTimeStart > RANKED_MATCH_DELAY) {
             this.onLaunchFailed.broadcast("Failed to write to launch file (Timed Out)")

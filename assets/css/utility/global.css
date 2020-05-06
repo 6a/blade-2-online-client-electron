@@ -270,6 +270,10 @@ a {
     transform: scaleX(1) !important;
 }
 
+.force-no-transition {
+    transition: none !important;
+}
+
 /* KEYFRAMES */
 
 @keyframes spin {
