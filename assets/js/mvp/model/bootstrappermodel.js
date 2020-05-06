@@ -1,6 +1,7 @@
 const { execFile } = require('child_process')
 const BaseModel = require('./basemodel.js')
-const { B2Event, FileWriter } = require('../utility')
+const { B2Event } = require('../utility')
+const FileWriter = require('../../utility/filewriter')
 
 const RANKED_MATCH_DELAY = 5000
 const LAUNCH_FILE_DELIMITER = ':'
@@ -17,6 +18,8 @@ class BootStrapperModel extends BaseModel {
         super.init()
 
         this.onLaunchFailed = new B2Event(`Launch Failed`)
+        this.onGameClosed = new B2Event(`Game Closed`)
+
         this.addEventListener(this.models.get('net').onMatchMakingGameConfirmed.register(this.requestRankedMatch.bind(this)))
 
         this._delayedStartHandle
@@ -78,12 +81,9 @@ class BootStrapperModel extends BaseModel {
     execFileCallback(err, data) {
         if (err) {
             console.log(err)
-
-            if (data) {
-                console.log("data: " + data)
-            }
-        }
-
+        } 
+        
+        this.onGameClosed.broadcast(!err)
         document.requestShowFromTray()
     }
 

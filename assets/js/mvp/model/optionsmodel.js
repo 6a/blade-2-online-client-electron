@@ -4,12 +4,18 @@ const Settings = require('../../utility/settings')
 const fs = require('fs')
 const MarkdownIt = require('markdown-it')
 const Timer = require('../../utility/timer')
+const FileReader = require('../../utility/filereader')
+const math = require('../../utility/math')
 
 const LICENSE_PATH = 'assets/docs/third-party-licenses'
 const TERMSOFUSE_EN = 'assets/docs/terms-of-use/tou-en.md'
 const TERMSOFUSE_JP = 'assets/docs/terms-of-use/tou-jp.md'
 const ABOUT_EN = 'assets/docs/about/about-en.md'
 const ABOUT_JP = 'assets/docs/about/about-jp.md'
+
+const LAUNCH_FILE_DELIMITER = ':'
+const LAUNCH_FILE_EXPECTED_COUNT = 4
+const OUT_LAUNCH_CONF_FILE_PATH = "./assets/game/BladeIIGame/Content/BladeIIGame/Data/Launch_Out.conf"
 
 class OptionsModel extends BaseModel {
     constructor () {
@@ -26,7 +32,10 @@ class OptionsModel extends BaseModel {
         this.onAboutReady = new B2Event('About Ready')
         this.onSettingChanged = new B2Event('Setting Changed')
 
-        // this.addEventListener(this.models.get('net').onCreateAccountResponse.register(this.processCreateAccountResponse.bind(this)))
+        /* FILTHY HACK!!! -> Add the event listener after a delay, as the bootstrapper is initialised after this object in the model stack */
+        setTimeout(() => {
+            this.addEventListener(this.models.get('bootstrapper').onGameClosed.register(this.onGameClosed.bind(this)))
+        }, 200);
         
         document.getElementById("opts-button").addEventListener("click", this.onOptionsClicked.bind(this), false);
 
@@ -211,10 +220,57 @@ class OptionsModel extends BaseModel {
         ]
     }
 
+    outLaunchConfigReadCallback(error, data) {
+        if (error) {
+            console.log("Out settings read error: " + error)
+        } else {
+            let settings = String(data).split(LAUNCH_FILE_DELIMITER)
+            if (settings.length != LAUNCH_FILE_EXPECTED_COUNT)
+            {
+                let error = new Error(`Launch config output file invalid. Exected values: [${LAUNCH_FILE_EXPECTED_COUNT}] | Received values: [${settings.length}]`)
+                console.log("Out settings parse error: " + error)
+            } else {
+                // Locale
+                this.settingChanged(Settings.KEYS.LOCALE, settings[0])
+
+                // Master Volume
+                if (math.isNum(settings[1])) {
+                    this.settingChanged(Settings.KEYS.MASTER_VOLUME, math.clamp01(Number(settings[1])))
+                } else {
+                    let error = new Error(`Master volume value could not be parsed`)
+                    console.log("Out settings parse error: " + error)
+                }
+
+                // BGM Volume
+                if (math.isNum(settings[2])) {
+                    this.settingChanged(Settings.KEYS.BGM_VOLUME,  math.clamp01(Number(settings[2])))
+                } else {
+                    let error = new Error(`BGM volume value could not be parsed`)
+                    console.log("Out settings parse error: " + error)
+                }
+
+                // SFX Volume
+                if (math.isNum(settings[3])) {
+                    this.settingChanged(Settings.KEYS.SFX_VOLUME,  math.clamp01(Number(settings[3])))
+                } else {
+                    let error = new Error(`SFX volume value could not be parsed`)
+                    console.log("Out settings parse error: " + error)
+                }
+            }
+        }
+    }
+
     onOptionsClicked() {
         if (!this._active) {
             this.models.peekCurrentObject().setLocked(true)
             this.show()
+        }
+    }
+
+    onGameClosed(errored) {
+        if (!errored) {
+            let fileReader = new FileReader(OUT_LAUNCH_CONF_FILE_PATH)
+            fileReader.read(this.outLaunchConfigReadCallback.bind(this))
         }
     }
 }
