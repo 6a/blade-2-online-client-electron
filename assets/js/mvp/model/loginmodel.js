@@ -88,9 +88,6 @@ class LoginModel extends BaseModel {
     }
 
     createAccountClicked() {
-        this.models.get('bootstrapper').requestAIMatch()
-
-        return
         this.setLocked(true)
         this.onCreateAccountModalRequested.broadcast()
     }
