@@ -4,8 +4,8 @@ const { B2Event, FileWriter } = require('../utility')
 
 const RANKED_MATCH_DELAY = 5000
 const LAUNCH_FILE_DELIMITER = ':'
-const LAUNCH_FILE_PATH = "./assets/game/BladeIIOnline/BladeIIGame/Content/BladeIIGame/Data/Launch.conf"
-const GAME_EXECUTABLE_PATH = "./assets/game/BladeIIOnline/BladeIIOnline.exe"
+const LAUNCH_FILE_PATH = "./assets/game/BladeIIGame/Content/BladeIIGame/Data/Launch.conf"
+const GAME_EXECUTABLE_PATH = "./assets/game/BladeIIGame.exe"
 
 class BootStrapperModel extends BaseModel {
     constructor () {
