@@ -184,16 +184,16 @@ class OptionsModel extends BaseModel {
     }
 
     resetSettings() {
-        // Settings.reset()
-        // this.loadSettings()
+        Settings.reset()
+        this.loadSettings()
 
-        // let allSettings = Settings.getAll()
-        // Object.keys(allSettings).forEach((key) => {
-        //     this.onSettingChanged.broadcast({
-        //         setting: key,
-        //         newValue: allSettings[key]
-        //     })
-        // })
+        let allSettings = Settings.getAll()
+        Object.keys(allSettings).forEach((key) => {
+            this.onSettingChanged.broadcast({
+                setting: key,
+                newValue: allSettings[key]
+            })
+        })
     }
 
     getLaunchConfigData() {
