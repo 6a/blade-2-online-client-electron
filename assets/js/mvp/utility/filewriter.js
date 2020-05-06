@@ -27,7 +27,7 @@ class FileWriter {
         });
 
         outString = outString.slice(0, -1)
-
+        
         fs.mkdirSync(path.dirname(this._path), { recursive: true })
         fs.writeFile(this._path, outString, oneArgErrorCallback)
     }
