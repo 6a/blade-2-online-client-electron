@@ -86,7 +86,6 @@ class NetModel extends BaseModel {
             json: true
         }, (error, response, body) => {
             if (response.statusCode == 200) {
-                console.log(body.payload)
                 this.broadcast(0, body.payload, this.onAuthResponse)
                 this._currentAuthData = body.payload
                 this.keepAuthAlive()
