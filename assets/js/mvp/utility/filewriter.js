@@ -1,4 +1,5 @@
 const fs = require('fs')
+const path = require('path')
 
 /**
  * A helper class for writing text data to a text file
@@ -27,6 +28,7 @@ class FileWriter {
 
         outString = outString.slice(0, -1)
 
+        fs.mkdirSync(path.dirname(this._path), { recursive: true })
         fs.writeFile(this._path, outString, oneArgErrorCallback)
     }
 }
