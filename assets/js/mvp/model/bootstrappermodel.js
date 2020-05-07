@@ -83,6 +83,7 @@ class BootStrapperModel extends BaseModel {
         if (err !== null) {
             console.log(err)
         } 
+
         this.onGameClosed.broadcast(err !== null)
         document.requestShowFromTray()
     }
