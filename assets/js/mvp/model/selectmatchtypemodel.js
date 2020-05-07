@@ -24,6 +24,7 @@ class SelectMatchTypeModel extends BaseModel {
 
     closeForm() {
         this.models.get(this.models.popToPrevious(this.name)).setLocked(false)
+        this.models.get('lobby').enablePlay()
         this.hide()
     }
 
