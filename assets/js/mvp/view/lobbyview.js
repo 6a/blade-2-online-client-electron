@@ -289,8 +289,8 @@ class LobbyView extends BaseView {
         }
 
         this._readyCheckWrapper.classList.add(...READY_CHECK_HIDDEN_CLASSES)
-        this._readyCheckProgressBar.classList.remove(READY_CHECK_PROGRESS_BAR_ANIMATION_CLASS)
-        this._readyCheckProgressBarWrapper.classList.remove(READY_CHECK_PROGRESS_BAR_WARNING_FLASH_CLASS, READY_CHECK_FORCE_TRANSITION_END_CLASS)
+        this._readyCheckProgressBar.classList.remove(READY_CHECK_PROGRESS_BAR_ANIMATION_CLASS, READY_CHECK_FORCE_TRANSITION_END_CLASS)
+        this._readyCheckProgressBarWrapper.classList.remove(READY_CHECK_PROGRESS_BAR_WARNING_FLASH_CLASS)
 
         this._readyCheckBackgroundVideo.pause()
     }

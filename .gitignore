@@ -72,3 +72,6 @@ user-settings.yaml
 
 # game build
 /assets/game
+
+# electron build
+/build

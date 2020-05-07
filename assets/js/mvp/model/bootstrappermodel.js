@@ -2,11 +2,12 @@ const { execFile } = require('child_process')
 const BaseModel = require('./basemodel.js')
 const { B2Event } = require('../utility')
 const FileWriter = require('../../utility/filewriter')
+const makepath = require('../../utility/makepath')
 
 const RANKED_MATCH_DELAY = 5000
 const LAUNCH_FILE_DELIMITER = ':'
-const LAUNCH_FILE_PATH = "./assets/game/BladeIIGame/Content/BladeIIGame/Data/Launch.conf"
-const GAME_EXECUTABLE_PATH = "./assets/game/BladeIIGame.exe"
+const LAUNCH_FILE_PATH = makepath('/assets/game/BladeIIGame/Content/BladeIIGame/Data/Launch.conf')
+const GAME_EXECUTABLE_PATH = makepath('/assets/game/BladeIIGame.exe')
 
 class BootStrapperModel extends BaseModel {
     constructor () {

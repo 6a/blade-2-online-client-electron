@@ -2,8 +2,9 @@ const fs = require('fs');
 const yaml = require('js-yaml')
 const Settings = require('../../utility/settings')
 const Timer = require('../../utility/timer')
+const makepath = require('../../utility/makepath')
 
-const LOCALIZATIONS = 'assets/docs/localizations/localizations.yaml'
+const LOCALIZATIONS = makepath('assets/docs/localizations/localizations.yaml')
 const DEFAULT_ENCODING = 'utf8'
 
 class Pair {

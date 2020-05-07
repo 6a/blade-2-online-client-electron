@@ -6,16 +6,17 @@ const MarkdownIt = require('markdown-it')
 const Timer = require('../../utility/timer')
 const FileReader = require('../../utility/filereader')
 const math = require('../../utility/math')
+const makepath = require('../../utility/makepath')
 
-const LICENSE_PATH = 'assets/docs/third-party-licenses'
-const TERMSOFUSE_EN = 'assets/docs/terms-of-use/tou-en.md'
-const TERMSOFUSE_JP = 'assets/docs/terms-of-use/tou-jp.md'
-const ABOUT_EN = 'assets/docs/about/about-en.md'
-const ABOUT_JP = 'assets/docs/about/about-jp.md'
+const LICENSE_PATH = makepath('assets/docs/third-party-licenses')
+const TERMSOFUSE_EN = makepath('assets/docs/terms-of-use/tou-en.md')
+const TERMSOFUSE_JP = makepath('assets/docs/terms-of-use/tou-jp.md')
+const ABOUT_EN = makepath('assets/docs/about/about-en.md')
+const ABOUT_JP = makepath('assets/docs/about/about-jp.md')
 
 const LAUNCH_FILE_DELIMITER = ':'
 const LAUNCH_FILE_EXPECTED_COUNT = 4
-const OUT_LAUNCH_CONF_FILE_PATH = "./assets/game/BladeIIGame/Content/BladeIIGame/Data/Launch_Out.conf"
+const OUT_LAUNCH_CONF_FILE_PATH = makepath('/assets/game/BladeIIGame/Content/BladeIIGame/Data/Launch_Out.conf')
 
 class OptionsModel extends BaseModel {
     constructor () {
@@ -111,7 +112,7 @@ class OptionsModel extends BaseModel {
             fileNames.forEach((filename) => {
                 fs.readFile(`${LICENSE_PATH}/${filename}`, (err, content) => {
                     if (err) {
-                        console.err(`[Options] failed to read file [${LICENSE_PATH}/${filename}]:\n${err}`) 
+                        console.error(`[Options] failed to read file [${LICENSE_PATH}/${filename}]:\n${err}`) 
                         this.onLicenseInfoReady.broadcast(files)
                     } else {
                         files.push(content.toString())
@@ -145,7 +146,7 @@ class OptionsModel extends BaseModel {
         Object.keys(files).forEach((key) => {
             fs.readFile(files[key], (err, content) => {
                 if (err) {
-                    console.err(`[Options] failed to read ${localizationKey} file [${files[key]}]:\n${err}`)
+                    console.error(`[Options] failed to read ${localizationKey} file [${files[key]}]:\n${err}`)
                 } else {
                     let markdown = content.toString()
                     contentStrings[key] = markdown

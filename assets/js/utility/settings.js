@@ -1,11 +1,13 @@
 const fs = require('fs');
 const yaml = require('js-yaml')
 const Timer = require('../utility/timer')
+const makepath = require('../utility/makepath')
+
 let Localization = require('../mvp/utility').Localization // This module is probably initialized after settings, so its required here but re-required later if falsey
 
 const DEFAULT_SETTINGS = new Map([
     ['username', ''],
-    ['locale', 'ja-JP'],
+    ['locale', 'en'],
     ['masterVolume', 0.8],
     ['backgroundMusicVolume', 0.8],
     ['soundEffectsVolume', 0.8],
@@ -33,7 +35,7 @@ const KEYS = {
     POST_PROCESSING: 'postProcessing',
 }
 
-const SETTINGS_FILE = './user-settings.yaml'
+const SETTINGS_FILE = makepath('/user-settings.yaml')
 const DEFAULT_ENCODING = 'utf8'
 const DATA = { settings: {}}
 
@@ -60,7 +62,6 @@ function loadSettingsOrMakeDefault() {
                     let got = Array.isArray(data[key]) ? "array" : typeof(data[key])
 
                     console.error(`[Settings] Settings key ${key} is the wrong type. Expected: ${expected}, got: ${got}`)
-
                     addDefault(key, data)
                     requiresResave = true
                 }
@@ -91,6 +92,7 @@ function loadSettingsOrMakeDefault() {
 
 function createDefault() {
     save(Object.fromEntries(DEFAULT_SETTINGS))
+    DATA.settings = Object.fromEntries(DEFAULT_SETTINGS)
 }
 
 function addDefault(key, data) {
@@ -100,7 +102,7 @@ function addDefault(key, data) {
 
 function save(data) {
     let yamlStr = yaml.safeDump(data);
-    fs.writeFile(SETTINGS_FILE, yamlStr, DEFAULT_ENCODING, () => {});
+    fs.writeFile(SETTINGS_FILE, yamlStr, DEFAULT_ENCODING, (err) => {});
 }
 
 function setInternal(key, value, writeToFile = true) {
