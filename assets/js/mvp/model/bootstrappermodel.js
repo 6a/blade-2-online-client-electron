@@ -27,11 +27,7 @@ class BootStrapperModel extends BaseModel {
         this._launchFileWriteTimeStart
         this._isBootStrappingRankedGame = false
     }
-
-    destroy() {
-        super.destroy()
-    }
-
+ 
     requestTutorial() {
         console.log(`Starting Tutorial`)
         this._isBootStrappingRankedGame = false

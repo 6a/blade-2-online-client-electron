@@ -12,10 +12,6 @@ class LoadingPresenter extends BasePresenter {
         this.addEventListener(this.model.onItemLoaded.register(this.itemLoaded.bind(this)))
     }
 
-    destroy() {
-        super.destroy()
-    }
-
     loadingComplete() {
         this.model.loadingComplete()
     }

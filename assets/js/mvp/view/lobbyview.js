@@ -60,10 +60,6 @@ class LobbyView extends BaseView {
         this._presenter.requestBackgroundVideoActive()
     }
 
-    destroy() {
-        super.destroy()
-    }
-
     getElementReferences() {
         this._wrapper = document.getElementById('lobby')
 

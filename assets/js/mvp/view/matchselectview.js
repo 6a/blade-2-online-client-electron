@@ -1,9 +1,9 @@
 const BaseView = require('./baseview.js')
-const SelectMatchTypePresenter = require('../presenter/selectmatchtypepresenter.js')
+const MatchSelectPresenter = require('../presenter/matchselectpresenter.js')
 
-class SelectMatchTypeView extends BaseView {
+class MatchSelectView extends BaseView {
     constructor (viewsList) {
-        super('selectmatchtype', SelectMatchTypePresenter, viewsList, 'hidden')
+        super('matchselect', MatchSelectPresenter, viewsList, 'hidden')
         this.init()
     }
 
@@ -91,4 +91,4 @@ class SelectMatchTypeView extends BaseView {
     }
 }
 
-module.exports = SelectMatchTypeView
+module.exports = MatchSelectView

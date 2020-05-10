@@ -13,10 +13,6 @@ class BaseView {
         return this._name
     }
 
-    init() {
-
-    }
-
     destroy() {
         let index = this._viewsList.indexOf(this)
         if (index > -1) {

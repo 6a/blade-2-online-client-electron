@@ -9,11 +9,7 @@ class SelectMatchTypePresenter extends BasePresenter {
     init() {
         super.init()
     }
-
-    destroy() {
-        super.destroy()
-    }
-
+    
     closeForm() {
         this.model.closeForm()
     }

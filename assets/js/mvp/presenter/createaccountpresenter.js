@@ -15,10 +15,6 @@ class CreateAccountPresenter extends BasePresenter {
         this.addEventListener(this.model.onCreationError.register(this.onCreationError.bind(this)))
     }
 
-    destroy() {
-        super.destroy()
-    }
-
     closeForm() {
         this.model.closeForm()
     }

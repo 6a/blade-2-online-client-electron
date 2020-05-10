@@ -5,5 +5,5 @@ module.exports = {
     OptionsPresenter: require('./optionspresenter.js'),
     // LobbyLoaderPresenter: require('./lobbyloaderpresenter.js'),
     LobbyPresenter: require('./lobbypresenter.js'),
-    SelectMatchTypePresenter: require('./selectmatchtypepresenter.js'),
+    MatchSelectPresenter: require('./matchselectpresenter.js'),
 }

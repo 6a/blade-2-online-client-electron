@@ -16,10 +16,6 @@ class LoginPresenter extends BasePresenter {
         this.addEventListener(this.model.onToggleBackgroundVideo.register(this.onToggleBackgroundVideo.bind(this)))
     }
 
-    destroy() {
-        super.destroy()
-    }
-
     usernameFieldChanged(username) {
         this.model.usernameFieldChanged(username)
     }

@@ -16,10 +16,6 @@ class CreateAccountView extends BaseView {
         this.addTabbables()
     }
 
-    destroy() {
-        super.destroy()
-    }
-
     getElementReferences() {
         this._wrapper = document.getElementById('create-account')
 

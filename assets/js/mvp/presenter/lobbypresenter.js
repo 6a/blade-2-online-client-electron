@@ -21,10 +21,6 @@ class LobbyPresenter extends BasePresenter {
         this.addEventListener(this.model.onMatchMakingFailedReadyCheck.register(this.onMatchMakingFailedReadyCheck.bind(this)))    
     }
 
-    destroy() {
-        super.destroy()
-    }
-
     playClicked() {
         this.model.playClicked()
     }

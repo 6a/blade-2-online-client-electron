@@ -13,7 +13,7 @@
         models.add(new mvp.model.MessageModel())
         // models.add(new mvp.model.LobbyLoaderModel())
         models.add(new mvp.model.LobbyModel())
-        models.add(new mvp.model.SelectMatchTypeModel())
+        models.add(new mvp.model.MatchSelectModel())
     }
 
     function createViewsAndPresenters() {
@@ -24,7 +24,7 @@
         views.push(new mvp.view.MessageView(views))
         // views.push(new mvp.view.LobbyLoaderView(views))
         views.push(new mvp.view.LobbyView(views))
-        views.push(new mvp.view.SelectMatchTypeView(views))
+        views.push(new mvp.view.MatchSelectView(views))
     }
 
     function start() {

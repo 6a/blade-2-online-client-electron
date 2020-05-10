@@ -238,7 +238,7 @@ class OptionsModel extends BaseModel {
         ]
     }
 
-    outLaunchConfigReadCallback(error, data) {
+    onLaunchConfigReadCallback(error, data) {
         if (error) {
             console.log("Out settings read error: " + error)
         } else {
@@ -290,7 +290,7 @@ class OptionsModel extends BaseModel {
     onGameClosed(errored) {
         if (!errored) {
             let fileReader = new FileReader(OUT_LAUNCH_CONF_FILE_PATH)
-            fileReader.read(this.outLaunchConfigReadCallback.bind(this))
+            fileReader.read(this.onLaunchConfigReadCallback.bind(this))
         }
     }
 }

@@ -1,9 +1,9 @@
 const BaseModel = require('./basemodel.js')
 const B2Event = require('../utility').B2Event
 
-class SelectMatchTypeModel extends BaseModel {
+class MatchSelectModel extends BaseModel {
     constructor () {
-        super('selectmatchtype')
+        super('matchselect')
         this.init()
     }
 
@@ -13,7 +13,6 @@ class SelectMatchTypeModel extends BaseModel {
         this.onLocalMatchStarted = new B2Event('Local Match Started')
 
         this.addEventListener(this.models.get('lobby').onMatchSelectModalSelected.register(this.show.bind(this)))
-        this.addEventListener(this.models.get('net').onMatchMakingConnectComplete.register(this.onMatchMakingConnectComplete.bind(this)))
 
         this._active = false
     }
@@ -43,10 +42,8 @@ class SelectMatchTypeModel extends BaseModel {
     }
 
     onMatchMakingConnectComplete(error) {
-        if (error === "") {
-            
-        }
+
     }
 }
 
-module.exports = SelectMatchTypeModel
+module.exports = MatchSelectModel

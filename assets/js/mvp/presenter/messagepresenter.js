@@ -12,10 +12,6 @@ class MessagePresenter extends BasePresenter {
         this.addEventListener(this.model.onShow.register(this.onShow.bind(this)))
     }
 
-    destroy() {
-        super.destroy()
-    }
-
     closeForm() {
         this.model.closeForm()
     }

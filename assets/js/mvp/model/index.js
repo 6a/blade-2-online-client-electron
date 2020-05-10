@@ -7,6 +7,6 @@ module.exports = {
     MessageModel: require('./messagemodel.js'),
     // LobbyLoaderModel: require('./lobbyloadermodel.js'),
     LobbyModel: require('./lobbymodel.js'),
-    SelectMatchTypeModel: require('./selectmatchtypemodel.js'),
+    MatchSelectModel: require('./matchselectmodel.js'),
     BootStrapperModel: require('./bootstrappermodel.js'),
 }
