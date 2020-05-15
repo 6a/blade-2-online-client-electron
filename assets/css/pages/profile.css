@@ -88,7 +88,7 @@
     bottom: 40px;
     left: 40px;
 
-    font-family: 'Trajan Pro Regular', 'Noto Serif JP';
+    /* font-family: 'Trajan Pro Regular', 'Noto Serif JP'; */
 }
 
 #profile-inner > div {
@@ -99,6 +99,7 @@
     font-size: 1.1em;
     margin-bottom: 10px;
     text-align: center;
+    font-weight: 700;
 }
 
 /* MATCH HISTORY  */

@@ -61,9 +61,10 @@ class NetModel extends BaseModel {
             [503, 'invalidCredentials'],
         ])
 
-        this.onAuthResponse = new B2Event('Auth Request Response')
-        this.onCreateAccountResponse = new B2Event('Create Account Request Response')
-        this.onMatchHistoryResponse = new B2Event('Match History request response')
+        this.onAuthResponse = new B2Event('Auth Response')
+        this.onCreateAccountResponse = new B2Event('Create Account Response')
+        this.onMatchHistoryResponse = new B2Event('Match History Response')
+        this.onGetProfileResponse = new B2Event('Profile Fetch Response')
 
         this.onMatchMakingConnectStarted = new B2Event('MatchMaking Connect Started')
         this.onMatchMakingConnectComplete = new B2Event('MatchMaking Connect Complete')
@@ -89,6 +90,7 @@ class NetModel extends BaseModel {
             if (response.statusCode == 200) {
                 this.broadcast(0, body.payload, this.onAuthResponse)
                 this._currentAuthData = body.payload
+                this._currentAuthData.handle = handle
                 this.keepAuthAlive()
                 return
             } 
@@ -156,6 +158,30 @@ class NetModel extends BaseModel {
         })
     }
 
+    sendProfileRequest() {
+        request.get(`${appconfig.apiURL}/${appconfig.profilesPath}/${'bqnf8ku4h65c72kc0330'}`, { 
+            headers: {'User-Agent': `request.${appconfig.name}.v${appconfig.version}`},
+            json: true,
+        }, (error, response, body) => {
+            if (response.statusCode == 200) {
+                this.broadcast(0, body.payload, this.onGetProfileResponse)
+                return
+            } 
+
+            if (error) {
+                this.broadcast(9999, 'serverConnectionError', this.onGetProfileResponse)
+                return
+            } 
+
+            if (body.code === undefined || body.payload === undefined) {
+                this.broadcast(9999, 'genericError', this.onGetProfileResponse)
+                return
+            }
+            
+            this.broadcast(body.code, this.codeToErrorMessage(body.code), this.onGetProfileResponse)
+        })
+    }
+
     broadcast(code, payload, event) {
         event.broadcast({
             code: code,
@@ -202,6 +228,10 @@ class NetModel extends BaseModel {
 
     getPublicID() {
         return this._currentAuthData.pid
+    }
+
+    getHandle() {
+        return this._currentAuthData.handle
     }
 
     onWebsocketEvent(payload) {

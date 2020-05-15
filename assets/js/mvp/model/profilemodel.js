@@ -11,8 +11,10 @@ class ProfileModel extends BaseModel {
         super.init()
 
         this.onMatcHistoryResponse = new B2Event('Match History Response')
+        this.onProfileDataResponse = new B2Event('Profile Data Response')
 
         this.addEventListener(this.models.get('net').onMatchHistoryResponse.register(this.processMatchHistoryResponse.bind(this)))
+        this.addEventListener(this.models.get('net').onGetProfileResponse.register(this.processProfileDataResponse.bind(this)))
 
         this._active = false
     }
@@ -30,6 +32,10 @@ class ProfileModel extends BaseModel {
         this.models.get('net').sendMatchHistoryRequest()
     }
 
+    requestProfile() {
+        this.models.get('net').sendProfileRequest()
+    }
+
     processMatchHistoryResponse(response) {
         let history = null
 
@@ -42,6 +48,20 @@ class ProfileModel extends BaseModel {
         }
 
         this.onMatcHistoryResponse.broadcast({ publicID: this.models.get('net').getPublicID(), history: history})
+    }
+
+    processProfileDataResponse(response) {
+        let data = null
+
+        if (response.code === 0) {
+            if (response.payload) {
+                data = response.payload
+            } else {
+                data = {}
+            }
+        }
+
+        this.onProfileDataResponse.broadcast({ handle: this.models.get('net').getHandle(), data: data})
     }
 }
 

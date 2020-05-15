@@ -20,6 +20,9 @@ class AvatarChangeDirection{}
 AvatarChangeDirection.LEFT = -1
 AvatarChangeDirection.RIGHT = 1
 
+const DATA_EXPECTED = 2
+const LOAD_TIMEOUT = 5
+
 class ProfileView extends BaseView {
     constructor (viewsList) {
         super('profile', ProfilePresenter, viewsList, 'hidden')
@@ -36,6 +39,8 @@ class ProfileView extends BaseView {
         this._avatarIndex = 0
 
         this.resetUserDetails()
+
+        this.onRetryButtonClicked()
     }
 
     destroy() {
@@ -51,6 +56,7 @@ class ProfileView extends BaseView {
         this._matchHistoryContainer = document.getElementById('profile-match-history-list-wrapper')
 
         this._avatar = document.getElementById('profile-avatar-image')
+        this.profileHandle = document.getElementById('profile-handle')
         this._elo = document.getElementById('profile-elo-rating')
         this._stats = {
             victories: document.getElementById('profile-match-stats-victories'),
@@ -81,7 +87,6 @@ class ProfileView extends BaseView {
         this._avatarButtonLeft.removeEventListener('click', this.onAvatarSelectLeft.bind(this), false)
         this._avatarButtonRight.removeEventListener('click', this.onAvatarSelectRight.bind(this), false)
 
-
         document.removeEventListener('keydown', this.onEscDown.bind(this), false)
     }
 
@@ -99,11 +104,18 @@ class ProfileView extends BaseView {
     }
 
     onRetryButtonClicked(event) {
-        event.preventDefault()
+        if (event) event.preventDefault()
+
         this._loadingOverlay.classList.remove('hidden')
         this._loadingSpinner.classList.remove('hidden')
         this._loadingErrorControls.classList.add('hidden')
+
         this._presenter.requestMatchHistory()
+        this._presenter.requestProfile()
+
+        this._profileLoadTimeoutHandle = setTimeout(() => {
+            this.handleTimeOut()
+        }, LOAD_TIMEOUT);
     }
 
     onAvatarSelectLeft(event) {
@@ -112,7 +124,6 @@ class ProfileView extends BaseView {
         this.changeAvatarImage(AvatarChangeDirection.LEFT)
     }
 
-    
     onAvatarSelectRight(event) {
         event.preventDefault()
 
@@ -121,56 +132,107 @@ class ProfileView extends BaseView {
 
     setActive(active) {
         if (active) {
+            this.resetUserDetails()
             this.onRetryButtonClicked()
         }
 
         super.setActive(active)
     }
 
-    updateMatchHistory(publicID, history) {
-        this._loadingSpinner.classList.add('hidden')
+    updateMatchHistoryData(publicID, history) {
+        this._currentMatchHistory = history
+        this._currentPublicID = publicID
 
+        if (++this._dataReceived >= DATA_EXPECTED) {
+            this.applyAll()
+        }
+    }
+
+    updateProfileData(handle, profile) {
+        this._currentHandle = handle
+        this._currentProfile = profile
+
+        if (++this._dataReceived >= DATA_EXPECTED) {
+            this.applyAll()
+        }
+    }
+
+    applyAll() {
+        this._loadingSpinner.classList.add('hidden')
+        this._loadingOverlay.classList.add('hidden')
+        this._loadingErrorControls.classList.add('hidden')
+
+        if (this._currentMatchHistory !== null && this._currentProfile !== null) {
+            this.applyMatchHistory()
+            this.applyProfile()
+            return
+        }
+        
+        this._loadingOverlay.classList.remove('hidden')
+        this._loadingErrorControls.classList.remove('hidden')
+    }
+
+    applyMatchHistory() {
         let matchHistoryString = ''
 
-        console.log(`history: [ ${history} ]`)
+        let rowStrings = []
 
-        if (history !== null) {
-            let rowStrings = []
-
-            if (history.length > 0) {
-                history.forEach(function(row) {
-                    let matchHistoryRow = new MatchHistoryRow(row, `bqnf8ku4h65c72kc0330`)
-                    rowStrings.push(matchHistoryRow.getText())
-                })
-            } else {
-                rowStrings.push(`
-                    <p data-lkey="noMatchesFound">${Localization.get('noMatchesFound')}</p>
-                `)
-            }
-
-            matchHistoryString = rowStrings.join('')
-
-            this._loadingOverlay.classList.add('hidden')
-            this._loadingErrorControls.classList.add('hidden')
+        if (this._currentMatchHistory.length > 0) {
+            this._currentMatchHistory.forEach(function(row) {
+                let matchHistoryRow = new MatchHistoryRow(row, `bqnf8ku4h65c72kc0330`)
+                rowStrings.push(matchHistoryRow.getText())
+            })
         } else {
-            this._loadingOverlay.classList.remove('hidden')
-            this._loadingErrorControls.classList.remove('hidden')
+            rowStrings.push(`
+                <p data-lkey="noMatchesFound">${Localization.get('noMatchesFound')}</p>
+            `)
         }
 
+        matchHistoryString = rowStrings.join('')
+
+
+
         this._matchHistoryContainer.innerHTML = matchHistoryString
+    }
+
+    applyProfile() {
+        this._avatarIndex = this._currentProfile.avatar
+        if (this._avatarIndex < 0 || this._avatarIndex >= AVATAR_IMAGES.length) {
+            this._avatarIndex = 0
+        }
+
+        this.updateAvatar()
+
+        this.profileHandle.innerHTML = this._currentHandle
+
+        this._elo.innerHTML = this._currentProfile.mmr
+
+        this._stats.victories.innerHTML = this._currentProfile.wins
+        this._stats.draws.innerHTML = this._currentProfile.draws
+        this._stats.defeats.innerHTML = this._currentProfile.losses
+        this._stats.total.innerHTML = this._currentProfile.rankedtotal
+        this._stats.winratio.innerHTML = this._currentProfile.winratio.toFixed(2)
     }
 
     resetUserDetails() {
         this._currentMatchHistory = null
         this._currentPublicID = null
         this._currentProfile = null
+        this._currentHandle = null
+        this._dataReceived = 0
 
-        this._elo.innerHTML = ''
+        this._profileLoadTimeoutHandle = null
 
-        for (let index = 0; index < this._stats.length; index++) {
-            this._stats[index].innerHTML = ''
-            
-        }
+        this._elo.innerHTML = '　'
+        this._stats.victories.innerHTML = '　'
+        this._stats.draws.innerHTML = '　'
+        this._stats.defeats.innerHTML = '　'
+        this._stats.total.innerHTML = '　'
+        this._stats.winratio.innerHTML = '　'
+    }
+
+    handleTimeOut() {
+        
     }
 
     /**
@@ -187,10 +249,13 @@ class ProfileView extends BaseView {
                 this._avatarIndex = 0
             }
 
-            let newAvatarString = AVATAR_IMAGES[this._avatarIndex]
-
-            this._avatar.src = `../assets/images/character-portraits/${newAvatarString}.png`
+            this.updateAvatar()
         } 
+    }
+
+    updateAvatar() {
+        let newAvatarString = AVATAR_IMAGES[this._avatarIndex]
+        this._avatar.src = `../assets/images/character-portraits/${newAvatarString}.png`
     }
 }
 

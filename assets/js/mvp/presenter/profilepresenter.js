@@ -10,6 +10,7 @@ class ProfilePresenter extends BasePresenter {
         super.init()
 
         this.addEventListener(this.model.onMatcHistoryResponse.register(this.onMatchHistoryResponse.bind(this)))
+        this.addEventListener(this.model.onProfileDataResponse.register(this.onProfileDataResponse.bind(this)))
     }
     
     closeForm() {
@@ -17,12 +18,19 @@ class ProfilePresenter extends BasePresenter {
     }
 
     onMatchHistoryResponse(response) {
-        this._view.updateMatchHistory(response.publicID, response.history)
+        this._view.updateMatchHistoryData(response.publicID, response.history)
     }
 
-    requestMatchHistory()
-    {
+    onProfileDataResponse(response) {
+        this._view.updateProfileData(response.handle, response.data)
+    }
+
+    requestMatchHistory() {
         this.model.requestMatchHistory()
+    }
+
+    requestProfile() {
+        this.model.requestProfile()
     }
 
 }

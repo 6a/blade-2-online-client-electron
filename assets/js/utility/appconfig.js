@@ -5,5 +5,6 @@ module.exports = {
     usersPath: "users",
     authPath: "auth",
     leaderboardsPath: "leaderboards",
-    matchesPath: "matches"
+    matchesPath: "matches",
+    profilesPath: "profiles"
 }
