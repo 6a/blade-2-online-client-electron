@@ -203,12 +203,33 @@
       </div>
     </div>
 
-    <div class="page hidden no-pointer-events" id="profile">
+    <div class="page" id="profile">
       <div id="profile-wrapper">
         <div class="profile-content">
           <div id="profile-inner">
             <div id="profile-player-info-panel">
-
+              <div id="profile-avatar-wrapper">
+                <button id="profile-avatar-button-left"></button>
+                <img src="../assets/images/character-portraits/portrait-rean.png">
+                <button id="profile-avatar-button-right"></button>
+              </div>
+              <h1 id="profile-handle" >《剣帝》レオンハルト《剣帝》レオンハルト</h1>
+              <h2 data-lkey="eloRating">Elo レーティング</h2>
+              <p id="profile-elo-rating">1200</p>
+              <div class="profile-match-stats match-stats-table-top">
+                <div data-lkey="victories"></div>
+                <div data-lkey="draws"></div>
+                <div data-lkey="defeats"></div>
+                <div data-lkey="total"></div>
+                <div data-lkey="winRatio"></div>
+              </div>
+              <div class="profile-match-stats match-stats-table-bottom">
+                <div id="profile-match-stats-victories">12</div>
+                <div id="profile-match-stats-draws">55</div>
+                <div id="profile-match-stats-defeats">264</div>
+                <div id="profile-match-stats-total">331</div>
+                <div id="profile-match-stats-winratio">0.1%</div>
+              </div>
             </div>
             <div id="profile-match-history-panel">
               <h1 data-lkey="matchHistory"></h1>
@@ -219,12 +240,12 @@
                 <span data-lkey="result">結果</span>
               </div>
               <div id="profile-match-history-list-wrapper">
-                <!-- <div class="match-history-row">
+                <div class="match-history-row">
                   <span>1234567</span>
                   <span>2020/05/15 @ 11:42</span>
                   <span>間間間間間間間間間間間間間間間間間間間間</span>
                   <span>121</span>
-                </div> -->
+                </div>
               </div>
             </div>
           </div>

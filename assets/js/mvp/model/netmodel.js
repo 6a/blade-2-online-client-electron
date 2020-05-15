@@ -133,7 +133,7 @@ class NetModel extends BaseModel {
     }
 
     sendMatchHistoryRequest() {
-        request.get(`${appconfig.apiURL}/${appconfig.matchesPath}/${this.getPublicID()}`, { 
+        request.get(`${appconfig.apiURL}/${appconfig.matchesPath}/${'bqnf8ku4h65c72kc0330'}`, { 
             headers: {'User-Agent': `request.${appconfig.name}.v${appconfig.version}`},
             json: true,
         }, (error, response, body) => {

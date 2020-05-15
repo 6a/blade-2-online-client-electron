@@ -334,3 +334,21 @@ opponent:
 noMatchesFound:
   en: You have not played any ranked matches yet
   ja-JP: まだランクマッチをプレイしていないため、履歴がありません
+eloRating:
+  en: Elo Rating
+  ja-JP: Elo レーティング
+victories:
+  en: Victories
+  ja-JP: 勝利数
+draws:
+  en: Draws
+  ja-JP: 引き分け数
+defeats:
+  en: Defeats
+  ja-JP: 敗北数
+total:
+  en: Total
+  ja-JP: 総数
+winRatio:
+  en: Win Ratio
+  ja-JP: 勝率

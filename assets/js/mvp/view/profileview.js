@@ -86,7 +86,7 @@ class ProfileView extends BaseView {
 
             if (history.length > 0) {
                 history.forEach(function(row) {
-                    let matchHistoryRow = new MatchHistoryRow(row, publicID)
+                    let matchHistoryRow = new MatchHistoryRow(row, `bqnf8ku4h65c72kc0330`)
                     rowStrings.push(matchHistoryRow.getText())
                 })
             } else {
