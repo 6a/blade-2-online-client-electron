@@ -15,6 +15,7 @@
         // models.add(new mvp.model.LobbyLoaderModel())
         models.add(new mvp.model.LobbyModel())
         models.add(new mvp.model.MatchSelectModel())
+        models.add(new mvp.model.ProfileModel())
     }
 
     function createViewsAndPresenters() {
@@ -26,6 +27,7 @@
         // views.push(new mvp.view.LobbyLoaderView(views))
         views.push(new mvp.view.LobbyView(views))
         views.push(new mvp.view.MatchSelectView(views))
+        views.push(new mvp.view.ProfileView(views))
     }
 
     function start() {

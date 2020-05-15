@@ -9,4 +9,5 @@ module.exports = {
     LobbyModel: require('./lobbymodel.js'),
     MatchSelectModel: require('./matchselectmodel.js'),
     BootStrapperModel: require('./bootstrappermodel.js'),
+    ProfileModel: require('./profilemodel.js'),
 }
