@@ -23,18 +23,18 @@ class MatchSelectModel extends BaseModel {
 
     closeForm() {
         this.models.get(this.models.popToPrevious(this.name)).setLocked(false)
-        this.models.get('lobby').enablePlay()
+        this.models.get('lobby').enableInteractions()
         this.hide()
     }
 
     requestTutorial() {
         this.models.get('bootstrapper').requestTutorial()
-        this.models.get('lobby').enablePlay()
+        this.models.get('lobby').enableInteractions()
     }
 
     requestAIMatch() {
         this.models.get('bootstrapper').requestAIMatch()
-        this.models.get('lobby').enablePlay()
+        this.models.get('lobby').enableInteractions()
     }
 
     requestRankedMatch() {

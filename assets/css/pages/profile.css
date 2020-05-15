@@ -110,6 +110,20 @@
     overflow-y: scroll;
 }
 
+#profile-match-history-list-wrapper p {
+    width: 80%;
+    font-size: 1.2em;
+    line-height: 1.4em;
+    margin: 0 auto;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+}
+
 .profile-match-history-column-header {
     padding: 10px 27px 10px 10px;
     font-size: 0.8em;

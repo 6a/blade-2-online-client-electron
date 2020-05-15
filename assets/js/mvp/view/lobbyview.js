@@ -399,7 +399,7 @@ class LobbyView extends BaseView {
                 break;
 
             case 'profile':
-
+                this.onProfileClicked()
                 break;
             case 'ranking':
 
@@ -409,6 +409,10 @@ class LobbyView extends BaseView {
 
     onPlayClicked() {
         this._presenter.playClicked()
+    }
+
+    onProfileClicked() {
+        this._presenter.profileClicked()
     }
 
     onReadyCheckAccepted() {

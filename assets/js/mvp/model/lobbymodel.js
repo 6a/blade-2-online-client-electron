@@ -38,7 +38,7 @@ class LobbyModel extends BaseModel {
         this.addEventListener(this.models.get('login').onLoginFinished.register(this.show.bind(this)))
 
         this._active = false
-        this._playDisabled = false;
+        this._buttonDisabled = false;
     }
 
     destroy() {
@@ -50,11 +50,17 @@ class LobbyModel extends BaseModel {
     }
 
     playClicked() {
-        if (!this._playDisabled) {
+        if (!this._buttonDisabled) {
             this.setLocked(true)
             this.onMatchSelectModalSelected.broadcast()
-            this._playDisabled = true
+            this._buttonDisabled = true
         }
+    }
+
+    profileClicked() {
+        this.setLocked(true)
+        this._buttonDisabled = true
+        this.models.get('profile').show()
     }
 
     requestBackgroundVideoActive() {
@@ -65,8 +71,8 @@ class LobbyModel extends BaseModel {
         this.models.get('net').acceptReadyCheck()
     }
 
-    enablePlay() {
-        this._playDisabled = false
+    enableInteractions() {
+        this._buttonDisabled = false
     }
     
     onMatchMakingConnectStarted() {
@@ -78,7 +84,7 @@ class LobbyModel extends BaseModel {
             this.onMatchMakingQueueJoined.broadcast()
             console.log("onMatchMakingConnectComplete")
         } else {
-            this._playDisabled = false
+            this._buttonDisabled = false
         }
     }
 
@@ -92,7 +98,7 @@ class LobbyModel extends BaseModel {
 
     onMatchMakingGameConfirmed(matchID) {
         this.onMatchMakingComplete.broadcast()
-        this._playDisabled = false
+        this._buttonDisabled = false
     }
     
     onMatchMakingOpponentFailedToAccept () {
@@ -101,7 +107,7 @@ class LobbyModel extends BaseModel {
 
     onMatchMakingFailedToAccept() {
         this.onMatchMakingFailedReadyCheck.broadcast()
-        this._playDisabled = false
+        this._buttonDisabled = false
     }
 
     onSettingChanged(setting) {

@@ -107,7 +107,7 @@ function save(data) {
 
 function setInternal(key, value, writeToFile = true) {
     if (key === 'locale') {
-        if (!Localization) Localization = require('../mvp/utility').Localization
+        if (!Localization) Localization = require('./localization')
         Localization.setLocale(value)
     }
 

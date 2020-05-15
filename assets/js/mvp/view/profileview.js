@@ -1,6 +1,7 @@
 const BaseView = require('./baseview.js')
 const ProfilePresenter = require('../presenter/profilepresenter.js')
 const MatchHistoryRow = require('../utility/containers').MatchHistoryRow
+const Localization = require('../../utility/localization')
 
 class ProfileView extends BaseView {
     constructor (viewsList) {
@@ -29,10 +30,12 @@ class ProfileView extends BaseView {
         this._matchHistoryContainer = document.getElementById('profile-match-history-list-wrapper')
 
         this._returnButton = document.getElementById('profile-return-button')
+        this._retryButton = document.getElementById('profile-retry-button')
     }
 
     addEventListeners() {
         this._returnButton.addEventListener('click', this.onReturnClicked.bind(this), false)
+        this._retryButton.addEventListener('click', this.initialiseProfileFetch.bind(this), false)
 
         document.addEventListener('keydown', this.onEscDown.bind(this), false)
     }
@@ -56,39 +59,52 @@ class ProfileView extends BaseView {
         this._presenter.closeForm()
     }
 
+    initialiseProfileFetch(event) {
+        this._loadingOverlay.classList.remove('hidden')
+        this._loadingSpinner.classList.remove('hidden')
+        this._loadingErrorControls.classList.add('hidden')
+        this._presenter.requestMatchHistory()
+    }
+
     setActive(active) {
         if (active) {
-            this._loadingOverlay.classList.remove('hidden')
-            this._loadingSpinner.classList.remove('hidden')
-            this._loadingErrorControls.classList.add('hidden')
-            this._presenter.requestMatchHistory()
-        } else {
-            this._loadingOverlay.classList.add('hidden')
-            this._loadingSpinner.classList.add('hidden')
-            this._loadingErrorControls.classList.add('hidden')
+            this.initialiseProfileFetch()
         }
 
         super.setActive(active)
     }
 
     updateMatchHistory(publicID, history) {
-        this._loadingOverlay.classList.add('hidden')
         this._loadingSpinner.classList.add('hidden')
-        this._loadingErrorControls.classList.add('hidden')
+
+        let matchHistoryString = ''
+
+        console.log(`history: [ ${history} ]`)
 
         if (history !== null) {
             let rowStrings = []
 
-            history.forEach(function(row) {
-                let matchHistoryRow = new MatchHistoryRow(row, publicID)
-                rowStrings.push(matchHistoryRow.getText())
-            })
+            if (history.length > 0) {
+                history.forEach(function(row) {
+                    let matchHistoryRow = new MatchHistoryRow(row, publicID)
+                    rowStrings.push(matchHistoryRow.getText())
+                })
+            } else {
+                rowStrings.push(`
+                    <p data-lkey="noMatchesFound">${Localization.get('noMatchesFound')}</p>
+                `)
+            }
 
-            let matchHistoryString = rowStrings.join('')
-            this._matchHistoryContainer.innerHTML = matchHistoryString
+            matchHistoryString = rowStrings.join('')
+
+            this._loadingOverlay.classList.add('hidden')
+            this._loadingErrorControls.classList.add('hidden')
         } else {
-
+            this._loadingOverlay.classList.remove('hidden')
+            this._loadingErrorControls.classList.remove('hidden')
         }
+
+        this._matchHistoryContainer.innerHTML = matchHistoryString
     }
 }
 

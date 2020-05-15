@@ -31,7 +31,17 @@ class ProfileModel extends BaseModel {
     }
 
     processMatchHistoryResponse(response) {
-        this.onMatcHistoryResponse.broadcast({ publicID: this.models.get('net').getPublicID(), history: response.code === 0 ? response.payload.rows : null})
+        let history = null
+
+        if (response.code === 0) {
+            if (response.payload.rows) {
+                history = response.payload.rows
+            } else {
+                history = []
+            }
+        }
+
+        this.onMatcHistoryResponse.broadcast({ publicID: this.models.get('net').getPublicID(), history: history})
     }
 }
 
