@@ -20,7 +20,7 @@
   </header>
 
   <main id="app">
-    <div class="page hidden no-pointer-events" id="lobby">
+    <div class="page" id="lobby">
       <div id="lobby-background">
         <img id="lobby-background-image-home" src="../assets/images/backgrounds/bg-home.png" class="img-full-width-abs">
         <img id="lobby-background-image-play" src="../assets/images/backgrounds/bg-play.png" class="img-full-width-abs hidden">
@@ -147,6 +147,7 @@
         </div>
       </div>
     </div>
+
     <div class="page backdrop hidden no-pointer-events" id="select-match-type">
       <div id="lobby-match-type-select-wrapper">
         <button id="lobby-match-type-select-row-tutorial" class="lobby-match-type-select-row">
@@ -202,6 +203,27 @@
       </div>
     </div>
 
+    <div class="page" id="profile">
+      <div id="lobby-profile-wrapper">
+        <div class="lobby-profile-content">
+          <div id="lobby-profile-loading-overlay" class="hidden">
+            <div id="lobby-profile-spinner" class="spinner"></div>
+            <div class="hidden" id="lobby-profile-error-controls">
+              <p data-lkey="profileFetchError">プロフィールを読み込み中予期しないエラーが発生しました</p>
+              <button id="lobby-profile-retry-button">
+                <p data-lkey="retry">リトライ</p>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="lobby-profile-control-wrapper">
+          <button id="lobby-profile-return-button">
+            <p data-lkey="return">戻る</p>
+          </button>
+        </div>
+      </div>
+    </div>
+
     <div class="page hidden no-pointer-events" id="lobby-loader">
       <div id="lobby-loader-content-wrapper" class="modal">
         <h1 id="lobby-loader-message" data-lkey="connecting">サーバーと接続しています</h1>
@@ -209,7 +231,7 @@
       </div>
     </div>
 
-    <div class="page" id="login">
+    <div class="page hidden no-pointer-events" id="login">
       <div id="login-bg-video-wrapper" class="bg-video-wrapper">
         <video id="login-bg-video" class="bg-video" loop muted>
           <source src="../assets/videos/sen-2-op-muted.mp4" type="video/mp4">

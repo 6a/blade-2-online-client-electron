@@ -292,3 +292,9 @@ preparingMatch:
 trayIconTooltip:
   en: Blade II Online - Match in Progress
   ja-JP: ブレード II オンライン - マッチが進行中
+profileFetchError:
+  en: An unexpected error occurred while attempting to load your profile
+  ja-JP: プロフィールを読み込み中予期しないエラーが発生しました
+retry:  
+  en: Retry
+  ja-JP: リトライ

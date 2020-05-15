@@ -616,6 +616,14 @@
     background-color: var(--positive);
 }
 
+.lobby-match-type-select-control-wrapper button:hover {
+    background-color: var(--positive-darker);
+}
+
+.lobby-match-type-select-control-wrapper button:active {
+    background-color: var(--positive-dark);
+}
+
 #lobby-queue-ready-check-wrapper {
     position: absolute;
     width: 100%;
