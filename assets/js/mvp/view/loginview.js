@@ -14,6 +14,12 @@ class LoginView extends BaseView {
         this.addEventListeners()
         this.getLoginSettings()
         this.addTabbables()
+
+        // Hack to prevent lag on first speech bubble show
+        setTimeout(() => {
+            this._usernameSpeechBubble.classList.add('hidden')
+            this._passwordSpeechBubble.classList.add('hidden')
+        }, 100);
     }
 
     destroy() {
@@ -100,7 +106,7 @@ class LoginView extends BaseView {
         super.addTabbables(tabbables)
     }
     
-    updateInputWarnings(usernameLKey, passwordLKey) {
+    updateInputWarnings(usernameLKey, passwordLKey) {       
         if (usernameLKey !== '') {
             this._usernameField.classList.add('warning-outline')
             this._usernameSpeechBubble.classList.remove('hidden')
