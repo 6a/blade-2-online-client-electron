@@ -1,5 +1,6 @@
 const BaseModel = require('./basemodel.js')
-const { B2Event, Localization, containers } = require('../utility')
+const { B2Event, containers } = require('../utility')
+const Localization = require('../../utility/localization')
 const Settings = require('../../utility/settings')
 const fs = require('fs')
 const MarkdownIt = require('markdown-it')

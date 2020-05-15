@@ -1,8 +1,8 @@
 const fs = require('fs');
 const yaml = require('js-yaml')
-const Settings = require('../../utility/settings')
-const Timer = require('../../utility/timer')
-const makepath = require('../../utility/makepath')
+const Settings = require('./settings')
+const Timer = require('./timer')
+const makepath = require('./makepath')
 
 const LOCALIZATIONS = makepath('assets/docs/localizations/localizations.yaml')
 const DEFAULT_ENCODING = 'utf8'

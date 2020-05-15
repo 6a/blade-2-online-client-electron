@@ -1,4 +1,5 @@
-const { Localization, Models } = require('../utility')
+const { Models } = require('../utility')
+const Localization = require('../../utility/localization')
 
 class BaseView {
     constructor(name, presenterType, viewsList, showHideClass) {

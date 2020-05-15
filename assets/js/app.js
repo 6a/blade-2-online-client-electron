@@ -1,6 +1,7 @@
 (function () {
     const mvp = require('../assets/js/mvp')
     const models = new mvp.utility.Models()
+    const Localization = require('../assets/js/utility/localization')
     const views = [] // We store a reference to all the views so that they dont get gc'd
 
     function createModels() {
@@ -28,7 +29,7 @@
     }
 
     function start() {
-        mvp.utility.Localization.init()
+        Localization.init()
         createModels()
         createViewsAndPresenters()
     }

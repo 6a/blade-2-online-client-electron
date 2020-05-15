@@ -1,7 +1,8 @@
 (function () {
     const { remote } = require('electron')
     const { shell } = require('electron')
-    const { Models, containers, Localization } = require('../mvp/utility')
+    const { Models, containers } = require('../mvp/utility')
+    const Localization = require('./localization')
     const path = require('path')
 
     let win = remote.getCurrentWindow()
