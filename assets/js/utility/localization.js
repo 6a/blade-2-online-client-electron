@@ -75,7 +75,7 @@ class Localization {
                 let type = element.nodeName
 
                 if (key !== '') {
-                    if (['H1', 'H2', 'H3', 'H4', 'H5', 'LABEL', 'DIV', 'P', 'BUTTON', 'A', 'SECTION', 'LI', 'OPTION'].includes(type)) {
+                    if (['H1', 'H2', 'H3', 'H4', 'H5', 'LABEL', 'DIV', 'P', 'BUTTON', 'A', 'SECTION', 'LI', 'OPTION', 'SPAN'].includes(type)) {
                         element.innerHTML = this.get(key)
                     } else if (['INPUT'].includes(type)) {
                         element.placeholder = this.get(key)

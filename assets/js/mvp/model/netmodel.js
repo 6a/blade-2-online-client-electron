@@ -63,6 +63,8 @@ class NetModel extends BaseModel {
 
         this.onAuthResponse = new B2Event('Auth Request Response')
         this.onCreateAccountResponse = new B2Event('Create Account Request Response')
+        this.onMatchHistoryResponse = new B2Event('Match History request response')
+
         this.onMatchMakingConnectStarted = new B2Event('MatchMaking Connect Started')
         this.onMatchMakingConnectComplete = new B2Event('MatchMaking Connect Complete')
         this.onMatchMakingGameFound = new B2Event('MatchMaking Game Found')
@@ -130,6 +132,30 @@ class NetModel extends BaseModel {
         })
     }
 
+    sendMatchHistoryRequest() {
+        request.get(`${appconfig.apiURL}/${appconfig.matchesPath}/${this.getPublicID()}`, { 
+            headers: {'User-Agent': `request.${appconfig.name}.v${appconfig.version}`},
+            json: true,
+        }, (error, response, body) => {
+            if (response.statusCode == 200) {
+                this.broadcast(0, body.payload, this.onMatchHistoryResponse)
+                return
+            } 
+
+            if (error) {
+                this.broadcast(9999, 'serverConnectionError', this.onMatchHistoryResponse)
+                return
+            } 
+
+            if (body.code === undefined || body.payload === undefined) {
+                this.broadcast(9999, 'genericError', this.onMatchHistoryResponse)
+                return
+            }
+            
+            this.broadcast(body.code, this.codeToErrorMessage(body.code), this.onMatchHistoryResponse)
+        })
+    }
+
     broadcast(code, payload, event) {
         event.broadcast({
             code: code,
@@ -172,6 +198,10 @@ class NetModel extends BaseModel {
 
     getLaunchConfigData() {
         return [this._currentAuthData.pid, this._currentAuthData.authToken]
+    }
+
+    getPublicID() {
+        return this._currentAuthData.pid
     }
 
     onWebsocketEvent(payload) {

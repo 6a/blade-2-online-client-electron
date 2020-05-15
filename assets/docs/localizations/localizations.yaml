@@ -298,3 +298,36 @@ profileFetchError:
 retry:  
   en: Retry
   ja-JP: リトライ
+myProfile:
+  en: My Profile
+  jp: マイプロフィール
+matchHistory:
+  en: Match History
+  jp: マッチ履歴
+matchID:
+  en: ID
+  jp: ID
+player1:
+  en: Player 1
+  jp: プレイヤー 1
+player2:
+  en: Player 2
+  jp: プレイヤー 2
+result:
+  en: Result
+  jp: 結果
+endTime:
+  en: End Time
+  jp: 終了時間
+victory:
+  en: Victory
+  jp: 勝利
+draw:
+  en: Draw
+  jp: 引き分け
+defeat:
+  en: Defeat
+  jp: 敗北
+opponent:
+  en: Opponent
+  jp: 相手

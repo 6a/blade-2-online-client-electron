@@ -1,5 +1,6 @@
 const BaseView = require('./baseview.js')
 const ProfilePresenter = require('../presenter/profilepresenter.js')
+const MatchHistoryRow = require('../utility/containers').MatchHistoryRow
 
 class ProfileView extends BaseView {
     constructor (viewsList) {
@@ -22,7 +23,12 @@ class ProfileView extends BaseView {
     getElementReferences() {
         this._wrapper = document.getElementById('profile')
 
-        this._returnButton = document.getElementById('lobby-profile-return-button')
+        this._loadingOverlay = document.getElementById('profile-loading-overlay')
+        this._loadingSpinner = document.getElementById('profile-spinner')
+        this._loadingErrorControls = document.getElementById('profile-error-controls')
+        this._matchHistoryContainer = document.getElementById('profile-match-history-list-wrapper')
+
+        this._returnButton = document.getElementById('profile-return-button')
     }
 
     addEventListeners() {
@@ -51,9 +57,38 @@ class ProfileView extends BaseView {
     }
 
     setActive(active) {
-        // Load
+        if (active) {
+            this._loadingOverlay.classList.remove('hidden')
+            this._loadingSpinner.classList.remove('hidden')
+            this._loadingErrorControls.classList.add('hidden')
+            this._presenter.requestMatchHistory()
+        } else {
+            this._loadingOverlay.classList.add('hidden')
+            this._loadingSpinner.classList.add('hidden')
+            this._loadingErrorControls.classList.add('hidden')
+        }
 
         super.setActive(active)
+    }
+
+    updateMatchHistory(publicID, history) {
+        this._loadingOverlay.classList.add('hidden')
+        this._loadingSpinner.classList.add('hidden')
+        this._loadingErrorControls.classList.add('hidden')
+
+        if (history !== null) {
+            let rowStrings = []
+
+            history.forEach(function(row) {
+                let matchHistoryRow = new MatchHistoryRow(row, publicID)
+                rowStrings.push(matchHistoryRow.getText())
+            })
+
+            let matchHistoryString = rowStrings.join('')
+            this._matchHistoryContainer.innerHTML = matchHistoryString
+        } else {
+
+        }
     }
 }
 

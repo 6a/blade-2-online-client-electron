@@ -204,20 +204,42 @@
     </div>
 
     <div class="page" id="profile">
-      <div id="lobby-profile-wrapper">
-        <div class="lobby-profile-content">
-          <div id="lobby-profile-loading-overlay" class="hidden">
-            <div id="lobby-profile-spinner" class="spinner"></div>
-            <div class="hidden" id="lobby-profile-error-controls">
+      <div id="profile-wrapper">
+        <div class="profile-content">
+          <div id="profile-inner">
+            <div id="profile-player-info-panel">
+
+            </div>
+            <div id="profile-match-history-panel">
+              <h1 data-lkey="matchHistory"></h1>
+              <div class="profile-match-history-column-header">
+                <span data-lkey="matchID">マッチ ID</span>
+                <span data-lkey="endTime">終了時間</span>
+                <span data-lkey="opponent">相手</span>
+                <span data-lkey="result">結果</span>
+              </div>
+              <div id="profile-match-history-list-wrapper">
+                <div class="match-history-row">
+                  <span>1234567</span>
+                  <span>2020/05/15 @ 11:42</span>
+                  <span>間間間間間間間間間間間間間間間間間間間間</span>
+                  <span>121</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="profile-loading-overlay" class="hidden">
+            <div id="profile-spinner" class="spinner"></div>
+            <div class="hidden" id="profile-error-controls">
               <p data-lkey="profileFetchError">プロフィールを読み込み中予期しないエラーが発生しました</p>
-              <button id="lobby-profile-retry-button">
+              <button id="profile-retry-button">
                 <p data-lkey="retry">リトライ</p>
               </button>
             </div>
           </div>
         </div>
-        <div class="lobby-profile-control-wrapper">
-          <button id="lobby-profile-return-button">
+        <div class="profile-control-wrapper">
+          <button id="profile-return-button">
             <p data-lkey="return">戻る</p>
           </button>
         </div>

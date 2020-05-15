@@ -274,6 +274,14 @@ a {
     transition: none !important;
 }
 
+.centerText {
+    text-align: center;
+}
+
+.alignTextRight {
+    text-align: end;
+}
+
 /* KEYFRAMES */
 
 @keyframes spin {

@@ -10,9 +10,9 @@ class ProfileModel extends BaseModel {
     init() {
         super.init()
 
-        // this.onLocalMatchStarted = new B2Event('Local Match Started')
+        this.onMatcHistoryResponse = new B2Event('Match History Response')
 
-        // this.addEventListener(this.models.get('lobby').onMatchSelectModalSelected.register(this.show.bind(this)))
+        this.addEventListener(this.models.get('net').onMatchHistoryResponse.register(this.processMatchHistoryResponse.bind(this)))
 
         this._active = false
     }
@@ -24,6 +24,14 @@ class ProfileModel extends BaseModel {
     closeForm() {
         this.models.get(this.models.popToPrevious(this.name)).setLocked(false)
         this.hide()
+    }
+
+    requestMatchHistory() {
+        this.models.get('net').sendMatchHistoryRequest()
+    }
+
+    processMatchHistoryResponse(response) {
+        this.onMatcHistoryResponse.broadcast({ publicID: this.models.get('net').getPublicID(), history: response.code === 0 ? response.payload.rows : null})
     }
 }
 

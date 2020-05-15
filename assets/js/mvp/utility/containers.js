@@ -1,3 +1,5 @@
+const Localization = require('../../utility/localization')
+
 class PasswordWarningState {
     constructor() {
         this._ascii = PasswordWarningState.INACTIVE
@@ -76,8 +78,53 @@ class MessageConfig {
     get negativeButtonCallback() { return this._negativeButtonCallback }
 }
 
+class MatchHistoryRow {
+
+    /**
+     * Construct a match history row, and store it as a string to be added to the DOM later
+     * @param {Object} matchHistoryRowData The data to add to the row
+     */
+    constructor(matchHistoryRowData, playerPublicID) {
+        this._matchHistoryRowData = matchHistoryRowData
+
+        let resultText = ''
+        let resultLKey = ''
+        if (matchHistoryRowData.winnerpid === '')
+        {
+            resultLKey = 'draw'
+        } else if (matchHistoryRowData.winnerpid === playerPublicID) {
+            resultLKey = 'victory'
+        } else {
+            resultLKey = 'defeat'
+        }
+
+        resultText = Localization.get(resultLKey)
+
+        let opponentHandle = matchHistoryRowData.player1pid === playerPublicID ? matchHistoryRowData.player2handle : matchHistoryRowData.player1handle
+
+        this._divText = `
+        <div class="match-history-row">
+            <span>${matchHistoryRowData.matchid}</span>
+            <span>${this.formatDateTime(matchHistoryRowData.endtime)}</span>
+            <span class="match-history-handle-hl">${opponentHandle}</span>
+            <span data-lkey="${resultLKey}">${resultText}</span>
+        </div>`
+    }
+
+    getText() {
+        return this._divText
+    }
+
+    formatDateTime(dateTime) {
+        let dt = new Date(dateTime)
+
+        return `${dt.toLocaleDateString()} @ ${dt.toLocaleTimeString().slice(0, 5)}`
+    }
+}
+
 module.exports = {
     PasswordWarningState,
     Options,
-    MessageConfig
+    MessageConfig,
+    MatchHistoryRow
 }

@@ -8,10 +8,21 @@ class ProfilePresenter extends BasePresenter {
 
     init() {
         super.init()
+
+        this.addEventListener(this.model.onMatcHistoryResponse.register(this.onMatchHistoryResponse.bind(this)))
     }
     
     closeForm() {
         this.model.closeForm()
+    }
+
+    onMatchHistoryResponse(response) {
+        this._view.updateMatchHistory(response.publicID, response.history)
+    }
+
+    requestMatchHistory()
+    {
+        this.model.requestMatchHistory()
     }
 
 }
