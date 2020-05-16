@@ -97,8 +97,6 @@ class RankingsView extends BaseView {
     }
 
     updateRankings(rankingData) {
-        console.log(rankingData)
-
         let rowStrings = []
 
         this._loadingSpinner.classList.add('hidden')
@@ -110,14 +108,14 @@ class RankingsView extends BaseView {
             let userHandle = includesUserInfo ? rankingData.user.handle : ''
 
             if (includesUserInfo) {
-                this._playerRow.rank.innerHTML = userHandle
+                this._playerRow.rank.innerHTML = rankingData.user.rank
                 this._playerRow.elo.innerHTML = rankingData.user.mmr
-                this._playerRow.handle.innerHTML = rankingData.user.handle
+                this._playerRow.handle.innerHTML = userHandle
                 this._playerRow.victories.innerHTML = rankingData.user.wins
                 this._playerRow.draws.innerHTML = rankingData.user.draws
                 this._playerRow.defeats.innerHTML = rankingData.user.losses
                 this._playerRow.total.innerHTML = rankingData.user.total
-                this._playerRow.ratio.innerHTML = rankingData.user.winratio
+                this._playerRow.ratio.innerHTML = rankingData.user.winratio.toFixed(2)
 
                 this._playerRow.wrapper.classList.remove('noDisplay')
             } else {
