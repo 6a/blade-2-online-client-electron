@@ -1,0 +1,160 @@
+#rankings-wrapper {
+    background-color: var(--gscale-90-100);
+    color: var(--gscale-10-100);
+    top: 50px;
+    right: 50px;
+    bottom: 50px;
+    left: 50px;
+    position: absolute;
+    display: grid;
+    grid-template-rows: 1fr 50px;
+}
+
+#rankings-inner {
+    position: absolute;
+    display: grid;
+    grid-template-rows: 60px 1fr; 
+    top: 40px;
+    right: 40px;
+    bottom: 40px;
+    left: 40px;
+}
+
+#rankings-inner > h1 {
+    font-size: 2.8em;
+    font-weight: 500;
+    font-family: 'Trajan Pro Regular', 'Noto Serif JP';
+    letter-spacing: 0.3em;
+    text-align: center;
+}
+
+.rankings-table-outer {
+    display: grid;
+    grid-template-rows: auto 1fr auto; 
+    overflow: hidden;
+}
+
+.rankings-column-header {
+    padding: 14px 27px 10px 15px;
+    font-size: 0.8em;
+
+    display: grid;
+    grid-template-columns: 80px 120px 1fr 90px 90px 90px 90px 90px; 
+}
+
+.rankings-row {
+    background-color: var(--gscale-90-100);
+    margin: 5px;
+    padding: 0 5px;
+    box-sizing: border-box;
+    width: calc(100% - 10px);
+    height: 50px;
+    display: flex;
+    color: var(--gscale-10-100);
+    font-size: 0.8em;
+
+    display: grid;
+    grid-template-columns: 80px 120px 1fr 90px 90px 90px 90px 90px; 
+
+    border-left: 5px solid var(--gscale-10-100);
+}
+
+.rankings-row > span {
+    display: inline-block;
+    justify-content: flex-start;
+    align-items: center;
+
+    white-space: nowrap; 
+    overflow-x: hidden;
+    overflow-y: visible;
+    text-overflow: ellipsis;
+
+    box-sizing: border-box;
+    align-self: center;
+    padding: 10px 0;
+}
+
+#rankings-player-row {
+    border: 1px solid var(--affirmative); 
+    border-right: 17px solid var(--affirmative); 
+    border-left: 10px solid var(--affirmative); 
+    margin: 5px 0;
+    width: 100%;
+    height: 60px;
+    padding-right: 10px;
+    color: var(--affirmative);
+    font-size: 0.9em;
+}
+
+.rankings-player-row-deco {
+    border-color: var(--affirmative);
+    color: var(--affirmative);
+}
+
+#rankings-list-wrapper {
+    background-color: var(--gscale-80-100);
+    overflow-y: scroll;
+}
+
+.rankings-control-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    background-color: var(--gscale-10-100);
+}
+
+.rankings-control-wrapper button {
+    font-size: 0.7em;
+    font-weight: 400;
+
+    min-width: 0;
+    padding: 10px 20px;
+    margin: 0 5px;
+
+    background-color: var(--positive);
+}
+
+.rankings-control-wrapper button:hover {
+    background-color: var(--positive-darker);
+}
+
+.rankings-control-wrapper button:active {
+    background-color: var(--positive-dark);
+}
+
+#rankings-loading-overlay {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+
+    background-color: var(--gscale-90-100);
+}
+
+#rankings-loading-overlay > div {
+
+    position: absolute;
+}
+
+#rankings-error-controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#rankings-error-controls > * {
+    margin: 10px;
+}
+
+#rankings-spinner {
+    margin-top: 20px;
+}
+
+.rankings-content {
+    position: relative;
+}

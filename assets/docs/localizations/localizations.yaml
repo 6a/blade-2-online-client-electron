@@ -292,9 +292,9 @@ preparingMatch:
 trayIconTooltip:
   en: Blade II Online - Match in Progress
   ja-JP: ブレード II オンライン - マッチが進行中
-profileFetchError:
-  en: An unexpected error occurred while attempting to load your profile
-  ja-JP: プロフィールを読み込み中、予期しないエラーが発生しました
+serverFetchError:
+  en: Unable to connect to the server
+  ja-JP: サーバーと接続出来ませんでした
 retry:  
   en: Retry
   ja-JP: リトライ
@@ -337,6 +337,9 @@ noMatchesFound:
 eloRating:
   en: Elo Rating
   ja-JP: Elo レーティング
+eloRatingShort:
+  en: Rating
+  ja-JP: レーティング
 victories:
   en: Victories
   ja-JP: 勝利数
@@ -352,3 +355,9 @@ total:
 winRatio:
   en: Win Ratio
   ja-JP: 勝率
+rank:
+  en: Rank
+  ja-JP: ランク
+handle:
+  en: Handle
+  ja-JP: ハンドルネーム

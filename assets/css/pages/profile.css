@@ -73,10 +73,6 @@
     margin-top: 20px;
 }
 
-#profile-myprofile-button {
-    margin-right: 0;
-}
-
 /* PROFILE INNER */
 
 #profile-inner {
@@ -87,8 +83,6 @@
     right: 40px;
     bottom: 40px;
     left: 40px;
-
-    /* font-family: 'Trajan Pro Regular', 'Noto Serif JP'; */
 }
 
 #profile-inner > div {

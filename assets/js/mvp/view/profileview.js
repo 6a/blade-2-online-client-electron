@@ -183,9 +183,7 @@ class ProfileView extends BaseView {
                 rowStrings.push(matchHistoryRow.getText())
             }.bind(this))
         } else {
-            rowStrings.push(`
-                <p data-lkey="noMatchesFound">${Localization.get('noMatchesFound')}</p>
-            `)
+            rowStrings.push(`<p data-lkey="noMatchesFound">${Localization.get('noMatchesFound')}</p>`)
         }
 
         matchHistoryString = rowStrings.join('')
