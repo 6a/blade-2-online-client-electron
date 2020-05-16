@@ -113,6 +113,12 @@ class MatchHistoryRow {
     getText() {
         return this._divText
     }
+
+    formatDateTime(dateTime) {
+        let dt = new Date(dateTime)
+
+        return `${dt.toLocaleDateString()} @ ${dt.toLocaleTimeString().slice(0, 5)}`
+    }
 }
 
 class RankingsRow {
