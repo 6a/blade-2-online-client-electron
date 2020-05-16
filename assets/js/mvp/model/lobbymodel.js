@@ -24,7 +24,6 @@ class LobbyModel extends BaseModel {
 
         this.onToggleBackgroundVideo = new B2Event('Toggle Background Video')
 
-        // this.addEventListener(this.models.get('lobbyloader').onLobbyReady.register(this.onLobbyReady.bind(this)))
         this.addEventListener(this.models.get('net').onMatchMakingConnectStarted.register(this.onMatchMakingConnectStarted.bind(this)))
         this.addEventListener(this.models.get('net').onMatchMakingConnectComplete.register(this.onMatchMakingConnectComplete.bind(this)))
         this.addEventListener(this.models.get('net').onMatchMakingGameFound.register(this.onMatchMakingGameFound.bind(this)))
@@ -61,6 +60,12 @@ class LobbyModel extends BaseModel {
         this.setLocked(true)
         this._buttonDisabled = true
         this.models.get('profile').show()
+    }
+
+    rankingsClicked() {
+        this.setLocked(true)
+        this._buttonDisabled = true
+        this.models.get('rankings').show()
     }
 
     requestBackgroundVideoActive() {

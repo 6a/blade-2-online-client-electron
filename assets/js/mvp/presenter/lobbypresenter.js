@@ -29,6 +29,10 @@ class LobbyPresenter extends BasePresenter {
         this.model.profileClicked()
     }
 
+    rankingsClicked() {
+        this.model.rankingsClicked()
+    }
+
     requestBackgroundVideoActive() {
         this.model.requestBackgroundVideoActive()
     }
