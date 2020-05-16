@@ -21,7 +21,6 @@ AvatarChangeDirection.LEFT = -1
 AvatarChangeDirection.RIGHT = 1
 
 const DATA_EXPECTED = 2
-const LOAD_TIMEOUT = 5
 
 class ProfileView extends BaseView {
     constructor (viewsList) {
@@ -112,10 +111,6 @@ class ProfileView extends BaseView {
 
         this._presenter.requestMatchHistory()
         this._presenter.requestProfile()
-
-        this._profileLoadTimeoutHandle = setTimeout(() => {
-            this.handleTimeOut()
-        }, LOAD_TIMEOUT);
     }
 
     onAvatarSelectLeft(event) {
@@ -216,12 +211,6 @@ class ProfileView extends BaseView {
         this._currentProfile = null
         this._currentHandle = null
         this._dataReceived = 0
-
-        if (this._profileLoadTimeoutHandle) {
-            clearTimeout(this._profileLoadTimeoutHandle)
-        }
-
-        this._profileLoadTimeoutHandle = null
 
         this._elo.innerHTML = '　'
         this._stats.victories.innerHTML = '　'

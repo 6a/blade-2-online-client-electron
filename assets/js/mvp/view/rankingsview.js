@@ -2,8 +2,6 @@ const BaseView = require('./baseview.js')
 const RankingsPresenter = require('../presenter/rankingspresenter.js')
 const RankingsRow = require('../utility/containers').RankingsRow
 
-const LOAD_TIMEOUT = 5
-
 class RankingsView extends BaseView {
     constructor (viewsList) {
         super('rankings', RankingsPresenter, viewsList, 'hidden')
@@ -81,10 +79,6 @@ class RankingsView extends BaseView {
         this._loadingErrorControls.classList.add('hidden')
 
         this._presenter.requestRankings()
-
-        this._profileLoadTimeoutHandle = setTimeout(() => {
-            this.handleTimeOut()
-        }, LOAD_TIMEOUT);
     }
 
     setActive(active) {
@@ -135,12 +129,6 @@ class RankingsView extends BaseView {
     }
 
     clear() {
-        if (this._loadTimeout) {
-            clearTimeout(this._loadTimeout)
-        }
-        
-        this._loadTimeout = null
-
         this._rankingsContainer.innerHTML = '　'
         this._playerRow.rank.innerHTML = '　'
         this._playerRow.elo.innerHTML = '　'
@@ -150,10 +138,6 @@ class RankingsView extends BaseView {
         this._playerRow.defeats.innerHTML = '　'
         this._playerRow.total.innerHTML = '　'
         this._playerRow.ratio.innerHTML = '　'
-    }
-
-    handleTimeOut() {
-        
     }
 }
 

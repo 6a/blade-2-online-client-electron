@@ -32,12 +32,13 @@ class RankingsModel extends BaseModel {
 
     processRankingsDataResponse(response) {
         let rankings = null
+        let userData = null
 
         if (response.code === 0) {
             rankings = response.payload.leaderboards
+            userData = response.payload.user.pid === '' ? null : response.payload.user
         }
 
-        let userData = response.payload.user.pid === '' ? null : response.payload.user
         this.onRankingsDataResponse.broadcast({ rankings: rankings, user: userData })
     }
 }
