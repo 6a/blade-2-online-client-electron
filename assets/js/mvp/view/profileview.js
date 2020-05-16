@@ -179,9 +179,9 @@ class ProfileView extends BaseView {
 
         if (this._currentMatchHistory.length > 0) {
             this._currentMatchHistory.forEach(function(row) {
-                let matchHistoryRow = new MatchHistoryRow(row, `bqnf8ku4h65c72kc0330`)
+                let matchHistoryRow = new MatchHistoryRow(row, this._currentPublicID)
                 rowStrings.push(matchHistoryRow.getText())
-            })
+            }.bind(this))
         } else {
             rowStrings.push(`
                 <p data-lkey="noMatchesFound">${Localization.get('noMatchesFound')}</p>
@@ -189,8 +189,6 @@ class ProfileView extends BaseView {
         }
 
         matchHistoryString = rowStrings.join('')
-
-
 
         this._matchHistoryContainer.innerHTML = matchHistoryString
     }

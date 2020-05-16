@@ -135,7 +135,7 @@ class NetModel extends BaseModel {
     }
 
     sendMatchHistoryRequest() {
-        request.get(`${appconfig.apiURL}/${appconfig.matchesPath}/${'bqnf8ku4h65c72kc0330'}`, { 
+        request.get(`${appconfig.apiURL}/${appconfig.matchesPath}/${this.getPublicID()}`, { 
             headers: {'User-Agent': `request.${appconfig.name}.v${appconfig.version}`},
             json: true,
         }, (error, response, body) => {
@@ -159,7 +159,7 @@ class NetModel extends BaseModel {
     }
 
     sendProfileRequest() {
-        request.get(`${appconfig.apiURL}/${appconfig.profilesPath}/${'bqnf8ku4h65c72kc0330'}`, { 
+        request.get(`${appconfig.apiURL}/${appconfig.profilesPath}/${this.getPublicID()}`, { 
             headers: {'User-Agent': `request.${appconfig.name}.v${appconfig.version}`},
             json: true,
         }, (error, response, body) => {
