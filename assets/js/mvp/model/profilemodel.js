@@ -36,6 +36,10 @@ class ProfileModel extends BaseModel {
         this.models.get('net').sendProfileRequest()
     }
 
+    requestAvatarUpdate(avatar) {
+        this.models.get('net').sendAvatarUpdateRequest(avatar)
+    }
+
     processMatchHistoryResponse(response) {
         let history = null
 

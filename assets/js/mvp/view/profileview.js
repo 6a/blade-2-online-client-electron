@@ -1,4 +1,5 @@
 const BaseView = require('./baseview.js')
+const { Models } = require('../utility')
 const ProfilePresenter = require('../presenter/profilepresenter.js')
 const MatchHistoryRow = require('../utility/containers').MatchHistoryRow
 const Localization = require('../../utility/localization')
@@ -99,7 +100,17 @@ class ProfileView extends BaseView {
 
     onReturnClicked(event) {
         event.preventDefault()
+
+        this._presenter.requestAvatarUpdate(this._avatarIndex)
         this._presenter.closeForm()
+    }
+
+    onEscDown(event) {
+        if (new Models().peekCurrentName() === this.name) {
+            this._presenter.requestAvatarUpdate(this._avatarIndex)
+        }
+
+        super.onEscDown(event)
     }
 
     onRetryButtonClicked(event) {
@@ -218,10 +229,6 @@ class ProfileView extends BaseView {
         this._stats.defeats.innerHTML = '　'
         this._stats.total.innerHTML = '　'
         this._stats.winratio.innerHTML = '　'
-    }
-
-    handleTimeOut() {
-        
     }
 
     /**

@@ -19,6 +19,13 @@ function makeCreateAccountBody(handle, email, password) {
     }
 }
 
+function makeAvatarUpdateBody(avatar, authToken) {
+    return {
+        avatar: avatar,
+        authtoken: authToken,
+    }
+}
+
 class NetModel extends BaseModel {
     constructor () {
         super('net')
@@ -88,16 +95,16 @@ class NetModel extends BaseModel {
             },
             json: true
         }, (error, response, body) => {
+            if (error) {
+                this.broadcast(9999, 'serverConnectionError', this.onAuthResponse)
+                return
+            } 
+
             if (response.statusCode == 200) {
                 this.broadcast(0, body.payload, this.onAuthResponse)
                 this._currentAuthData = body.payload
                 this._currentAuthData.handle = handle
                 this.keepAuthAlive()
-                return
-            } 
-
-            if (error) {
-                this.broadcast(9999, 'serverConnectionError', this.onAuthResponse)
                 return
             } 
 
@@ -116,13 +123,13 @@ class NetModel extends BaseModel {
             json: true,
             body: makeCreateAccountBody(handle, email, password),
         }, (error, response, body) => {
-            if (response.statusCode == 200) {
-                this.broadcast(0, body.payload, this.onCreateAccountResponse)
+            if (error) {
+                this.broadcast(9999, 'serverConnectionError', this.onCreateAccountResponse)
                 return
             } 
 
-            if (error) {
-                this.broadcast(9999, 'serverConnectionError', this.onCreateAccountResponse)
+            if (response.statusCode == 200) {
+                this.broadcast(0, body.payload, this.onCreateAccountResponse)
                 return
             } 
 
@@ -140,13 +147,13 @@ class NetModel extends BaseModel {
             headers: {'User-Agent': `request.${appconfig.name}.v${appconfig.version}`},
             json: true,
         }, (error, response, body) => {
-            if (response.statusCode == 200) {
-                this.broadcast(0, body.payload, this.onMatchHistoryResponse)
+            if (error) {
+                this.broadcast(9999, 'serverConnectionError', this.onMatchHistoryResponse)
                 return
             } 
 
-            if (error) {
-                this.broadcast(9999, 'serverConnectionError', this.onMatchHistoryResponse)
+            if (response.statusCode == 200) {
+                this.broadcast(0, body.payload, this.onMatchHistoryResponse)
                 return
             } 
 
@@ -164,13 +171,13 @@ class NetModel extends BaseModel {
             headers: {'User-Agent': `request.${appconfig.name}.v${appconfig.version}`},
             json: true,
         }, (error, response, body) => {
-            if (response.statusCode == 200) {
-                this.broadcast(0, body.payload, this.onGetProfileResponse)
+            if (error) {
+                this.broadcast(9999, 'serverConnectionError', this.onGetProfileResponse)
                 return
             } 
 
-            if (error) {
-                this.broadcast(9999, 'serverConnectionError', this.onGetProfileResponse)
+            if (response.statusCode == 200) {
+                this.broadcast(0, body.payload, this.onGetProfileResponse)
                 return
             } 
 
@@ -189,13 +196,13 @@ class NetModel extends BaseModel {
             qs: { from: 0, count: 100, pid: (this.getPublicID() ? this.getPublicID() : '')},
             json: true,
         }, (error, response, body) => {
-            if (response.statusCode == 200) {
-                this.broadcast(0, body.payload, this.onGetRankingsResponse)
+            if (error) {
+                this.broadcast(9999, 'serverConnectionError', this.onGetRankingsResponse)
                 return
             } 
 
-            if (error) {
-                this.broadcast(9999, 'serverConnectionError', this.onGetRankingsResponse)
+            if (response.statusCode == 200) {
+                this.broadcast(0, body.payload, this.onGetRankingsResponse)
                 return
             } 
 
@@ -205,6 +212,22 @@ class NetModel extends BaseModel {
             }
             
             this.broadcast(body.code, this.codeToErrorMessage(body.code), this.onGetRankingsResponse)
+        })
+    }
+
+    sendAvatarUpdateRequest(newAvatar) {
+
+        // This request fails silenty!!
+        request.patch(`${appconfig.apiURL}/${appconfig.profilesPath}/${this.getPublicID()}/avatar`, {
+            headers: {'User-Agent': `request.${appconfig.name}.v${appconfig.version}`},
+            json: true,
+            body: makeAvatarUpdateBody(newAvatar, this._currentAuthData.authToken),
+        }, (error, response, body) => {
+            if (error || response.statusCode != 204) {
+                console.log('Avatar update failed')
+            } else  {
+                console.log('Avatar successfully updated')
+            }
         })
     }
 

@@ -33,6 +33,9 @@ class ProfilePresenter extends BasePresenter {
         this.model.requestProfile()
     }
 
+    requestAvatarUpdate(avatar) {
+        this.model.requestAvatarUpdate(avatar)
+    }
 }
 
 module.exports = ProfilePresenter
