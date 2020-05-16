@@ -282,6 +282,10 @@ a {
     text-align: end;
 }
 
+.noDisplay {
+    display: none !important;
+}
+
 /* KEYFRAMES */
 
 @keyframes spin {

@@ -217,6 +217,10 @@ class ProfileView extends BaseView {
         this._currentHandle = null
         this._dataReceived = 0
 
+        if (this._profileLoadTimeoutHandle) {
+            clearTimeout(this._profileLoadTimeoutHandle)
+        }
+
         this._profileLoadTimeoutHandle = null
 
         this._elo.innerHTML = '　'

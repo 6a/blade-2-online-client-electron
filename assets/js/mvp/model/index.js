@@ -9,4 +9,5 @@ module.exports = {
     MatchSelectModel: require('./matchselectmodel.js'),
     BootStrapperModel: require('./bootstrappermodel.js'),
     ProfileModel: require('./profilemodel.js'),
+    RankingsModel: require('./rankingsmodel.js'),
 }

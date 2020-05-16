@@ -83,10 +83,9 @@ class MatchHistoryRow {
     /**
      * Construct a match history row, and store it as a string to be added to the DOM later
      * @param {Object} matchHistoryRowData The data to add to the row
+     * @param {String} playerPublicID The public ID of the logged in player
      */
     constructor(matchHistoryRowData, playerPublicID) {
-        this._matchHistoryRowData = matchHistoryRowData
-
         let resultText = ''
         let resultLKey = ''
         if (matchHistoryRowData.winnerpid === '')
@@ -114,11 +113,34 @@ class MatchHistoryRow {
     getText() {
         return this._divText
     }
+}
 
-    formatDateTime(dateTime) {
-        let dt = new Date(dateTime)
+class RankingsRow {
 
-        return `${dt.toLocaleDateString()} @ ${dt.toLocaleTimeString().slice(0, 5)}`
+    /**
+     * Construct a rankings row, and store it as a string to be added to the DOM later
+     * @param {Object} rankingsData The leaderboards data to add to the row
+     * @param {String} playerHandle The handle of the logged in player
+     */
+    constructor(rankingsData, playerHandle) {
+
+        let decoratorClass = rankingsData.handle === playerHandle ? ' rankings-player-row-deco' : ''
+
+        this._divText = `
+        <div class="rankings-row${decoratorClass}">
+            <span>${rankingsData.rank}</span>
+            <span>${rankingsData.mmr}</span>
+            <span>${rankingsData.handle}</span>
+            <span>${rankingsData.wins}</span>
+            <span>${rankingsData.draws}</span>
+            <span>${rankingsData.losses}</span>
+            <span>${rankingsData.total}</span>
+            <span>${rankingsData.winratio.toFixed(2)}</span>
+        </div>`
+    }
+
+    getText() {
+        return this._divText
     }
 }
 
@@ -126,5 +148,6 @@ module.exports = {
     PasswordWarningState,
     Options,
     MessageConfig,
-    MatchHistoryRow
+    MatchHistoryRow,
+    RankingsRow,
 }

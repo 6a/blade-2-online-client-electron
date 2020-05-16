@@ -84,11 +84,13 @@
     padding-right: 10px;
     color: var(--affirmative);
     font-size: 0.9em;
+    background-color: var(--gscale-100-100);
 }
 
 .rankings-player-row-deco {
     border-color: var(--affirmative);
     color: var(--affirmative);
+    background-color: var(--gscale-100-100);
 }
 
 #rankings-list-wrapper {

@@ -6,5 +6,6 @@ module.exports = {
     MessageView: require('./messageview.js'),
     LobbyView: require('./lobbyview.js'),
     MatchSelectView: require('./matchselectview.js'),
-    ProfileView: require('./profileview.js')
+    ProfileView: require('./profileview.js'),
+    RankingsView: require('./rankingsview.js'),
 }

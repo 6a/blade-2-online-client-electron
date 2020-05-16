@@ -15,6 +15,7 @@
         models.add(new mvp.model.LobbyModel())
         models.add(new mvp.model.MatchSelectModel())
         models.add(new mvp.model.ProfileModel())
+        models.add(new mvp.model.RankingsModel())
     }
 
     function createViewsAndPresenters() {
@@ -26,6 +27,7 @@
         views.push(new mvp.view.LobbyView(views))
         views.push(new mvp.view.MatchSelectView(views))
         views.push(new mvp.view.ProfileView(views))
+        views.push(new mvp.view.RankingsView(views))
     }
 
     function start() {

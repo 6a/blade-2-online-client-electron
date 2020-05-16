@@ -65,6 +65,7 @@ class NetModel extends BaseModel {
         this.onCreateAccountResponse = new B2Event('Create Account Response')
         this.onMatchHistoryResponse = new B2Event('Match History Response')
         this.onGetProfileResponse = new B2Event('Profile Fetch Response')
+        this.onGetRankingsResponse = new B2Event('Rankings Fetch Response')
 
         this.onMatchMakingConnectStarted = new B2Event('MatchMaking Connect Started')
         this.onMatchMakingConnectComplete = new B2Event('MatchMaking Connect Complete')
@@ -179,6 +180,31 @@ class NetModel extends BaseModel {
             }
             
             this.broadcast(body.code, this.codeToErrorMessage(body.code), this.onGetProfileResponse)
+        })
+    }
+
+    sendRankingsRequest() {
+        request.get(`${appconfig.apiURL}/${appconfig.leaderboardsPath}`, { 
+            headers: {'User-Agent': `request.${appconfig.name}.v${appconfig.version}`},
+            qs: { from: 0, count: 100, pid: (this.getPublicID() ? this.getPublicID() : '')},
+            json: true,
+        }, (error, response, body) => {
+            if (response.statusCode == 200) {
+                this.broadcast(0, body.payload, this.onGetRankingsResponse)
+                return
+            } 
+
+            if (error) {
+                this.broadcast(9999, 'serverConnectionError', this.onGetRankingsResponse)
+                return
+            } 
+
+            if (body.code === undefined || body.payload === undefined) {
+                this.broadcast(9999, 'genericError', this.onGetRankingsResponse)
+                return
+            }
+            
+            this.broadcast(body.code, this.codeToErrorMessage(body.code), this.onGetRankingsResponse)
         })
     }
 
