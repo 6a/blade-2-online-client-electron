@@ -19,7 +19,7 @@ class LoginView extends BaseView {
         setTimeout(() => {
             this._usernameSpeechBubble.classList.add('hidden')
             this._passwordSpeechBubble.classList.add('hidden')
-        }, 100);
+        }, 300);
     }
 
     destroy() {
