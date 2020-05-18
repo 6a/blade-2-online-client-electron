@@ -90,10 +90,12 @@ class BootStrapperModel extends BaseModel {
 
         if (now - this._launchFileWriteTimeStart > RANKED_MATCH_DELAY) {
             this.onLaunchFailed.broadcast("Failed to write to launch file (Timed Out)")
+            this.models.get('lobby').enableInteractions()
         }
 
         this._delayedStartHandle = setTimeout(function () {
             this.launchGameExecutable()
+            this.models.get('lobby').enableInteractions()
         }.bind(this), remainingDelay);
     }
 }

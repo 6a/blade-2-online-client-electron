@@ -60,7 +60,6 @@ class MatchSelectView extends BaseView {
         this._presenter.requestTutorial()
 
         this._wrapper.classList.add('force-no-transition')
-        this._presenter.closeForm()
     }
 
     onAIMatchButtonClicked(event) {
@@ -68,13 +67,11 @@ class MatchSelectView extends BaseView {
         this._presenter.requestAIMatch()
 
         this._wrapper.classList.add('force-no-transition')
-        this._presenter.closeForm()
     }
 
     onRankedMatchButtonClicked(event) {
         event.preventDefault()
         this._presenter.requestRankedMatch()
-        this._presenter.closeForm()
     }
 
     onReturnClicked(event) {

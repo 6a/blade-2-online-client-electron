@@ -30,15 +30,24 @@ class MatchSelectModel extends BaseModel {
     requestTutorial() {
         this.models.get('bootstrapper').requestTutorial()
         this.models.get('lobby').enableInteractions()
+
+        this.models.get(this.models.popToPrevious(this.name)).setLocked(false)
+        this.hide()
     }
 
     requestAIMatch() {
         this.models.get('bootstrapper').requestAIMatch()
         this.models.get('lobby').enableInteractions()
+
+        this.models.get(this.models.popToPrevious(this.name)).setLocked(false)
+        this.hide()
     }
 
     requestRankedMatch() {
         this.models.get('net').startMatchMaking()
+
+        this.models.get(this.models.popToPrevious(this.name)).setLocked(false)
+        this.hide()
     }
 
     onMatchMakingConnectComplete(error) {

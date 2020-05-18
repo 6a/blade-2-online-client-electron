@@ -58,13 +58,11 @@ class LobbyModel extends BaseModel {
 
     profileClicked() {
         this.setLocked(true)
-        this._buttonDisabled = true
         this.models.get('profile').show()
     }
 
     rankingsClicked() {
         this.setLocked(true)
-        this._buttonDisabled = true
         this.models.get('rankings').show()
     }
 

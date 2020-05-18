@@ -1,6 +1,6 @@
 const BaseView = require('./baseview.js')
 const LobbyPresenter = require('../presenter/lobbypresenter.js')
-const { Localization } = require('../utility')
+const Localization = require('../../utility/localization')
 
 const DEFAULT_SELECTOR_OFFSET = 190
 const NINENTY_DEGREES = 90
