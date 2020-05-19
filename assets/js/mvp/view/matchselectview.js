@@ -1,5 +1,6 @@
 const BaseView = require('./baseview.js')
 const MatchSelectPresenter = require('../presenter/matchselectpresenter.js')
+const sound = require('../../utility/sound')
 
 class MatchSelectView extends BaseView {
     constructor (viewsList) {
@@ -60,6 +61,8 @@ class MatchSelectView extends BaseView {
         this._presenter.requestTutorial()
 
         this._wrapper.classList.add('force-no-transition')
+
+        sound.play(sound.POSITIVE)
     }
 
     onAIMatchButtonClicked(event) {
@@ -67,16 +70,22 @@ class MatchSelectView extends BaseView {
         this._presenter.requestAIMatch()
 
         this._wrapper.classList.add('force-no-transition')
+
+        sound.play(sound.POSITIVE)
     }
 
     onRankedMatchButtonClicked(event) {
         event.preventDefault()
         this._presenter.requestRankedMatch()
+
+        sound.play(sound.POSITIVE)
     }
 
     onReturnClicked(event) {
         event.preventDefault()
         this._presenter.closeForm()
+
+        sound.play(sound.CLOSE)
     }
 
     setActive(active) {

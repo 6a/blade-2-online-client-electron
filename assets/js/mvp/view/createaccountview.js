@@ -1,7 +1,7 @@
 const BaseView = require('./baseview.js')
 const CreateAccountPresenter = require('../presenter/createaccountpresenter.js')
 const PasswordWarningState = require('../utility').containers.PasswordWarningState
-const Sound = require('../../utility/sound')
+const sound = require('../../utility/sound')
 
 class CreateAccountView extends BaseView {
     constructor (viewsList) {
@@ -159,7 +159,7 @@ class CreateAccountView extends BaseView {
         event.preventDefault();
         this._presenter.closeForm()
 
-        Sound.play(Sound.CLOSE)
+        sound.play(sound.CLOSE)
     }
 
     onUsernameFieldChanged() {
@@ -167,7 +167,7 @@ class CreateAccountView extends BaseView {
 
         this._presenter.usernameFieldChanged(value)
 
-        Sound.play(Sound.PULSE)
+        sound.play(sound.PULSE)
     }
 
     onEmailFieldChanged() {
@@ -175,7 +175,7 @@ class CreateAccountView extends BaseView {
 
         this._presenter.emailFieldChanged(value)
 
-        Sound.play(Sound.PULSE)
+        sound.play(sound.PULSE)
     }
 
     onPasswordFieldChanged() {
@@ -183,7 +183,7 @@ class CreateAccountView extends BaseView {
 
         this._presenter.passwordFieldChanged(value)
 
-        Sound.play(Sound.PULSE)
+        sound.play(sound.PULSE)
     }
 
     onShowHidePasswordClicked(event) {
@@ -202,7 +202,7 @@ class CreateAccountView extends BaseView {
             this._passwordField.setSelectionRange(this._passwordField.value.length, this._passwordField.value.length)
         })
 
-        Sound.play(Sound.NAVIGATE)
+        sound.play(sound.SELECT)
     }
 
     onShowHideMouseDown(event) {
@@ -217,13 +217,13 @@ class CreateAccountView extends BaseView {
 
         this.lockForm()
 
-        Sound.play(Sound.NAVIGATE)
+        sound.play(sound.SUBMIT)
     }
 
     onSuccessButtonClicked() {
         this._presenter.closeForm()
 
-        Sound.play(Sound.CLOSE)
+        sound.play(sound.CLOSE)
     }
 
     onServerErrorButtonClicked() {
@@ -232,7 +232,7 @@ class CreateAccountView extends BaseView {
 
         this.unlockForm()
 
-        Sound.play(Sound.NAVIGATE)
+        sound.play(sound.SELECT)
     }
 
     setPasswordInfoStyle(element, className) {
@@ -326,7 +326,7 @@ class CreateAccountView extends BaseView {
 
         this._successUsername.innerHTML = username
 
-        Sound.play(Sound.POSITIVE)
+        sound.play(sound.POSITIVE)
     }
 
     showServerErrorDialogue(lKey) {
@@ -335,7 +335,7 @@ class CreateAccountView extends BaseView {
 
         this.setLocalizedInnerHTML(this._serverErrorText, lKey)
 
-        Sound.play(Sound.NEGATIVE)
+        sound.play(sound.NEGATIVE)
     }
 
     displayCreationErrors(target, lKey) {
@@ -354,7 +354,7 @@ class CreateAccountView extends BaseView {
             this._emailField.classList.add('warning-outline')
         }
 
-        Sound.play(Sound.NEGATIVE)
+        sound.play(sound.NEGATIVE)
     }
 }
 

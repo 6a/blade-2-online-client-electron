@@ -8,6 +8,7 @@ const Timer = require('../../utility/timer')
 const FileReader = require('../../utility/filereader')
 const math = require('../../utility/math')
 const makepath = require('../../utility/makepath')
+const sound = require('../../utility/sound')
 
 const LICENSE_PATH = makepath('assets/docs/third-party-licenses')
 const TERMSOFUSE_EN = makepath('assets/docs/terms-of-use/tou-en.md')
@@ -285,6 +286,8 @@ class OptionsModel extends BaseModel {
         if (!this._active) {
             this.models.peekCurrentObject().setLocked(true)
             this.show()
+
+            sound.play(sound.OPEN)
         }
     }
 

@@ -1,6 +1,6 @@
 const BaseView = require('./baseview.js')
 const LoginPresenter = require('../presenter/loginpresenter.js')
-const Sound = require('../../utility/sound')
+const sound = require('../../utility/sound')
 
 class LoginView extends BaseView {
     constructor (viewsList) {
@@ -185,11 +185,11 @@ class LoginView extends BaseView {
             this.toggleHidden(this._loginErrorText, false)
             this.setLocalizedInnerHTML(this._loginErrorText, warningLkey)
 
-            Sound.play(Sound.NEGATIVE)
+            sound.play(sound.NEGATIVE)
         } else {
             this.setActive(false)
 
-            Sound.play(Sound.POSITIVE)
+            sound.play(sound.POSITIVE)
         }
     }
 
@@ -225,7 +225,7 @@ class LoginView extends BaseView {
 
         this._presenter.usernameFieldChanged(username)
 
-        if (event) Sound.play(Sound.PULSE)
+        if (event) sound.play(sound.PULSE)
     }
 
     onPasswordFieldChanged(event) {
@@ -233,7 +233,7 @@ class LoginView extends BaseView {
 
         this._presenter.passwordFieldChanged(password)
 
-        if (event) Sound.play(Sound.PULSE)
+        if (event) sound.play(sound.PULSE)
     }
 
     onUsernameFieldUnfocused() {
@@ -251,14 +251,14 @@ class LoginView extends BaseView {
 
         this.lockForm()
 
-        Sound.play(Sound.SELECT)
+        sound.play(sound.SUBMIT)
     }
 
     onCreateAccountClicked(event) {
         event.preventDefault();
         this._presenter.createAccountClicked()
 
-        if (event) Sound.play(Sound.OPEN)
+        if (event) sound.play(sound.OPEN)
     }
 
     onShowHidePasswordClicked(event) {
@@ -277,7 +277,7 @@ class LoginView extends BaseView {
             this._passwordField.setSelectionRange(this._passwordField.value.length, this._passwordField.value.length)
         })
 
-        Sound.play(Sound.NAVIGATE)
+        sound.play(sound.SELECT)
     }
 
     onShowHideMouseDown(event) {
@@ -288,7 +288,7 @@ class LoginView extends BaseView {
         let checked = this._rememberMeCheckbox.checked
         this._presenter.setRememberMe(checked)
 
-        Sound.play(Sound.NAVIGATE)
+        sound.play(sound.SELECT)
     }
 
     onTransitionEnd() {

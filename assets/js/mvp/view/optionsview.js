@@ -1,6 +1,7 @@
 const BaseView = require('./baseview.js')
 const OptionsPresenter = require('../presenter/optionspresenter.js')
 const MarkdownIt = require('markdown-it')
+const sound = require('../../utility/sound')
 
 const CapitalizeFirstCharRegex = /^\w/
 
@@ -88,6 +89,13 @@ class OptionsView extends BaseView {
         Object.values(this._sound).forEach((element) => {
             element.addEventListener('input', this.onSettingChanged.bind(this), false)
         })    
+
+        // Slider edge cases - they need to have a callback for the mouse up event so that we can add a sound,
+        // rather than playing a sound in change which can get really spammy.
+        this._general.masterVolume.addEventListener('mouseup', this.onSliderMouseUp.bind(this), false)
+        this._sound.masterVolume.addEventListener('mouseup', this.onSliderMouseUp.bind(this), false)
+        this._sound.backgroundMusicVolume.addEventListener('mouseup', this.onSliderMouseUp.bind(this), false)
+        this._sound.soundEffectsVolume.addEventListener('mouseup', this.onSliderMouseUp.bind(this), false)
         
         document.addEventListener('keydown', this.onEscDown.bind(this), false)
     }
@@ -111,6 +119,11 @@ class OptionsView extends BaseView {
         Object.values(this._sound).forEach((element) => {
             element.removeEventListener('input', this.onSettingChanged.bind(this), false)
         })    
+
+        this._general.masterVolume.removeEventListener('mouseup', this.onSliderMouseUp.bind(this), false)
+        this._sound.masterVolume.removeEventListener('mouseup', this.onSliderMouseUp.bind(this), false)
+        this._sound.backgroundMusicVolume.removeEventListener('mouseup', this.onSliderMouseUp.bind(this), false)
+        this._sound.soundEffectsVolume.removeEventListener('mouseup', this.onSliderMouseUp.bind(this), false)
 
         document.removeEventListener('keydown', this.onEscDown.bind(this), false)
     }
@@ -219,10 +232,14 @@ class OptionsView extends BaseView {
         event.preventDefault()
 
         this._presenter.showResetMessage(this.resetMessageCallback.bind(this))
+
+        sound.play(sound.SELECT)
     }
 
     onDoneButtonClicked() {
         this._presenter.closeForm()
+
+        sound.play(sound.CLOSE)
     }
 
     onNavButtonClicked(event) {
@@ -234,6 +251,8 @@ class OptionsView extends BaseView {
         this.setCurrentNavButton(target)
 
         this.setLocalizedInnerHTML(this._title, lKey)
+
+        sound.play(sound.SELECT)
     }
 
     onSettingChanged(event) {
@@ -264,6 +283,12 @@ class OptionsView extends BaseView {
             let val = this._sound.masterVolume.value
             this._general.masterVolume.value = val
         }
+
+        if (elementType !== 'INPUT' || inputType !== 'range') sound.play(sound.SELECT)
+    }
+
+    onSliderMouseUp(event) {
+        sound.play(sound.SELECT)
     }
 }
 

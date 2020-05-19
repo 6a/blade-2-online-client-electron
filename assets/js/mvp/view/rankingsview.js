@@ -1,6 +1,7 @@
 const BaseView = require('./baseview.js')
 const RankingsPresenter = require('../presenter/rankingspresenter.js')
 const RankingsRow = require('../utility/containers').RankingsRow
+const sound = require('../../utility/sound')
 
 class RankingsView extends BaseView {
     constructor (viewsList) {
@@ -69,6 +70,8 @@ class RankingsView extends BaseView {
     onReturnClicked(event) {
         event.preventDefault()
         this._presenter.closeForm()
+
+        sound.play(sound.CLOSE)
     }
 
     onRetryButtonClicked(event) {
@@ -79,6 +82,8 @@ class RankingsView extends BaseView {
         this._loadingErrorControls.classList.add('hidden')
 
         this._presenter.requestRankings()
+
+        sound.play(sound.SELECT)
     }
 
     setActive(active) {

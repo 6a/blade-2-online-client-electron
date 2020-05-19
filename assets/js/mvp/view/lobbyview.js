@@ -1,6 +1,7 @@
 const BaseView = require('./baseview.js')
 const LobbyPresenter = require('../presenter/lobbypresenter.js')
 const Localization = require('../../utility/localization')
+const sound = require('../../utility/sound')
 
 const DEFAULT_SELECTOR_OFFSET = 190
 const NINENTY_DEGREES = 90
@@ -192,6 +193,8 @@ class LobbyView extends BaseView {
             buttonText.classList.replace('lobby-main-button-text-state-below', replacement)
             buttonText.classList.replace('lobby-main-button-text-state-active', replacement)
         }
+
+        sound.play(sound.SELECT)
     }
 
     startMatchMaking() {
@@ -254,6 +257,8 @@ class LobbyView extends BaseView {
 
     matchMakingQueueJoined() {
         this.setQueueNotificationInfoText(LKEY_SEARCHING)
+
+        sound.play(sound.POSITIVE)
     }
 
     matchMakingReadyCheckStarted() {
@@ -274,14 +279,19 @@ class LobbyView extends BaseView {
         }
 
         this.startReadyCheck()
+
+        sound.play(sound.POSITIVE)
     }
 
     matchMakingEndReadyCheck(resumeTimer) {
         if (resumeTimer) {
             this.resumeQueueTimer()
             this.setQueueNotificationInfoText(LKEY_SEARCHING)
+
+            sound.play(sound.POSITIVE)
         } else {
             this.stopQueueTimer()
+            sound.play(sound.NEGATIVE)
         }
 
         this._readyCheckWrapper.classList.add(...READY_CHECK_HIDDEN_CLASSES)
@@ -405,6 +415,8 @@ class LobbyView extends BaseView {
                 this.onRankingsClicked()
                 break;
         }
+
+        sound.play(sound.SUBMIT)
     }
 
     onPlayClicked() {

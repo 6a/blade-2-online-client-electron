@@ -4,9 +4,9 @@ const { Howl, Howler } = require('howler');
 
 const SOUNDS_FOLDER =  makepath(require('./appconfig').soundsFolder)
 const EXPECTED_SOUNDS = new Map([
-    ['navigate', 'navigate.webm'],
-    ['pulse', 'pulse.webm'],
     ['select', 'select.webm'],
+    ['pulse', 'pulse.webm'],
+    ['submit', 'submit.webm'],
     ['positive', 'positive.webm'],
     ['negative', 'negative.webm'],
     ['open', 'open.webm'],
@@ -25,9 +25,9 @@ class Sound {
             this._sounds.set(key, sound)
         })
 
-        this.NAVIGATE = 'navigate'
-        this.PULSE = 'pulse'
         this.SELECT = 'select'
+        this.PULSE = 'pulse'
+        this.SUBMIT = 'submit'
         this.POSITIVE = 'positive'
         this.NEGATIVE = 'negative'
         this.OPEN = 'open'

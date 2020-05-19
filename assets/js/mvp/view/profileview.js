@@ -3,6 +3,7 @@ const { Models } = require('../utility')
 const ProfilePresenter = require('../presenter/profilepresenter.js')
 const MatchHistoryRow = require('../utility/containers').MatchHistoryRow
 const Localization = require('../../utility/localization')
+const sound = require('../../utility/sound')
 
 const AVATAR_IMAGES = [
     'portrait-laura',
@@ -103,6 +104,8 @@ class ProfileView extends BaseView {
 
         this._presenter.requestAvatarUpdate(this._avatarIndex)
         this._presenter.closeForm()
+
+        sound.play(sound.CLOSE)
     }
 
     onEscDown(event) {
@@ -122,6 +125,8 @@ class ProfileView extends BaseView {
 
         this._presenter.requestMatchHistory()
         this._presenter.requestProfile()
+
+        if (event) sound.play(sound.SELECT)
     }
 
     onAvatarSelectLeft(event) {
@@ -247,6 +252,8 @@ class ProfileView extends BaseView {
 
             this.updateAvatar()
         } 
+
+        sound.play(sound.SELECT)
     }
 
     updateAvatar() {
