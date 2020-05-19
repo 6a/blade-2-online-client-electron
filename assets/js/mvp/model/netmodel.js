@@ -196,6 +196,10 @@ class NetModel extends BaseModel {
             qs: { from: 0, count: 100, pid: (this.getPublicID() ? this.getPublicID() : '')},
             json: true,
         }, (error, response, body) => {
+            console.log(error)
+            console.log(response)
+            console.log(body)
+
             if (error) {
                 this.broadcast(9999, 'serverConnectionError', this.onGetRankingsResponse)
                 return

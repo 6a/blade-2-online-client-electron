@@ -224,16 +224,12 @@ class LoginView extends BaseView {
         }
 
         this._presenter.usernameFieldChanged(username)
-
-        if (event) sound.play(sound.PULSE)
     }
 
     onPasswordFieldChanged(event) {
         let password = this._passwordField.value
 
         this._presenter.passwordFieldChanged(password)
-
-        if (event) sound.play(sound.PULSE)
     }
 
     onUsernameFieldUnfocused() {

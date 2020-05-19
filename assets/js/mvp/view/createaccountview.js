@@ -166,24 +166,18 @@ class CreateAccountView extends BaseView {
         let value = this._usernameField.value
 
         this._presenter.usernameFieldChanged(value)
-
-        sound.play(sound.PULSE)
     }
 
     onEmailFieldChanged() {
         let value = this._emailField.value
 
         this._presenter.emailFieldChanged(value)
-
-        sound.play(sound.PULSE)
     }
 
     onPasswordFieldChanged() {
         let value = this._passwordField.value
 
         this._presenter.passwordFieldChanged(value)
-
-        sound.play(sound.PULSE)
     }
 
     onShowHidePasswordClicked(event) {

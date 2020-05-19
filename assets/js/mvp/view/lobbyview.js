@@ -414,7 +414,7 @@ class LobbyView extends BaseView {
                 break;
         }
 
-        sound.play(sound.SUBMIT)
+        sound.play(sound.OPEN)
     }
 
     onPlayClicked() {
