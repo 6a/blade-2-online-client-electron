@@ -6,5 +6,6 @@ module.exports = {
     authPath: "auth",
     leaderboardsPath: "leaderboards",
     matchesPath: "matches",
-    profilesPath: "profiles"
+    profilesPath: "profiles",
+    soundsFolder: "assets/sounds"
 }

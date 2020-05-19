@@ -1,5 +1,6 @@
 const { Models } = require('../utility')
 const Localization = require('../../utility/localization')
+const Sound = require('../../utility/sound')
 
 class BaseView {
     constructor(name, presenterType, viewsList, showHideClass) {
@@ -84,6 +85,7 @@ class BaseView {
             if (!event.handled) {
                 if (event.keyCode === 27) {
                     this._presenter.closeForm()
+                    Sound.play(Sound.CLOSE)
                 }
 
                 event.handled = true

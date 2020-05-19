@@ -1,5 +1,6 @@
 const BaseView = require('./baseview.js')
 const LoginPresenter = require('../presenter/loginpresenter.js')
+const Sound = require('../../utility/sound')
 
 class LoginView extends BaseView {
     constructor (viewsList) {
@@ -183,8 +184,12 @@ class LoginView extends BaseView {
             this.unlockForm()
             this.toggleHidden(this._loginErrorText, false)
             this.setLocalizedInnerHTML(this._loginErrorText, warningLkey)
+
+            Sound.play(Sound.NEGATIVE)
         } else {
             this.setActive(false)
+
+            Sound.play(Sound.POSITIVE)
         }
     }
 
@@ -211,7 +216,7 @@ class LoginView extends BaseView {
         }
     }
 
-    onUsernameFieldChanged() {
+    onUsernameFieldChanged(event) {
         let username = this._usernameField.value
 
         if (this._usernameField.value === '') {
@@ -219,12 +224,16 @@ class LoginView extends BaseView {
         }
 
         this._presenter.usernameFieldChanged(username)
+
+        if (event) Sound.play(Sound.PULSE)
     }
 
-    onPasswordFieldChanged() {
+    onPasswordFieldChanged(event) {
         let password = this._passwordField.value
 
         this._presenter.passwordFieldChanged(password)
+
+        if (event) Sound.play(Sound.PULSE)
     }
 
     onUsernameFieldUnfocused() {
@@ -237,15 +246,19 @@ class LoginView extends BaseView {
         }
     }
 
-    onSubmit() {
+    onSubmit(event) {
         this._presenter.submit(this._usernameField.value, this._passwordField.value)
 
         this.lockForm()
+
+        Sound.play(Sound.SELECT)
     }
 
     onCreateAccountClicked(event) {
         event.preventDefault();
         this._presenter.createAccountClicked()
+
+        if (event) Sound.play(Sound.OPEN)
     }
 
     onShowHidePasswordClicked(event) {
@@ -263,6 +276,8 @@ class LoginView extends BaseView {
         .then(() => {
             this._passwordField.setSelectionRange(this._passwordField.value.length, this._passwordField.value.length)
         })
+
+        Sound.play(Sound.NAVIGATE)
     }
 
     onShowHideMouseDown(event) {
@@ -272,6 +287,8 @@ class LoginView extends BaseView {
     onRememberMeClicked() {
         let checked = this._rememberMeCheckbox.checked
         this._presenter.setRememberMe(checked)
+
+        Sound.play(Sound.NAVIGATE)
     }
 
     onTransitionEnd() {
