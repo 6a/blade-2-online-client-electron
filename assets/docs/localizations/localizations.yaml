@@ -361,3 +361,13 @@ rank:
 handle:
   en: Handle
   ja-JP: ハンドルネーム
+homeMessageApology:
+  en: Unfortunately, this page has not been implemented.
+  ja-JP: 残念ながら、現時点ではホームページは実装されていません。
+homeMessageInfo:
+  en: >
+      In an ideal world, this page would contain things such as the latest patch notes, or news regarding Blade II Online. However, 
+      as Blade II Online is merely a proof of concept/prototype, there is no content to actually put here.
+  ja-JP: >
+        このページにあるべきコンテンツはブレード II オンラインの最新ニューズやパッチノートなどですが、ブレード II オンラインはあくまでプロ
+        トタイプ兼概念実証であり、ホームページに載せる投稿などが存在しません。

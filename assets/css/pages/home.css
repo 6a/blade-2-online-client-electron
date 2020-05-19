@@ -1,0 +1,81 @@
+#home-wrapper {
+    background-color: var(--gscale-90-100);
+    color: var(--gscale-10-100);
+    top: 50px;
+    right: 50px;
+    bottom: 50px;
+    left: 50px;
+    position: absolute;
+    display: grid;
+    grid-template-rows: 1fr 50px;
+}
+
+#home-inner {
+    position: absolute;
+    display: grid;
+    grid-template-rows: 60px 1fr; 
+    top: 40px;
+    right: 40px;
+    bottom: 40px;
+    left: 40px;
+}
+
+#home-inner > h1 {
+    font-size: 2.8em;
+    font-weight: 500;
+    font-family: 'Trajan Pro Regular', 'Noto Serif JP';
+    letter-spacing: 0.3em;
+    text-align: center;
+}
+
+.home-control-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    background-color: var(--gscale-10-100);
+}
+
+.home-control-wrapper button {
+    font-size: 0.7em;
+    font-weight: 400;
+
+    min-width: 0;
+    padding: 10px 20px;
+    margin: 0 5px;
+
+    background-color: var(--positive);
+}
+
+.home-control-wrapper button:hover {
+    background-color: var(--positive-darker);
+}
+
+.home-control-wrapper button:active {
+    background-color: var(--positive-dark);
+}
+
+.home-content {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    padding: 100px 300px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.home-content > h1 {
+    font-size: 4em;
+    font-weight: 700;
+    margin: 20px;
+}
+
+.home-content > p {
+    font-size: 1em;
+    margin: 20px 0;
+    line-height: 1.4em;
+}

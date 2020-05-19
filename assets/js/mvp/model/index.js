@@ -10,4 +10,5 @@ module.exports = {
     BootStrapperModel: require('./bootstrappermodel.js'),
     ProfileModel: require('./profilemodel.js'),
     RankingsModel: require('./rankingsmodel.js'),
+    HomeModel: require('./homemodel.js'),
 }

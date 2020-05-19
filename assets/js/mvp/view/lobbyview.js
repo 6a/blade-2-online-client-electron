@@ -401,13 +401,11 @@ class LobbyView extends BaseView {
 
         switch (target) {
             case 'home':
-
+                this.onHomeClicked()
                 break;
-
             case 'play':
                 this.onPlayClicked()
                 break;
-
             case 'profile':
                 this.onProfileClicked()
                 break;
@@ -431,6 +429,10 @@ class LobbyView extends BaseView {
         this._presenter.rankingsClicked()
     }
 
+    onHomeClicked() {
+        this._presenter.homeClicked()
+    }
+    
     onReadyCheckAccepted() {
         this._presenter.acceptReadyCheck()
         this._acceptedReadyCheck = true

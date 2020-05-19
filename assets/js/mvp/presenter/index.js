@@ -7,4 +7,5 @@ module.exports = {
     MatchSelectPresenter: require('./matchselectpresenter.js'),
     ProfilePresenter: require('./profilepresenter.js'),
     RankingsPresenter: require('./rankingspresenter.js'),
+    HomePresenter: require('./homepresenter.js'),
 }

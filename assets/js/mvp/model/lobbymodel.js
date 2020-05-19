@@ -66,6 +66,11 @@ class LobbyModel extends BaseModel {
         this.models.get('rankings').show()
     }
 
+    homeClicked() {
+        this.setLocked(true)
+        this.models.get('home').show()
+    }
+
     requestBackgroundVideoActive() {
         this.onToggleBackgroundVideo.broadcast(Settings.get(Settings.KEYS.DISABLE_BACKGROUND_VIDEOS))
     }

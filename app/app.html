@@ -20,7 +20,7 @@
   </header>
 
   <main id="app">
-    <div class="page" id="lobby">
+    <div class="page hidden no-pointer-events" id="lobby">
       <div id="lobby-background">
         <img id="lobby-background-image-home" src="../assets/images/backgrounds/bg-home.png" class="img-full-width-abs">
         <img id="lobby-background-image-play" src="../assets/images/backgrounds/bg-play.png" class="img-full-width-abs hidden">
@@ -335,7 +335,23 @@
       </div>
     </div>
 
-    <div class="page hidden no-pointer-events" id="login">
+    <div class="page backdrop hidden no-pointer-events" id="home">
+      <div id="home-wrapper">
+        <div class="home-content">
+          <h1>404</h1>
+          <p data-lkey="homeMessageApology">残念ながら、現時点ではホームページは実装されていません。</p>
+          <p data-lkey="homeMessageInfo">このページにあるべきコンテンツはブレード II オンラインの最新ニューズやパッチノートなどですが、
+            ブレード II オンラインはあくまでプロトタイプ兼概念実証であり、ホームページに載せる投稿などが存在しません。</p>
+        </div>
+        <div class="home-control-wrapper">
+          <button id="home-return-button">
+            <p data-lkey="return">戻る</p>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="page" id="login">
       <div id="login-bg-video-wrapper" class="bg-video-wrapper">
         <video id="login-bg-video" class="bg-video" loop muted>
           <source src="../assets/videos/sen-2-op-muted.mp4" type="video/mp4">
@@ -378,7 +394,7 @@
        
         <div id="login-links">
           <a id="login-create-account" href="" data-lkey="createAccount">アカウントを作成</a>
-          <a id="login-trouble" href="" data-lkey="troubleLoggingIn">サインインできない場合</a>
+          <a id="login-trouble" href="https://b2webapp.jstanton.io" data-lkey="troubleLoggingIn">サインインできない場合</a>
         </div>
       </div>
     </div>

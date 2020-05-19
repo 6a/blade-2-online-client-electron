@@ -49,8 +49,6 @@ class Sound {
                 howl.volume(sfxVolume)
             }
 
-            console.log(`Playing sound [${sound}] @ volume [${sfxVolume}] (Master volume: [${masterVolume}])`)
-
             howl.play()
 
         } else {

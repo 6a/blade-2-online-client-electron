@@ -8,4 +8,5 @@ module.exports = {
     MatchSelectView: require('./matchselectview.js'),
     ProfileView: require('./profileview.js'),
     RankingsView: require('./rankingsview.js'),
+    HomeView: require('./homeview.js'),
 }
