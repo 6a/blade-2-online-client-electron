@@ -3,21 +3,22 @@ const yaml = require('js-yaml')
 const Timer = require('../utility/timer')
 const makepath = require('../utility/makepath')
 
-let Localization = require('../mvp/utility').Localization // This module is probably initialized after settings, so its required here but re-required later if falsey
+// This module is probably initialized after settings, so its required here but re-required later if falsey
+let Localization = require('../mvp/utility').Localization 
 
 const DEFAULT_SETTINGS = new Map([
     ['username', ''],
-    ['locale', 'en'],
+    ['locale', 'ja-JP'],
     ['masterVolume', 0.8],
-    ['backgroundMusicVolume', 0.8],
+    ['backgroundMusicVolume', 0.6],
     ['soundEffectsVolume', 0.8],
     ['disableBackgroundVideos', false],
     ['resolution', '1920x1080'],
     ['screenMode', 'borderlessFullscreen'],
     ['disableVSync', false],
-    ['antiAliasing', 3],
-    ['shadowQuality', 3],
-    ['postProcessing', 3],
+    ['antiAliasing', 4],
+    ['shadowQuality', 4],
+    ['postProcessing', 4],
 ])
 
 const KEYS = {

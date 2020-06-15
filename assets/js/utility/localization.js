@@ -106,8 +106,8 @@ class Localization {
 
     add(key, dataJP, dataEN) {
         this._localizations.set(key, {
-            jp: dataJP,
-            en: dataEN
+            "ja-JP": dataJP,
+            "en": dataEN
         })
     }
 
